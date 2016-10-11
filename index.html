@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+    <head>
+
+        <title>DocuSign | Postman</title>
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://docucdn-a.akamaihd.net/olive/16.26.1/css/olive.min.css" />
+        <link rel="stylesheet" type="text/css" href="public/styles.css" />
+
+        <script type="text/javascript" src='https://docucdn-a.akamaihd.net/olive/16.26.1/js/olive.min.js'></script>
+
+    </head>
+    <body>
+
+        <div class="container">
+
+            <section class="section">
+
+                <h1>
+                    DocuSign API in Postman
+                </h1>
+
+                <p>
+                    Follow this guide to quickly and easily test the DocuSign API inside Postman. It includes examples for common workflows (obtain your accountID and baseUrl, sending an envelope via email, embedded signing, templates). 
+                </p>
+
+                <div>
+                    <div class="fgrid fgrid-gutters fgrid-eq">
+                        <div class="fgrid_cell">
+                            <a href="public/auth.png" target="_blank">
+                                <img src="public/auth.png" />
+                            </a>
+                        </div>
+                        <div class="fgrid_cell">
+                            <a href="public/send.png" target="_blank">
+                                <img src="public/send.png" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="section">
+
+                <h2>Step 1: Import Collection</h2>
+
+                <div style="margin: 10px 0">
+                    <p>
+                        Click the button below to launch the Postman dialog and import DocuSign's API. 
+                    </p>
+                    <div class="postman-run-button"
+                    data-postman-action="collection/import"
+                    data-postman-var-1="985404a59e16eacba5bb"></div> <!-- Update this value when changing Collection! -->
+                    <script type="text/javascript">
+                      (function (p,o,s,t,m,a,n) {
+                        !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+                        !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+                          (n = o.createElement("script")),
+                          (n.id = s+t), (n.async = 1), (n.src = m), n
+                        ));
+                      }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+                    </script>
+
+                    <div>
+                        <p>
+                            <a href="https://www.getpostman.com/view-collection/985404a59e16eacba5bb" target="_blank">New to Postman?</a>
+                        </p>
+                    </div>
+                </div>
+            
+            </section>
+
+
+            <section class="section">
+                
+                <h2>Step 2: Setup Environment</h2>
+
+                <br />
+                <p>
+                    <!-- <h5>Automatic Import</h5> -->
+                    <p>
+                        <a href="https://secure.docusign.com/signup/developer" target="_blank">Signup for the DocuSign Sandbox</a> and get your Integrator Key and Username/Password. 
+                    </p>
+                    <p>
+                        <a id="enter-creds" href="#" class="btn btn-primary">Enter DocuSign Credentials</a> to create the environment import button. 
+
+                        <div id="hiddenEnv" class="nodisplay highlight highlight-attention">
+                            <p>
+                                <strong>
+                                    Now click the button below to import your environment into Postman
+                                </strong>
+                            </p>
+
+                            <div class="postman-run-button postman-import-environment"
+                            data-postman-action="collection/import"></div>
+                        </div>
+
+                    </p>
+                </p>
+
+                <br />
+                <!-- 
+                <p>
+                    <h5>Manual Auth Setup</h5>
+
+                    <p>
+                        Create the following variables inside your environment in Postman (<a href="https://www.getpostman.com/docs/environments" target="_blank">view Postman docs</a>): 
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>hostenv</strong>: demo.docusign.net
+                        </li>
+                        <li>
+                            <strong>apiVersion</strong>: v2
+                        </li>
+                        <li>
+                            <strong>clientId</strong>: &lt;Your Integrator Key&gt;
+                        </li>
+                        <li>
+                            <strong>username</strong>: &lt;Login Email&gt;
+                        </li>
+                        <li>
+                            <strong>password</strong>: &lt;Login Password&gt;
+                        </li>
+                    </ul>
+
+                </p> -->
+
+            </section>
+
+            <section class="section">
+                
+                <h2>Step 3: Run Examples</h2>
+
+                <br />
+                <p>
+                    <h5>00 - Get Authenticated (Set Account ID and BaseUrl)</h5>
+                    <p>
+                        The example folder <span class="badgeLabel">00 Authentication</span> contains a single method for finding and storing your <code>accountId</code>, obfuscating your password, and setting your <a href="https://docs.docusign.com/esign/guide/usage/quickstart.html#authenticate-and-get-your-base-url" target="_blank">BaseUrl</a> for subsequent API calls. 
+                    </p>
+                    <p>
+                        Notice that this (and every other DocuSign API call in our examples) contains an <code>X-DocuSign-Authentication</code> header that includes your <code>Integrator Key</code> (also called a <code>clientId</code>), <code>username</code>, and <code>password</code>. 
+                    </p>
+                </p>
+
+                <!-- 
+                <br />
+                <p>
+                    <h5>Set up default signers</h5>
+                    <p>
+                        By default, the Pre-request Script for envelope creation will create the <code>signer1Email</code> and <code>signer1Name</code> environment values if they don't exist. The email will be your login email. 
+                    </p>
+                </p> -->
+
+                <br />
+                <p>
+                    <h5>01 - Send an Envelope for Signing</h5>
+                    <p>
+                        The <span class="badgeLabel">01 Send for Signature</span> folder contains a single method that creates an envelope from a blank PDF document (base64 bytes included in the request) and sends it for signature.
+                    </p>
+                </p>
+
+                <br />
+                <p>
+                    <h5>02 - Send from a Template </h5>
+                    <p>
+                        The <span class="badgeLabel">02 Send Request via Template</span> folder contains a two methods: one for creating a template from a blank pdf (storing a <code>templateId</code> in the environment variables), and a second that creates and sends an envelope from the created template. 
+                    </p>
+                </p>
+
+                <br />
+                <p>
+                    <h5>03 - Embedded Signing (host on your website)</h5>
+                    <p>
+                        The <span class="badgeLabel">03 Embedded Signing</span> shows how to create an envelope, but by including a <code>clientUserId</code> for our signer recipient it is not sent by email. Instead, run the second method to return a URL that you can enter in your browser to complete signing. 
+                    </p>
+                </p>
+
+            </section>
+
+            <section class="section">
+                
+                <h2>Step 4: Test Production Credentials</h2>
+                <p>
+                    After you <a href="https://www.docusign.com/developer-center/api-overview#go-live" target="_blank">enable an Integrator Key in production</a> you can test it using your production login credentials. Simply change the <code>hostEv</code> environment variable to <strong>www.docusign.net</strong> and re-authenticate using the <span class="badgeLabel">00 Authentication</span> example to get your new <a href="https://docs.docusign.com/esign/guide/usage/quickstart.html#authenticate-and-get-your-base-url" target="_blank">BaseUrl</a>. 
+                    
+                </p>
+
+
+            </section>
+
+        </div>
+
+        <script id="envModal" type="text/x-template">
+            <div class="modal_header" olive-modal-header>
+                <h1 class="modal_title">
+                    Environment Setup
+                </h1>
+            </div>
+            <div class="modal_content" olive-modal-content>
+
+                <blockquote class="highlight highlight-attention">
+                    No information is sent to DocuSign or other servers from this page, everything is static.                     
+                </blockquote>
+
+                <form>
+
+                    <div class="form-group">
+                        <label class="label" for="clientId">Integrator Key</label>
+                        <input type="text" class="input input-text" placeholder="" id="clientId" name="clientId" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="label" for="username">Username (Email)</label>
+                        <input type="text" class="input input-text" placeholder="" id="username" name="username" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="label" for="password">Password</label>
+                        <input type="password" class="input input-text" placeholder="" id="password" name="password" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="label" for="hostenv">Environment</label>
+                        <div class="select-wrap">
+                            <select class="input-select" id="hostenv" name="hostenv">
+                                <option value="demo.docusign.net">Demo</option>
+                                <option value="www.docusign.net">Production</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="label" for="apiVersion">ApiVersion</label>
+                        <div class="select-wrap">
+                            <select class="input-select" id="apiVersion" name="apiVersion">
+                                <option value="v2">v2</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal_footer" olive-modal-footer>
+                <button class="btn btn-lg btn-primary" olive-modal-complete>Create Environment</button>
+                <button class="btn btn-lg btn-minor" olive-modal-escape>Cancel</button>
+            </div>
+        </script>
+
+        <script type="text/javascript" src='public/app.js'></script>
+    </body>
+</html>
