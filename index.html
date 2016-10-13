@@ -24,7 +24,7 @@
                 </h1>
 
                 <p>
-                    Follow this guide to quickly and easily test the DocuSign API inside Postman. It includes examples for common workflows (obtain your accountID and baseUrl, sending an envelope via email, embedded signing, templates). 
+                    Follow this guide to quickly and easily test the DocuSign API inside Postman. It includes examples for common workflows (authenticating to retrieve your accountID and baseUrl, sending an envelope via email, templates, and embedded signing). 
                 </p>
 
                 <div>
@@ -46,42 +46,62 @@
 
             <section class="section">
 
-                <h2>Step 1: Import Collection</h2>
+                <h2>Step 1: Create Environment and Collection</h2>
 
                 <div style="margin: 10px 0">
+
+                    <p>
+                        <a id="enter-creds" href="#" class="btn btn-primary">Enter DocuSign Credentials</a>
+                    </p>
+
+<!-- 
                     <p>
                         Click the button below to launch the Postman dialog and import DocuSign's API. 
-                    </p>
-                    <div class="postman-run-button"
-                    data-postman-action="collection/import"
-                    data-postman-var-1="985404a59e16eacba5bb"></div> <!-- Update this value when changing Collection! -->
-                    <script type="text/javascript">
-                      (function (p,o,s,t,m,a,n) {
-                        !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
-                        !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
-                          (n = o.createElement("script")),
-                          (n.id = s+t), (n.async = 1), (n.src = m), n
-                        ));
-                      }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
-                    </script>
+                    </p> -->
 
-                    <div>
-                        <p>
-                            <a href="https://www.getpostman.com/view-collection/985404a59e16eacba5bb" target="_blank">New to Postman?</a>
-                        </p>
-                    </div>
                 </div>
             
             </section>
 
 
             <section class="section">
-                
+
+                <h2>Step 2: Import into Postman</h2>
+
+
+                <div id="shownEnv" class="">
+                    <p>
+                        ...Complete Step 1 first...
+                    </p>
+                </div>
+
+                <div id="hiddenEnv" class="nodisplay highlight highlight-attention">
+                    <p>
+                        Click the button below to import into Postman
+                    </p>
+                    
+                    <p>
+                        <div class="postman-run-button"
+                        data-postman-action="collection/import"
+                        data-postman-var-1="d0da8ea6b7743ff3c383"></div> <!-- Update/Change this value when changing Collection! -->
+                        <script type="text/javascript">
+                          (function (p,o,s,t,m,a,n) {
+                            !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+                            !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+                              (n = o.createElement("script")),
+                              (n.id = s+t), (n.async = 1), (n.src = m), n
+                            ));
+                          }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+                        </script>
+                    </p>
+
+                </div>
+
+                <!-- 
                 <h2>Step 2: Setup Environment</h2>
 
                 <br />
                 <p>
-                    <!-- <h5>Automatic Import</h5> -->
                     <p>
                         <a href="https://secure.docusign.com/signup/developer" target="_blank">Signup for the DocuSign Sandbox</a> and get your Integrator Key and Username/Password. 
                     </p>
@@ -100,7 +120,7 @@
                         </div>
 
                     </p>
-                </p>
+                </p> -->
 
                 <br />
                 <!-- 
@@ -205,7 +225,7 @@
             <div class="modal_content" olive-modal-content>
 
                 <blockquote class="highlight highlight-attention">
-                    No information is sent to DocuSign or other servers from this page, everything is static.                     
+                    Note: No information is sent to DocuSign or other servers from this page, everything is static.                     
                 </blockquote>
 
                 <form>

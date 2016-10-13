@@ -95,7 +95,8 @@ $(function(){
 
 		    	lastEnv = envOutput;
 		    	// $('#envDownload')[0].click();
-		    	$('#hiddenEnv').removeClass('nodisplay');
+		    	$('#shownEnv').remove();
+		    	$('#hiddenEnv').slideDown(750);
 		    }
 		};
 		var inst = Olive.modal.show(options);
