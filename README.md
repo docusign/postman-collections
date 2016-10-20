@@ -1,7 +1,7 @@
 
 ### DocuSign and Postman 
 
-https://docusign.github.io/docusign-postman-api-collection
+https://docusign.github.io/postman-esign-api-collection
 
 Follow this guide to quickly and easily test the DocuSign API inside Postman. It includes examples for common workflows (obtain your accountID and baseUrl, sending an envelope via email, embedded signing, templates). 
 
