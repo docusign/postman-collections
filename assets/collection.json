@@ -1,45 +1,44 @@
 {
-  "id": "73a8c4b2-d404-460c-9bee-8222d3b0aced",
-  "name": "DocuSign REST API",
-  "description": "The DocuSign REST API provides you with a powerful, convenient, and simple Web services API for interacting with DocuSign.",
-  "apiFamily": "",
-  "apiVersion": "v2.1",
-  "order": [],
-  "folders": [
+  "variables": [],
+  "info": {
+    "name": "DocuSign REST API",
+    "_postman_id": "639d111d-fe8d-462f-80ce-1a2766d3c7bf",
+    "description": "The DocuSign REST API provides you with a powerful, convenient, and simple Web services API for interacting with DocuSign.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
     {
-      "id": "bc5a895d-592b-467a-b205-9286188ff5e5",
+      "_postman_id": "08fd1090-1cf7-41f6-a3c6-d164bf1149dc",
       "name": "service_information",
       "description": "Folder for service_information",
-      "order": [
-        "c68f44b4-fa0d-4d35-971f-3254a2792d95"
-      ],
-      "collection_name": "DocuSign REST API",
-      "collection_id": "73a8c4b2-d404-460c-9bee-8222d3b0aced",
-      "collection": "73a8c4b2-d404-460c-9bee-8222d3b0aced"
-    }
-  ],
-  "timestamp": 1413302258635,
-  "synced": false,
-  "requests": [
-    {
-      "id": "c68f44b4-fa0d-4d35-971f-3254a2792d95",
-      "headers": "X-DocuSign-Authentication:{\"Username\":\"{{username}}\",\"Password\":\"{{password}}\",\"IntegratorKey\":\"{{clientId}}\"}\nContent-Type:application/json",
-      "url": "https://{{hostenv}}/restapi/service_information",
-      "pathVariables": {},
-      "preRequestScript": "",
-      "method": "GET",
-      "data": [],
-      "rawModeData": null,
-      "dataMode": "params",
-      "description": "Retrieves the available REST API versions.\n\nDocuSign Production system: https://www.docusign.net/restapi/service_information\nDocuSign Demo system: https://demo.docusign.net/restapi/service_information\n\nYou do not need an integrator key to view the REST API versions and resources.",
-      "descriptionFormat": "html",
-      "time": 1583779223379,
-      "version": 2,
-      "responses": [],
-      "tests": "",
-      "collectionId": "73a8c4b2-d404-460c-9bee-8222d3b0aced",
-      "synced": false,
-      "name": "Retrieves the available REST API versions."
+      "item": [
+        {
+          "_postman_id": "cf9bb4b1-ee76-4d4a-ad45-f50faf725a05",
+          "name": "Retrieves the available REST API versions.",
+          "request": {
+            "url": "https://{{hostenv}}/restapi/service_information",
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-DocuSign-Authentication:{\"Username\":\"{{username}}\",\"Password\":\"{{password}}\",\"IntegratorKey\"",
+                "value": "\"{{clientId}}\"}",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "description": "Retrieves the available REST API versions.\n\nDocuSign Production system: https://www.docusign.net/restapi/service_information\nDocuSign Demo system: https://demo.docusign.net/restapi/service_information\n\nYou do not need an integrator key to view the REST API versions and resources."
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
