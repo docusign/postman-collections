@@ -31,25 +31,19 @@ $(function(){
 					"enabled": true
 				},
 				{
-					"key": "clientId",
+					"key": "iKey",
 					"value": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
-					"key": "username",
-					"value": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "password",
+					"key": "iSec",
 					"value": "",
 					"type": "text",
 					"enabled": true
 				}
-			],
-			"timestamp": 1468008305072,
+			],            
+			"timestamp": 1574474791484,
 			"synced": false,
 			"syncedFilename": "",
 			"team": null,
@@ -82,9 +76,8 @@ $(function(){
 		    	// });
 		    	formObj.hostenv = _.find(formArr,{name: 'hostenv'}).value;
 		    	formObj.apiVersion = _.find(formArr,{name: 'apiVersion'}).value;
-		    	formObj.clientId = _.find(formArr,{name: 'clientId'}).value;
-		    	formObj.username = _.find(formArr,{name: 'username'}).value;
-		    	formObj.password = _.find(formArr,{name: 'password'}).value;
+		    	formObj.iKey = _.find(formArr,{name: 'iKey'}).value;
+		    	formObj.iSec = _.find(formArr,{name: 'iSec'}).value;
 
 		    	console.log(formObj);
 		    	console.log(envOutput);
