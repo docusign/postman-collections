@@ -41,6 +41,12 @@ $(function(){
 					"value": "",
 					"type": "text",
 					"enabled": true
+				},
+				{
+					"key": "encodedKeys",
+					"value": "",
+					"type": "text",
+					"enabled": true
 				}
 			],            
 			"timestamp": 1574474791484,
