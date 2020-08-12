@@ -78,6 +78,9 @@ $(function(){
 		    	formObj.apiVersion = _.find(formArr,{name: 'apiVersion'}).value;
 		    	formObj.iKey = _.find(formArr,{name: 'iKey'}).value;
 		    	formObj.iSec = _.find(formArr,{name: 'iSec'}).value;
+			
+			var encoded = btoa(formObj.iKey + ':' + formObj.iSec);
+			formObj.encodedKeys = encoded;
 
 		    	console.log(formObj);
 		    	console.log(envOutput);
