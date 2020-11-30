@@ -1,0 +1,4618 @@
+{
+  "variables": [],
+  "info": {
+    "name": "DocuSign Rooms API - v2",
+    "_postman_id": "185d7ef6-e025-4aa2-ba7c-7a9dfe2cddca",
+    "description": "An API for an integrator to access the features of DocuSign Rooms",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "_postman_id": "23fc97bd-265e-427d-8975-a88bcee93494",
+      "name": "Accounts",
+      "description": "Folder for Accounts",
+      "item": [
+        {
+          "_postman_id": "60dc8422-9c39-46c3-92a2-d8ce9533d57d",
+          "name": "Get information about the account.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "848ae55f-a11b-4502-9f65-20c89c54330c",
+      "name": "Documents",
+      "description": "Folder for Documents",
+      "item": [
+        {
+          "_postman_id": "d2919665-f89b-44d5-881d-49a6448545ee",
+          "name": "Get information about the Document with the given DocumentId.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/documents/{{documentId}}?includeContents=false",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "documents",
+                "{{documentId}}"
+              ],
+              "query": [
+                {
+                  "key": "includeContents",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{documentId}}",
+                  "id": "documentId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "69eff0a3-825d-4897-aaaa-50db253afb19",
+          "name": "Deletes a document.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/documents/{{documentId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "documents",
+                "{{documentId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{documentId}}",
+                  "id": "documentId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f884fc22-1ab0-48a6-bcf8-f0fe716bb38f",
+          "name": "Grants access to a document for a user.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/documents/{{documentId}}/users",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "documents",
+                "{{documentId}}",
+                "users"
+              ],
+              "variable": [
+                {
+                  "value": "{{documentId}}",
+                  "id": "documentId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "7722f1d7-4bc4-4f63-b6ca-2b8972525f24",
+      "name": "ESignPermissionProfiles",
+      "description": "Folder for ESignPermissionProfiles",
+      "item": [
+        {
+          "_postman_id": "61b6dd46-bd61-4abd-aaf0-9c5906a8c26f",
+          "name": "Gets permission profiles from the associated eSign account.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/esign_permission_profiles",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "esign_permission_profiles"
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "7f5d2ad6-f6d0-4d0f-8579-9bee0b9bcf42",
+      "name": "Forms",
+      "description": "Folder for Forms",
+      "item": [
+        {
+          "_postman_id": "76be33e7-7222-4fd4-bd77-ebb03c87396c",
+          "name": "Creates an external form fill session.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/external_form_fill_sessions",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "external_form_fill_sessions"
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2cc84bc0-fcda-4809-9853-28dd7c0306e2",
+          "name": "Get account Form Groups.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/form_groups?count=100&startPosition=0",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "form_groups"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "100"
+                },
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "07731bfa-752d-4c1c-89fc-8c7c9e3b4e29",
+          "name": "Creates a form group.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/form_groups",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "form_groups"
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "330b2bf8-25d9-4b47-a91b-cde29b31eac7",
+          "name": "Gets a form group.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/form_groups/{{formGroupId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "form_groups",
+                "{{formGroupId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{formGroupId}}",
+                  "id": "formGroupId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "a03bc496-f9f3-4b0b-bc4f-63a0bac4eb2d",
+          "name": "Renames a form group.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/form_groups/{{formGroupId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "form_groups",
+                "{{formGroupId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{formGroupId}}",
+                  "id": "formGroupId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "b9bf79e7-84db-41c0-9a0d-dc25d76d9a53",
+          "name": "Deletes a form group.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/form_groups/{{formGroupId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "form_groups",
+                "{{formGroupId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{formGroupId}}",
+                  "id": "formGroupId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5197685c-9aed-4bd5-a1b8-9a18d5a6bf13",
+          "name": "Removes a form from a form group.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/form_groups/{{formGroupId}}/unassign_form/{{formId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "form_groups",
+                "{{formGroupId}}",
+                "unassign_form",
+                "{{formId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{formGroupId}}",
+                  "id": "formGroupId"
+                },
+                {
+                  "value": "{{formId}}",
+                  "id": "formId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2c5c1226-27a9-4d06-949b-494672cf6e34",
+          "name": "Assigns a form to a form group.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/form_groups/{{formGroupId}}/assign_form",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "form_groups",
+                "{{formGroupId}}",
+                "assign_form"
+              ],
+              "variable": [
+                {
+                  "value": "{{formGroupId}}",
+                  "id": "formGroupId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "66336ec7-82a5-482e-9c36-f126af99e27a",
+          "name": "Assign office to a form group so the specified office has access to the form group.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/form_groups/{{formGroupId}}/grant_office_access/{{officeId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "form_groups",
+                "{{formGroupId}}",
+                "grant_office_access",
+                "{{officeId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{formGroupId}}",
+                  "id": "formGroupId"
+                },
+                {
+                  "value": "{{officeId}}",
+                  "id": "officeId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2c2eb29e-b6cc-483d-8adc-44a20c76895e",
+          "name": "Remove office to a form group so the specified office doesn't have access to the form group.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/form_groups/{{formGroupId}}/revoke_office_access/{{officeId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "form_groups",
+                "{{formGroupId}}",
+                "revoke_office_access",
+                "{{officeId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{formGroupId}}",
+                  "id": "formGroupId"
+                },
+                {
+                  "value": "{{officeId}}",
+                  "id": "officeId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "395f71a2-d389-4ba3-9a34-98303a1f34a0",
+          "name": "Gets a paged list of forms libraries.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/form_libraries?count=100&startPosition=0",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "form_libraries"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "100"
+                },
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "45328818-3caf-480c-a6a4-f2fefd5c33b4",
+          "name": "Gets a paged list of forms in a forms library.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/form_libraries/{{formLibraryId}}/forms?count=100&startPosition=0",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "form_libraries",
+                "{{formLibraryId}}",
+                "forms"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "100"
+                },
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{formLibraryId}}",
+                  "id": "formLibraryId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5d60e1bf-26d4-4505-8439-03897aa8d8ef",
+          "name": "Gets form based on Id.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/forms/{{formId}}/details",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "forms",
+                "{{formId}}",
+                "details"
+              ],
+              "variable": [
+                {
+                  "value": "{{formId}}",
+                  "id": "formId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "92d96a1b-de2f-4b1d-a466-300c0279e4e7",
+      "name": "Fields",
+      "description": "Folder for Fields",
+      "item": [
+        {
+          "_postman_id": "2c324e87-f1ad-4cfe-b6f2-0ec4d0a210fa",
+          "name": "Get details of a specific field set.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/field_sets/{{fieldSetId}}?fieldsCustomDataFilters={{fieldsCustomDataFilters}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "field_sets",
+                "{{fieldSetId}}"
+              ],
+              "query": [
+                {
+                  "key": "fieldsCustomDataFilters",
+                  "value": "{{fieldsCustomDataFilters}}"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{fieldSetId}}",
+                  "id": "fieldSetId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "aaac75ef-e2f6-4f7a-8261-511b84928b9b",
+      "name": "GlobalResources",
+      "description": "Folder for GlobalResources",
+      "item": [
+        {
+          "_postman_id": "5bad22a8-2519-4b33-b019-03454579d3e7",
+          "name": "Retrieves the list of valid countries.",
+          "request": {
+            "url": "{{baseUrl}}/v2/countries",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "bbeffde8-6600-45d3-b4cc-ab1f204dbfed",
+          "name": "Retrieves the list of valid closing statuses.",
+          "request": {
+            "url": "{{baseUrl}}/v2/closing_statuses",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9002e8d2-f666-4597-8faf-1ba5f14801f2",
+          "name": "Retrieves the list of valid contact sides.",
+          "request": {
+            "url": "{{baseUrl}}/v2/contact_sides",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "c04c291d-74c1-4bc5-bbf0-6c5389d60ab1",
+          "name": "Retrieves the list of valid financing types.",
+          "request": {
+            "url": "{{baseUrl}}/v2/financing_types",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f9bef3c8-73cd-42ce-a2fb-6012b8cedda6",
+          "name": "Retrieves the list of valid origins of leads.",
+          "request": {
+            "url": "{{baseUrl}}/v2/origins_of_leads",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9d1ba7b1-8ebc-4caf-9bcf-0bb995fc694a",
+          "name": "Retrieves the list of valid property types.",
+          "request": {
+            "url": "{{baseUrl}}/v2/property_types",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "185df06c-2839-40e3-b154-c3139e1408ba",
+          "name": "Retrieves the list of valid room contact types.",
+          "request": {
+            "url": "{{baseUrl}}/v2/room_contact_types",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "83d7489b-fab0-4c4e-9e46-68c2b0f96d71",
+          "name": "Retrieves the list of valid seller decision types.",
+          "request": {
+            "url": "{{baseUrl}}/v2/seller_decision_types",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "1a1ddb2b-7717-4ae8-9d48-c2979578697c",
+          "name": "Retrieves the list of valid special circumstance types.",
+          "request": {
+            "url": "{{baseUrl}}/v2/special_circumstance_types",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "a6399d53-5dd3-4e80-9a77-892557e57b71",
+          "name": "Retrieves the list of valid task date types.",
+          "request": {
+            "url": "{{baseUrl}}/v2/task_date_types",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9fd20c17-518c-4d07-8c42-b5d93a3298e4",
+          "name": "Retrieves the list of valid task responsibility types.",
+          "request": {
+            "url": "{{baseUrl}}/v2/task_responsibility_types",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "a197edbe-0b7f-4d78-b9e8-332ca8f3c54d",
+          "name": "Retrieves the list of valid task statuses.",
+          "request": {
+            "url": "{{baseUrl}}/v2/task_statuses",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9c8ad4dd-9d4d-4e5f-82a3-816fb1ddc618",
+          "name": "Retrieves the list of valid transaction sides.",
+          "request": {
+            "url": "{{baseUrl}}/v2/transaction_sides",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "b598b3a2-4dd1-444d-9ce3-c60b3da1a61e",
+          "name": "Retrieves the list of valid states.",
+          "request": {
+            "url": "{{baseUrl}}/v2/states",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "51db0485-1291-4e97-8dcb-03845ee4e2ec",
+          "name": "Retrieves the list of valid currencies.",
+          "request": {
+            "url": "{{baseUrl}}/v2/currencies",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9e1efb9b-78ce-4b05-a513-0cdbf2027c38",
+          "name": "Retrieves the list of valid time zones.",
+          "request": {
+            "url": "{{baseUrl}}/v2/time_zones",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "85b74c1e-54c5-4699-8dfd-40790f456f29",
+      "name": "Offices",
+      "description": "Folder for Offices",
+      "item": [
+        {
+          "_postman_id": "833338e3-e7f5-4009-842a-e02e7e59248a",
+          "name": "Get all ",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/offices?count=100&startPosition=0&onlyAccessible=false&search={{search}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "offices"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "100"
+                },
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                },
+                {
+                  "key": "onlyAccessible",
+                  "value": "false"
+                },
+                {
+                  "key": "search",
+                  "value": "{{search}}"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "0fff3f3f-08be-44a5-88bb-fda4d8d714e4",
+          "name": "Create an office.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/offices",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "offices"
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "e00f9ff4-5694-40d0-873c-981c9ba94124",
+          "name": "Get information about the office with the given officeId.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/offices/{{officeId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "offices",
+                "{{officeId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{officeId}}",
+                  "id": "officeId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "b13b0252-35e2-4e39-97e8-01cf70a2c198",
+          "name": "Delete an office.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/offices/{{officeId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "offices",
+                "{{officeId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{officeId}}",
+                  "id": "officeId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "fcede29d-d9d7-4843-8685-337c01dce479",
+          "name": "Lists the number of objects of each type that reference the office.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/offices/{{officeId}}/reference_counts",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "offices",
+                "{{officeId}}",
+                "reference_counts"
+              ],
+              "variable": [
+                {
+                  "value": "{{officeId}}",
+                  "id": "officeId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "6480366d-25f9-451a-8b33-afa0ef667a4a",
+      "name": "Regions",
+      "description": "Folder for Regions",
+      "item": [
+        {
+          "_postman_id": "9533d871-1408-4d8a-b424-626033fc7cb1",
+          "name": "Get account ",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/regions?count=100&startPosition=0&managedOnly=false",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "regions"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "100"
+                },
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                },
+                {
+                  "key": "managedOnly",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "7d75332e-f025-4a0c-a466-4cf35eb5feda",
+          "name": "Creates a new region for a company",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/regions",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "regions"
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "dd0f0f3e-fd57-43eb-bcf2-db87b468f90c",
+          "name": "Get information about the region with the given regionId",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/regions/{{regionId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "regions",
+                "{{regionId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{regionId}}",
+                  "id": "regionId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "0319d20e-4bf7-4ad9-a191-1c18c6333944",
+          "name": "Delete a region.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/regions/{{regionId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "regions",
+                "{{regionId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{regionId}}",
+                  "id": "regionId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "e7f4ebe4-fd52-4ff8-a42f-fba780c77138",
+          "name": "Get region reference counts.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/regions/{{regionId}}/reference_counts",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "regions",
+                "{{regionId}}",
+                "reference_counts"
+              ],
+              "variable": [
+                {
+                  "value": "{{regionId}}",
+                  "id": "regionId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "4041008a-d01c-4c52-be1d-e6a098923c29",
+      "name": "Roles",
+      "description": "Folder for Roles",
+      "item": [
+        {
+          "_postman_id": "a14f73d4-09bb-42e5-978b-6839fce00efd",
+          "name": "Gets a paged-list of roles in your company",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/roles?onlyAssignable=false&filter={{filter}}&startPosition=0&count=100",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "roles"
+              ],
+              "query": [
+                {
+                  "key": "onlyAssignable",
+                  "value": "false"
+                },
+                {
+                  "key": "filter",
+                  "value": "{{filter}}"
+                },
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                },
+                {
+                  "key": "count",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "085b1e56-edf5-4390-9b04-42597eb05368",
+          "name": "Creates a role.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/roles",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "roles"
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "101dde10-326a-4a74-93a9-5f64b5873ed3",
+          "name": "Get information about the role with the given roleId.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/roles/{{roleId}}?includeIsAssigned=false",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "roles",
+                "{{roleId}}"
+              ],
+              "query": [
+                {
+                  "key": "includeIsAssigned",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{roleId}}",
+                  "id": "roleId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "acd01561-dd6b-4b36-a459-47152592a6c7",
+          "name": "Updates the role with the given roleId.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/roles/{{roleId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "roles",
+                "{{roleId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{roleId}}",
+                  "id": "roleId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "bf130bfc-b3cc-4032-9151-f3e0c6ff5f39",
+          "name": "Deletes the role with the given roleId.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/roles/{{roleId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "roles",
+                "{{roleId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{roleId}}",
+                  "id": "roleId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "2d150230-108d-4351-9ba9-eef161d41084",
+      "name": "Rooms",
+      "description": "Folder for Rooms",
+      "item": [
+        {
+          "_postman_id": "af74b2f5-56c1-4d07-bcee-6ed4b05eda83",
+          "name": "Returns the FieldData associated with the provided roomId.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/field_data",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "field_data"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "6cf968b3-11ea-4707-8313-9e1667f520b6",
+          "name": "Updates room field data.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/field_data",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "field_data"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "e312ae0c-289e-4790-8bba-cc0444e59f70",
+          "name": "Gets room folders accessible to the calling user.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/room_folders?startPosition=0&count=100",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "room_folders"
+              ],
+              "query": [
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                },
+                {
+                  "key": "count",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "c02f401b-7db2-4688-8a24-83efeb3de6de",
+          "name": "Adds a DocuSign Form to a room",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/forms",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "forms"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "728bef33-568e-4ab5-a2ff-0c639e9e8872",
+          "name": "Retrieves the list of users in the given ",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/users?count=100&startPosition=0&filter={{filter}}&sort={{sort}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "100"
+                },
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                },
+                {
+                  "key": "filter",
+                  "value": "{{filter}}"
+                },
+                {
+                  "key": "sort",
+                  "value": "{{sort}}"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "b9073b30-713b-410a-88e2-6b0d29197c67",
+          "name": "Invites a user to the room by email address.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/users",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "users"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "1c34a2a0-998e-4c8c-8eb1-cdc76c98bf21",
+          "name": "Updates the specified user's role and transaction side.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/users/{{userId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "users",
+                "{{userId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "6263ab33-d656-4e69-ab5f-c105bc89f1f9",
+          "name": "Revokes the specified user's access to the ",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/users/{{userId}}/revoke_access",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "users",
+                "{{userId}}",
+                "revoke_access"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "bb37af17-84d3-4ba4-a59e-101a93918616",
+          "name": "Restores the specified user's access to the ",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/users/{{userId}}/restore_access",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "users",
+                "{{userId}}",
+                "restore_access"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "91f7d1dc-ff4e-4d3d-850e-27bbb7165430",
+          "name": "Gets rooms available to the calling user.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms?count=100&startPosition=0&roomStatus={{roomStatus}}&officeId={{officeId}}&fieldDataChangedStartDate={{fieldDataChangedStartDate}}&fieldDataChangedEndDate={{fieldDataChangedEndDate}}&roomClosedStartDate={{roomClosedStartDate}}&roomClosedEndDate={{roomClosedEndDate}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "100"
+                },
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                },
+                {
+                  "key": "roomStatus",
+                  "value": "{{roomStatus}}"
+                },
+                {
+                  "key": "officeId",
+                  "value": "{{officeId}}"
+                },
+                {
+                  "key": "fieldDataChangedStartDate",
+                  "value": "{{fieldDataChangedStartDate}}"
+                },
+                {
+                  "key": "fieldDataChangedEndDate",
+                  "value": "{{fieldDataChangedEndDate}}"
+                },
+                {
+                  "key": "roomClosedStartDate",
+                  "value": "{{roomClosedStartDate}}"
+                },
+                {
+                  "key": "roomClosedEndDate",
+                  "value": "{{roomClosedEndDate}}"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "7e70fd28-14bd-47a0-986c-052996270c5e",
+          "name": "Creates a new Room",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms"
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "ab21df14-b9db-4014-b87b-60448c1c190f",
+          "name": "Gets information about the given ",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}?includeFieldData=false",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}"
+              ],
+              "query": [
+                {
+                  "key": "includeFieldData",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2e13a283-1018-4202-9a2a-43c140dca8b1",
+          "name": "Deletes the room having the given room ID.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5125e4d3-cb00-4bd2-8896-9f6430705f98",
+          "name": "Returns the roles for which the calling user, based on their role within the room, can assign to invitees.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/assignable_roles?assigneeEmail={{assigneeEmail}}&filter={{filter}}&startPosition=0&count=100",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "assignable_roles"
+              ],
+              "query": [
+                {
+                  "key": "assigneeEmail",
+                  "value": "{{assigneeEmail}}"
+                },
+                {
+                  "key": "filter",
+                  "value": "{{filter}}"
+                },
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                },
+                {
+                  "key": "count",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "4dc518ad-e994-460d-9ad8-0bff7a5424e5",
+          "name": "Get documents in the room accessible to the calling user.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/documents?count=100&startPosition=0",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "documents"
+              ],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "100"
+                },
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "d4e0ad80-1f8f-4e2e-bccd-3759bc6203a3",
+          "name": "Add a document to a ",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/documents",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "documents"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "0cb22d8a-46e3-4ce8-809b-9d32c5b9a235",
+          "name": "Add a document to a room via file contents upload.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/documents/contents",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "documents",
+                "contents"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "6e53847a-4b78-433a-9af7-31c3822461d8",
+          "name": "Update the picture for a ",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/picture",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "picture"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "This endpoint supports the following content types, application/json as JSON PictureForUpdate{\"fileName\":\"string\", \"Base64Contents\":\"string\"}, multipart/formdata and any other streamed binary content type (as long as either query parameter fileName or request header ContentDisposition filename is included)."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "23362f66-980b-4da9-bbf2-78d28df99074",
+          "name": "Gets the field set associated with the ",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/field_set",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "field_set"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "4e59badf-8623-4002-b29b-9204c00620a7",
+      "name": "TaskLists",
+      "description": "Folder for TaskLists",
+      "item": [
+        {
+          "_postman_id": "c190f0d1-e2f0-431f-86e7-4bc11faa0bba",
+          "name": "Returns the summary for all viewable task lists in a ",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/task_lists",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "task_lists"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "c8019485-acac-4bfa-bc1d-a7dc8452d748",
+          "name": "Add a task list to a room based on a task list template.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/rooms/{{roomId}}/task_lists",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "rooms",
+                "{{roomId}}",
+                "task_lists"
+              ],
+              "variable": [
+                {
+                  "value": "{{roomId}}",
+                  "id": "roomId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "845a4f89-5b4a-413d-82bf-4f695385b342",
+          "name": "Deletes a task list. If there are attached documents they will remain in the associated ",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/task_lists/{{taskListId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "task_lists",
+                "{{taskListId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{taskListId}}",
+                  "id": "taskListId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f55c8ac8-3e07-4d8d-94cc-4175f0de3a73",
+          "name": "Returns all task list templates for the company of the active user.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/task_list_templates?startPosition=0&count=100",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "task_list_templates"
+              ],
+              "query": [
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                },
+                {
+                  "key": "count",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "7ff00cbd-83a3-4f94-a6f7-e769bf54657e",
+      "name": "RoomTemplates",
+      "description": "Folder for RoomTemplates",
+      "item": [
+        {
+          "_postman_id": "7d556eb4-e402-44fe-8738-4fc4746dbd3b",
+          "name": "Returns all room templates that the active user has access to",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/room_templates?officeId={{officeId}}&onlyAssignable=false&onlyEnabled=true&count=100&startPosition=0",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "room_templates"
+              ],
+              "query": [
+                {
+                  "key": "officeId",
+                  "value": "{{officeId}}"
+                },
+                {
+                  "key": "onlyAssignable",
+                  "value": "false"
+                },
+                {
+                  "key": "onlyEnabled",
+                  "value": "true"
+                },
+                {
+                  "key": "count",
+                  "value": "100"
+                },
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "30ac462b-4763-43db-a634-cf15814192de",
+      "name": "Users",
+      "description": "Folder for Users",
+      "item": [
+        {
+          "_postman_id": "fdf81fdd-9733-4be5-a6e5-265353031bf1",
+          "name": "Gets a paged-list of ",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users?filter={{filter}}&sort={{sort}}&defaultOfficeId={{defaultOfficeId}}&accessLevel={{accessLevel}}&titleId={{titleId}}&roleId={{roleId}}&status={{status}}&lockedOnly={{lockedOnly}}&startPosition=0&count=100",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "filter",
+                  "value": "{{filter}}"
+                },
+                {
+                  "key": "sort",
+                  "value": "{{sort}}"
+                },
+                {
+                  "key": "defaultOfficeId",
+                  "value": "{{defaultOfficeId}}"
+                },
+                {
+                  "key": "accessLevel",
+                  "value": "{{accessLevel}}"
+                },
+                {
+                  "key": "titleId",
+                  "value": "{{titleId}}"
+                },
+                {
+                  "key": "roleId",
+                  "value": "{{roleId}}"
+                },
+                {
+                  "key": "status",
+                  "value": "{{status}}"
+                },
+                {
+                  "key": "lockedOnly",
+                  "value": "{{lockedOnly}}"
+                },
+                {
+                  "key": "startPosition",
+                  "value": "0"
+                },
+                {
+                  "key": "count",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Retrieves a paged-list of Company Users in the User's company using the given filter and sort parameters."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "56caa878-959e-4ae5-813d-c5f31a7ee02a",
+          "name": "Retrieves user information for the user having the given UserId.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/{{userId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "{{userId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "d13625e1-d030-4c2f-b5d0-6e8f5da74bda",
+          "name": "Updates user information",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/{{userId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "{{userId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "e9d3b0e1-ba39-4c44-9fa0-8a6893748a69",
+          "name": "Removes a user from the company.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/{{userId}}",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "{{userId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Removes the user. Will fail if the user owns any Rooms. \r\nThe rooms will need to be transferred to other agents before removing."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "e405e4a6-dc4d-4565-aedf-e6e2d5e590e7",
+          "name": "NON-CLASSIC COMPANY ONLY. Send an invitation to the user or non-user having the given email.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/invite_user",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "invite_user"
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "cb9978b5-4a05-4646-85b7-840053b7387e",
+          "name": "CLASSIC COMPANY ONLY. Send an invitation to join the company as an admin.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/invite_classic_admin",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "invite_classic_admin"
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "8addd341-10e5-46e3-b60b-16f211ec8307",
+          "name": "CLASSIC COMPANY ONLY. Send an invitation to join the company as a manager.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/invite_classic_manager",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "invite_classic_manager"
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "ddd894b7-3def-4216-92da-87d489ee9a3e",
+          "name": "CLASSIC COMPANY ONLY. Send an invitation to join the company as an agent.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/invite_classic_agent",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "invite_classic_agent"
+              ],
+              "variable": [
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "a95a096f-dede-4973-aa75-1442516ec4ab",
+          "name": "Reinvites the pending user with the given userId.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/{{userId}}/reinvite",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "{{userId}}",
+                "reinvite"
+              ],
+              "variable": [
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "607d46d7-222c-41dd-852b-e97fb30237be",
+          "name": "Adds the user to the designated office.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/{{userId}}/add_to_office",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "{{userId}}",
+                "add_to_office"
+              ],
+              "variable": [
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "1e9634dc-0363-45f7-86db-6f7b65572fab",
+          "name": "Removes the user from the designated office.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/{{userId}}/remove_from_office",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "{{userId}}",
+                "remove_from_office"
+              ],
+              "variable": [
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "976b5fe6-a755-4f30-8ade-251ffbeca44a",
+          "name": "Adds the user to the designated region.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/{{userId}}/add_to_region",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "{{userId}}",
+                "add_to_region"
+              ],
+              "variable": [
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "4e723786-1b66-484e-86f6-612c8bc6bae3",
+          "name": "Removes the user from the designated region.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/{{userId}}/remove_from_region",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "{{userId}}",
+                "remove_from_region"
+              ],
+              "variable": [
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "51efe2e0-044b-409a-808a-22a7c72b99ea",
+          "name": "Locks the account of the user.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/{{userId}}/lock",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "{{userId}}",
+                "lock"
+              ],
+              "variable": [
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json-patch+json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "c5d8c1ca-befc-4a0b-a591-1fef967500b2",
+          "name": "Unlocks the account of the user.",
+          "request": {
+            "url": {
+              "raw": "{{baseUrl}}/v2/accounts/{{accountId}}/users/{{userId}}/unlock",
+              "auth": {},
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "v2",
+                "accounts",
+                "{{accountId}}",
+                "users",
+                "{{userId}}",
+                "unlock"
+              ],
+              "variable": [
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain, application/json, text/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "de43e19c-0142-40c5-818a-79f0996c6e9d",
+      "name": "Authentication",
+      "description": "Folder for Authentication",
+      "item": [
+        {
+          "_postman_id": "c0937bbe-0ba9-4a82-8cd7-8574bcc3ee0e",
+          "name": "01 Authorize Code Grant Access Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);"
+              }
+            }
+          ],
+          "request": {
+            "url": "https://{{hostenv}}/oauth/token",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{encodedKeys}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "code",
+                  "value": "{{codeFromUrl}}"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "482a3757-af94-460c-8fef-eee03b1293bc",
+          "name": "02 JWT Access Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);"
+              }
+            }
+          ],
+          "request": {
+            "url": "https://{{hostenv}}/oauth/token",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{encodedKeys}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "assertion",
+                  "value": "{{assertionHere}}"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "0fb8ba3b-8a76-4afe-8750-98abcf788ace",
+          "name": "03 Refresh Access Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+              }
+            }
+          ],
+          "request": {
+            "url": "https://{{hostenv}}/oauth/token",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{encodedKeys}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "refresh_token",
+                  "value": "{{refreshToken}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "8bf45385-0c41-4e8e-8d76-e6831d1c3815",
+          "name": "04 Get User Info",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": "var jsonData = JSON.parse(responseBody);\nvar accounts = jsonData.accounts;\nif (jsonData.hasOwnProperty(\"sub\")) { \n    postman.setEnvironmentVariable(\"userId\", jsonData.sub); \n} \n\nfor (var i=0; i< accounts.length; i++) { \n  if (accounts[i].hasOwnProperty(\"is_default\")) { \n   if (accounts[i].is_default === true) { \n     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); \n     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); \n     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); \n   } \n } \n} \n"
+              }
+            }
+          ],
+          "request": {
+            "url": "https://{{hostenv}}/oauth/userinfo",
+            "method": "Get",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
