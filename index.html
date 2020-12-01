@@ -1,267 +1,173 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
+  <head>
+    <title>DocuSign | eSignature API Postman Collection</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="https://docucdn-a.akamaihd.net/olive/16.26.1/css/olive.min.css" />
+<!--     <link rel="stylesheet" media="all" href="https://www.docusign.com/sites/d8/files/css/css_9m8-tA3IQf8ThlLQYTTZUyEweCvyR908Tg0XCbKYOfY.css" /> -->
+    <link rel="stylesheet" type="text/css" media="all" href="https://www.docusign.com/sites/d8/files/css/css_S-6gXjepC4klrAgaomb5BJWeL9fxTcPbDLnjYre_1XY.css" />
+      <link href="https://fonts.googleapis.com/css?family=Inconsolata&amp;display=swap" rel="stylesheet"/>
+          <link rel="stylesheet" href="/fonts/dist/css/OliveFonts.css" media="all">
+<style>@font-face {
+  font-family: 'DSIndigo';
+  src: url("https://www.docusign.com/themes/custom/cubic/patternLibraryAssets/fonts/DSIndigo-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
 
-<head>
-  <title>DocuSign | eSignature API Postman Collection</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
-  <link rel="icon" type="image/png" href="https://docucdn-a.akamaihd.net/olive/images/2.15.0/favicons/favicon.ico">
-  <link rel="stylesheet" type="text/css" href="https://docucdn-a.akamaihd.net/olive/16.26.1/css/olive.min.css" />
-  <!--     <link rel="stylesheet" media="all" href="https://www.docusign.com/sites/d8/files/css/css_9m8-tA3IQf8ThlLQYTTZUyEweCvyR908Tg0XCbKYOfY.css" /> -->
-  <link rel="stylesheet" type="text/css" media="all"
-    href="https://www.docusign.com/sites/d8/files/css/css_S-6gXjepC4klrAgaomb5BJWeL9fxTcPbDLnjYre_1XY.css" />
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/fonts/dist/css/OliveFonts.css" media="all">
-  <style>
-    @font-face {
-      font-family: 'DSIndigo';
-      src: url("https://www.docusign.com/themes/custom/cubic/patternLibraryAssets/fonts/DSIndigo-Regular.woff2") format("woff2");
-      font-weight: normal;
-      font-style: normal;
-    }
+@font-face {
+  font-family:'DSIndigo';src:url("https://www.docusign.com/themes/custom/cubic/patternLibraryAssets/fonts/DSIndigo-Medium.woff2") format("woff2");font-weight:500;font-style:normal;
+}
 
-    @font-face {
-      font-family: 'DSIndigo';
-      src: url("https://www.docusign.com/themes/custom/cubic/patternLibraryAssets/fonts/DSIndigo-Medium.woff2") format("woff2");
-      font-weight: 500;
-      font-style: normal;
-    }
-
-    @font-face {
-      font-family: 'DSIndigo';
-      src: url("https://www.docusign.com/themes/custom/cubic/patternLibraryAssets/fonts/DSIndigo-Bold.woff2") format("woff2");
-      font-weight: 600;
-      font-style: normal;
-    }
-
+@font-face {
+  font-family:'DSIndigo';src:url("https://www.docusign.com/themes/custom/cubic/patternLibraryAssets/fonts/DSIndigo-Bold.woff2") format("woff2");font-weight:600;font-style:normal;
+}
     body {
-      font-family: DSIndigo;
-      font-weight: 500 !important;
-      font-size: 16px !important;
-      line-height: 24px;
-      color: rgb(80, 86, 91) !important;
+        font-family: DSIndigo;
+        font-weight: 500 !important;
+        font-size: 16px !important;
+        line-height: 24px;
+        color: rgb(80, 86, 91) !important;
     }
-
-    .container {
-      max-width: 100%;
-      width: 1060px;
-      padding-left: 30px;
-      padding-right: 30px;
-      margin: auto;
+    .container {        
+        max-width: 100%;
+        width: 1060px;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin: auto;
     }
-
     h1 {
-      font-family: DSIndigo;
-      font-size: 36px !important;
-      line-height: 42px !important;
-      font-weight: 600;
-      color: rgb(0, 0, 0);
-      margin-block-start: 0.67em;
-      margin-block-end: 0.67em;
-      margin-inline-start: 0px;
-      margin-inline-end: 0px;
+        font-family: DSIndigo;
+        font-size: 36px !important;
+        line-height: 42px !important;
+        font-weight: 600;
+        color: rgb(0, 0, 0);
+        margin-block-start: 0.67em;
+        margin-block-end: 0.67em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
     }
-
     h2 {
-      color: rgb(0, 0, 0);
-      font-family: DSIndigo;
-      font-weight: 600 !important;
-      margin-block-start: 0.83em;
-      margin-block-end: 0.83em;
-      margin-inline-start: 0px;
-      margin-inline-end: 0px;
-      font-size: 24px !important;
-      line-height: 30px !important;
+        color: rgb(0, 0, 0);
+        font-family: DSIndigo;
+        font-weight: 600 !important;
+        margin-block-start: 0.83em;
+        margin-block-end: 0.83em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-size: 24px !important;
+        line-height: 30px !important;
     }
-
     h3 {
-      font-size: 18px !important;
-      line-height: 24px !important;
-      color: rgb(0, 0, 0);
-      font-family: DSIndigo;
-      font-weight: 600 !important;
-      margin-block-start: 1em;
-      margin-block-end: 1em;
-      margin-inline-start: 0px;
-      margin-inline-end: 0px;
+        font-size: 18px !important;
+        line-height: 24px !important;
+        color: rgb(0, 0, 0);
+        font-family: DSIndigo;
+        font-weight: 600 !important;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
     }
-
     p {
-      line-height: 24px;
+        line-height: 24px;
     }
-
     li {
-      padding-bottom: .5em;
+      padding-bottom: .5em;  
     }
-
     li:last-child {
-      padding-bottom: 0;
+        padding-bottom: 0;
     }
-
     code {
-      font-family: Inconsolata;
-      color: rgb(8, 0, 0);
+        font-family: Inconsolata;
+        color: rgb(8, 0, 0);
     }
-  </style>
-  <script type="text/javascript" src='https://docucdn-a.akamaihd.net/olive/16.26.1/js/olive.min.js'></script>
-</head>
-
-<body>
-  <header style="height:88px;width:100%;background-color:black;">
+</style>
+    <script type="text/javascript" src='https://docucdn-a.akamaihd.net/olive/16.26.1/js/olive.min.js'></script>
+  </head>
+  <body>
+      <header style="height:88px;width:100%;background-color:black;">
+          <div class="container">
+              <a href="https://developers.docusign.com"><img src="assets/DocuSign-Developer-Logo.svg" alt="DocuSign Logo" style="display: block; margin: 30px 0; float:left; width:195px"></a>
+          </div>
+      </header>
     <div class="container">
-      <a href="https://developers.docusign.com"><img src="assets/DocuSign-Developer-Logo.svg" alt="DocuSign Logo"
-          style="display: block; margin: 30px 0; float:left; width:195px"></a>
-    </div>
-  </header>
-  <div class="container">
-    <section class="section">
-      <h1>Using the DocuSign eSignature API Postman Collection</h1>
-      <p>Follow this guide to install and configure the DocuSign eSignature API Postman collection, which enables you to
-        execute requests against the <a href="https://developers.docusign.com/esign-rest-api">DocuSign eSignature REST
-          API</a> quickly and easily inside <a href="https://www.postman.com/" target="_blank">Postman</a>. The DocuSign
-        eSignature API Postman collection includes examples for common workflows (authenticating to retrieve your
-        accountID and baseUrl, sending an envelope via email, templates, and embedded signing).</p>
-    </section>
-    <section class="section">
-      <h2>Step 1: Create your environment</h2>
-      <p>To set up the DocuSign eSignature API Postman collection on your system, you need a DocuSign developer demo
-        account and <a href="https://www.postman.com/downloads/" target="_blank">Postman</a> installed. If you&rsquo;ve
-        previously set up an account, <strong><a href="https://appdemo.docusign.com/" target="_blank">log
-            in</a></strong>. Otherwise, <strong><a href="https://go.docusign.com/o/sandbox/" target="_blank">create an
-            account</a></strong> for free at the <a href="https://developers.docusign.com/" target="_blank">DocuSign
-          Developer Center</a>.</p>
-      <p>Once you're in your demo account, go to Admin, then choose <a
-          href="https://admindemo.docusign.com/api-integrator-key" target="_blank">API and Keys</a> from the left nav.
-        From here, you'll copy values into the environment setup. You'll need the following values before you click the
-        button below to set up your Postman environment:</p>
-      <ul>
-        <li><strong>Integration key:</strong> Any app you create with DocuSign is called an <em>integration.</em> All
-          your integrations are identified in your DocuSign demo account by their <em>integration key,</em> which is a
-          <a href="http://guid.one/guid" target="_blank">GUID</a> issued to your integration when you select Add App /
-          Integration Key on the API & Keys page. If you don't have any integrations in your demo account yet, select
-          that button and give your integration a name. Use the integration key value, which is automatically generated
-          when you click <strong>OK.</strong></li>
-        <li><strong>Corresponding secret key:</strong> For Authentication Code Grant authentication, your integration
-          needs a secret key as well. Select Add Secret Key on the API & Keys page and copy the value; you can only do
-          this when you create the key, as it won't be visible thereafter.</li>
-        <li><strong>Environment:</strong> Choose Demo.</li>
-        <li><strong>API Version:</strong> The Postman collection supports the eSignature REST API versions 2 and 2.1.
-          Version 2.1 is preferred; version 2 will be deprecated in the future.</li>
-      </ul>
-      <div style="margin: 10px 0">
-        <p><a id="enter-creds" href="#" class="btn btn-primary">Set up your environment</a></p>
-      </div>
-    </section>
-    <section class="section">
-      <h2>Step 2: Import into Postman</h2>
-      <div id="shownEnv" class="">
-        <p>Be sure to complete step 1 before clicking the button below. This imports the DocuSign Postman collection and
-          your environment variables into your installation of Postman.</p>
-      </div>
-      <div id="hiddenEnv" class="nodisplay">
+      <section class="section">
+        <h1>Using the DocuSign API Postman Collections</h1>
+        <p>Follow this guide to install and configure the DocuSign API Postman Collections, which enables you to execute requests against <a href="https://developers.docusign.com/docs/">DocuSign APIs</a> quickly and easily inside <a href="https://www.postman.com/" target="_blank">Postman</a>. The DocuSign API Postman Collections includes examples for common workflows (authenticating to retrieve your accountID and baseUrl, sending an envelope via email, templates, and embedded signing).</p>
+      </section>
+      <section class="section">
+        <h2>Step 1: Create your environment</h2>
+        <p>To set up the DocuSign API Postman Collections on your system, you need a DocuSign developer demo account and <a href="https://www.postman.com/downloads/" target="_blank">Postman</a> installed. If you&rsquo;ve previously set up an account, <strong><a href="https://appdemo.docusign.com/" target="_blank">log in</a></strong>. Otherwise, <strong><a href="https://go.docusign.com/o/sandbox/" target="_blank">create an account</a></strong> for free at the <a href="https://developers.docusign.com/" target="_blank">DocuSign Developer Center</a>.</p>
+        <p>Once you're in your demo account, go to Admin, then choose <a href="https://admindemo.docusign.com/api-integrator-key" target="_blank">API and Keys</a> from the left nav. From here, you'll copy values into the environment setup. You'll need the following values before you click the button below to set up your Postman environment:</p>
+        <ul>
+          <li><strong>Integration key:</strong> Any app you create with DocuSign is called an <em>integration.</em> All your integrations are identified in your DocuSign demo account by their <em>integration key,</em> which is a <a href="http://guid.one/guid" target="_blank">GUID</a> issued to your integration when you select <strong>Add App / Integration Key</strong> on the Apps and Keys page. If you don't have any integrations in your demo account yet, select that button and give your integration a name. Use the integration key value, which is automatically generated when you click <strong>OK.</strong></li>
+          <li><strong>Corresponding secret key:</strong> For Authentication Code Grant authentication, your integration needs a secret key as well. Select Add Secret Key on the Apps and Keys page and copy the value; you can only do this when you create the key, as it won't be visible thereafter.</li>
+          <li><strong>Environment:</strong> Choose Demo.</li>
+          <li><strong>API Version:</strong> The Postman collection supports the eSignature REST API versions 2 and 2.1. Version 2.1 is preferred; version 2 will be deprecated in the future.</li>
+        </ul>
+        <div style="margin: 10px 0">
+          <p><a id="enter-creds" href="#" class="btn btn-primary">Set up your environment</a></p>
+        </div>
+      </section>
+      <section class="section">
+        <h2>Step 2: Import into Postman</h2>
+        <div id="shownEnv" class="">
+          <p>Be sure to complete step 1 before clicking the button below. This imports the DocuSign Postman collection and your environment variables into your installation of Postman.</p>
+        </div>
+        <div id="hiddenEnv" class="nodisplay">
+          <p>
+          <div class="postman-run-button"
+            data-postman-action="collection/import"
+            data-postman-var-1="8624faf20177f06bd69f"></div>
+          <!-- Update/Change this value when changing Collection  -->
+          <script type="text/javascript">
+            (function (p,o,s,t,m,a,n) {
+              !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+              !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+                (n = o.createElement("script")),
+                (n.id = s+t), (n.async = 1), (n.src = m), n
+              ));
+            }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+          </script>
+          </p>
+        </div>
+      </section>
+      <section class="section">
+        <h2>Step 3: Pick your desired OAuth grant type</h2>
+        <p>Every request to any DocuSign API requires that you authenticate with DocuSign by presenting an access token. So, before you execute any API request in Postman, you'll need to obtain such a token. DocuSign uses the OAuth authentication model; visit our <a href="https://developers.docusign.com/platform/auth/">Authentication Guide</a> to see how it works and determine which type to use for your integration.</p>
+        <p>The DocuSign API Postman Collections' Authentication folder contains two OAuth 2.0 workflows: Authorization Code Grant and JSON Web Token Grant. We also provide a user info request for finding and storing your accountID and baseURL. Note that you need to <a href="https://developers.docusign.com/platform/auth/consent">obtain consent</a> through the web interface on the first time you request access via the API.</p>
+        <h3>For Authorization Code Grant:</h3>
+        <p>Begin by opening a web browser and navigating to the following URL:</p>
+        <p><code>https://account-d.docusign.com/oauth/auth?response_type=code&scope=signature&client_id={iKey}&redirect_uri={callback}</code></p>
+        <p>Replace {iKey} with your integration key and {callback} with your callback URL (set up when you generated the integration key) to obtain consent. This URL opens a DocuSign authentication screen; once you enter your DocuSign username and password, your browser will redirect to your callback URL with a long string returned for the <code>code</code> parameter embedded in the URL. Paste the value of the <code>code</code> parameter into the corresponding value location under Body in the <strong>01 Authorization Code Grant Access Token</strong> request and execute it to generate an access token and a refresh token. Finally, use the <strong>02 Get login information information for a specified user</strong> request to retrieve your AccountID and baseURL; these will then be added to your environment variables, ready for you to issue other API requests as you like.</p>
+        <h3>For JSON Web Token Grant:</h3>
+        <p>Begin by opening a web browser and navigating to the following URL: </p>
+        <p><code>https://account-d.docusign.com/oauth/auth?response_type=code&scope=signature%20impersonation&client_id={{iKey}&redirect_uri={callback}</code></p>
+        <p>Replace {iKey} with your integration key and {callback} with your callback URL (set up when you generated the integration key) to obtain consent. This URL opens a DocuSign authentication screen; once you enter your DocuSign username and password, your browser will redirect to your callback URL with a long string returned for the <code>code</code> parameter embedded in the URL.</p>
+        <p>Now, open a web browser and navigate to <a href="https://jwt.io" target="_blank">https://jwt.io</a> to generate an RSA-256 compatible signature for the JWT. In order to create a <a href="https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-jsonwebtoken#step-3-obtain-the-access-token" target="_blank">compatible signature</a>, you need to include your integration key and a user ID you wish to impersonate; for testing purposes, this can be your own (copy this from Account Information on the <a href="https://admindemo.docusign.com/api-integrator-key" target="_blank">Apps and Keys</a> page). Enter your generated JWT from jwt.io into the <strong>01 JWT Access Token</strong> request. This request will store your access token in a Postman variable for future requests. Use the <strong>02 Get login information information for a specified user</strong> request to retrieve the AccountID and baseURL. Note that the response for a JWT request will not include a refresh token, and that the access token generated by a JWT request will expire within one hour. Instead of using the <strong>03 Refresh Access Token</strong> request (as utilized in Authorization Code Grant), simply run the <strong>01 JWT Access Token</strong> request again.</p>
+        <p>Notice that just about every DocuSign API call here contains an <code>bearer {{token}}</code> authorization header that includes your access token. The access token is good for 8 hours, so the refresh token should be utilized beyond that window up to 30 days. Many (but not all) other calls use an AccountID, which can be retrieved by running the <strong>02 Get login information information for a specified user</strong> request.</p>
+        <br />
+        <h2>Step 4: Running the examples</h2>
+        <p>These collections are automatically generated from our available <a href="https://github.com/docusign/eSign-OpenAPI-Specification/blob/master/esignature.rest.swagger-v2.1.json" target="_blank">Swagger methods</a> and are divided by available methods. For each collection, navigate the tree of methods to see the plethora of API requests available to you. Folder names wrapped in braces contain requests that require the {X} variable filled in on that given call within said {X} folder. Here are some of the folders and their requests that you may find interesting when getting started:</p>
+        <h3>{account Id} -> envelopes</h3>
+        <p>The envelopes folder contains methods to create envelopes, get status changes for multiple envelopes and even a separate put call for further details from a specific envelope. Going a step further, if you have an envelope ID on hand, click on the {envelopeID} folder and try your hand at any number of lookups or modifications for envelope data including comments, documents, and recipients.</p>
+        <h3>{account Id} -> views</h3>
+        <p>The views folder contains several methods for generating and retrieving view URLs that can be used for embedded signing, editing, and sending of envelopes. You can also retrieve prior views and preview the recipient shared view and a second that creates and sends an envelope from the created template.</p>
+        <h3>{account Id} -> groups</h3>
+        <p>The groups folder shows how to administer groups by creating, updating, and deleting user groups. The embedded {group id} folder allows you to correlate your brand id information on existing groups or to add and delete brands against your groups.</p>
+      </section>
+      <section class="section">
+        <h2>Step 5: Test production credentials</h2>
         <p>
-        <div class="postman-run-button" data-postman-action="collection/import"
-          data-postman-var-1="1f4a4c2abdf264d09b4a"></div>
-        <!-- Update/Change this value when changing Collection  -->
-        <script type="text/javascript">
-          (function (p, o, s, t, m, a, n) {
-            !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
-            !o.getElementById(s + t) && o.getElementsByTagName("head")[0].appendChild((
-              (n = o.createElement("script")),
-              (n.id = s + t), (n.async = 1), (n.src = m), n
-            ));
-          }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
-        </script>
+          After you <a href="https://developers.docusign.com/platform/go-live" target="_blank">enable an integration key in production</a>, you can test it using your production integration key and secret. Simply change the <code>hostenv</code> environment variable to <strong>account.docusign.com</strong> and reauthenticate using the <strong>Authentication</strong> examples to get your new BaseUrl. 
         </p>
-      </div>
-    </section>
-    <section class="section">
-      <h2>Step 3: Pick your desired OAuth grant type</h2>
-      <p>Every request to any DocuSign API requires that you authenticate with DocuSign by presenting an access token.
-        So, before you execute any API request in Postman, you'll need to obtain such a token. DocuSign uses the OAuth
-        authentication model; visit our <a
-          href="https://developers.docusign.com/esign-rest-api/guides/authentication">Authentication Guide</a> to see
-        how it works and determine which type to use for your integration.</p>
-      <p>The eSignature API Postman collection's Authentication folder contains two OAuth 2.0 workflows: Authorization
-        Code Grant and JSON Web Token Grant. We also provide a user info request for finding and storing your accountID
-        and baseURL. Note that you need to <a
-          href="https://developers.docusign.com/esign-rest-api/guides/authentication/obtaining-consent">obtain
-          consent</a> through the web interface on the first time you request access via the API.</p>
-      <h3>For Authorization Code Grant:</h3>
-      <p>Begin by opening a web browser and navigating to the following URL:</p>
-      <p>
-        <code>https://account-d.docusign.com/oauth/auth?response_type=code&scope=signature&client_id={iKey}&redirect_uri={callback}</code>
-      </p>
-      <p>Replace {iKey} with your integration key and {callback} with your callback URL (set up when you generated the
-        integration key) to obtain consent. This URL opens a DocuSign authentication screen; once you enter your
-        DocuSign username and password, your browser will redirect to your callback URL with a long string returned for
-        the <code>code</code> parameter embedded in the URL. Paste the value of the <code>code</code> parameter into the
-        corresponding value location under Body in the <strong>01 Authorization Code Grant Access Token</strong> request
-        and execute it to generate an access token and a refresh token. Finally, use the <strong>02 Get login
-          information information for a specified user</strong> request to retrieve your AccountID and baseURL; these
-        will then be added to your environment variables, ready for you to issue other API requests as you like.</p>
-      <h3>For JSON Web Token Grant:</h3>
-      <p>Begin by opening a web browser and navigating to the following URL: </p>
-      <p>
-        <code>https://account-d.docusign.com/oauth/auth?response_type=code&scope=signature%20impersonation&client_id={{iKey}&redirect_uri={callback}</code>
-      </p>
-      <p>Replace {iKey} with your integration key and {callback} with your callback URL (set up when you generated the
-        integration key) to obtain consent. This URL opens a DocuSign authentication screen; once you enter your
-        DocuSign username and password, your browser will redirect to your callback URL with a long string returned for
-        the <code>code</code> parameter embedded in the URL.</p>
-      <p>Now, open a web browser and navigate to <a href="https://jwt.io" target="_blank">https://jwt.io</a> to generate
-        an RSA-256 compatible signature for the JWT. In order to create a <a
-          href="https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-jsonwebtoken#step-3-obtain-the-access-token"
-          target="_blank">compatible signature</a>, you need to include your integration key and a user ID you wish to
-        impersonate; for testing purposes, this can be your own (copy this from Account Information on the <a
-          href="https://admindemo.docusign.com/api-integrator-key" target="_blank">API & Keys</a> page). Enter your
-        generated JWT from jwt.io into the <strong>01 JWT Access Token</strong> request. This request will store your
-        access token in a Postman variable for future requests. Use the <strong>02 Get login information information for
-          a specified user</strong> request to retrieve the AccountID and baseURL. Note that the response for a JWT
-        request will not include a refresh token, and that the access token generated by a JWT request will expire
-        within one hour. Instead of using the <strong>03 Refresh Access Token</strong> request (as utilized in
-        Authorization Code Grant), simply run the <strong>01 JWT Access Token</strong> request again.</p>
-      <p>Notice that just about every DocuSign API call here contains an <code>bearer {{token}}</code> authorization
-        header that includes your access token. The access token is good for 8 hours, so the refresh token should be
-        utilized beyond that window up to 30 days. Many (but not all) other calls use an AccountID, which can be
-        retreived by running the strong>02 Get login information information for a specified user</strong> request.</p>
-      <br />
-      <h2>Step 4: Running the examples</h2>
-      <p>This collection is automatically generated from our available <a
-          href="https://github.com/docusign/eSign-OpenAPI-Specification/blob/master/esignature.rest.swagger-v2.1.json"
-          target="_blank">Swagger methods</a> and is divided by available methods in the 2.1 API version. Select
-        <strong>v2.1,</strong> then <strong>accounts,</strong> then <strong>{account id}</strong> to see the plethora of
-        API requests available to you. Folder names wrapped in braces contain requests that require the {X} variable
-        filled in on that given call within said {X} folder. Here are some of the folders and their requests that you
-        may find interesting when getting started:</p>
-      <h3>{account Id} -> envelopes</h3>
-      <p>The envelopes folder contains methods to create envelopes, get status changes for multiple envelopes and even a
-        separate put call for further details from a specific envelope. Going a step further, if you have an envelope ID
-        on hand, click on the {envelopeID} folder and try your hand at any number of lookups or modifications for
-        envelope data including comments, documents, and recipients.</p>
-      <h3>{account Id} -> views</h3>
-      <p>The views folder contains several methods for generating and retrieving view URLs that can be used for embedded
-        signing, editing, and sending of envelopes. You can also retrieve prior views and preview the recipient shared
-        view and a second that creates and sends an envelope from the created template.</p>
-      <h3>{account Id} -> groups</h3>
-      <p>The groups folder shows how to administer groups by creating, updating, and deleting user groups. The embedded
-        {group id} folder allows you to correlate your brand id information on existing groups or to add and delete
-        brands against your groups.</p>
-    </section>
-    <section class="section">
-      <h2>Step 5: Test production credentials</h2>
-      <p>
-        After you <a href="https://developers.docusign.com/esign-rest-api/guides/go-live" target="_blank">enable an
-          integration key in production</a>, you can test it using your production integration key and secret. Simply
-        change the <code>hostenv</code> environment variable to <strong>account.docusign.com</strong> and
-        re-authenticate using the <strong>Authentication</strong> examples to get your new BaseUrl.
-      </p>
-    </section>
-  </div>
-  <script id="envModal" type="text/x-template">
+      </section>
+    </div>
+    <script id="envModal" type="text/x-template">
       <div class="modal_header" olive-modal-header>
           <h1 class="modal_title">Set up your Postman environment</h1>
       </div>
@@ -309,7 +215,6 @@
           <button class="btn btn-lg btn-minor" olive-modal-escape>Cancel</button>
       </div>
     </script>
-  <script type="text/javascript" src='public/app.js'></script>
-</body>
-
+    <script type="text/javascript" src='public/app.js'></script>
+  </body>
 </html>

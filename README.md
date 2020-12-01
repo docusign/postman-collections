@@ -1,12 +1,12 @@
-# The DocuSign eSignature API Postman Collection
+# The DocuSign eSignature API Postman Collections
 
-This repo contains a Postman collection for the DocuSign eSignature API version 2.1. 
+This repo contains Postman collections for DocuSign API. 
 
-Guide: https://docusign.github.io/postman-esign-api-collection 
+Guide: https://docusign.github.io/postman-api-collection 
 
 Walkthrough (blog post): https://www.docusign.com/blog/dsdev-please-mr-postman/ 
 
-Follow the guide to install and configure the eSignature API Postman Collection. You'll find all our API endpoints and you can easily and quickly test any API call. Try our most common scenarios such as embedded signing, sending an envelope via email, applying templates, and more. 
+Follow the guide to install and configure the DocuSign API Postman Collections. You'll find all our API endpoints and you can easily and quickly test any API call. Try our most common scenarios such as embedded signing, sending an envelope via email, applying templates, and more. 
 
 ## What is Postman? 
 
@@ -14,4 +14,4 @@ Follow the guide to install and configure the eSignature API Postman Collection.
 
 ## License 
 
-The DocuSign Postman Collection is licensed under the MIT [License](LICENSE).
+The DocuSign Postman Collections are licensed under the MIT [License](LICENSE).
