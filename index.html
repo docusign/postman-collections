@@ -141,11 +141,11 @@
         <li><strong>Integration key:</strong> Any app you create with DocuSign is called an <em>integration.</em> All
           your integrations are identified in your DocuSign demo account by their <em>integration key,</em> which is a
           <a href="http://guid.one/guid" target="_blank">GUID</a> issued to your integration when you select Add App /
-          Integration Key on the API & Keys page. If you don't have any integrations in your demo account yet, select
+          Integration Key on the Apps and Keys page. If you don't have any integrations in your demo account yet, select
           that button and give your integration a name. Use the integration key value, which is automatically generated
           when you click <strong>OK.</strong></li>
         <li><strong>Corresponding secret key:</strong> For Authentication Code Grant authentication, your integration
-          needs a secret key as well. Select Add Secret Key on the API & Keys page and copy the value; you can only do
+          needs a secret key as well. Select Add Secret Key on the Apps and Keys page and copy the value; you can only do
           this when you create the key, as it won't be visible thereafter.</li>
         <li><strong>Environment:</strong> Choose Demo.</li>
         <li><strong>API Version:</strong> The Postman collection supports the eSignature REST API versions 2 and 2.1.
@@ -217,7 +217,7 @@
           href="https://developers.docusign.com/esign-rest-api/guides/authentication/oauth2-jsonwebtoken#step-3-obtain-the-access-token"
           target="_blank">compatible signature</a>, you need to include your integration key and a user ID you wish to
         impersonate; for testing purposes, this can be your own (copy this from Account Information on the <a
-          href="https://admindemo.docusign.com/api-integrator-key" target="_blank">API & Keys</a> page). Enter your
+          href="https://admindemo.docusign.com/api-integrator-key" target="_blank">Apps and Keys</a> page). Enter your
         generated JWT from jwt.io into the <strong>01 JWT Access Token</strong> request. This request will store your
         access token in a Postman variable for future requests. Use the <strong>02 Get login information information for
           a specified user</strong> request to retrieve the AccountID and baseURL. Note that the response for a JWT
@@ -227,7 +227,7 @@
       <p>Notice that just about every DocuSign API call here contains an <code>bearer {{token}}</code> authorization
         header that includes your access token. The access token is good for 8 hours, so the refresh token should be
         utilized beyond that window up to 30 days. Many (but not all) other calls use an AccountID, which can be
-        retreived by running the strong>02 Get login information information for a specified user</strong> request.</p>
+        retreived by running the <strong>02 Get login information information for a specified user</strong> request.</p>
       <br />
       <h2>Step 4: Running the examples</h2>
       <p>This collection is automatically generated from our available <a
