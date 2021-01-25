@@ -19473,7 +19473,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);"
+                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
               }
             }
           ],
