@@ -118,23 +118,23 @@
   </header>
   <div class="container">
     <section class="section">
-      <h1>Using the DocuSign eSignature API Postman Collection</h1>
-      <p>Follow this guide to install and configure the DocuSign eSignature API Postman collection, which enables you to
+      <h1>Using the DocuSign API Postman Collections</h1>
+      <p>Follow this guide to install and configure the DocuSign API Postman collections, which enables you to
         execute requests against the <a href="https://developers.docusign.com/esign-rest-api">DocuSign eSignature REST
           API</a> quickly and easily inside <a href="https://www.postman.com/" target="_blank">Postman</a>. The DocuSign
-        eSignature API Postman collection includes examples for common workflows (authenticating to retrieve your
+         API Postman collections includes examples for common workflows (authenticating to retrieve your
         accountID and baseUrl, sending an envelope via email, templates, and embedded signing).</p>
     </section>
     <section class="section">
       <h2>Step 1: Create your environment</h2>
-      <p>To set up the DocuSign eSignature API Postman collection on your system, you need a DocuSign developer demo
+      <p>To set up the DocuSign API Postman collections on your system, you need a DocuSign developer demo
         account and <a href="https://www.postman.com/downloads/" target="_blank">Postman</a> installed. If you&rsquo;ve
         previously set up an account, <strong><a href="https://appdemo.docusign.com/" target="_blank">log
             in</a></strong>. Otherwise, <strong><a href="https://go.docusign.com/o/sandbox/" target="_blank">create an
             account</a></strong> for free at the <a href="https://developers.docusign.com/" target="_blank">DocuSign
           Developer Center</a>.</p>
       <p>Once you're in your demo account, go to Admin, then choose <a
-          href="https://admindemo.docusign.com/api-integrator-key" target="_blank">API and Keys</a> from the left nav.
+          href="https://admindemo.docusign.com/api-integrator-key" target="_blank">Apps and Keys</a> from the left nav.
         From here, you'll copy values into the environment setup. You'll need the following values before you click the
         button below to set up your Postman environment:</p>
       <ul>
@@ -156,27 +156,59 @@
       </div>
     </section>
     <section class="section">
-      <h2>Step 2: Import into Postman</h2>
-      <div id="shownEnv" class="">
-        <p>Be sure to complete step 1 before clicking the button below. This imports the DocuSign Postman collection and
-          your environment variables into your installation of Postman.</p>
-      </div>
-      <div id="hiddenEnv" class="nodisplay">
-        <p>
-        <div class="postman-run-button" data-postman-action="collection/import"
-          data-postman-var-1="1f4a4c2abdf264d09b4a"></div>
-        <!-- Update/Change this value when changing Collection  -->
-        <script type="text/javascript">
-          (function (p, o, s, t, m, a, n) {
-            !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
-            !o.getElementById(s + t) && o.getElementsByTagName("head")[0].appendChild((
-              (n = o.createElement("script")),
-              (n.id = s + t), (n.async = 1), (n.src = m), n
-            ));
-          }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
-        </script>
-        </p>
-      </div>
+          <h2>Step 2: Import into Postman</h2>
+          <div id="shownEnv" class="">
+              <p>Be sure to complete step 1 before clicking the button below. This imports the DocuSign Postman collection and
+                  your environment variables into your installation of Postman.</p>
+          </div>
+          <div id="hiddenEnv" class="nodisplay">
+              <p> <h3>eSignature API</h3>
+              <div class="postman-run-button" data-postman-action="collection/import"
+                   data-postman-var-1="1f4a4c2abdf264d09b4a"></div>
+              <!-- Update/Change this value when changing Collection  -->
+              <script type="text/javascript">
+                  (function (p, o, s, t, m, a, n) {
+                      !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+                      !o.getElementById(s + t) && o.getElementsByTagName("head")[0].appendChild((
+                          (n = o.createElement("script")),
+                              (n.id = s + t), (n.async = 1), (n.src = m), n
+                      ));
+                  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+              </script>
+              </p>
+          </div>
+          <div id="hiddenEnv" class="nodisplay">
+              <p> <h3>Rooms API</h3>
+              <div class="postman-run-button" data-postman-action="collection/import"
+                   data-postman-var-1="1f4a4c2abdf264d09b4a"></div>
+              <!-- Update/Change this value when changing Collection  -->
+              <script type="text/javascript">
+                  (function (p, o, s, t, m, a, n) {
+                      !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+                      !o.getElementById(s + t) && o.getElementsByTagName("head")[0].appendChild((
+                          (n = o.createElement("script")),
+                              (n.id = s + t), (n.async = 1), (n.src = m), n
+                      ));
+                  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+              </script>
+              </p>
+          </div>
+          <div id="hiddenEnv" class="nodisplay">
+              <p>  <h3>Click API</h3>
+              <div class="postman-run-button" data-postman-action="collection/import"
+                   data-postman-var-1="1f4a4c2abdf264d09b4a"></div>
+              <!-- Update/Change this value when changing Collection  -->
+              <script type="text/javascript">
+                  (function (p, o, s, t, m, a, n) {
+                      !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+                      !o.getElementById(s + t) && o.getElementsByTagName("head")[0].appendChild((
+                          (n = o.createElement("script")),
+                              (n.id = s + t), (n.async = 1), (n.src = m), n
+                      ));
+                  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+              </script>
+              </p>
+          </div>
     </section>
     <section class="section">
       <h2>Step 3: Pick your desired OAuth grant type</h2>
@@ -229,6 +261,17 @@
         utilized beyond that window up to 30 days. Many (but not all) other calls use an AccountID, which can be
         retreived by running the <strong>02 Get login information information for a specified user</strong> request.</p>
       <br />
+      <p>
+	Please add and define the following variables if you're planning to run the Postman requests under the <strong>Examples</strong> folder: 
+        <ul>
+          <li>
+   	   user_email = email@domain.com
+          </li>         
+          <li>
+  	   user_name = Foo Bar
+          </li>         
+        </ul>
+      </p>
       <h2>Step 4: Running the examples</h2>
       <p>This collection is automatically generated from our available <a
           href="https://github.com/docusign/eSign-OpenAPI-Specification/blob/master/esignature.rest.swagger-v2.1.json"
@@ -290,7 +333,7 @@
                       </select>
                   </div>
               </div>
-      
+
               <div class="form-group">
                   <label class="label" for="apiVersion">API version</label>
                   <div class="select-wrap">
@@ -300,7 +343,6 @@
                       </select>
                   </div>
               </div>
-      
           </form>
       
       </div>
