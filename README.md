@@ -2,7 +2,7 @@
 
 This repo contains a Postman collection for the DocuSign eSignature API version 2.1. 
 
-Guide: https://docusign.github.io/postman-esign-api-collection 
+Guide: https://docusign.github.io/postman-collections/
 
 Walkthrough (blog post): https://www.docusign.com/blog/dsdev-please-mr-postman/ 
 
