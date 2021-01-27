@@ -1,6 +1,6 @@
-# The DocuSign eSignature API Postman Collection
+# The DocuSign Postman Collections
 
-This repo contains a Postman collection for the DocuSign eSignature API version 2.1. 
+This repo contains a Postman collection for the DocuSign eSignature API, Rooms API and Click API. 
 
 Guide: https://docusign.github.io/postman-collections/
 
