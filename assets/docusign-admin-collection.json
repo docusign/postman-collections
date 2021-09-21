@@ -1,0 +1,3402 @@
+{
+  "variables": [],
+  "info": {
+    "name": "DocuSign Admin API",
+    "_postman_id": "818a344b-4b8b-4034-a555-5d477b6d4b7d",
+    "description": "An API for an organization administrator to manage organizations, accounts and users",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "_postman_id": "b1b93c14-dfc6-45da-8c1e-36063228878b",
+      "name": "Organization",
+      "description": "Folder for Organization",
+      "item": [
+        {
+          "_postman_id": "a0738bbc-f56c-424f-946d-1c64f1b75181",
+          "name": "Returns the list of organizations of which the authenticated user is a member.",
+          "request": {
+            "url": "https://{{hostenv}}/Management/v2/organizations?mode={{mode}}",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: organization_read"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "0174d5ed-8641-467c-9e6f-f54005454055",
+      "name": "BulkOperations",
+      "description": "Folder for BulkOperations",
+      "item": [
+        {
+          "_postman_id": "832207e2-8270-4818-b3cb-98937589a761",
+          "name": "Returns a list of existing User List Exports (requests and completed exports) and their details/metadata",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/user_list",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "exports",
+                "user_list"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "ecdd5bd1-b78b-4e22-af46-7924f26b8d50",
+          "name": "Creates a new User List Export request.",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/user_list",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "exports",
+                "user_list"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "0261fe4b-cb5e-468b-b909-d16cc8bf81ae",
+          "name": "Returns the details/metadata for Account Setting Export requests",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/account_settings",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "exports",
+                "account_settings"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: account_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "58131b3b-2fc3-4643-98e9-bbb0825fd426",
+          "name": "Creates a  new Account Setting Export request.",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/account_settings",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "exports",
+                "account_settings"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: account_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5edd8d44-18a5-45a8-ac73-f02e0a1c05b3",
+          "name": "Returns the details/metadata for a single User List Export request",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/user_list/{{exportId}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "exports",
+                "user_list",
+                "{{exportId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{exportId}}",
+                  "id": "exportId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f0daad58-196c-495e-8cab-61a683115f73",
+          "name": "Deletes a single User List Export request",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/user_list/{{exportId}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "exports",
+                "user_list",
+                "{{exportId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{exportId}}",
+                  "id": "exportId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "c3944c93-3fa0-4af5-8d7e-4fae82daaf01",
+          "name": "Returns the details/metadata for a single Account Setting Export request",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/account_settings/{{exportId}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "exports",
+                "account_settings",
+                "{{exportId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{exportId}}",
+                  "id": "exportId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: account_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2f451f94-ccd9-4037-8951-5fded9a18a69",
+          "name": "Deletes a single Account Settings Export request",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/exports/account_settings/{{exportId}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "exports",
+                "account_settings",
+                "{{exportId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{exportId}}",
+                  "id": "exportId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: account_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "385482af-57ba-4b10-86db-0700477c0873",
+          "name": "Returns the details/metadata for Bulk Account Settings Import requests in the organization",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/account_settings",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "imports",
+                "account_settings"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: account_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "8539b682-2237-4d2c-a3a8-8c7656f7c07d",
+          "name": "Creates a new account settings import request.",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/account_settings",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "imports",
+                "account_settings"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: account_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "ffb955ea-d141-4db2-a213-d2882b03730a",
+          "name": "Returns the details/metadata for a Bulk Account Settings Import request",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/account_settings/{{importId}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "imports",
+                "account_settings",
+                "{{importId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{importId}}",
+                  "id": "importId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: account_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f1a84c0f-fa51-4be8-9bbd-1b98e4b1d808",
+          "name": "Deletes a Bulk Account Settings Import request",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/account_settings/{{importId}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "imports",
+                "account_settings",
+                "{{importId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{importId}}",
+                  "id": "importId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: account_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "b2e1901f-0615-4c90-9afb-8c5ac0ea8e77",
+          "name": "Import request for adding users to accounts within the organization.",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/add",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "imports",
+                "bulk_users",
+                "add"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "39392384-e9a6-4147-b7b9-b75b904d1f90",
+          "name": "Import request for adding user to a single account within the organization. Allows upload of user information without requiring an AccountId column",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/accounts/{{accountId}}/imports/bulk_users/add",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "imports",
+                "bulk_users",
+                "add"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "1495a51b-108e-4153-aa97-7d32488e232a",
+          "name": "Import request for updating users to accounts within the organization.",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/update",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "imports",
+                "bulk_users",
+                "update"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "66aa6cd1-1242-4c0d-9f9d-a04fe07ba1d4",
+          "name": "Import request for updating users for a single account within the organization. Allows upload of user information without requiring an AccountId column",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/accounts/{{accountId}}/imports/bulk_users/update",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "imports",
+                "bulk_users",
+                "update"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "0b3e0bce-8f99-4ae0-802c-37c7da1f52e5",
+          "name": "Closes the Bulk User Import request",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/close",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "imports",
+                "bulk_users",
+                "close"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "3d895c7c-4ce8-4a29-b422-f1ddf2b55ef4",
+          "name": "Closes memberships which are not in an account which is part of the organization, but which do have email addresses which are @ a verified reserved web domain which belongs to the organization",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/close_external",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "imports",
+                "bulk_users",
+                "close_external"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "6c5ec26f-3b46-45f9-ab0b-808aaf8bec9d",
+          "name": "Returns the details/metadata for Bulk User Import requests in the organization",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "imports",
+                "bulk_users"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "ad7ff68b-b52a-4519-a4ce-66abe414088c",
+          "name": "Returns the details/metadata for a User Import request",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/{{importId}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "imports",
+                "bulk_users",
+                "{{importId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{importId}}",
+                  "id": "importId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "52bd30af-811b-45c5-adc9-9e40f543fdb6",
+          "name": "Deletes a User Import request",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/{{importId}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "imports",
+                "bulk_users",
+                "{{importId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{importId}}",
+                  "id": "importId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "4f1e3439-121b-4a68-bbcc-43c4a1df06f9",
+          "name": "Returns a text/csv file with user details for a User Import request",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/imports/bulk_users/{{importId}}/results_csv",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "imports",
+                "bulk_users",
+                "{{importId}}",
+                "results_csv"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{importId}}",
+                  "id": "importId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "53f762e7-a93f-403a-b98f-7862de339fb8",
+      "name": "IdentityProviders",
+      "description": "Folder for IdentityProviders",
+      "item": [
+        {
+          "_postman_id": "d458e420-6e7d-4a2e-be23-133b145533ca",
+          "name": "Returns the list of identity providers for the organization.",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/identity_providers",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "identity_providers"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: identity_provider_read"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "04aecc92-0c2f-4ab5-94db-968c19b61b0b",
+      "name": "ReservedDomains",
+      "description": "Folder for ReservedDomains",
+      "item": [
+        {
+          "_postman_id": "460c56fa-16b8-438f-9cbc-4795ee96ade9",
+          "name": "Returns the list of reserved domains for the organization.",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/reserved_domains",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "reserved_domains"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: domain_read"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "fcc80c34-0222-4350-b50c-b2b6109b04fa",
+      "name": "UserManagement",
+      "description": "Folder for UserManagement",
+      "item": [
+        {
+          "_postman_id": "91514ce6-a879-4cbc-b74b-bbb45950f18f",
+          "name": "Closes a user's memberships.",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users/{{userId}}/accounts",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "users",
+                "{{userId}}",
+                "accounts"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2bf840b2-2072-4be7-9696-7cd91437f24e",
+          "name": "Returns information about the users in the organization",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users?start={{start}}&take={{take}}&end={{end}}&email={{email}}&email_user_name_like={{email_user_name_like}}&status={{status}}&membership_status={{membership_status}}&account_id={{account_id}}&organization_reserved_domain_id={{organization_reserved_domain_id}}&last_modified_since={{last_modified_since}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "start",
+                  "value": "{{start}}"
+                },
+                {
+                  "key": "take",
+                  "value": "{{take}}"
+                },
+                {
+                  "key": "end",
+                  "value": "{{end}}"
+                },
+                {
+                  "key": "email",
+                  "value": "{{email}}"
+                },
+                {
+                  "key": "email_user_name_like",
+                  "value": "{{email_user_name_like}}"
+                },
+                {
+                  "key": "status",
+                  "value": "{{status}}"
+                },
+                {
+                  "key": "membership_status",
+                  "value": "{{membership_status}}"
+                },
+                {
+                  "key": "account_id",
+                  "value": "{{account_id}}"
+                },
+                {
+                  "key": "organization_reserved_domain_id",
+                  "value": "{{organization_reserved_domain_id}}"
+                },
+                {
+                  "key": "last_modified_since",
+                  "value": "{{last_modified_since}}"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "81330da6-670f-4142-857d-76490fa7ae4b",
+          "name": "Creates a new user",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "users"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "6b68ca93-081b-46ac-bb46-262f4df78d1a",
+          "name": "Activates user memberships",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users/{{userId}}/memberships/{{membershipId}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "users",
+                "{{userId}}",
+                "memberships",
+                "{{membershipId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                },
+                {
+                  "value": "{{membershipId}}",
+                  "id": "membershipId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f42c0da4-e269-444b-aa66-33f8c180b0af",
+          "name": "Returns user information.",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users/profile?email={{email}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "users",
+                "profile"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "{{email}}"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "47a54439-c53e-4d50-9de4-707cc2a3a677",
+          "name": "Deletes user identities.",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users/{{userId}}/identities",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "users",
+                "{{userId}}",
+                "identities"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "25614b46-75a4-40e7-b7db-c70d057dd924",
+          "name": "Adds users to an account.",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/accounts/{{accountId}}/users",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "users"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "c6b07a4f-d277-4c28-9337-efbe8de43044",
+          "name": "Get list of DSGroups",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups?page={{page}}&page_size={{page_size}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2.1",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "dsgroups"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "{{page}}"
+                },
+                {
+                  "key": "page_size",
+                  "value": "{{page_size}}"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "59fa8849-ab95-4ac0-8e02-24a5f8295f16",
+          "name": "Add a new DSGroup",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2.1",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "dsgroups"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "9d2c12d0-9117-4a58-95c5-a37caad9ee0e",
+          "name": "Get list of DSGroup",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups/{{dsGroupId}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2.1",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "dsgroups",
+                "{{dsGroupId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                },
+                {
+                  "value": "{{dsGroupId}}",
+                  "id": "dsGroupId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2c549879-5b20-4f15-9134-81d7018f0e46",
+          "name": "Delete a DSGroup",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups/{{dsGroupId}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2.1",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "dsgroups",
+                "{{dsGroupId}}"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                },
+                {
+                  "value": "{{dsGroupId}}",
+                  "id": "dsGroupId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5904da0d-489a-462f-8dba-12f1f34d73ff",
+          "name": "Get list of users in a DSGroup",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups/{{dsGroupId}}/users?page={{page}}&page_size={{page_size}}",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2.1",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "dsgroups",
+                "{{dsGroupId}}",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "{{page}}"
+                },
+                {
+                  "key": "page_size",
+                  "value": "{{page_size}}"
+                }
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                },
+                {
+                  "value": "{{dsGroupId}}",
+                  "id": "dsGroupId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5ce7cad1-dff0-4c02-abcf-b53f96475c79",
+          "name": "Add list of users to a DSGroup",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups/{{dsGroupId}}/users",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2.1",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "dsgroups",
+                "{{dsGroupId}}",
+                "users"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                },
+                {
+                  "value": "{{dsGroupId}}",
+                  "id": "dsGroupId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "d744f39b-6077-41f9-9246-6eabb776daf3",
+          "name": "Remove users from a DSGroup",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/dsgroups/{{dsGroupId}}/users",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2.1",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "dsgroups",
+                "{{dsGroupId}}",
+                "users"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                },
+                {
+                  "value": "{{dsGroupId}}",
+                  "id": "dsGroupId"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5a01d448-377c-4f9f-b423-be83fe61a432",
+          "name": "Get products associated with the account and the available permission profiles",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/products/permission_profiles",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2.1",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "products",
+                "permission_profiles"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "67865886-346f-4fdd-8ddd-c72c05dcf01d",
+          "name": "Retrieve list of user's permission profiles for each account's product",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/products/users/{{userId}}/permission_profiles",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2.1",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "products",
+                "users",
+                "{{userId}}",
+                "permission_profiles"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                },
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_read"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "ca029d77-cb3f-41e3-abca-75b49fa9c764",
+          "name": "Assign user to permission profiles for one or more products",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/products/users/{{userId}}/permission_profiles",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2.1",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "products",
+                "users",
+                "{{userId}}",
+                "permission_profiles"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                },
+                {
+                  "value": "{{userId}}",
+                  "id": "userId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "52c68be2-e516-4258-bc85-643f4e25df97",
+          "name": "Creates and updates a multi-product user",
+          "request": {
+            "url": {
+              "raw": "https://{{hostenv}}/Management/v2.1/organizations/{{organizationId}}/accounts/{{accountId}}/users",
+              "protocol": "https",
+              "auth": {},
+              "host": [
+                "{{hostenv}}"
+              ],
+              "path": [
+                "Management",
+                "v2.1",
+                "organizations",
+                "{{organizationId}}",
+                "accounts",
+                "{{accountId}}",
+                "users"
+              ],
+              "variable": [
+                {
+                  "value": "{{organizationId}}",
+                  "id": "organizationId"
+                },
+                {
+                  "value": "{{accountId}}",
+                  "id": "accountId"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "description": "Required scopes: user_write"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "2c69c77c-f2db-44a6-86a8-f6fb2afbba47",
+      "name": "Authentication",
+      "description": "Folder for Authentication",
+      "item": [
+        {
+          "_postman_id": "ad6effb2-c9d6-40c0-8c3b-58d76f2973da",
+          "name": "01 Authorize Code Grant Access Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+              }
+            }
+          ],
+          "request": {
+            "url": "https://{{hostenv}}/oauth/token",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{encodedKeys}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "code",
+                  "value": "{{codeFromUrl}}"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "6bb03c8a-e022-40da-ab3d-12a92886ad55",
+          "name": "02 JWT Access Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+              }
+            }
+          ],
+          "request": {
+            "url": "https://{{hostenv}}/oauth/token",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{encodedKeys}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "assertion",
+                  "value": "{{assertionHere}}"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "a2d1e9b7-811d-4324-acf7-100f4eb80823",
+          "name": "03 Refresh Access Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+              }
+            }
+          ],
+          "request": {
+            "url": "https://{{hostenv}}/oauth/token",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Basic {{encodedKeys}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "refresh_token",
+                  "value": "{{refreshToken}}"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "refresh_token"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "e89bedca-bb37-4e2c-940d-a732831c8caf",
+          "name": "04 Get User Info",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": "var jsonData = JSON.parse(responseBody);\nvar accounts = jsonData.accounts;\nif (jsonData.hasOwnProperty(\"sub\")) { \n    postman.setEnvironmentVariable(\"userId\", jsonData.sub); \n} \n\nfor (var i=0; i< accounts.length; i++) { \n  if (accounts[i].hasOwnProperty(\"is_default\")) { \n   if (accounts[i].is_default === true) { \n     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); \n     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); \n     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); \n   } \n } \n} \n"
+              }
+            }
+          ],
+          "request": {
+            "url": "https://{{hostenv}}/oauth/userinfo",
+            "method": "Get",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "5980bc1f-023f-413b-93a6-8652d7b6e0d4",
+      "name": "Examples",
+      "description": "Folder for Examples",
+      "item": [
+        {
+          "_postman_id": "c20dcca0-7d41-410a-8a6e-e87134663cf4",
+          "name": "1. Create an Envelope",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"envelopeId\", jsonData.envelopeId);"
+              }
+            }
+          ],
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documents\": [\n    {\n      \"documentBase64\": {{document}},\n      \"documentId\": {{documentId}},\n      \"fileExtension\": \"pdf\",\n      \"name\": \"document\"\n    }\n  ],\n  \"emailSubject\": \"Simple Signing Example\",\n  \"recipients\": {\n    \"signers\": [\n      {\n        \"email\": {{user1_email}},\n        \"name\": {{user1_name}},\n        \"recipientId\": \"{{recipientId}}\"\n      }\n    ]\n  },\n  \"status\": \"sent\"\n}"
+            },
+            "description": "This example is a very basic example of creating an evenlope with a document and a single signer. This evenlope does not specify a tab."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "336ad24f-a8b0-4916-a295-90be3dfdabf1",
+          "name": "2. Create Envelope in Draft Stage",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documents\": [\n    {\n      \"documentBase64\": {{document}},\n      \"documentId\": \"123\",\n      \"fileExtension\": \"pdf\",\n      \"name\": \"document\"\n    }\n  ],\n  \"emailSubject\": \"Simple Signing Example\",\n  \"recipients\": {\n    \"signers\": [\n      {\n        \"email\": {{user1_email}},\n        \"name\": {{user1_name}},\n        \"recipientId\": \"{{recipientId}}\"\n      }\n    ]\n  },\n  \"status\": \"created\"\n}"
+            },
+            "description": "In this example, we are creating an envelope similar to the previous step. However, we are keeping it in `draft` stage so can continue to make changes to it. If the status was set to `sent` the envelope would be sent to users."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "7dd3e636-6562-409b-adb2-2c77697d8f09",
+          "name": "3. Get Envelope Status",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "If one needs to check the status of an envelope, they can use this endpoint to retrieve the status."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "d8ce5239-6e73-43a3-b493-ed7feac27dfa",
+          "name": "4. Envelope Recipients",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "In this example, we will list the recipents of an envelope. This endpoint is particularly useful if the envelope is in `draft` stage and we want to make changes to its recipents before sending."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "5360773e-4fbe-486e-8180-1303ff935813",
+          "name": "5. Add Tab to Envelope",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients/{{recipientId}}/tabs",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"signHereTabs\": [{\n        \"anchorString\": \"test\",\n        \"anchorXOffset\": \"1\",\n        \"anchorYOffset\": \"0\",\n        \"anchorIgnoreIfNotPresent\": \"false\",\n        \"anchorUnits\": \"inches\"\n    }]\n}"
+            },
+            "description": "In this example, we will modify an evelope and add a tab to a document. This endpoint allows one to modify envelopes after they were created, which is very useful."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "d0092755-e4ec-42bd-9808-388d966c4da6",
+          "name": "6. Get Tabs in an Envelope",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients/{{recipientId}}/tabs",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "After adding a new tab to the envelope, we can verify the tab was created by listing all the tabs in the envelope."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "979439a9-ee88-4143-9905-14db7e9685a7",
+          "name": "7. Add an Attachment to Envelope",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/attachments",
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"attachments\": [{\n        \"attachmentId\": \"123\",\n        \"data\": {{document}},\n        \"name\": \"sample_document\",\n        \"anchorIgnoreIfNotPresent\": \"false\",\n        \"anchorUnits\": \"inches\"\n    }]\n}"
+            },
+            "description": "In this example, we will make further changes to our existing envelope by adding an attachmen to it."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "67b6c2c9-8d3c-4b9e-83a5-8a3059479cfa",
+          "name": "8. List Attachments in an Envelope",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/attachments",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "In this example, we will verify the attachment was added by listing all the attachments in the envelope."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "8b3a3df7-5456-462c-898e-079ba6969c6f",
+          "name": "9. Lists the Documents in an Envelope",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/documents",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "In this example, we will list all the documents that are included in an envelope."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "553219ef-d4c6-48aa-94ff-0a96b6055505",
+          "name": "10. Get a Document from Envelope",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/documents/{{documentId}}",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "In this example, we will download one document from the envelope. This approach allows one to inspect the document after envelope was created."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2e0fdfca-6170-4208-b878-f4c6317f8901",
+          "name": "11. Lock the Envelope",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"lockToken\", jsonData.lockToken);"
+              }
+            }
+          ],
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/lock",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lockDurationInSeconds\": \"500\",\n  \"lockType\": \"edit\"\n}"
+            },
+            "description": "This method locks the specified envelope and sets the time until the lock expires to prevent other users or recipients from changing the envelope.\n\nThe response to this request returns a `lockToken` parameter. You must use the lockToken to update or delete an existing lock. You must also include the `lockToken` in the header for every PUT call that you make on the envelope while it is locked. If you do not include the `lockToken`, the system returns the following error:\n\n```{\n   \"errorCode\": \"EDIT_LOCK_NOT_LOCK_OWNER\",\n   \"message\": \"The user is not the owner of the lock. The template is locked by another user or in another application\"\n}```\n\n`Note`: Users must have envelope locking capability enabled to use this function (userSetting canLockEnvelopes must be set to true for the user)."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "e5755523-cd57-45c7-b5c6-c75b6caef612",
+          "name": "12. Lists the Existing Locks on an Envelope",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/lock",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "In this example, we will list all the locks existing on an envelope."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "790dbdf5-bab9-4435-ad35-7abf63dfaaae",
+          "name": "13. Delete Existing Lock on an Envelope",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/lock",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "This example will delete the lock we created on the envelope."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "ef9b40c3-97ae-44ac-9e02-57072ceae192",
+          "name": "14. Created Embedded View",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId_draft}}/views/recipient_preview",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"returnUrl\": \"http://httpbin.org/get\",\n    \"authenticationMethod\": \"none\",\n    \"email\": {{user1_email}},\n    \"userName\": {{user1_name}}\n}"
+            },
+            "description": "In this example, we will create an embedded preview of what our recipients see when the envelope is sent out to them."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "b840ffb2-02a8-48e7-a1ce-589b937289d5",
+          "name": "15. Create an Account Template",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"templateId\", jsonData.templateId);"
+              }
+            }
+          ],
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documents\": [\n    {\n      \"name\": \"agreement\",\n      \"documentBase64\": {{document}},\n      \"documentId\": {{documentId}},\n      \"fileExtension\": \"pdf\"\n    }\n  ],\n  \"emailBlurb\": \"Email message\",\n  \"emailSubject\": \"email subject\",\n  \"recipients\": {\n    \"signers\": [\n      {\n        \"recipientId\": \"1\",\n        \"roleName\": \"seller\",\n        \"email\":{{user1_email}},\n        \"name\": {{user1_name}},\n        \"tabs\": {\n          \"signHereTabs\": [\n            {\n              \"documentId\": \"123\",\n              \"pageNumber\": 1,\n              \"xPosition\": \"4\",\n              \"yPosition\": \"4\"\n            }\n          ]\n        }\n      }\n    ]\n  }\n}"
+            },
+            "description": "In this example, we will create a template with document, tabs and its recipients specified. This is a great future if we know we will be sending the same envelope multiple times."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "f48f9dc0-d949-4a38-9090-3f29da98783a",
+          "name": "16. Get Account Templates",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "We can always see the templates that have been created by listing them. The templates we just created in the previous step is listed here."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "8a109384-7cd5-44fa-9df1-3e6a1f377a57",
+          "name": "17. Get Template Definition",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates/{{templateId}}",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "description": "If one is not sure which template is the one they want to use, they can fetch the template after listing it and verify that it is the one they want to use."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2c3c7adb-9e39-4896-a851-51f4cd4fd1d9",
+          "name": "18. Send Envelope with Template",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"emailBlurb\": \"Create an envelope with a templateId\",\n    \"emailSubject\": \"Template\",\n    \"templateId\": \"{{templateId}}\",\n    \"status\": \"sent\"\n}"
+            },
+            "description": "Send an envelop with a single template."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2f11ff7d-e5fa-4cd9-9898-e25e391d17b5",
+          "name": "19. Create a Template with Role Only",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"templateId\", jsonData.templateId);"
+              }
+            }
+          ],
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"documents\": [\n    {\n      \"name\": \"agreement\",\n      \"documentBase64\": {{document}},\n      \"documentId\": {{documentId}},\n      \"fileExtension\": \"pdf\"\n    }\n  ],\n  \"emailBlurb\": \"Email message\",\n  \"emailSubject\": \"email subject\",\n  \"recipients\": {\n    \"signers\": [\n      {\n        \"recipientId\": \"1\",\n        \"roleName\": \"seller\",\n      }\n    ]\n  }\n}"
+            },
+            "description": "In order to make templates more board and be able to use them in `CompositeTemplates` we can create them by specifying the role only. This way, the recipients can be specified at envelope creation. This example shows how useful templates can be."
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "0f79def5-d74f-4271-81a6-9d43e9537ce1",
+          "name": "20. Send an Envelope Using CompositeTemplates",
+          "request": {
+            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}",
+                "description": ""
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"emailBlurb\": \"Create an envelope with a templateId\",\n    \"emailSubject\": \"Template\",\n    \"compositeTemplates\": [\n        {\n            \"serverTemplates\": [\n                {\n                    \"sequence\": \"1\",\n                    \"templateId\": \"{{templateId}}\"\n                }\n            ],\n            \"inlineTemplates\": [\n                {\n                    \"recipients\": {\n                        \"signers\": [\n                            {\n                                \"email\": \"{{user1_email}}\",\n                                \"name\": \"{{user1_name}}\",\n                                \"recipientId\": \"2\",\n                                \"roleName\": \"seller\",\n                                \"tabs\": {\n                                    \"signHereTabs\": [\n                                        {\n                                            \"anchorString\": \"test\",\n                                            \"anchorUnits\": \"pixels\",\n                                            \"anchorXOffset\": \"200\",\n                                            \"anchorYOffset\": \"10\"\n                                        }\n                                    ]\n                                }\n                            }\n                        ]\n                    },\n                    \"sequence\": \"2\"\n                }\n            ]\n        }\n    ],\n    \"status\": \"sent\"\n}"
+            },
+            "description": "In this example, we will use the template we created in previous step and we will use `CompositeTemplates` to add a signer and a tab to it using `inlineTemplates`. You can see how one can create a template and keep reusing it this way."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "_postman_id": "bdba239c-8ef5-4ac4-9bab-9e3f1373baf7",
+      "name": "Returns the list of permission profiles in an account.",
+      "request": {
+        "url": {
+          "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/accounts/{{accountId}}/permissions",
+          "protocol": "https",
+          "auth": {},
+          "host": [
+            "{{hostenv}}"
+          ],
+          "path": [
+            "Management",
+            "v2",
+            "organizations",
+            "{{organizationId}}",
+            "accounts",
+            "{{accountId}}",
+            "permissions"
+          ],
+          "variable": [
+            {
+              "value": "{{organizationId}}",
+              "id": "organizationId"
+            },
+            {
+              "value": "{{accountId}}",
+              "id": "accountId"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "description": "Required scopes: permission_read"
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "c834df0c-c449-4c7f-9ed9-58762598aa76",
+      "name": "Returns the list of groups in an account.",
+      "request": {
+        "url": {
+          "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/accounts/{{accountId}}/groups?start={{start}}&take={{take}}&end={{end}}",
+          "protocol": "https",
+          "auth": {},
+          "host": [
+            "{{hostenv}}"
+          ],
+          "path": [
+            "Management",
+            "v2",
+            "organizations",
+            "{{organizationId}}",
+            "accounts",
+            "{{accountId}}",
+            "groups"
+          ],
+          "query": [
+            {
+              "key": "start",
+              "value": "{{start}}"
+            },
+            {
+              "key": "take",
+              "value": "{{take}}"
+            },
+            {
+              "key": "end",
+              "value": "{{end}}"
+            }
+          ],
+          "variable": [
+            {
+              "value": "{{organizationId}}",
+              "id": "organizationId"
+            },
+            {
+              "value": "{{accountId}}",
+              "id": "accountId"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "description": "Required scopes: group_read"
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "ed2e303d-3133-463d-8663-aef8386dc534",
+      "name": "Updates a user.",
+      "request": {
+        "url": {
+          "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users/profiles",
+          "protocol": "https",
+          "auth": {},
+          "host": [
+            "{{hostenv}}"
+          ],
+          "path": [
+            "Management",
+            "v2",
+            "organizations",
+            "{{organizationId}}",
+            "users",
+            "profiles"
+          ],
+          "variable": [
+            {
+              "value": "{{organizationId}}",
+              "id": "organizationId"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "description": "Required scopes: user_write"
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "3ac59192-0910-41c6-83ae-3875d5a57588",
+      "name": "Updates a user's email address.",
+      "request": {
+        "url": {
+          "raw": "https://{{hostenv}}/Management/v2/organizations/{{organizationId}}/users/email_addresses",
+          "protocol": "https",
+          "auth": {},
+          "host": [
+            "{{hostenv}}"
+          ],
+          "path": [
+            "Management",
+            "v2",
+            "organizations",
+            "{{organizationId}}",
+            "users",
+            "email_addresses"
+          ],
+          "variable": [
+            {
+              "value": "{{organizationId}}",
+              "id": "organizationId"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "description": "Required scopes: user_write"
+      },
+      "response": []
+    }
+  ]
+}
