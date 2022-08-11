@@ -123,7 +123,7 @@
         against the <a href="https://developers.docusign.com/docs/" target="_blank" rel="nofollow noreferrer noopener">DocuSign REST APIs</a> quickly and easily inside <a
           href="https://www.postman.com/" target="_blank" rel="nofollow noreferrer noopener">Postman</a>. The DocuSign API Postman collections include examples for common
         workflows such as authenticating to retrieve your account ID and base URI, sending an envelope via email, creating
-        reusable templates, and signing documents directly through your app or website, also known as embedded signing.</p>
+        reusable templates, and signing documents directly through your app or website, also known as <em>embedded signing</em>.</p>
     </section>
     <section class="section">
       <h2>Prerequisites</h2>
@@ -143,13 +143,13 @@
     </section>
     <section class="section">
       <h2>Step 1: Create your environment</h2>
-      <p>Open the <a href="https://admindemo.docusign.com/api-integrator-key" target="_blank" rel="nofollow noreferrer noopener"><strong>Apps and Keys</strong></a> page in your developer account
+      <p>Open the <a href="https://admindemo.docusign.com/authenticate?goTo=appsAndKeys" target="_blank" rel="nofollow noreferrer noopener"><strong>Apps and Keys</strong></a> page in your developer account
         settings. From here, you'll copy values into the Postman environment setup. The button below opens a dialog box
         prompting you to configure your Postman environment; to do so, you'll need the following values:</p>
       <ul>
         <li><strong>Integration key</strong>: Any app you create with DocuSign is called an <em>integration.</em> All your integrations are identified
             in your DocuSign developer account by their <em>integration key,</em> which is a <a href="http://guid.one/guid" target="_blank" rel="nofollow noreferrer noopener">GUID</a>
-            issued to your integration when you select <strong>Add App and Integration Key</strong> on the Apps and Keys page within your
+            issued to your integration when you select <strong>Add App and Integration Key</strong> on the <strong>Apps and Keys</strong> page within your
             developer account&rsquo;s <strong>Settings</strong> area. If you don't have any integrations in your developer account yet, select
             that button and give your integration a name. Use the <strong>Integration Key</strong> value, which is automatically generated when
             you click <strong>OK.</strong></li>
@@ -326,7 +326,7 @@
       <p>Just about every DocuSign API call contains a <code>Bearer {{accessToken}}</code> authorization header that includes your access
         token. An Authorization Code Grant access token is good for eight hours, so the refresh token should be utilized beyond
         that window up to 30 days. A JWT access token expires within one hour, and refresh tokens are not available with JWT.
-        Instead of using the <strong>03 Refresh Access Token</strong> request (as utilized in Authorization Code Grant), simply run the <strong>01 JWT
+        Instead of using the <strong>03 Refresh Access Token</strong> request (as utilized in Authorization Code Grant), simply run the <strong>02 JWT
         Access Token</strong> request again. Many (but not all) calls use an account ID, which can be retrieved by running the <strong>04 Get
         User Info</strong> request.</p>
       <h3>Requests in the Examples folder</h3>
