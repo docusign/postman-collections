@@ -1,6 +1,6 @@
 # The DocuSign Postman Collections
 
-This repo contains a Postman collection for the DocuSign eSignature API, Rooms API and Click API. 
+This repo contains Postman collections for the DocuSign eSignature API, Rooms API, Click API, and DocuSign Admin API. 
 
 Guide: https://docusign.github.io/postman-collections/
 
@@ -8,7 +8,7 @@ Walkthrough (blog post): https://www.docusign.com/blog/dsdev-please-mr-postman/
 
 Video: https://www.youtube.com/watch?v=mV73U2tg9c0
 
-Follow the guide to install and configure the eSignature API Postman Collection. You'll find all our API endpoints and you can easily and quickly test any API call. Try our most common scenarios such as embedded signing, sending an envelope via email, applying templates, and more. 
+Follow the guide to install and configure the Postman collection of your choice. You'll find all the API endpoints for the API you've chosen and you can easily and quickly test any API call. Try our most common scenarios, such as embedded signing, sending an envelope via email, applying templates, and more. 
 
 ## What is Postman? 
 
@@ -16,4 +16,4 @@ Follow the guide to install and configure the eSignature API Postman Collection.
 
 ## License 
 
-The DocuSign Postman Collection is licensed under the MIT [License](LICENSE).
+The DocuSign Postman Collections are licensed under the [MIT License](LICENSE).
