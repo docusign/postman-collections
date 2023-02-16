@@ -1,1845 +1,1302 @@
 {
-  "variables": [],
-  "info": {
-    "name": "DocuSign Click API",
-    "_postman_id": "8c24f438-6cd7-4300-9658-f772f1e01501",
-    "description": "DocuSign Click lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable clickwrap solution in your DocuSign integrations.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
-  },
-  "item": [
-    {
-      "_postman_id": "460beb4e-9701-4b24-b630-2511bc1316f1",
-      "name": "Accounts",
-      "description": "Folder for Accounts",
-      "item": [
-        {
-          "_postman_id": "79ad57b9-0296-49ea-b733-80f93e30732a",
-          "name": "Provides base service and version access information.",
-          "request": {
-            "url": "https://{{hostenv}}/clickapi/service_information",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "d0a2a1ed-b88d-4dce-bd54-abfd853ccff7",
-          "name": "Gets the Clickwraps for an account",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps?from_date={{from_date}}&ownerUserId={{ownerUserId}}&page_number={{page_number}}&status={{status}}&to_date={{to_date}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps"
-              ],
-              "query": [
-                {
-                  "key": "from_date",
-                  "value": "{{from_date}}"
-                },
-                {
-                  "key": "ownerUserId",
-                  "value": "{{ownerUserId}}"
-                },
-                {
-                  "key": "page_number",
-                  "value": "{{page_number}}"
-                },
-                {
-                  "key": "status",
-                  "value": "{{status}}"
-                },
-                {
-                  "key": "to_date",
-                  "value": "{{to_date}}"
-                }
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "e53431d3-b49f-400b-8ebc-767608aff431",
-          "name": "Creates a Clickwrap for the specified accountId",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                }
-              ]
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "88bb004b-5e97-4cdd-a4d2-44dd34fb9f7e",
-          "name": "Deletes all the clickwraps for an account or the ones passed in query parameter clickwrapIds. It will not delete active clickwraps.",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps?clickwrapIds={{clickwrapIds}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps"
-              ],
-              "query": [
-                {
-                  "key": "clickwrapIds",
-                  "value": "{{clickwrapIds}}"
-                }
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "da559369-7b9e-41d8-a4d8-72d239700036",
-          "name": "Gets the clickwrap for an account specified by clickwrapId",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "a695f7ba-a5cd-458f-8c4f-ff7158729a16",
-          "name": "Updates the clickwrap specified by clickwrapId",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                }
-              ]
-            },
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "31d19183-012a-45f2-8dba-6a8e113df7b1",
-          "name": "Deletes the clickwrap and all its version specified by clickwrapId. Active clickwrap will not get deleted",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}?versions={{versions}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}"
-              ],
-              "query": [
-                {
-                  "key": "versions",
-                  "value": "{{versions}}"
-                }
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "9b92591c-7277-440f-a60d-ec3119741069",
-          "name": "Checks if a user has agreed to a clickwrap and returns a response with the agreement url. Returns HttpStatusCode.OK if user has no pending agreement.",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/agreements",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "agreements"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                }
-              ]
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "83a92255-7bb4-4c31-b2b4-0c4c0c62c337",
-          "name": "",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/agreements/{{agreementId}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "agreements",
-                "{{agreementId}}"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{agreementId}}",
-                  "id": "agreementId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "9bad02a1-6c9d-46d0-b3f9-07974117fcec",
-          "name": "",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/agreements/{{agreementId}}/download",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "agreements",
-                "{{agreementId}}",
-                "download"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{agreementId}}",
-                  "id": "agreementId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "5f42d103-6437-4191-b4d2-304cb72b3cb2",
-          "name": "Gets the Clickwraps for an account",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/users?client_user_id={{client_user_id}}&from_date={{from_date}}&page_number={{page_number}}&status={{status}}&to_date={{to_date}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "users"
-              ],
-              "query": [
-                {
-                  "key": "client_user_id",
-                  "value": "{{client_user_id}}"
-                },
-                {
-                  "key": "from_date",
-                  "value": "{{from_date}}"
-                },
-                {
-                  "key": "page_number",
-                  "value": "{{page_number}}"
-                },
-                {
-                  "key": "status",
-                  "value": "{{status}}"
-                },
-                {
-                  "key": "to_date",
-                  "value": "{{to_date}}"
-                }
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "9ef6e58b-4973-49ec-b7c9-51079c22a660",
-          "name": "Creates the clickwrap version",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "versions"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                }
-              ]
-            },
-            "method": "POST",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "134e1495-5a01-429f-95cb-7ea1b6f59e1e",
-          "name": "Deletes the versions specified by query parameter clickwrapVersionIds for a clickwrap, or all versions if no query parameter is specified. It will not delete if a version is active.",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions?clickwrapVersionIds={{clickwrapVersionIds}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "versions"
-              ],
-              "query": [
-                {
-                  "key": "clickwrapVersionIds",
-                  "value": "{{clickwrapVersionIds}}"
-                }
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "2d2e3386-2d53-412f-a8cf-d408e10b1856",
-          "name": "Gets the Clickwrap version by clickwrapId and versionId for an account",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "versions",
-                "{{versionId}}"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                },
-                {
-                  "value": "{{versionId}}",
-                  "id": "versionId"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "9d6b2408-02e7-432d-9004-fbbed98d5e2f",
-          "name": "Updates the clickwrap version specified by versionId",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "versions",
-                "{{versionId}}"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                },
-                {
-                  "value": "{{versionId}}",
-                  "id": "versionId"
-                }
-              ]
-            },
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "788ed319-3b8e-40a2-a077-1b3b5d733a0b",
-          "name": "Delete a Clickwrap version specified by versionId",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "versions",
-                "{{versionId}}"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                },
-                {
-                  "value": "{{versionId}}",
-                  "id": "versionId"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "aab7d6af-f3d2-4ad5-b0fd-2983b5b457f9",
-          "name": "Gets the Clickwrap version by clickwrapId and versionNumber for an account",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionNumber}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "versions",
-                "{{versionNumber}}"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                },
-                {
-                  "value": "{{versionNumber}}",
-                  "id": "versionNumber"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "fc5e944a-0792-4373-8e18-0a7f36ef0a78",
-          "name": "Updates the clickwrap version specified by versionNumber. Use versionId instead of versionNumber",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionNumber}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "versions",
-                "{{versionNumber}}"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                },
-                {
-                  "value": "{{versionNumber}}",
-                  "id": "versionNumber"
-                }
-              ]
-            },
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "a3b114ea-6f84-4deb-86c0-dc08c0a413b0",
-          "name": "Delete a Clickwrap version specified by versionNumber. Use versionId instead of versionNumber",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionNumber}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "versions",
-                "{{versionNumber}}"
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                },
-                {
-                  "value": "{{versionNumber}}",
-                  "id": "versionNumber"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "87e6daec-ac5a-4d4a-96f5-4b8490d17157",
-          "name": "Gets the agreement responses for a clickwrap version",
-          "request": {
-            "url": {
-              "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionNumber}}/users?client_user_id={{client_user_id}}&from_date={{from_date}}&page_number={{page_number}}&status={{status}}&to_date={{to_date}}",
-              "protocol": "https",
-              "auth": {},
-              "host": [
-                "{{hostenv}}"
-              ],
-              "path": [
-                "clickapi",
-                "v1",
-                "accounts",
-                "{{accountId}}",
-                "clickwraps",
-                "{{clickwrapId}}",
-                "versions",
-                "{{versionNumber}}",
-                "users"
-              ],
-              "query": [
-                {
-                  "key": "client_user_id",
-                  "value": "{{client_user_id}}"
-                },
-                {
-                  "key": "from_date",
-                  "value": "{{from_date}}"
-                },
-                {
-                  "key": "page_number",
-                  "value": "{{page_number}}"
-                },
-                {
-                  "key": "status",
-                  "value": "{{status}}"
-                },
-                {
-                  "key": "to_date",
-                  "value": "{{to_date}}"
-                }
-              ],
-              "variable": [
-                {
-                  "value": "{{accountId}}",
-                  "id": "accountId"
-                },
-                {
-                  "value": "{{clickwrapId}}",
-                  "id": "clickwrapId"
-                },
-                {
-                  "value": "{{versionNumber}}",
-                  "id": "versionNumber"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{}"
-            },
-            "description": ""
-          },
-          "response": []
-        }
-      ]
+    "variables": [],
+    "info": {
+        "name": "DocuSign Click API",
+        "_postman_id": "819882ce-13aa-479b-87b4-f2aafaffd96a",
+        "description": "Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
     },
-    {
-      "_postman_id": "017b81ed-c5ae-4c7d-8d6a-f985e1817f7e",
-      "name": "Authentication",
-      "description": "Folder for Authentication",
-      "item": [
+    "item": [
         {
-          "_postman_id": "89f297e8-a4c0-4e8a-9582-1cacfc3919d4",
-          "name": "01 Authorize Code Grant Access Token",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-              }
-            }
-          ],
-          "request": {
-            "url": "https://{{hostenv}}/oauth/token",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Basic {{encodedKeys}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
+            "_postman_id": "64270669-bd9a-4c18-9f31-7cf28685f822",
+            "name": "Accounts",
+            "description": "Folder for Accounts",
+            "item": [
                 {
-                  "key": "code",
-                  "value": "{{codeFromUrl}}"
+                    "_postman_id": "ef3117f9-b839-4aae-a401-bd8c9c538991",
+                    "name": "Gets the current version and other information about the Click API.",
+                    "request": {
+                        "url": "https://{{hostenv}}/clickapi/service_information",
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "The response includes information about the Click API, including the service version, build version, and linked sites.\n\nThis method does not require authentication."
+                    },
+                    "response": []
                 },
                 {
-                  "key": "grant_type",
-                  "value": "authorization_code"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "d3716f14-af3e-4f20-8f51-bb1599a075fe",
-          "name": "02 JWT Access Token",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-              }
-            }
-          ],
-          "request": {
-            "url": "https://{{hostenv}}/oauth/token",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Basic {{encodedKeys}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "assertion",
-                  "value": "{{assertionHere}}"
+                    "_postman_id": "7c5115cd-1f8a-481a-9eec-b1b91acae6ef",
+                    "name": "Gets all the clickwraps for a user.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps?filter={{filter}}&from_date={{from_date}}&name={{name}}&ownerUserId={{ownerUserId}}&page_number={{page_number}}&status={{status}}&to_date={{to_date}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps"
+                            ],
+                            "query": [
+                                {
+                                    "key": "filter",
+                                    "value": "{{filter}}"
+                                },
+                                {
+                                    "key": "from_date",
+                                    "value": "{{from_date}}"
+                                },
+                                {
+                                    "key": "name",
+                                    "value": "{{name}}"
+                                },
+                                {
+                                    "key": "ownerUserId",
+                                    "value": "{{ownerUserId}}"
+                                },
+                                {
+                                    "key": "page_number",
+                                    "value": "{{page_number}}"
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "{{status}}"
+                                },
+                                {
+                                    "key": "to_date",
+                                    "value": "{{to_date}}"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Gets all the clickwraps for a user. \n\n**Note:** This endpoint returns a list of `clickwrapVersionSummaryResponse` objects. Each version of each clickwrap is returned as a separate entry in the list.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`.\n"
+                    },
+                    "response": []
                 },
                 {
-                  "key": "grant_type",
-                  "value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "5ab0e526-6163-4271-b86e-d0e11ad892dc",
-          "name": "03 Refresh Access Token",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-              }
-            }
-          ],
-          "request": {
-            "url": "https://{{hostenv}}/oauth/token",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Basic {{encodedKeys}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "refresh_token",
-                  "value": "{{refreshToken}}"
+                    "_postman_id": "23d09f20-48e9-4d30-b097-e53e7ad41210",
+                    "name": "Creates a clickwrap for an account.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Creates a clickwrap for an account.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+                    },
+                    "response": []
                 },
                 {
-                  "key": "grant_type",
-                  "value": "refresh_token"
+                    "_postman_id": "4616a7c1-6b14-49d1-8228-a3f1efdb692e",
+                    "name": "Deletes clickwraps for an account.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps?clickwrapIds={{clickwrapIds}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps"
+                            ],
+                            "query": [
+                                {
+                                    "key": "clickwrapIds",
+                                    "value": "{{clickwrapIds}}"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Deletes all clickwraps for an account\nor only the ones specified in the\n`clickwrapIds` query parameter.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "4e618345-b1a2-43c5-a5d9-97bf74bc83a3",
+                    "name": "Gets a  single clickwrap object.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Retrieves the definition of the specified clickwrap.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "f33e59a4-1c12-4336-956c-624b603164af",
+                    "name": "Update a clickwrap by ID.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Update a subset of properties on the clickwrap.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "d48e5569-66d3-43e8-9826-b89a7b868606",
+                    "name": "Deletes a clickwrap and all of its versions.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}?versions={{versions}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "versions",
+                                    "value": "{{versions}}"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Deletes the clickwrap specified by `clickwrapId` and all of its versions.\nActive clickwraps are not deleted\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "8732da6c-e157-4778-ad33-47635960d1bd",
+                    "name": "Creates a unique URL for the agreement that you can embed in your application.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/agreements",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}",
+                                "agreements"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Creates a unique URL for the agreement\nthat you can embed in your application.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage` and `click.send`.\n\nThe request must include at least the\n`clientUserId`. This is a value that you\ngenerate to identify the unique recipient\nof the agreement.\n\nIf you are using a [dynamic content][] document,\nyou can supply the values in the documentData\nproperty of the request, like this:\n\n```json\n{\n  \"clientUserId\": \"cl-bc7f-48a9\",\n  \"documentData\": {\n    \"fullName\": \"T. J. Fanning\",\n    \"email\": \"tj@example.com\",\n    \"company\": \"Fanning Indusdtries\",\n    \"title\": \"Cat wrangler\",\n    \"date\": \"2022-10-13T05:17:14-07:00\"\n  }\n}\n```\n\nA response will look like this.\nThe `agreementUrl` is unique to the user identified by the `clientUserId`.\nYour user can open the URL to approve the agreement.\nThe `documentData` property appears only if you provided it in the request.\n\n```json\n{\n  \"accountId\": \"624e3e00-xxxx-xxxx-xxxx-43918c520dab\",\n  \"clickwrapId\": \"0e64e4a7-xxxx-xxxx-xxxx-ce5a93b162af\",\n  \"clientUserId\": \"tcl-bc7f-48a9j\",\n  \"agreementId\": \"1f346c7d-xxxx-xxxx-xxxx-a5c968666785\",\n  \"documents\": [ . . .],\n  \"consumerDisclosureEnabled\": true,\n  \"agreementUrl\": \"https://demo.docusign.net/clickapi/v1/redeem?agreementToken=AcTZT8g ... cxEqrUsA1lQ8DPPy05dE0\",\n  \"createdOn\": \"2022-10-20T16:27:25.1287685Z\",\n  \"status\": \"created\",\n  \"versionId\": \"5957716d-xxxx-xxxx-xxxx-e1594f00ff12\",\n  \"versionNumber\": 1,\n  \"settings\": {\n    \"displayName\": \"Agree with me\",\n    \"hasDeclineButton\": true,\n    .  . .\n    \"statementAlignment\": \"bottom\"\n  },\n  \"documentData\": {\n    \"fullName\": \"T. J. Fanning\",\n    \"email\": \"tj@example.com\",\n    \"company\": \"Fanning Indusdtries\",\n    \"title\": \"Cat wrangler\",\n    \"date\": \"2022-10-13T05:17:14-07:00\"\n  }\n}\n```\n\nThis method returns the following\nresult codes and response bodies\ndepending on whether the user has agreed.\n\n\n| Agreed | Response code | Response body          |\n| :----- | :------------ | :--------------------- |\n| No     | 201           | Full response as above |\n| Yes    | 200           | No response (empty)    |\n\n\n### Related topics\n\n- [Add dynamic content to your clickwrap][dynamic content]\n- [How to embed a clickwrap][embed-howto]\n\n\n[dynamic content]:  /docs/click-api/click101/customize-clickwrap-fields/#add-dynamic-content-to-your-clickwrap\n[embedding]:        /docs/click-api/click101/customize-clickwrap-fields/#embed-clickwraps-that-contain-dynamic-content\n[embed-howto]:      /docs/click-api/how-to/embed-clickwraps/\n"
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "58237705-9d5b-4d10-a7c0-06b7d837d6e1",
+                    "name": "Gets a specific agreement for a specified clickwrap.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/agreements/{{agreementId}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}",
+                                "agreements",
+                                "{{agreementId}}"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{agreementId}}",
+                                    "id": "agreementId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Gets the agreement specified by `agreementId`.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage` or `click.send`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "6b0c7853-f893-4d3a-849d-b38624b7aaa7",
+                    "name": "Gets the completed user agreement PDF.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/agreements/{{agreementId}}/download?include_coc={{include_coc}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}",
+                                "agreements",
+                                "{{agreementId}}",
+                                "download"
+                            ],
+                            "query": [
+                                {
+                                    "key": "include_coc",
+                                    "value": "{{include_coc}}"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{agreementId}}",
+                                    "id": "agreementId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/pdf",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Gets the PDF of  `agreementId` for the clickwrap specified by `clickwrapId`.\n\nThe response to this method is the bytes of the PDF file.\nThe response includes the HTTP header `application/pdf`.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage` or `click.send`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "d53c16c9-3a17-43d6-adbe-87301fc1c9f5",
+                    "name": "Starts an export of clickwrap agreements for a specified date range.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/bulk_agreements",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}",
+                                "bulk_agreements"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Starts an asynchronus process to export clickwrap agreements for a specified date range.\nAn email will be sent to the creator after it has been processed.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`"
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "feb5eb41-ef71-4651-81ce-689348112cdb",
+                    "name": "Get user agreements",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/users?client_user_id={{client_user_id}}&from_date={{from_date}}&page_number={{page_number}}&status={{status}}&to_date={{to_date}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}",
+                                "users"
+                            ],
+                            "query": [
+                                {
+                                    "key": "client_user_id",
+                                    "value": "{{client_user_id}}"
+                                },
+                                {
+                                    "key": "from_date",
+                                    "value": "{{from_date}}"
+                                },
+                                {
+                                    "key": "page_number",
+                                    "value": "{{page_number}}"
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "{{status}}"
+                                },
+                                {
+                                    "key": "to_date",
+                                    "value": "{{to_date}}"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Retrieves the user agreements for a specified clickwrap. Each `userAgreementResponse` object describes a single user's response to the clickwrap. You can also filter the agreements by date, status, page number, and client user ID.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "0ae843b0-549c-4487-b2ff-4f4a1864a093",
+                    "name": "Gets all the versions of a clickwrap.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}",
+                                "versions"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Gets all the versions of a clickwrap for an account.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "6fad6531-50a0-4199-910c-8dd9dcf85b1e",
+                    "name": "Creates a new clickwrap version.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}",
+                                "versions"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Creates a new version of an existing clickwrap. In a new version, you can replace the uploaded documents, change the display settings, and change the name of the clickwrap. The version number is automatically incremented based on the last version of the clickwrap.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "0b93eda6-3823-4b4e-b31e-bd7e1ac504e2",
+                    "name": "Deletes the versions of a clickwrap.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions?clickwrapVersionIds={{clickwrapVersionIds}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}",
+                                "versions"
+                            ],
+                            "query": [
+                                {
+                                    "key": "clickwrapVersionIds",
+                                    "value": "{{clickwrapVersionIds}}"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Deletes all versions of a clickwrap,\nor only the ones specified in the\n`clickwrapVersionIds` query parameter.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "f9d594e0-e379-47ea-8933-8a674757b136",
+                    "name": "Gets a specific version of a clickwrap by version ID.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}",
+                                "versions",
+                                "{{versionId}}"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                },
+                                {
+                                    "value": "{{versionId}}",
+                                    "id": "versionId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Gets the version specified by `versionId`  from the clickwrap `clickwrapId`.\n\n**Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "8d3ec7f5-681c-4894-8ea6-a3b7df8e7baa",
+                    "name": "Updates clickwrap version status and ownership.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}",
+                                "versions",
+                                "{{versionId}}"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                },
+                                {
+                                    "value": "{{versionId}}",
+                                    "id": "versionId"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Updates the clickwrap version status and ownership by transferring from previous user ID to new user ID.\n\n**Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "b78ee53f-e61d-4051-b4c7-4d68c0236c96",
+                    "name": "Deletes a clickwrap version by version ID.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}",
+                                "versions",
+                                "{{versionId}}"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                },
+                                {
+                                    "value": "{{versionId}}",
+                                    "id": "versionId"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Deletes the clickwrap version specified by `versionId` of the clickwrap specified by `clickwrapId`.\n\n**Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "644ef000-a5c1-4054-8b89-1e7df08f670c",
+                    "name": "Downloads a document at an order within the agreement.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}/documents/{{orderOrDisclosure}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "clickapi",
+                                "v1",
+                                "accounts",
+                                "{{accountId}}",
+                                "clickwraps",
+                                "{{clickwrapId}}",
+                                "versions",
+                                "{{versionId}}",
+                                "documents",
+                                "{{orderOrDisclosure}}"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{clickwrapId}}",
+                                    "id": "clickwrapId"
+                                },
+                                {
+                                    "value": "{{orderOrDisclosure}}",
+                                    "id": "orderOrDisclosure"
+                                },
+                                {
+                                    "value": "{{versionId}}",
+                                    "id": "versionId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Downloads a specific document from the agreement presented to the user.\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.sign`"
+                    },
+                    "response": []
                 }
-              ]
-            }
-          },
-          "response": []
+            ]
         },
         {
-          "_postman_id": "8a2ec840-8a4c-420d-b28c-7e55175c0a56",
-          "name": "04 Get User Info",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": "var jsonData = JSON.parse(responseBody);\nvar accounts = jsonData.accounts;\nif (jsonData.hasOwnProperty(\"sub\")) { \n    postman.setEnvironmentVariable(\"userId\", jsonData.sub); \n} \n\nfor (var i=0; i< accounts.length; i++) { \n  if (accounts[i].hasOwnProperty(\"is_default\")) { \n   if (accounts[i].is_default === true) { \n     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); \n     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); \n     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); \n   } \n } \n} \n"
-              }
-            }
-          ],
-          "request": {
-            "url": "https://{{hostenv}}/oauth/userinfo",
-            "method": "Get",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            }
-          },
-          "response": []
+            "_postman_id": "c9408f10-112e-4536-81bf-826875b2536e",
+            "name": "Authentication",
+            "description": "Folder for Authentication",
+            "item": [
+                {
+                    "_postman_id": "b23e299b-836c-445c-b139-e56e205e21f7",
+                    "name": "01 Authorize Code Grant Access Token",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "url": "https://{{hostenv}}/oauth/token",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {{encodedKeys}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "code",
+                                    "value": "{{codeFromUrl}}"
+                                },
+                                {
+                                    "key": "grant_type",
+                                    "value": "authorization_code"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "139b09ab-247d-4b2f-afd3-2a470d6eb87c",
+                    "name": "02 JWT Access Token",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "url": "https://{{hostenv}}/oauth/token",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {{encodedKeys}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "assertion",
+                                    "value": "{{assertionHere}}"
+                                },
+                                {
+                                    "key": "grant_type",
+                                    "value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "757c407d-3c6b-47de-9735-b53b261978c7",
+                    "name": "03 Refresh Access Token",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "url": "https://{{hostenv}}/oauth/token",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {{encodedKeys}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "refresh_token",
+                                    "value": "{{refreshToken}}"
+                                },
+                                {
+                                    "key": "grant_type",
+                                    "value": "refresh_token"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "feaea908-db9e-4fdb-9e64-3b10f6359b9a",
+                    "name": "04 Get User Info",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": "var jsonData = JSON.parse(responseBody);\nvar accounts = jsonData.accounts;\nif (jsonData.hasOwnProperty(\"sub\")) { \n    postman.setEnvironmentVariable(\"userId\", jsonData.sub); \n} \n\nfor (var i=0; i< accounts.length; i++) { \n  if (accounts[i].hasOwnProperty(\"is_default\")) { \n   if (accounts[i].is_default === true) { \n     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); \n     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); \n     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); \n   } \n } \n} \n"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "url": "https://{{hostenv}}/oauth/userinfo",
+                        "method": "Get",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": ""
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "_postman_id": "6098d8aa-cff5-4df1-8d6f-e77c8b1ec46a",
+            "name": "Gets the agreement responses for a clickwrap version by version ID.",
+            "request": {
+                "url": {
+                    "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}/users?client_user_id={{client_user_id}}&from_date={{from_date}}&page_number={{page_number}}&status={{status}}&to_date={{to_date}}",
+                    "protocol": "https",
+                    "auth": {},
+                    "host": [
+                        "{{hostenv}}"
+                    ],
+                    "path": [
+                        "clickapi",
+                        "v1",
+                        "accounts",
+                        "{{accountId}}",
+                        "clickwraps",
+                        "{{clickwrapId}}",
+                        "versions",
+                        "{{versionId}}",
+                        "users"
+                    ],
+                    "query": [
+                        {
+                            "key": "client_user_id",
+                            "value": "{{client_user_id}}"
+                        },
+                        {
+                            "key": "from_date",
+                            "value": "{{from_date}}"
+                        },
+                        {
+                            "key": "page_number",
+                            "value": "{{page_number}}"
+                        },
+                        {
+                            "key": "status",
+                            "value": "{{status}}"
+                        },
+                        {
+                            "key": "to_date",
+                            "value": "{{to_date}}"
+                        }
+                    ],
+                    "variable": [
+                        {
+                            "value": "{{accountId}}",
+                            "id": "accountId"
+                        },
+                        {
+                            "value": "{{clickwrapId}}",
+                            "id": "clickwrapId"
+                        },
+                        {
+                            "value": "{{versionId}}",
+                            "id": "versionId"
+                        }
+                    ]
+                },
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "description": ""
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}",
+                        "description": ""
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{}"
+                },
+                "description": "Gets the agreement responses for a specific version.\n\n**Note:** This endpoint requires the version ID (a GUID), not the version number (an integer).\n\n[Required authentication scopes](/docs/click-api/click101/auth/): `click.manage`."
+            },
+            "response": []
         }
-      ]
-    },
-    {
-      "_postman_id": "0a70e7df-bfde-4697-88b2-2fea7336bbcb",
-      "name": "Examples",
-      "description": "Folder for Examples",
-      "item": [
-        {
-          "_postman_id": "f2b3b0ca-bb5c-48b0-864f-e27572608af7",
-          "name": "1. Create an Envelope",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"envelopeId\", jsonData.envelopeId);"
-              }
-            }
-          ],
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"documents\": [\n    {\n      \"documentBase64\": {{document}},\n      \"documentId\": {{documentId}},\n      \"fileExtension\": \"pdf\",\n      \"name\": \"document\"\n    }\n  ],\n  \"emailSubject\": \"Simple Signing Example\",\n  \"recipients\": {\n    \"signers\": [\n      {\n        \"email\": {{user1}},\n        \"name\": {{user1_name}},\n        \"recipientId\": \"{{recipientId}}\"\n      }\n    ]\n  },\n  \"status\": \"sent\"\n}"
-            },
-            "description": "This example is a very basic example of creating an evenlope with a document and a single signer. This evenlope does not specify a tab."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "58c1c554-b3a6-432f-a5ec-5781b72c4c1d",
-          "name": "2. Create Envelope in Draft Stage",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "description": ""
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"documents\": [\n    {\n      \"documentBase64\": {{document}},\n      \"documentId\": \"123\",\n      \"fileExtension\": \"pdf\",\n      \"name\": \"document\"\n    }\n  ],\n  \"emailSubject\": \"Simple Signing Example\",\n  \"recipients\": {\n    \"signers\": [\n      {\n        \"email\": {{user1}},\n        \"name\": {{user1_name}},\n        \"recipientId\": \"{{recipientId}}\"\n      }\n    ]\n  },\n  \"status\": \"created\"\n}"
-            },
-            "description": "In this example, we are creating an envelope similar to the previous step. However, we are keeping it in `draft` stage so can continue to make changes to it. If the status was set to `sent` the envelope would be sent to users."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "e1e7e57d-07c6-41b8-a64b-bfb507458a14",
-          "name": "3. Get Envelope Status",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": "If one needs to check the status of an envelope, they can use this endpoint to retrieve the status."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "3a6333ae-fe76-43eb-8a8e-3768702ce313",
-          "name": "4. Envelope Recipients",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": "In this example, we will list the recipents of an envelope. This endpoint is particularly useful if the envelope is in `draft` stage and we want to make changes to its recipents before sending."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "fd543dc3-0082-4ff2-b7b9-7dbdc2805014",
-          "name": "5. Add Tab to Envelope",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients/{{recipientId}}/tabs",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"signHereTabs\": [{\n        \"anchorString\": \"test\",\n        \"anchorXOffset\": \"1\",\n        \"anchorYOffset\": \"0\",\n        \"anchorIgnoreIfNotPresent\": \"false\",\n        \"anchorUnits\": \"inches\"\n    }]\n}"
-            },
-            "description": "In this example, we will modify an evelope and add a tab to a document. This endpoint allows one to modify envelopes after they were created, which is very useful."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "d70d227e-0894-4a31-8df9-e7a10faae2d2",
-          "name": "6. Get Tabs in an Envelope",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients/{{recipientId}}/tabs",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": "After adding a new tab to the envelope, we can verify the tab was created by listing all the tabs in the envelope."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "b431efaf-a03f-442f-aa8f-223c143ce42f",
-          "name": "7. Add an Attachment to Envelope",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/attachments",
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"attachments\": [{\n        \"attachmentId\": \"123\",\n        \"data\": {{document}},\n        \"name\": \"sample_document\",\n        \"anchorIgnoreIfNotPresent\": \"false\",\n        \"anchorUnits\": \"inches\"\n    }]\n}"
-            },
-            "description": "In this example, we will make further changes to our existing envelope by adding an attachmen to it."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "2bc4ed2b-6156-4432-8b09-ad46d5c1bcfb",
-          "name": "8. List Attachments in an Envelope",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/attachments",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": "In this example, we will verify the attachment was added by listing all the attachments in the envelope."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "126b2735-ddaa-4fef-a5a9-c61f33d442be",
-          "name": "9. Lists the Documents in an Envelope",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/documents",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": "In this example, we will list all the documents that are included in an envelope."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "0fb68e7c-87aa-448f-ba4c-719994c1e652",
-          "name": "10. Get a Document from Envelope",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/documents/{{documentId}}",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": "In this example, we will download one document from the envelope. This approach allows one to inspect the document after envelope was created."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "90ca12cb-30f7-4433-9386-292f7a860991",
-          "name": "11. Lock the Envelope",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"lockToken\", jsonData.lockToken);"
-              }
-            }
-          ],
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/lock",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"lockDurationInSeconds\": \"500\",\n  \"lockType\": \"edit\"\n}"
-            },
-            "description": "This method locks the specified envelope and sets the time until the lock expires to prevent other users or recipients from changing the envelope.\n\nThe response to this request returns a `lockToken` parameter. You must use the lockToken to update or delete an existing lock. You must also include the `lockToken` in the header for every PUT call that you make on the envelope while it is locked. If you do not include the `lockToken`, the system returns the following error:\n\n```{\n   \"errorCode\": \"EDIT_LOCK_NOT_LOCK_OWNER\",\n   \"message\": \"The user is not the owner of the lock. The template is locked by another user or in another application\"\n}```\n\n`Note`: Users must have envelope locking capability enabled to use this function (userSetting canLockEnvelopes must be set to true for the user)."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "b7bcfd57-d254-45d7-bcb8-859ab053fa4e",
-          "name": "12. Lists the Existing Locks on an Envelope",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/lock",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": "In this example, we will list all the locks existing on an envelope."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "d8b727ec-61f8-475b-8782-35a233e17e49",
-          "name": "13. Delete Existing Lock on an Envelope",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/lock",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": "This example will delete the lock we created on the envelope."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "dc5fabbd-e34f-41b1-aa33-cacf9e7c2a4b",
-          "name": "14. Created Embedded View",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId_draft}}/views/recipient_preview",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"returnUrl\": \"http://httpbin.org/get\",\n    \"authenticationMethod\": \"none\",\n    \"email\": {{user1}},\n    \"userName\": {{user1_name}}\n}"
-            },
-            "description": "In this example, we will create an embedded preview of what our recipients see when the envelope is sent out to them."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "24bef591-2030-4f4e-a29b-0fc3da2c027a",
-          "name": "15. Create an Account Template",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"templateId\", jsonData.templateId);"
-              }
-            }
-          ],
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"documents\": [\n    {\n      \"name\": \"agreement\",\n      \"documentBase64\": {{document}},\n      \"documentId\": {{documentId}},\n      \"fileExtension\": \"pdf\"\n    }\n  ],\n  \"emailBlurb\": \"Email message\",\n  \"emailSubject\": \"email subject\",\n  \"recipients\": {\n    \"signers\": [\n      {\n        \"recipientId\": \"1\",\n        \"roleName\": \"seller\",\n        \"email\":{{user1}},\n        \"name\": {{user1_name}},\n        \"tabs\": {\n          \"signHereTabs\": [\n            {\n              \"documentId\": \"123\",\n              \"pageNumber\": 1,\n              \"xPosition\": \"4\",\n              \"yPosition\": \"4\"\n            }\n          ]\n        }\n      }\n    ]\n  }\n}"
-            },
-            "description": "In this example, we will create a template with document, tabs and its recipients specified. This is a great future if we know we will be sending the same envelope multiple times."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "fc0ecddb-6a11-4b26-94dc-a25fd15fc141",
-          "name": "16. Get Account Templates",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": "We can always see the templates that have been created by listing them. The templates we just created in the previous step is listed here."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "6726d5c7-3199-4894-ada8-e98cb745adb2",
-          "name": "17. Get Template Definition",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates/{{templateId}}",
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "description": "If one is not sure which template is the one they want to use, they can fetch the template after listing it and verify that it is the one they want to use."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "59f848c3-680f-4efa-8e5b-f96aa0572178",
-          "name": "18. Send Envelope with Template",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"emailBlurb\": \"Create an envelope with a templateId\",\n    \"emailSubject\": \"Template\",\n    \"templateId\": \"{{templateId}}\",\n    \"status\": \"sent\"\n}"
-            },
-            "description": "Send an envelop with a single template."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "3bc0a228-f321-41bb-8790-d7914482bc4b",
-          "name": "19. Create a Template with Role Only",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"templateId\", jsonData.templateId);"
-              }
-            }
-          ],
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"documents\": [\n    {\n      \"name\": \"agreement\",\n      \"documentBase64\": {{document}},\n      \"documentId\": {{documentId}},\n      \"fileExtension\": \"pdf\"\n    }\n  ],\n  \"emailBlurb\": \"Email message\",\n  \"emailSubject\": \"email subject\",\n  \"recipients\": {\n    \"signers\": [\n      {\n        \"recipientId\": \"1\",\n        \"roleName\": \"seller\",\n      }\n    ]\n  }\n}"
-            },
-            "description": "In order to make templates more board and be able to use them in `CompositeTemplates` we can create them by specifying the role only. This way, the recipients can be specified at envelope creation. This example shows how useful templates can be."
-          },
-          "response": []
-        },
-        {
-          "_postman_id": "59a63567-e1eb-4f1d-8660-7bdc8a278cc3",
-          "name": "20. Send an Envelope Using CompositeTemplates",
-          "request": {
-            "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{accessToken}}",
-                "description": ""
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"emailBlurb\": \"Create an envelope with a templateId\",\n    \"emailSubject\": \"Template\",\n    \"compositeTemplates\": [\n        {\n            \"serverTemplates\": [\n                {\n                    \"sequence\": \"1\",\n                    \"templateId\": \"{{templateId}}\"\n                }\n            ],\n            \"inlineTemplates\": [\n                {\n                    \"recipients\": {\n                        \"signers\": [\n                            {\n                                \"email\": \"{{user1}}\",\n                                \"name\": \"{{user1_name}}\",\n                                \"recipientId\": \"2\",\n                                \"roleName\": \"seller\",\n                                \"tabs\": {\n                                    \"signHereTabs\": [\n                                        {\n                                            \"anchorString\": \"test\",\n                                            \"anchorUnits\": \"pixels\",\n                                            \"anchorXOffset\": \"200\",\n                                            \"anchorYOffset\": \"10\"\n                                        }\n                                    ]\n                                }\n                            }\n                        ]\n                    },\n                    \"sequence\": \"2\"\n                }\n            ]\n        }\n    ],\n    \"status\": \"sent\"\n}"
-            },
-            "description": "In this example, we will use the template we created in previous step and we will use `CompositeTemplates` to add a signer and a tab to it using `inlineTemplates`. You can see how one can create a template and keep reusing it this way."
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "_postman_id": "75a4b8bf-f83a-4ab4-9e79-f44398ac05d4",
-      "name": "Gets the agreement responses for a clickwrap version",
-      "request": {
-        "url": {
-          "raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}/users?client_user_id={{client_user_id}}&from_date={{from_date}}&page_number={{page_number}}&status={{status}}&to_date={{to_date}}",
-          "protocol": "https",
-          "auth": {},
-          "host": [
-            "{{hostenv}}"
-          ],
-          "path": [
-            "clickapi",
-            "v1",
-            "accounts",
-            "{{accountId}}",
-            "clickwraps",
-            "{{clickwrapId}}",
-            "versions",
-            "{{versionId}}",
-            "users"
-          ],
-          "query": [
-            {
-              "key": "client_user_id",
-              "value": "{{client_user_id}}"
-            },
-            {
-              "key": "from_date",
-              "value": "{{from_date}}"
-            },
-            {
-              "key": "page_number",
-              "value": "{{page_number}}"
-            },
-            {
-              "key": "status",
-              "value": "{{status}}"
-            },
-            {
-              "key": "to_date",
-              "value": "{{to_date}}"
-            }
-          ],
-          "variable": [
-            {
-              "value": "{{accountId}}",
-              "id": "accountId"
-            },
-            {
-              "value": "{{clickwrapId}}",
-              "id": "clickwrapId"
-            },
-            {
-              "value": "{{versionId}}",
-              "id": "versionId"
-            }
-          ]
-        },
-        "method": "GET",
-        "header": [
-          {
-            "key": "Accept",
-            "value": "application/json",
-            "description": ""
-          },
-          {
-            "key": "Authorization",
-            "value": "Bearer {{accessToken}}",
-            "description": ""
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{}"
-        },
-        "description": ""
-      },
-      "response": []
-    }
-  ]
+    ]
 }
