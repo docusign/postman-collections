@@ -2,7 +2,7 @@
 
 This repo contains Postman collections for the DocuSign eSignature API, Rooms API, Click API, and DocuSign Admin API. 
 
-Guide: [https://docusign.github.io/postman-collections/](https://developers.docusign.com/tools/postman/)
+Guide: https://developers.docusign.com/tools/postman/
 
 Walkthrough (blog post): https://www.docusign.com/blog/dsdev-please-mr-postman/ 
 
