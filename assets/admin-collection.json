@@ -2,18 +2,18 @@
     "variables": [],
     "info": {
         "name": "DocuSign Admin API",
-        "_postman_id": "d82a7f30-efff-4f0a-a0d1-89fe63d2652b",
+        "_postman_id": "ec993b08-d3dc-4024-bc06-ec967fb9d12e",
         "description": "An API for an organization administrator to manage organizations, accounts and users",
         "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
     },
     "item": [
         {
-            "_postman_id": "9b72ea7a-c08c-46e2-b1da-e64e83023f0b",
+            "_postman_id": "358d81dc-6161-4220-b0fe-68608dfad6e5",
             "name": "Organization",
             "description": "Folder for Organization",
             "item": [
                 {
-                    "_postman_id": "b9cc41f2-940c-404e-82e8-50b968e68df1",
+                    "_postman_id": "9191256f-06c8-4bd7-8d1a-ff87a6b28f71",
                     "name": "Returns the list of organizations of which the authenticated user is a member.",
                     "request": {
                         "url": "https://{{hostenv}}/Management/v2/organizations?mode={{mode}}",
@@ -46,12 +46,12 @@
             ]
         },
         {
-            "_postman_id": "0a1f13da-a8a1-44f8-8e6f-d9b414dd8742",
+            "_postman_id": "358701b3-583a-47ff-b3ff-f71631356a26",
             "name": "UserManagement",
             "description": "Folder for UserManagement",
             "item": [
                 {
-                    "_postman_id": "4e462225-1cf8-4ea5-acbc-c684355f8683",
+                    "_postman_id": "efbbadb0-eb65-40e3-a4be-2d6d262b0ec7",
                     "name": "Redacts membership data for users with memberships in an account.",
                     "request": {
                         "url": {
@@ -103,7 +103,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c076ff18-ecab-425c-9caf-a3c3ebe44c31",
+                    "_postman_id": "ccc53a3f-efad-4ca5-9985-b42d8215593e",
                     "name": "Redacts membership and user data for users in an organization.",
                     "request": {
                         "url": {
@@ -155,7 +155,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "88164344-583f-432d-9e3c-cd03ff9823e0",
+                    "_postman_id": "313ac4b7-a417-45fd-a557-547e788aebc1",
                     "name": "Closes a user's memberships.",
                     "request": {
                         "url": {
@@ -212,7 +212,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3dea1178-8703-45cb-82ed-dfe61749df5f",
+                    "_postman_id": "5b895655-75c7-4836-92d1-7816914eb367",
                     "name": "Returns information about the users in the organization",
                     "request": {
                         "url": {
@@ -305,7 +305,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "42a8f76f-e111-42ae-bbc2-66c9ac97f8f6",
+                    "_postman_id": "d266760d-cc80-4ab7-8d94-4fcf27d7feb0",
                     "name": "Creates a new user",
                     "request": {
                         "url": {
@@ -356,7 +356,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "aedf5a22-b96d-40de-bda2-1de6b53cdf4f",
+                    "_postman_id": "02c8eb30-44fc-421a-a596-df4e9adc170c",
                     "name": "Activates user memberships",
                     "request": {
                         "url": {
@@ -418,7 +418,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "4b13e7d8-81ea-44dd-8279-73ae6ffb7f3a",
+                    "_postman_id": "34bdae3c-7dad-4c83-b637-2e1291100806",
                     "name": "Returns user information.",
                     "request": {
                         "url": {
@@ -476,7 +476,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "4d272907-d3bc-401c-a470-8d0947914f0d",
+                    "_postman_id": "9d4188ed-c230-4535-adb0-c1d9757b981d",
                     "name": "Deletes user identities.",
                     "request": {
                         "url": {
@@ -533,7 +533,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "76847903-8f8b-4983-9edb-1c6d7ba1b4de",
+                    "_postman_id": "17b7aa45-054e-4a1d-b13e-a8ec29a372fa",
                     "name": "Adds users to an account.",
                     "request": {
                         "url": {
@@ -590,7 +590,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b1d8b2c3-aab4-4662-a03e-191fec719811",
+                    "_postman_id": "523610d2-2774-41fe-8648-2992caa076e6",
                     "name": "Get list of DSGroups",
                     "request": {
                         "url": {
@@ -657,7 +657,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6f678af8-dc4c-4e41-a465-83e17874d37c",
+                    "_postman_id": "73e83ede-b896-444d-8e43-dadc4fc5a4b3",
                     "name": "Add a new DSGroup",
                     "request": {
                         "url": {
@@ -714,7 +714,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "92192a87-ff30-40c9-9aa2-b2ca425aded1",
+                    "_postman_id": "00be6c28-ce9f-4706-a034-fc4f65b29bd7",
                     "name": "Get list of DSGroup",
                     "request": {
                         "url": {
@@ -776,7 +776,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c96e230f-a41e-43e8-8a87-60666d384c29",
+                    "_postman_id": "ef9b82c0-a4ee-4917-8964-deb3152a6616",
                     "name": "Delete a DSGroup",
                     "request": {
                         "url": {
@@ -838,7 +838,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "454e40d2-3701-4eef-86ab-76d6526468db",
+                    "_postman_id": "fdff0094-197d-4cf0-82c0-f56561fad43a",
                     "name": "Get list of users in a DSGroup",
                     "request": {
                         "url": {
@@ -911,7 +911,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "10cb24ee-7fa3-4e53-a455-8f4edd433456",
+                    "_postman_id": "7249d416-aefc-42a3-ae87-f8b8a29b5fc0",
                     "name": "Add list of users to a DSGroup",
                     "request": {
                         "url": {
@@ -974,7 +974,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d115d72f-d936-4734-8442-a4282d35e89f",
+                    "_postman_id": "291bef47-e70f-49d3-9f46-659bb7d144bc",
                     "name": "Remove users from a DSGroup",
                     "request": {
                         "url": {
@@ -1037,7 +1037,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7cb9992d-c984-44a3-bb1c-7e716937791b",
+                    "_postman_id": "21670eeb-7e68-4e24-bf61-c94ee48af377",
                     "name": "Get products associated with the account and the available permission profiles",
                     "request": {
                         "url": {
@@ -1095,7 +1095,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d07c6292-ca95-41ea-9a4f-81a703137205",
+                    "_postman_id": "f145dcc1-361a-42c7-8b96-49007d0b7b27",
                     "name": "Retrieve list of user's permission profiles for each account's product",
                     "request": {
                         "url": {
@@ -1159,7 +1159,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b399fe01-7149-41e1-9472-eca33989aeb9",
+                    "_postman_id": "966045bc-05ca-4015-b9f5-61d81b65a501",
                     "name": "Assign user to permission profiles for one or more products",
                     "request": {
                         "url": {
@@ -1223,7 +1223,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6db560c4-bbce-4b3a-b4a1-82d542967288",
+                    "_postman_id": "6a04a8df-91a4-4c6f-82d6-fc12b4d3e5c8",
                     "name": "Creates and updates a multi-product user",
                     "request": {
                         "url": {
@@ -1280,7 +1280,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b71761f1-b630-4c86-86b5-dc6abf28cced",
+                    "_postman_id": "5af9dd1a-a22c-44b0-8b6c-dce46f09822d",
                     "name": "Returns DS user profile information.",
                     "request": {
                         "url": {
@@ -1342,7 +1342,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f80072e8-fc30-4fef-98db-736f95cd236b",
+                    "_postman_id": "a08e20fc-fdc6-4d39-9247-12da03a78853",
                     "name": "Returns user information using the userId for lookup.",
                     "request": {
                         "url": {
@@ -1405,7 +1405,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "cd61a539-d2fc-437d-901e-2813e7e154d8",
+                    "_postman_id": "8568c150-175a-4762-98b7-8cbdabb46edf",
                     "name": "Remove user from permission profiles for one or more products",
                     "request": {
                         "url": {
@@ -1463,7 +1463,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "20150144-a068-4c28-84fa-11222050b379",
+                    "_postman_id": "bfc965b2-3cc5-4bbc-a689-68bad7f0a42a",
                     "name": "Remove user from permission profiles for one or more products",
                     "request": {
                         "url": {
@@ -1528,7 +1528,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9e591aab-9ac7-4ac3-b99b-566bf67bd34f",
+                    "_postman_id": "e50af85a-6a84-4481-81ac-7a8c48986c27",
                     "name": "Assign user to permission profiles for one or more products",
                     "request": {
                         "url": {
@@ -1589,12 +1589,12 @@
             ]
         },
         {
-            "_postman_id": "633626fe-2dd6-41cd-9c0d-0ab36ee5165f",
+            "_postman_id": "ac2a84f2-b729-4d28-87df-26738d9e2c44",
             "name": "BulkOperations",
             "description": "Folder for BulkOperations",
             "item": [
                 {
-                    "_postman_id": "9990da54-1f61-4673-94f5-00034c723490",
+                    "_postman_id": "d5b71573-6b77-46fd-b796-63c107d3caf3",
                     "name": "Returns a list of existing User List Exports (requests and completed exports) and their details/metadata",
                     "request": {
                         "url": {
@@ -1646,7 +1646,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7864a1e5-dd97-44fc-968f-8e7e04c22d75",
+                    "_postman_id": "b72412dd-da45-4f41-aaab-90282de321ba",
                     "name": "Creates a new User List Export request.",
                     "request": {
                         "url": {
@@ -1698,7 +1698,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d9744902-0236-4f9a-bfec-00f27f11b215",
+                    "_postman_id": "c0c82b8b-fa00-4e24-b03a-6f626fcafc74",
                     "name": "Returns the details/metadata for Account Setting Export requests",
                     "request": {
                         "url": {
@@ -1750,7 +1750,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "655fb2fb-aee7-432c-8c16-937c0a152b3d",
+                    "_postman_id": "46d64dcd-3092-4930-a3ff-53d8c2774f5d",
                     "name": "Creates a  new Account Setting Export request.",
                     "request": {
                         "url": {
@@ -1802,7 +1802,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "651561ee-c600-41d9-ac4a-69709bf503c2",
+                    "_postman_id": "9aff4c60-c434-4b24-b5c1-5b407fce566a",
                     "name": "Returns the details/metadata for a single User List Export request",
                     "request": {
                         "url": {
@@ -1859,7 +1859,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a2f4b7a7-ebce-481b-8fad-269085482810",
+                    "_postman_id": "a3d1801b-0777-47c0-a584-1a1bc7450fdd",
                     "name": "Deletes a single User List Export request",
                     "request": {
                         "url": {
@@ -1916,7 +1916,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9b3cd88b-4879-4574-a65a-ee818e1b1cc8",
+                    "_postman_id": "9644a26a-8051-4723-a741-18e9b0bc1b44",
                     "name": "Returns the details/metadata for a single Account Setting Export request",
                     "request": {
                         "url": {
@@ -1973,7 +1973,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9b0b177e-1e43-4b98-ad7b-7ca39d1fbccc",
+                    "_postman_id": "d2fb27ac-cc9c-4e92-b459-1d081d1504e2",
                     "name": "Deletes a single Account Settings Export request",
                     "request": {
                         "url": {
@@ -2030,7 +2030,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c2dfa6c9-d458-4f1e-8ad5-6de691edb975",
+                    "_postman_id": "3a82a42b-f2de-4723-9b9a-ce1b9ba2e9c5",
                     "name": "Returns the details/metadata for Bulk Account Settings Import requests in the organization",
                     "request": {
                         "url": {
@@ -2082,7 +2082,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "1b372693-92f3-4b74-a74c-2d76548e8a74",
+                    "_postman_id": "c3d4b7d9-2f71-4515-97ab-5d8560646d44",
                     "name": "Creates a new account settings import request.",
                     "request": {
                         "url": {
@@ -2134,7 +2134,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "bfee1c7c-820e-412a-a995-b6fff17d2369",
+                    "_postman_id": "19cd97d5-3508-47b3-9d5f-95bdf13c3b96",
                     "name": "Returns the details/metadata for a Bulk Account Settings Import request",
                     "request": {
                         "url": {
@@ -2191,7 +2191,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "77d018a3-0989-49e8-8859-97565f01cf51",
+                    "_postman_id": "f778a54d-f8a7-4c00-967b-0e1b9fc30a40",
                     "name": "Deletes a Bulk Account Settings Import request",
                     "request": {
                         "url": {
@@ -2248,7 +2248,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b26a6296-5c55-4305-98c3-5e5d3c28d5ac",
+                    "_postman_id": "ad6ab554-f564-424b-bdef-d17ccdcc9f91",
                     "name": "Import request for adding users to accounts within the organization.",
                     "request": {
                         "url": {
@@ -2301,7 +2301,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "39cab364-f0e6-4a84-afaa-2c5903255e5f",
+                    "_postman_id": "c92aebd8-5b57-42a9-99dc-ebf36172f5dc",
                     "name": "Import request for adding user to a single account within the organization. Allows upload of user information without requiring an AccountId column",
                     "request": {
                         "url": {
@@ -2360,7 +2360,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f73956a7-49a0-472f-888f-660864120f3d",
+                    "_postman_id": "d68c76f8-85af-4d9b-96af-463d3a61dcca",
                     "name": "Import request for updating users to accounts within the organization.",
                     "request": {
                         "url": {
@@ -2413,7 +2413,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d79f6f35-8fde-493a-bba2-0ffb7ebf8c55",
+                    "_postman_id": "1c942220-b1fb-43ae-b963-24f7ba20a861",
                     "name": "Import request for updating users for a single account within the organization. Allows upload of user information without requiring an AccountId column",
                     "request": {
                         "url": {
@@ -2472,7 +2472,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "8c5c01c6-c837-4014-a994-e49e0a514986",
+                    "_postman_id": "fa2eb8eb-9913-47da-b8b3-6c4eb47245db",
                     "name": "Closes the Bulk User Import request",
                     "request": {
                         "url": {
@@ -2525,7 +2525,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9c287377-aefc-4972-b1de-1d47fae83777",
+                    "_postman_id": "9599df6c-0db8-4f29-bcf4-7eb58b59f706",
                     "name": "Closes memberships which are not in an account which is part of the organization, but which do have email addresses which are @ a verified reserved web domain which belongs to the organization",
                     "request": {
                         "url": {
@@ -2578,7 +2578,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "0fffc8f4-9960-4e29-afc1-2e31b1c1a1bf",
+                    "_postman_id": "407627a1-135d-45ec-82b0-fc70624bdd86",
                     "name": "Returns the details/metadata for Bulk User Import requests in the organization",
                     "request": {
                         "url": {
@@ -2630,7 +2630,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5babcb29-81d6-4e11-9d56-7bbc4736fa74",
+                    "_postman_id": "24941e89-2bd4-4ddb-9db2-2c2657cb7b17",
                     "name": "Returns the details/metadata for a User Import request",
                     "request": {
                         "url": {
@@ -2687,7 +2687,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f09dcf4b-83f3-48f5-b7ee-bccf086a9ab8",
+                    "_postman_id": "d6b05db0-9100-4390-98f0-28c132e816dd",
                     "name": "Deletes a User Import request",
                     "request": {
                         "url": {
@@ -2744,7 +2744,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "2aed5733-5e68-4768-8bbb-26b729aa96f8",
+                    "_postman_id": "2dbaf5bb-8f9a-4cb7-a5fc-9b5f31e34d6a",
                     "name": "Returns a text/csv file with user details for a User Import request",
                     "request": {
                         "url": {
@@ -2804,12 +2804,12 @@
             ]
         },
         {
-            "_postman_id": "a040f72f-43bb-40ee-b128-cffbf1439e3a",
+            "_postman_id": "7324da21-ed71-45ce-a4ca-24a40dc9b60a",
             "name": "IdentityProviders",
             "description": "Folder for IdentityProviders",
             "item": [
                 {
-                    "_postman_id": "c9461c2d-7f53-4c05-86a4-a8d2571e6060",
+                    "_postman_id": "0c01ee6a-2408-4ad2-8a72-04e7f7fc2f76",
                     "name": "Returns the list of identity providers for the organization.",
                     "request": {
                         "url": {
@@ -2862,12 +2862,12 @@
             ]
         },
         {
-            "_postman_id": "f723191a-97eb-4684-b4ef-d92119cf9bbf",
+            "_postman_id": "d3c22c25-1830-47a8-90bc-bf55f9a7a474",
             "name": "ReservedDomains",
             "description": "Folder for ReservedDomains",
             "item": [
                 {
-                    "_postman_id": "42f017b6-2365-4736-bb1c-4c497b86f0ea",
+                    "_postman_id": "2726aaa2-5880-43fe-9285-657534f1c381",
                     "name": "Returns the list of reserved domains for the organization.",
                     "request": {
                         "url": {
@@ -2920,12 +2920,259 @@
             ]
         },
         {
-            "_postman_id": "e23b6e97-26c4-4500-bad6-6c6c31fd02c3",
+            "_postman_id": "3531deb2-33c7-441b-9dc5-88db603a7356",
+            "name": "AccountProvisioning",
+            "description": "Folder for AccountProvisioning",
+            "item": [
+                {
+                    "_postman_id": "d97d7f68-69e3-44f0-a86d-1b6f8e39c8fd",
+                    "name": "Get all accounts in asset groups for the organization.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/Management/v1/organizations/{{organizationId}}/assetGroups/accounts?compliant={{compliant}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "Management",
+                                "v1",
+                                "organizations",
+                                "{{organizationId}}",
+                                "assetGroups",
+                                "accounts"
+                            ],
+                            "query": [
+                                {
+                                    "key": "compliant",
+                                    "value": "{{compliant}}"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{organizationId}}",
+                                    "id": "organizationId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Required scopes: asset_group_account_read"
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "bb237906-2115-4042-bb8d-d5b8190960a4",
+                    "name": "Clones an existing DocuSign account to a new DocuSign account.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/Management/v1/organizations/{{organizationId}}/assetGroups/accountClone",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "Management",
+                                "v1",
+                                "organizations",
+                                "{{organizationId}}",
+                                "assetGroups",
+                                "accountClone"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{organizationId}}",
+                                    "id": "organizationId"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Currently this only clones eSign settings and asset group information.\n\nRequired scopes: asset_group_account_clone_write"
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "a97c7ebf-63a0-4467-9e8c-abc6341fbede",
+                    "name": "Gets all asset group account clone(s) for an organization id.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/Management/v1/organizations/{{organizationId}}/assetGroups/accountClones?since_updated_date={{since_updated_date}}&include_details={{include_details}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "Management",
+                                "v1",
+                                "organizations",
+                                "{{organizationId}}",
+                                "assetGroups",
+                                "accountClones"
+                            ],
+                            "query": [
+                                {
+                                    "key": "since_updated_date",
+                                    "value": "{{since_updated_date}}"
+                                },
+                                {
+                                    "key": "include_details",
+                                    "value": "{{include_details}}"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{organizationId}}",
+                                    "id": "organizationId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Required scopes: asset_group_account_clone_read"
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "d54750ad-ca95-443e-b7eb-9ddebfe4d9e4",
+                    "name": "Gets an asset group account clone by the asset group work id.",
+                    "request": {
+                        "url": {
+                            "raw": "https://{{hostenv}}/Management/v1/organizations/{{organizationId}}/assetGroups/{{assetGroupId}}/accountClones/{{assetGroupWorkId}}?include_details={{include_details}}",
+                            "protocol": "https",
+                            "auth": {},
+                            "host": [
+                                "{{hostenv}}"
+                            ],
+                            "path": [
+                                "Management",
+                                "v1",
+                                "organizations",
+                                "{{organizationId}}",
+                                "assetGroups",
+                                "{{assetGroupId}}",
+                                "accountClones",
+                                "{{assetGroupWorkId}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "include_details",
+                                    "value": "{{include_details}}"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{organizationId}}",
+                                    "id": "organizationId"
+                                },
+                                {
+                                    "value": "{{assetGroupId}}",
+                                    "id": "assetGroupId"
+                                },
+                                {
+                                    "value": "{{assetGroupWorkId}}",
+                                    "id": "assetGroupWorkId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Required scopes: asset_group_account_clone_read"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "_postman_id": "e6903c7e-f951-40b4-9518-0fb4c11a77c5",
             "name": "Authentication",
             "description": "Folder for Authentication",
             "item": [
                 {
-                    "_postman_id": "fe0b7395-b8b1-4f61-9e48-80339f737d51",
+                    "_postman_id": "2fc5a701-9668-481d-88ba-38bbfd9fbf0e",
                     "name": "01 Authorize Code Grant Access Token",
                     "event": [
                         {
@@ -2963,7 +3210,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3c7852d9-8133-4bb9-b020-05171efd3a58",
+                    "_postman_id": "ae305c11-98b9-46e3-83b7-8d2fe8a718af",
                     "name": "02 JWT Access Token",
                     "event": [
                         {
@@ -3001,7 +3248,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "975bb726-ff44-46c3-aa7e-f975787dff6f",
+                    "_postman_id": "edbaa935-6153-4566-9782-06bf7eabe499",
                     "name": "03 Refresh Access Token",
                     "event": [
                         {
@@ -3039,7 +3286,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f8cd8d41-4a04-4661-9cdd-eb76bf945388",
+                    "_postman_id": "2bd3ee9e-3f1d-4de7-bb35-4ace8d433d3c",
                     "name": "04 Get User Info",
                     "event": [
                         {
@@ -3070,7 +3317,7 @@
             ]
         },
         {
-            "_postman_id": "df2a0c57-b3b1-4492-a703-31a132080384",
+            "_postman_id": "c948f746-ee39-4a95-b6ac-abb394ffa4e6",
             "name": "Returns the list of permission profiles in an account.",
             "request": {
                 "url": {
@@ -3127,7 +3374,7 @@
             "response": []
         },
         {
-            "_postman_id": "5027c899-0479-4d99-9346-8f97cf94b8df",
+            "_postman_id": "d5161bbe-ca23-405e-9fa4-918bd4c87f76",
             "name": "Returns the list of groups in an account.",
             "request": {
                 "url": {
@@ -3198,7 +3445,7 @@
             "response": []
         },
         {
-            "_postman_id": "0d958e1e-621f-439d-bd6c-e4b3b08f8588",
+            "_postman_id": "f7c6b50a-7ffa-4695-9c22-dfede9a068c6",
             "name": "Updates a user.",
             "request": {
                 "url": {
@@ -3250,7 +3497,7 @@
             "response": []
         },
         {
-            "_postman_id": "e5ee8be5-c73f-4edd-a377-aaacffc0e976",
+            "_postman_id": "b06984f8-c3b0-4ecb-bdbd-82ef0e064cad",
             "name": "Updates a user's email address.",
             "request": {
                 "url": {
