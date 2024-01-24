@@ -1,0 +1,841 @@
+{
+    "variables": [],
+    "info": {
+        "name": "Maestro API",
+        "_postman_id": "bbdcfd90-314c-4147-9a07-09d83aa4e5cc",
+        "description": "Maestro authors and executes experiences that allow non-coders the ability to define Simple Business Process without having to write code and to deploy them seamlessly without having to have development expertise",
+        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+    },
+    "item": [
+        {
+            "_postman_id": "2c864bdd-aaf8-4d24-a8c1-ad2d047f81e6",
+            "name": "WorkflowInstanceManagement",
+            "description": "Folder for WorkflowInstanceManagement",
+            "item": [
+                {
+                    "_postman_id": "c75cdf43-888b-46cd-b63a-accb49e410a2",
+                    "name": "Cancels a running workflow instance.",
+                    "request": {
+                        "url": {
+                            "raw": "{{baseUrl}}/management/accounts/{{accountId}}/instances/{{instanceId}}/cancel",
+                            "auth": {},
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "management",
+                                "accounts",
+                                "{{accountId}}",
+                                "instances",
+                                "{{instanceId}}",
+                                "cancel"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{instanceId}}",
+                                    "id": "instanceId"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Cancels a running workflow instance."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "e89cb87e-2cf3-4d1c-89d0-4d8773ae7600",
+                    "name": "Gets configuration instances",
+                    "request": {
+                        "url": {
+                            "raw": "{{baseUrl}}/management/accounts/{{accountId}}/workflowDefinitions/{{workflowDefinitionId}}/configInstances",
+                            "auth": {},
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "management",
+                                "accounts",
+                                "{{accountId}}",
+                                "workflowDefinitions",
+                                "{{workflowDefinitionId}}",
+                                "configInstances"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{workflowDefinitionId}}",
+                                    "id": "workflowDefinitionId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Returns a list of configuration instances for a workflow definition"
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "dde74d03-586a-4b7f-b303-89997c01fe72",
+                    "name": "Get List of Workflow Instances",
+                    "request": {
+                        "url": {
+                            "raw": "{{baseUrl}}/management/accounts/{{accountId}}/workflowDefinitions/{{workflowDefinitionId}}/instances",
+                            "auth": {},
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "management",
+                                "accounts",
+                                "{{accountId}}",
+                                "workflowDefinitions",
+                                "{{workflowDefinitionId}}",
+                                "instances"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{workflowDefinitionId}}",
+                                    "id": "workflowDefinitionId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Returns the list of instances for a deployed workflow definition."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "e4ff9671-f271-4217-a8ab-2508f61c6c6b",
+                    "name": "Get Workflow Instance Details",
+                    "request": {
+                        "url": {
+                            "raw": "{{baseUrl}}/management/accounts/{{accountId}}/workflowDefinitions/{{workflowDefinitionId}}/instances/{{instanceId}}",
+                            "auth": {},
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "management",
+                                "accounts",
+                                "{{accountId}}",
+                                "workflowDefinitions",
+                                "{{workflowDefinitionId}}",
+                                "instances",
+                                "{{instanceId}}"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{workflowDefinitionId}}",
+                                    "id": "workflowDefinitionId"
+                                },
+                                {
+                                    "value": "{{instanceId}}",
+                                    "id": "instanceId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Returns the details for a specific instance for a deployed workflow definition."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "_postman_id": "010bf016-9189-48e6-a304-557f688a50e2",
+            "name": "WorkflowManagement",
+            "description": "Folder for WorkflowManagement",
+            "item": [
+                {
+                    "_postman_id": "25d7e0bb-6181-41bc-9631-61aab2c84385",
+                    "name": "Get List of Step Histories",
+                    "request": {
+                        "url": {
+                            "raw": "{{baseUrl}}/management/accounts/{{accountId}}/instances/{{instanceId}}/history",
+                            "auth": {},
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "management",
+                                "accounts",
+                                "{{accountId}}",
+                                "instances",
+                                "{{instanceId}}",
+                                "history"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{instanceId}}",
+                                    "id": "instanceId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Returns a list of step history for a workflow instance"
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "6b0a90d3-741d-4a8d-909a-19efe5d0df58",
+                    "name": "Get Workflow Definitions metadata",
+                    "request": {
+                        "url": {
+                            "raw": "{{baseUrl}}/management/accounts/{{accountId}}/workflowDefinitions?status={{status}}",
+                            "auth": {},
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "management",
+                                "accounts",
+                                "{{accountId}}",
+                                "workflowDefinitions"
+                            ],
+                            "query": [
+                                {
+                                    "key": "status",
+                                    "value": "{{status}}"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Returns a list of workflow definitions' metadata."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "cdd27dae-ba96-4a8b-9223-707f42029deb",
+                    "name": "Creates a new workflow definition.",
+                    "request": {
+                        "url": {
+                            "raw": "{{baseUrl}}/management/accounts/{{accountId}}/workflowDefinitions",
+                            "auth": {},
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "management",
+                                "accounts",
+                                "{{accountId}}",
+                                "workflowDefinitions"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Creates a new workflow definition."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "bf31f199-0884-4f43-80bb-30e74bafe66a",
+                    "name": "Get Workflow Definition",
+                    "request": {
+                        "url": {
+                            "raw": "{{baseUrl}}/management/accounts/{{accountId}}/workflowDefinitions/{{workflowDefinitionId}}?lastDeployedId={{lastDeployedId}}",
+                            "auth": {},
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "management",
+                                "accounts",
+                                "{{accountId}}",
+                                "workflowDefinitions",
+                                "{{workflowDefinitionId}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "lastDeployedId",
+                                    "value": "{{lastDeployedId}}"
+                                }
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{workflowDefinitionId}}",
+                                    "id": "workflowDefinitionId"
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Returns a workflow definition."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "6eb2b34e-1db9-4d2c-9e72-594df4f56931",
+                    "name": "Updates a workflow definition.",
+                    "request": {
+                        "url": {
+                            "raw": "{{baseUrl}}/management/accounts/{{accountId}}/workflowDefinitions/{{workflowDefinitionId}}",
+                            "auth": {},
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "management",
+                                "accounts",
+                                "{{accountId}}",
+                                "workflowDefinitions",
+                                "{{workflowDefinitionId}}"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{workflowDefinitionId}}",
+                                    "id": "workflowDefinitionId"
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Updates a workflow definition."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "41b8af10-f795-4357-8ffe-8be80ebfe09d",
+                    "name": "Deletes a workflow definition.",
+                    "request": {
+                        "url": {
+                            "raw": "{{baseUrl}}/management/accounts/{{accountId}}/workflowDefinitions/{{workflowDefinitionId}}",
+                            "auth": {},
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "management",
+                                "accounts",
+                                "{{accountId}}",
+                                "workflowDefinitions",
+                                "{{workflowDefinitionId}}"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{workflowDefinitionId}}",
+                                    "id": "workflowDefinitionId"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Deletes a workflow definition."
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "4d2ef745-fc21-49cb-a495-b0cda529b9d0",
+                    "name": "Publishes or unpublishes a workflow definition.",
+                    "request": {
+                        "url": {
+                            "raw": "{{baseUrl}}/management/accounts/{{accountId}}/workflowDefinitions/{{workflowDefinitionId}}/publish",
+                            "auth": {},
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "management",
+                                "accounts",
+                                "{{accountId}}",
+                                "workflowDefinitions",
+                                "{{workflowDefinitionId}}",
+                                "publish"
+                            ],
+                            "variable": [
+                                {
+                                    "value": "{{accountId}}",
+                                    "id": "accountId"
+                                },
+                                {
+                                    "value": "{{workflowDefinitionId}}",
+                                    "id": "workflowDefinitionId"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "description": ""
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{}"
+                        },
+                        "description": "Publishes or unpublishes a workflow definition."
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "_postman_id": "ad43de7a-0fde-4758-919a-c77ae3258c5c",
+            "name": "Authentication",
+            "description": "Folder for Authentication",
+            "item": [
+                {
+                    "_postman_id": "2a9b29c7-524b-41e7-8f8f-1ba3e656be60",
+                    "name": "01 Authorize Code Grant Access Token",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "url": "https://{{hostenv}}/oauth/token",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {{encodedKeys}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "code",
+                                    "value": "{{codeFromUrl}}"
+                                },
+                                {
+                                    "key": "grant_type",
+                                    "value": "authorization_code"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "3bfdbd0f-76f2-4ccd-88ac-c550aff8948e",
+                    "name": "02 JWT Access Token",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "url": "https://{{hostenv}}/oauth/token",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {{encodedKeys}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "assertion",
+                                    "value": "{{assertionHere}}"
+                                },
+                                {
+                                    "key": "grant_type",
+                                    "value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "c36d83a4-8a1f-48d6-b2bf-92df6e05a3a8",
+                    "name": "03 Refresh Access Token",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "url": "https://{{hostenv}}/oauth/token",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Basic {{encodedKeys}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "refresh_token",
+                                    "value": "{{refreshToken}}"
+                                },
+                                {
+                                    "key": "grant_type",
+                                    "value": "refresh_token"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "_postman_id": "b2465743-0842-4724-bac8-ec6bdd7b6e46",
+                    "name": "04 Get User Info",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "type": "text/javascript",
+                                "exec": "var jsonData = JSON.parse(responseBody);\nvar accounts = jsonData.accounts;\nif (jsonData.hasOwnProperty(\"sub\")) { \n    postman.setEnvironmentVariable(\"userId\", jsonData.sub); \n} \n\nfor (var i=0; i< accounts.length; i++) { \n  if (accounts[i].hasOwnProperty(\"is_default\")) { \n   if (accounts[i].is_default === true) { \n     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); \n     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); \n     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); \n   } \n } \n} \n"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "url": "https://{{hostenv}}/oauth/userinfo",
+                        "method": "Get",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{accessToken}}",
+                                "description": ""
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": ""
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "_postman_id": "0c25a07a-7e76-4784-a9a0-0708d73afdff",
+            "name": "Creates a new workflow instance after authenticating with DS Account Server",
+            "request": {
+                "url": {
+                    "raw": "{{baseUrl}}/accounts/{{accountId}}/workflows/trigger?mtid={{mtid}}&mtsec={{mtsec}}",
+                    "auth": {},
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "path": [
+                        "accounts",
+                        "{{accountId}}",
+                        "workflows",
+                        "trigger"
+                    ],
+                    "query": [
+                        {
+                            "key": "mtid",
+                            "value": "{{mtid}}"
+                        },
+                        {
+                            "key": "mtsec",
+                            "value": "{{mtsec}}"
+                        }
+                    ],
+                    "variable": [
+                        {
+                            "value": "{{accountId}}",
+                            "id": "accountId"
+                        }
+                    ]
+                },
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "description": ""
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "description": ""
+                    },
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}",
+                        "description": ""
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{}"
+                },
+                "description": "Creates a new workflow instance after authenticating with DS Account Server"
+            },
+            "response": []
+        }
+    ]
+}
