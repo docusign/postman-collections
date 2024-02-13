@@ -7,6 +7,156 @@
         "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
     },
     "item": [
+      {
+        "_postman_id": "553a14e8-e9f8-4deb-b4b4-1f3a5a748a73",
+        "name": "Authentication",
+        "description": "Folder for Authentication",
+        "item": [
+          {
+            "_postman_id": "2a6b6c43-0a60-4578-b796-4bb8d394a989",
+            "name": "01 Authorize Code Grant Access Token",
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+                }
+              }
+            ],
+            "request": {
+              "url": "https://{{hostenv}}/oauth/token",
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Basic {{encodedKeys}}",
+                  "description": ""
+                }
+              ],
+              "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                  {
+                    "key": "code",
+                    "value": "{{codeFromUrl}}"
+                  },
+                  {
+                    "key": "grant_type",
+                    "value": "authorization_code"
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "_postman_id": "72bcf99c-2504-4068-ad73-7aa1679358d8",
+            "name": "02 JWT Access Token",
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+                }
+              }
+            ],
+            "request": {
+              "url": "https://{{hostenv}}/oauth/token",
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Basic {{encodedKeys}}",
+                  "description": ""
+                }
+              ],
+              "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                  {
+                    "key": "assertion",
+                    "value": "{{assertionHere}}"
+                  },
+                  {
+                    "key": "grant_type",
+                    "value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "_postman_id": "c90e255a-829e-44da-98bd-9557e4af0015",
+            "name": "03 Refresh Access Token",
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+                }
+              }
+            ],
+            "request": {
+              "url": "https://{{hostenv}}/oauth/token",
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Basic {{encodedKeys}}",
+                  "description": ""
+                }
+              ],
+              "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                  {
+                    "key": "refresh_token",
+                    "value": "{{refreshToken}}"
+                  },
+                  {
+                    "key": "grant_type",
+                    "value": "refresh_token"
+                  }
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "_postman_id": "58df54b7-5a47-4e37-ac6a-1e742ce7c678",
+            "name": "04 Get User Info",
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": "var jsonData = JSON.parse(responseBody);\nvar accounts = jsonData.accounts;\nif (jsonData.hasOwnProperty(\"sub\")) { \n    postman.setEnvironmentVariable(\"userId\", jsonData.sub); \n} \n\nfor (var i=0; i< accounts.length; i++) { \n  if (accounts[i].hasOwnProperty(\"is_default\")) { \n   if (accounts[i].is_default === true) { \n     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); \n     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); \n     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); \n   } \n } \n} \n"
+                }
+              }
+            ],
+            "request": {
+              "url": "https://{{hostenv}}/oauth/userinfo",
+              "method": "Get",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{accessToken}}",
+                  "description": ""
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": ""
+              }
+            },
+            "response": []
+          }
+        ]
+      },
         {
             "_postman_id": "633d8e2e-8c3a-4fb2-bcab-2a846dfdf138",
             "name": "WebForms",
@@ -397,156 +547,6 @@
                             "raw": "{}"
                         },
                         "description": "Generates new instance token for the existing Web Form Instance."
-                    },
-                    "response": []
-                }
-            ]
-        },
-        {
-            "_postman_id": "553a14e8-e9f8-4deb-b4b4-1f3a5a748a73",
-            "name": "Authentication",
-            "description": "Folder for Authentication",
-            "item": [
-                {
-                    "_postman_id": "2a6b6c43-0a60-4578-b796-4bb8d394a989",
-                    "name": "01 Authorize Code Grant Access Token",
-                    "event": [
-                        {
-                            "listen": "test",
-                            "script": {
-                                "type": "text/javascript",
-                                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-                            }
-                        }
-                    ],
-                    "request": {
-                        "url": "https://{{hostenv}}/oauth/token",
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Authorization",
-                                "value": "Basic {{encodedKeys}}",
-                                "description": ""
-                            }
-                        ],
-                        "body": {
-                            "mode": "urlencoded",
-                            "urlencoded": [
-                                {
-                                    "key": "code",
-                                    "value": "{{codeFromUrl}}"
-                                },
-                                {
-                                    "key": "grant_type",
-                                    "value": "authorization_code"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "_postman_id": "72bcf99c-2504-4068-ad73-7aa1679358d8",
-                    "name": "02 JWT Access Token",
-                    "event": [
-                        {
-                            "listen": "test",
-                            "script": {
-                                "type": "text/javascript",
-                                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-                            }
-                        }
-                    ],
-                    "request": {
-                        "url": "https://{{hostenv}}/oauth/token",
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Authorization",
-                                "value": "Basic {{encodedKeys}}",
-                                "description": ""
-                            }
-                        ],
-                        "body": {
-                            "mode": "urlencoded",
-                            "urlencoded": [
-                                {
-                                    "key": "assertion",
-                                    "value": "{{assertionHere}}"
-                                },
-                                {
-                                    "key": "grant_type",
-                                    "value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "_postman_id": "c90e255a-829e-44da-98bd-9557e4af0015",
-                    "name": "03 Refresh Access Token",
-                    "event": [
-                        {
-                            "listen": "test",
-                            "script": {
-                                "type": "text/javascript",
-                                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-                            }
-                        }
-                    ],
-                    "request": {
-                        "url": "https://{{hostenv}}/oauth/token",
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Authorization",
-                                "value": "Basic {{encodedKeys}}",
-                                "description": ""
-                            }
-                        ],
-                        "body": {
-                            "mode": "urlencoded",
-                            "urlencoded": [
-                                {
-                                    "key": "refresh_token",
-                                    "value": "{{refreshToken}}"
-                                },
-                                {
-                                    "key": "grant_type",
-                                    "value": "refresh_token"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "_postman_id": "58df54b7-5a47-4e37-ac6a-1e742ce7c678",
-                    "name": "04 Get User Info",
-                    "event": [
-                        {
-                            "listen": "test",
-                            "script": {
-                                "type": "text/javascript",
-                                "exec": "var jsonData = JSON.parse(responseBody);\nvar accounts = jsonData.accounts;\nif (jsonData.hasOwnProperty(\"sub\")) { \n    postman.setEnvironmentVariable(\"userId\", jsonData.sub); \n} \n\nfor (var i=0; i< accounts.length; i++) { \n  if (accounts[i].hasOwnProperty(\"is_default\")) { \n   if (accounts[i].is_default === true) { \n     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); \n     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); \n     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); \n   } \n } \n} \n"
-                            }
-                        }
-                    ],
-                    "request": {
-                        "url": "https://{{hostenv}}/oauth/userinfo",
-                        "method": "Get",
-                        "header": [
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer {{accessToken}}",
-                                "description": ""
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": ""
-                        }
                     },
                     "response": []
                 }
