@@ -1,19 +1,19 @@
 {
     "variables": [],
-  "info": {
-    "name": "eSignature REST API",
-    "_postman_id": "feaa32a7-ae44-4afb-af85-6d89a55a9d0d",
-    "description": "The secure and award-winning DocuSign eSignature API makes requesting signatures, automating forms, and tracking documents directly from your app easy.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
-  },
+    "info": {
+        "name": "DocuSign REST API",
+        "_postman_id": "a8a7689c-1cfc-4cb1-8067-5c65464707d0",
+        "description": "The DocuSign REST API provides you with a powerful, convenient, and simple Web services API for interacting with DocuSign.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+    },
     "item": [
         {
-            "_postman_id": "94a31be0-8e2d-4d32-b44f-127350ff0bcd",
+            "_postman_id": "5025a9be-ff87-417e-ab08-42a2ed0b62ab",
             "name": "Diagnostics",
             "description": "Folder for Diagnostics",
             "item": [
                 {
-                    "_postman_id": "062d562e-9e32-455b-9fd4-4a1897866930",
+                    "_postman_id": "c7c0e601-08f6-4734-a3ef-deab25c144eb",
                     "name": "Retrieves the available REST API versions.",
                     "request": {
                         "url": "{{baseUrl}}/service_information",
@@ -39,7 +39,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a9040d27-bf87-4f34-8c0a-d7a4fdef74bb",
+                    "_postman_id": "bb6d0060-3770-4749-8883-d592cb9d81a6",
                     "name": "Gets the API request logging log files.",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/diagnostics/request_logs?encoding={{encoding}}",
@@ -65,7 +65,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3814185c-c2e9-46be-a6ee-c8a2a4d5d801",
+                    "_postman_id": "6fba824e-7610-4f47-8c1f-96ff2ef993a5",
                     "name": "Deletes the request log files.",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/diagnostics/request_logs",
@@ -91,7 +91,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "0b9e7f0b-2ab7-49d9-b00c-fcbd5ede3bf3",
+                    "_postman_id": "8915a2a6-ea7c-4f1c-a36c-d711c4c3dda4",
                     "name": "Gets a request logging log file.",
                     "request": {
                         "url": {
@@ -135,7 +135,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b4f44c7b-028f-4ea7-996a-934c5c815859",
+                    "_postman_id": "25fee481-f62c-45b3-b56e-0a797b63728b",
                     "name": "Gets the API request logging settings.",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/diagnostics/settings",
@@ -161,7 +161,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "087caf87-18be-470c-a500-e4cbf9912145",
+                    "_postman_id": "eafca595-da6f-4d79-b9f4-ffd2121e0cdb",
                     "name": "Enables or disables API request logging for troubleshooting.",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/diagnostics/settings",
@@ -189,12 +189,12 @@
             ]
         },
         {
-            "_postman_id": "d57965ea-6c11-4015-8282-3bcaa1f1bcce",
+            "_postman_id": "83e7039e-d7e4-4b87-97db-0b59fb88f8ae",
             "name": "Accounts",
             "description": "Folder for Accounts",
             "item": [
                 {
-                    "_postman_id": "e86f30d1-4360-4ad2-b0d6-f49cb71205cb",
+                    "_postman_id": "df920bf0-ab32-4ca2-acda-fd871abf6cd2",
                     "name": "Creates new accounts.",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/accounts?preview_billing_plan={{preview_billing_plan}}",
@@ -220,7 +220,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ee1e8909-6a7d-47eb-b345-c14d2ed36256",
+                    "_postman_id": "2e0bc67b-e607-4aa3-9fc0-07096c6b3162",
                     "name": "Retrieves the account information for the specified account.",
                     "request": {
                         "url": {
@@ -269,7 +269,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "00079d71-b27e-4799-aee6-942420a4ff40",
+                    "_postman_id": "ee4bec00-3d95-4288-a085-56af5266dda1",
                     "name": "Deletes the specified account.",
                     "request": {
                         "url": {
@@ -318,7 +318,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "539926aa-5e08-491b-9fa4-921b50619f63",
+                    "_postman_id": "f7e854be-a72a-4c03-a7c0-e947d25820a4",
                     "name": "Gets list of recurring and usage charges for the account.",
                     "request": {
                         "url": {
@@ -368,7 +368,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "cc73c12f-08a5-45e9-bf61-1798b08e4b0b",
+                    "_postman_id": "2c3ead4b-c627-4495-9c61-418f334c5d35",
                     "name": "Gets a list of brand profiles.",
                     "request": {
                         "url": {
@@ -422,7 +422,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6db7383d-0cb9-41dd-9fee-38a1c38d1d86",
+                    "_postman_id": "450c52ac-27c7-4b25-9c4a-e57b492152ed",
                     "name": "Creates one or more brand profile files for the account.",
                     "request": {
                         "url": {
@@ -466,7 +466,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6032857e-be09-4ac8-b743-5b7efad18571",
+                    "_postman_id": "5c04ad81-169e-47ea-b102-da087a0593fd",
                     "name": "Deletes one or more brand profiles.",
                     "request": {
                         "url": {
@@ -510,7 +510,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "27d89f06-0006-4660-b4d8-55aa6e6410d4",
+                    "_postman_id": "017c0e24-9beb-4d13-b028-904b4e0112e3",
                     "name": "Get information for a specific brand.",
                     "request": {
                         "url": {
@@ -569,7 +569,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "782c41a4-0ed5-40fe-9b43-483d72dcc321",
+                    "_postman_id": "92f56bf6-cada-477c-9347-3f0fcf523cfb",
                     "name": "Updates an existing brand.",
                     "request": {
                         "url": {
@@ -624,7 +624,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "8bc981e1-baa5-42e7-8d3c-140dcbd17e61",
+                    "_postman_id": "59ab2410-3875-45d7-948b-a47809ad5f8d",
                     "name": "Removes a brand.",
                     "request": {
                         "url": {
@@ -673,7 +673,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d5668654-a3c1-4737-95ad-b727beaff648",
+                    "_postman_id": "7ccfe632-df9d-4c6b-80d6-9e32a73b54e6",
                     "name": "Export a specific brand.",
                     "request": {
                         "url": {
@@ -723,7 +723,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b0b9fad3-37e2-4102-95a5-966bdee2ab23",
+                    "_postman_id": "fcf9b079-15d0-4c60-812e-0c9e71111d1a",
                     "name": "Obtains the specified image for a brand.",
                     "request": {
                         "url": {
@@ -778,7 +778,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f82f6a0c-3968-4230-85a3-370b33d67f18",
+                    "_postman_id": "bf786a47-9df8-46ab-9c04-ed5accd31e8d",
                     "name": "Put one branding logo.",
                     "request": {
                         "url": {
@@ -838,7 +838,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "478d485c-0615-4343-a65a-ef96f82bc9e4",
+                    "_postman_id": "243f34d3-8471-4d58-8e42-183a1875070b",
                     "name": "Delete one branding logo.",
                     "request": {
                         "url": {
@@ -893,7 +893,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "78063775-4a00-4503-8d91-cba78050d28b",
+                    "_postman_id": "eb564971-ab87-408c-98dd-e23e3474b39d",
                     "name": "Returns the specified account's list of branding resources (metadata).",
                     "request": {
                         "url": {
@@ -943,7 +943,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "db73a687-29a1-4b1b-92e3-b86c05d8411f",
+                    "_postman_id": "75c9853e-6f05-4e49-8268-8a2241c84696",
                     "name": "Returns the specified branding resource file.",
                     "request": {
                         "url": {
@@ -1008,7 +1008,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a590f095-16f5-46c1-842a-1ce50fd2b636",
+                    "_postman_id": "684c2521-059f-4f77-98c7-38700dadeac9",
                     "name": "Uploads a branding resource file.",
                     "request": {
                         "url": {
@@ -1075,7 +1075,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9f00e100-188e-4288-95e9-89e2c9517e75",
+                    "_postman_id": "be67f662-75b4-4e4e-b575-7936edd44d4d",
                     "name": "Deletes the signature for one or more captive recipient records.",
                     "request": {
                         "url": {
@@ -1124,7 +1124,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c8495f63-5b14-454b-ad36-07abc021d712",
+                    "_postman_id": "b8dd9c5d-ebf5-4f6b-88aa-77c0b1740598",
                     "name": "Gets the Electronic Record and Signature Disclosure for the account.",
                     "request": {
                         "url": {
@@ -1174,7 +1174,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "2aea432a-53f1-4f48-96d7-98a801962886",
+                    "_postman_id": "498604e1-f383-40c5-829a-84060542bd6b",
                     "name": "Gets the Electronic Record and Signature Disclosure.",
                     "request": {
                         "url": {
@@ -1223,7 +1223,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "65feac61-ebd5-4929-ae59-2bc6d03d131f",
+                    "_postman_id": "9fce8649-a5b9-4298-acca-036bc0e7bee0",
                     "name": "Update Consumer Disclosure.",
                     "request": {
                         "url": {
@@ -1278,7 +1278,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b0d9ea92-369a-40b6-a11f-5f82646e8c46",
+                    "_postman_id": "1e8445de-0063-46af-884f-7e9186f4738a",
                     "name": "Gets a list of custom fields associated with the account.",
                     "request": {
                         "url": {
@@ -1322,7 +1322,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "721c6585-e3df-47cd-9f1d-66d1e7320c16",
+                    "_postman_id": "0786db77-6a67-4169-a461-d470809db9cd",
                     "name": "Creates an acount custom field.",
                     "request": {
                         "url": {
@@ -1372,7 +1372,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a69f1e5e-9f88-4995-8f03-edc69b0d6499",
+                    "_postman_id": "089db450-8e01-4e24-b9cc-77f2aeb81885",
                     "name": "Updates an existing account custom field.",
                     "request": {
                         "url": {
@@ -1427,7 +1427,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7dc6fb54-cf84-4af3-842c-741fc853ac5c",
+                    "_postman_id": "7b26b055-c3ff-4bc6-bae2-f0ad2ae51d47",
                     "name": "Delete an existing account custom field.",
                     "request": {
                         "url": {
@@ -1482,7 +1482,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "4f88d9e8-f6f6-4aa5-ae6e-7bdfcdf3288e",
+                    "_postman_id": "c81dffd6-c7c7-43eb-a627-da91444166bc",
                     "name": "Retrieves the list of favorited templates for this caller",
                     "request": {
                         "url": {
@@ -1526,7 +1526,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5656922a-6413-4196-98f8-734834849300",
+                    "_postman_id": "c3210ec3-68ff-4098-a4ac-33befd2a649d",
                     "name": "Favorites a template",
                     "request": {
                         "url": {
@@ -1570,7 +1570,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "09b6fb73-937b-4964-adcf-bcf54752629e",
+                    "_postman_id": "1e66db66-7998-4ed9-825b-573f1a1bbdb4",
                     "name": "Unfavorite a template",
                     "request": {
                         "url": {
@@ -1614,7 +1614,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ef3f875c-e197-4783-8cba-67bf1eca173f",
+                    "_postman_id": "a7f6a7f4-62d3-492a-979f-28791ddf5c66",
                     "name": "Get the list of identity verification options for an account",
                     "request": {
                         "url": {
@@ -1664,7 +1664,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "0d833791-b8c0-4750-8b5d-1f69d4e17b86",
+                    "_postman_id": "17cd84b4-4fa7-4a9d-bf8b-cb47298f4011",
                     "name": "Gets a list of permission profiles.",
                     "request": {
                         "url": {
@@ -1714,7 +1714,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7dbe3f46-cba1-473d-a60d-6524979a46ec",
+                    "_postman_id": "57f37eb4-13c2-4777-8b54-beb04b22e747",
                     "name": "Creates a new permission profile in the specified account.",
                     "request": {
                         "url": {
@@ -1764,7 +1764,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "90cfedca-31a0-476f-a28d-67728324f6a7",
+                    "_postman_id": "d10f1c9a-a432-4f91-9721-b2f44a65435c",
                     "name": "Returns a permissions profile in the specified account.",
                     "request": {
                         "url": {
@@ -1819,7 +1819,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "2deafb44-697e-4366-9e61-97cd092a1b55",
+                    "_postman_id": "bd4351c2-0560-49c1-a714-d028fa5c93c3",
                     "name": "Updates a permission profile within the specified account.",
                     "request": {
                         "url": {
@@ -1874,7 +1874,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "81552e60-9bbe-4a29-926f-2370e87175f3",
+                    "_postman_id": "facd68f6-eae9-4230-83ca-f362b75513cf",
                     "name": "Deletes a permissions profile within the specified account.",
                     "request": {
                         "url": {
@@ -1929,7 +1929,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "fc5bd39e-d279-46c4-8bff-3f51653cf19e",
+                    "_postman_id": "b1dfcc78-a217-42df-8afc-9bcb018090e7",
                     "name": "Gets recipient names associated with an email address.",
                     "request": {
                         "url": {
@@ -1979,7 +1979,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "405c1d53-1ac1-46dd-9e3c-6a1f2fe16f5f",
+                    "_postman_id": "2572fbca-21e8-47fe-8d9c-77ee347f96ad",
                     "name": "Returns Account available seals for specified account.",
                     "request": {
                         "url": {
@@ -2023,7 +2023,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ffb27c30-d56c-4173-bc8b-66c1beb7d296",
+                    "_postman_id": "601f8440-845e-4e3e-a041-5b0f2e384d3f",
                     "name": "Gets account settings information.",
                     "request": {
                         "url": {
@@ -2067,7 +2067,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "36005d72-affe-4f63-a995-43450f9f2eb1",
+                    "_postman_id": "c561f78e-689d-4dd8-8386-ed8d98b51dd3",
                     "name": "Updates the account settings for an account.",
                     "request": {
                         "url": {
@@ -2111,7 +2111,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "0987af6a-fc9c-4033-b4b7-7ee33168b967",
+                    "_postman_id": "51481e48-f248-4a98-b92d-668ad991a996",
                     "name": "Returns the configuration information for the eNote eOriginal integration.",
                     "request": {
                         "url": {
@@ -2156,7 +2156,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9ab98f6d-10bc-4faf-ad78-b1131158dc54",
+                    "_postman_id": "968dfb9f-74f2-4fad-8319-51d713c52b6c",
                     "name": "Updates configuration information for the eNote eOriginal integration.",
                     "request": {
                         "url": {
@@ -2201,7 +2201,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d118b166-8049-4431-bafb-9e2002987341",
+                    "_postman_id": "97e6a32a-18fe-4070-94b1-073e51e12dd6",
                     "name": "Deletes configuration information for the eNote eOriginal integration.",
                     "request": {
                         "url": {
@@ -2246,7 +2246,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5b66957b-04b9-4e9f-a622-cb61126d7619",
+                    "_postman_id": "6a75077a-deb1-45f5-9a07-35c25f16106d",
                     "name": "Select envelope purge configuration.",
                     "request": {
                         "url": {
@@ -2291,7 +2291,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "0a0ca022-c522-41df-bd18-931c0334124c",
+                    "_postman_id": "9a991506-9f0d-473a-a98e-72b2f64dd82e",
                     "name": "Updates envelope purge configuration.",
                     "request": {
                         "url": {
@@ -2336,7 +2336,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ecf5f7a8-48e6-4301-bcbb-5264f2fea027",
+                    "_postman_id": "62331d20-4dbf-4c84-aafe-4a81fed70494",
                     "name": "Returns default user level settings for a specified account",
                     "request": {
                         "url": {
@@ -2381,7 +2381,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "1e9fed70-c00d-4def-820e-e4805a4f307e",
+                    "_postman_id": "86492192-b4cb-4309-859f-bad4dd282dbd",
                     "name": "Updates default user level settings for a specified account",
                     "request": {
                         "url": {
@@ -2426,7 +2426,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "39034f00-e9d6-43b5-b20d-94299e330b4e",
+                    "_postman_id": "dc51d2c6-9c12-402c-803d-c5102c1e2039",
                     "name": "Get the password rules",
                     "request": {
                         "url": {
@@ -2471,7 +2471,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ef230816-dfe9-4c01-bf00-997b75cbfd11",
+                    "_postman_id": "96e75b03-ad4b-46cb-a012-b175ffd1f743",
                     "name": "Update the password rules",
                     "request": {
                         "url": {
@@ -2516,7 +2516,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3bb93047-f671-4428-ac72-6275a5a6b40d",
+                    "_postman_id": "7b625b26-e636-4e8b-9552-8fbbe0e59bca",
                     "name": "Returns tab settings list for specified account",
                     "request": {
                         "url": {
@@ -2561,7 +2561,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b7a5d3a9-2cac-4475-985f-e469a737d2ee",
+                    "_postman_id": "d1bbb9f6-ef90-4c11-a380-925210dde2d5",
                     "name": "Modifies tab settings for specified account",
                     "request": {
                         "url": {
@@ -2606,7 +2606,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "8e76bf30-7b8a-4d01-b54a-8b0781b96b00",
+                    "_postman_id": "451074dc-aea0-4be7-b052-2699def29f9f",
                     "name": "Reserved: Gets the shared item status for one or more users.",
                     "request": {
                         "url": {
@@ -2684,7 +2684,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "bb5046b8-e83a-4408-98e1-39361f98a258",
+                    "_postman_id": "57a9cf7c-0369-4cdf-a9c0-7a92381b8990",
                     "name": "Reserved: Sets the shared access information for users.",
                     "request": {
                         "url": {
@@ -2742,7 +2742,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "dbe02ce2-e434-49b5-a4f4-3b7759268a36",
+                    "_postman_id": "8459a822-7f33-439d-a373-80d555e90b0f",
                     "name": "Returns Account available signature providers for specified account.",
                     "request": {
                         "url": {
@@ -2786,7 +2786,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "abb5ea92-a965-4ec6-aebd-d2c9e0a3c6f3",
+                    "_postman_id": "799d918e-9722-4dd9-bd33-74362f68f0f4",
                     "name": "Returns the managed signature definitions for the account",
                     "request": {
                         "url": {
@@ -2844,7 +2844,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "36d18a23-4dcc-4a45-bd33-197188241800",
+                    "_postman_id": "61c3ff19-ade6-4a49-9173-b68839e3a34e",
                     "name": "Updates a account signature.",
                     "request": {
                         "url": {
@@ -2888,7 +2888,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9badfd79-3f69-4628-af15-b1ea5aa557ee",
+                    "_postman_id": "0cce49c2-f353-4ccb-b846-b8727b65d2bb",
                     "name": "Adds/updates one or more account signatures. This request may include images in multi-part format.",
                     "request": {
                         "url": {
@@ -2938,7 +2938,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "50238a29-a64b-4381-92a6-829fc6b1f4fe",
+                    "_postman_id": "33f15359-0545-4e8f-bdaa-c93c564a37a0",
                     "name": "Returns information about a single signature by specifed signatureId.",
                     "request": {
                         "url": {
@@ -2987,7 +2987,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "97356bb7-494f-4c0f-a565-2a39b74e695a",
+                    "_postman_id": "065fda2f-9a83-4426-8e67-85964e7a548e",
                     "name": "Updates a account signature.",
                     "request": {
                         "url": {
@@ -3042,7 +3042,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e738a95a-ef31-418f-88e0-ceea5554bd37",
+                    "_postman_id": "82535f41-2848-43b0-830c-33b97795e978",
                     "name": "Close the specified signature by Id.",
                     "request": {
                         "url": {
@@ -3091,7 +3091,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "140a2868-8b81-4302-bd1f-ee294a4a0a4c",
+                    "_postman_id": "5327469b-cdb0-449c-ae22-62a8432f2e6b",
                     "name": "Returns a signature, initials, or stamps image.",
                     "request": {
                         "url": {
@@ -3151,7 +3151,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "4c6d3682-2a99-4575-9674-513db1f64eac",
+                    "_postman_id": "da1a1035-a99f-4e67-923e-90ccf2a546d6",
                     "name": "Sets a signature, initials, or stamps image.",
                     "request": {
                         "url": {
@@ -3216,7 +3216,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "60d10233-8d6c-4f06-a47a-72abead328b3",
+                    "_postman_id": "fcb9f93e-6fe8-49b0-8f19-340914ff23a6",
                     "name": "Deletes a signature, initials, or stamps image.",
                     "request": {
                         "url": {
@@ -3270,7 +3270,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a405c418-b2f6-4512-97ae-c0e12b1820d1",
+                    "_postman_id": "7d19258d-fb1c-49d1-81cb-e81add06e90d",
                     "name": "Gets list of supported languages for recipient language setting.",
                     "request": {
                         "url": {
@@ -3314,7 +3314,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b464461e-148d-4e7a-9bb0-3660588b01ea",
+                    "_postman_id": "f0e2ffcd-aef0-4cfe-b36f-b4f4fefdb2bd",
                     "name": "Gets a list of unsupported file types.",
                     "request": {
                         "url": {
@@ -3358,7 +3358,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b146532d-5fb2-46af-a972-97baa07f4e6a",
+                    "_postman_id": "bcb66dd6-32ec-4afc-9c72-0a8742e843de",
                     "name": "Creates the user authorization",
                     "request": {
                         "url": {
@@ -3408,7 +3408,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f2ad5632-604b-421a-9493-6b9b73f5a4a8",
+                    "_postman_id": "8f624164-0790-44d9-8a60-ab0d72be6889",
                     "name": "Returns the user authorization for a given authorization id",
                     "request": {
                         "url": {
@@ -3463,7 +3463,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a2a3836f-34e5-4de2-a0f8-750939009353",
+                    "_postman_id": "662bc8f1-16a4-4532-94dc-2c5e8cc59330",
                     "name": "Updates the user authorization",
                     "request": {
                         "url": {
@@ -3518,7 +3518,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "4d1b20b0-3140-4a3d-a464-ef9dc8352e2a",
+                    "_postman_id": "2425f1d8-8823-4d5a-aebb-0a50b4414655",
                     "name": "Deletes the user authorization",
                     "request": {
                         "url": {
@@ -3573,7 +3573,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5762358e-f471-4926-9653-158ca9e02c3b",
+                    "_postman_id": "76f99a15-9095-4914-a64d-ea1f7b465590",
                     "name": "Returns the principal user authorizations",
                     "request": {
                         "url": {
@@ -3653,7 +3653,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ebf50476-eccc-4b98-8e3b-e278c3b85ac9",
+                    "_postman_id": "1fe262c7-3cbf-452d-ab2d-6c83fa7d6f25",
                     "name": "Creates ot updates user authorizations",
                     "request": {
                         "url": {
@@ -3703,7 +3703,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6162430a-9d3a-40f8-8fba-bc30840a112c",
+                    "_postman_id": "4c5dfb8c-0923-4186-8f32-695f69999964",
                     "name": "Creates ot updates user authorizations",
                     "request": {
                         "url": {
@@ -3753,7 +3753,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a062f8c6-b5c7-4e48-a96c-05fdcd55be91",
+                    "_postman_id": "e1d2e531-ad1e-4a2f-95ba-2ab5d20fefd9",
                     "name": "Returns the agent user authorizations",
                     "request": {
                         "url": {
@@ -3834,7 +3834,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "0e665c56-6c65-4e8d-ab70-bd1ee3c9c1d8",
+                    "_postman_id": "ba7ca254-5c99-481e-a88c-3384bbbe8d06",
                     "name": "Get watermark information.",
                     "request": {
                         "url": {
@@ -3878,7 +3878,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "973d0c0d-4560-46aa-8264-dbd663189acf",
+                    "_postman_id": "46f7baa0-059f-4dcd-9a7a-423cdcdb6fcd",
                     "name": "Update watermark information.",
                     "request": {
                         "url": {
@@ -3922,7 +3922,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "052c73ff-2f91-4e3a-80e2-fc0195123e85",
+                    "_postman_id": "0c57c4e8-8f91-4189-ab17-57b3c03e71b5",
                     "name": "Get watermark preview.",
                     "request": {
                         "url": {
@@ -3967,7 +3967,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c88cfc34-a8af-4371-ad59-cceb03c19e5d",
+                    "_postman_id": "47f81786-b0da-4046-9b9e-a9d1767717a7",
                     "name": "Retrieves the account provisioning information for the account.",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/accounts/provisioning",
@@ -3993,7 +3993,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e07e0aba-0d24-45d1-9b7e-2297c2afd5de",
+                    "_postman_id": "3ada1c90-dd56-4b04-9093-7c40486e4528",
                     "name": "Get membership account password rules",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/current_user/password_rules",
@@ -4021,12 +4021,12 @@
             ]
         },
         {
-            "_postman_id": "02a03c28-160d-4944-8c3f-10a6471bfea4",
+            "_postman_id": "327d89b5-717b-46b7-a9cc-992097b009ae",
             "name": "Billing",
             "description": "Folder for Billing",
             "item": [
                 {
-                    "_postman_id": "6613b2a4-dbc5-4642-be14-e683a9c60d0f",
+                    "_postman_id": "863f0956-e682-42ae-9525-4130740fdc8c",
                     "name": "Get a List of Billing Invoices",
                     "request": {
                         "url": {
@@ -4080,7 +4080,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "eab16bbb-239a-41b1-8609-48a0153c38b8",
+                    "_postman_id": "ad6ce40a-099f-451e-8d75-67f47f0ac335",
                     "name": "Retrieves a billing invoice.",
                     "request": {
                         "url": {
@@ -4129,7 +4129,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "07c93539-57ff-4b7e-8a4a-0f0c2b48cd12",
+                    "_postman_id": "76718493-6ed6-47a0-be84-9badc9f4f48a",
                     "name": "Get a list of past due invoices.",
                     "request": {
                         "url": {
@@ -4173,7 +4173,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b48cb4f4-1142-4aad-9fef-4236581accfd",
+                    "_postman_id": "8456684a-1712-4c6d-8af3-009262f0533a",
                     "name": "Gets payment information for one or more payments.",
                     "request": {
                         "url": {
@@ -4227,7 +4227,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7519c321-a10f-47a5-a35a-a33694389806",
+                    "_postman_id": "465f7369-81d5-49e6-9f81-e957da975997",
                     "name": "Posts a payment to a past due invoice.",
                     "request": {
                         "url": {
@@ -4271,7 +4271,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a708ee33-d652-4572-8366-c97c27b6974a",
+                    "_postman_id": "11b01f83-2233-47e5-a8c5-0c47d12b164c",
                     "name": "Gets billing payment information for a specific payment.",
                     "request": {
                         "url": {
@@ -4320,7 +4320,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "205cdfcd-0949-45e3-8a64-e76195938784",
+                    "_postman_id": "eefc3681-5b2e-4885-80e6-b82f27d3cca1",
                     "name": "Get Account Billing Plan",
                     "request": {
                         "url": {
@@ -4386,7 +4386,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c6e81998-976d-435c-bb03-634a5178200e",
+                    "_postman_id": "f937e014-1822-4bcb-83f7-34645d87ba2e",
                     "name": "Updates the account billing plan.",
                     "request": {
                         "url": {
@@ -4436,7 +4436,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d81f9cc1-903e-409d-a338-6f06c58fbe8e",
+                    "_postman_id": "49cff2d1-283e-4cb5-b6ac-a3e8075d2668",
                     "name": "Get metadata for a given credit card.",
                     "request": {
                         "url": {
@@ -4481,7 +4481,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "cd4d18dd-d951-43b9-aa35-75d1caa88a1f",
+                    "_postman_id": "50fbc2a4-e40a-4190-a647-635690a176eb",
                     "name": "Returns downgrade plan information for the specified account.",
                     "request": {
                         "url": {
@@ -4526,7 +4526,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e431cbec-0347-448d-b882-d160b2ebaea7",
+                    "_postman_id": "9766c7ae-f4c1-4fd3-897e-739c186ffa78",
                     "name": "Queues downgrade billing plan request for an account.",
                     "request": {
                         "url": {
@@ -4571,7 +4571,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e3f47558-6af8-46bc-a325-f5d25a1a110f",
+                    "_postman_id": "d5bcd61e-ad2c-4bf2-a1e5-e102a10996dd",
                     "name": "Reserverd: Purchase additional envelopes.",
                     "request": {
                         "url": {
@@ -4616,7 +4616,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b998410a-df86-4841-8b78-2100513c2b8f",
+                    "_postman_id": "52b99fdc-3816-4108-9aa6-be1bcd4aa4f7",
                     "name": "Gets the list of available billing plans.",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/billing_plans",
@@ -4642,7 +4642,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9c1134b8-48fd-4ead-8f94-3e30b202e17a",
+                    "_postman_id": "03960ed9-d361-4076-aa5e-e8ba314c4fa9",
                     "name": "Get the billing plan details.",
                     "request": {
                         "url": {
@@ -4687,12 +4687,12 @@
             ]
         },
         {
-            "_postman_id": "5ad2cfc5-846e-43bc-9c32-dafeef31a49a",
+            "_postman_id": "3db5d4c8-3286-4d74-a9bc-add88ffd9a5f",
             "name": "BulkEnvelopes",
             "description": "Folder for BulkEnvelopes",
             "item": [
                 {
-                    "_postman_id": "885ec6d2-1327-4117-8ab7-431382ebfcd4",
+                    "_postman_id": "1fbaac35-110d-4556-9eee-9122d92815ca",
                     "name": "Returns a list of bulk send batch satuses initiated by account.",
                     "request": {
                         "url": {
@@ -4770,7 +4770,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "198c2704-03d2-41bc-8d10-c897405865d0",
+                    "_postman_id": "b312d93d-8869-4680-b621-b8872f80dc39",
                     "name": "Gets a specific bulk send batch status",
                     "request": {
                         "url": {
@@ -4819,7 +4819,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "2b1083fc-b5f6-48f7-bb5c-df873f77c08c",
+                    "_postman_id": "fb834f08-5afe-4526-807b-7ba914caae03",
                     "name": "Put/Update a specific bulk send batch status",
                     "request": {
                         "url": {
@@ -4868,7 +4868,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "99c778a5-9fa2-49b8-9596-e1e8cd93fd47",
+                    "_postman_id": "5ce9a34f-903e-4377-b3b6-cb734ba0a512",
                     "name": "Initiate a specific bulk send batch action",
                     "request": {
                         "url": {
@@ -4922,7 +4922,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ebf13c7e-d48d-4dd9-86d8-3ab667d2a42d",
+                    "_postman_id": "03eecea8-8504-4fcb-bad2-45349b5a39bd",
                     "name": "Gets envelopes from a specific bulk send batch",
                     "request": {
                         "url": {
@@ -5002,7 +5002,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9c9fd710-842d-4ca4-be86-3f6841db86ee",
+                    "_postman_id": "149c3d99-9a7b-4af2-87fc-41b91b6f277d",
                     "name": "Lists top-level details for all bulk send lists visible to the current user",
                     "request": {
                         "url": {
@@ -5046,7 +5046,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3a690ab6-5cf6-4d5a-8514-6a95a8897790",
+                    "_postman_id": "1f6c66ad-0fd1-4519-92a1-95541b19cf7f",
                     "name": "Creates a new bulk send list",
                     "request": {
                         "url": {
@@ -5090,7 +5090,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f9dd79f3-a634-41ae-a1e4-37d7377b16d8",
+                    "_postman_id": "e10985a9-ade6-4f2e-8391-0f33952932af",
                     "name": "Gets a specific bulk send list",
                     "request": {
                         "url": {
@@ -5139,7 +5139,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9b99cda4-8ca4-41f9-86a4-543a18327534",
+                    "_postman_id": "40e611c4-9369-470e-bb33-b10e330d5e2b",
                     "name": "Updates an existing bulk send list.  If send_envelope query string value is provided, will accept an empty payload and try to send the specified envelope",
                     "request": {
                         "url": {
@@ -5188,7 +5188,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "76b2684d-e04e-4034-9d04-6ebb39310c9b",
+                    "_postman_id": "aec8919c-b02b-4f56-ac1f-4a4877839e8a",
                     "name": "Deletes an existing bulk send list",
                     "request": {
                         "url": {
@@ -5237,7 +5237,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e9b94cb8-e5d1-4fc9-a04a-a186e6097a50",
+                    "_postman_id": "a54f0cdf-0f81-4e16-968d-c8cf914f3fa4",
                     "name": "Uses the specified bulk send list to send the envelope specified in the payload",
                     "request": {
                         "url": {
@@ -5287,7 +5287,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ed8336b1-4d94-40cb-971f-4defa6fedfe4",
+                    "_postman_id": "0596c1c9-8d61-448e-b080-92c143a9856c",
                     "name": "Tests whether the specified bulk sending list can be used to send an envelope",
                     "request": {
                         "url": {
@@ -5339,12 +5339,12 @@
             ]
         },
         {
-            "_postman_id": "53605f5d-aab8-4de1-b806-62e604b40f69",
+            "_postman_id": "c7484619-957c-427d-b920-aa49f3902797",
             "name": "Envelopes",
             "description": "Folder for Envelopes",
             "item": [
                 {
-                    "_postman_id": "abdb2bdf-ea5c-47aa-b70a-6df41ed05923",
+                    "_postman_id": "adba1f85-619e-425f-9d9e-ce7e2b0fbbd4",
                     "name": "Initiate a new ChunkedUpload.",
                     "request": {
                         "url": {
@@ -5388,7 +5388,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ef63f80c-2053-4b78-9474-83b0611b57ad",
+                    "_postman_id": "d36e076b-1a6a-463e-b223-5ae0053b0513",
                     "name": "Retrieves the current metadata of a ChunkedUpload.",
                     "request": {
                         "url": {
@@ -5443,7 +5443,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7829467d-80e7-46fe-9468-20841b391cd2",
+                    "_postman_id": "e7d4869c-b394-4d19-9308-02793d3fe4b2",
                     "name": "Integrity-Check and Commit a ChunkedUpload, readying it for use elsewhere.",
                     "request": {
                         "url": {
@@ -5498,7 +5498,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "354e29be-a03d-4554-b26b-6547027e1cd5",
+                    "_postman_id": "d925360a-ce79-4746-8243-a392a88bd189",
                     "name": "Delete an existing ChunkedUpload.",
                     "request": {
                         "url": {
@@ -5547,7 +5547,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e674d6dd-a28e-4fb3-88ef-442f1a7e6e3f",
+                    "_postman_id": "16130d89-5a50-4df3-b4f1-0ddc4b8fd328",
                     "name": "Add a chunk, a chunk 'part', to an existing ChunkedUpload.",
                     "request": {
                         "url": {
@@ -5601,7 +5601,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9ea5bfea-ec52-455c-891d-0d391e34fb53",
+                    "_postman_id": "4ed1fe4d-c1be-4fe9-9ebe-68bc2f2d7075",
                     "name": "Submits a batch of historical envelopes for republish to an adhoc config.",
                     "request": {
                         "url": {
@@ -5648,7 +5648,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d394a59a-b777-4855-a326-3f82dd6e7098",
+                    "_postman_id": "2a60632c-41ef-4f49-a6a9-0350fc461cc9",
                     "name": "Gets status changes for one or more envelopes.",
                     "request": {
                         "url": {
@@ -5818,7 +5818,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d88bc495-624d-4b3e-b9b2-712f62373928",
+                    "_postman_id": "94b360ee-9d6c-46a7-9b6c-47d12127471d",
                     "name": "Creates an envelope.",
                     "request": {
                         "url": {
@@ -5884,7 +5884,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7768840a-4c24-45ec-9691-9a7840a263db",
+                    "_postman_id": "332ce031-5f9d-4466-b5dd-b54ab816c399",
                     "name": "Gets the status of a envelope.",
                     "request": {
                         "url": {
@@ -5943,7 +5943,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "88b1302c-8960-4be7-a60c-0b8b127ef4c7",
+                    "_postman_id": "81aba4b3-e3b3-4c22-b673-4d8c840b9dd6",
                     "name": "Send Draft Envelope/Void Envelope/Move/Purge Envelope/Modify draft",
                     "request": {
                         "url": {
@@ -6002,7 +6002,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "1659aaa8-9c1c-4f5c-9b93-71cd88a74fb6",
+                    "_postman_id": "b96c641c-3286-4a26-9780-3ac7d21c3a43",
                     "name": "Returns a list of attachments associated with the specified envelope",
                     "request": {
                         "url": {
@@ -6052,7 +6052,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "99fec254-987a-42d3-ad2e-bd46fbfc9207",
+                    "_postman_id": "3632ff0a-f36e-44df-9797-ab8a1f5c5a86",
                     "name": "Add one or more attachments to a DRAFT or IN-PROCESS envelope.",
                     "request": {
                         "url": {
@@ -6102,7 +6102,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "13a0cddc-ccdc-4ad5-b373-f5c14543cb5a",
+                    "_postman_id": "f6fb2024-dd6b-4da5-9d28-6f6012a1193f",
                     "name": "Delete one or more attachments from a DRAFT envelope.",
                     "request": {
                         "url": {
@@ -6152,7 +6152,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e7f7272f-bd88-48a4-854c-21c49508c1c2",
+                    "_postman_id": "4cc5eb02-b03c-47a4-b2f5-da48a225c5e4",
                     "name": "Retrieves an attachment from the envelope.",
                     "request": {
                         "url": {
@@ -6207,7 +6207,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "8760cdb2-c87e-4e72-804c-502fe77d8ab7",
+                    "_postman_id": "45e96e18-13ba-47ad-a77a-b289dc28bb17",
                     "name": "Add an attachment to a DRAFT or IN-PROCESS envelope.",
                     "request": {
                         "url": {
@@ -6262,7 +6262,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9b7ed2cd-7726-42bc-8b42-af6baa06eaeb",
+                    "_postman_id": "6f526056-3b85-4bdb-8ce5-0318291a1ce3",
                     "name": "Gets the envelope audit events for an envelope.",
                     "request": {
                         "url": {
@@ -6312,7 +6312,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b5f5ccda-b755-4b54-b2b1-a58b7991ff0b",
+                    "_postman_id": "1e69cb25-92bd-4de5-9055-f9d04f6b19f2",
                     "name": "Gets comment transcript for envelope and user",
                     "request": {
                         "url": {
@@ -6369,7 +6369,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "271714cb-08a4-4963-95af-e2943ae5386e",
+                    "_postman_id": "3759e16e-329f-4cd7-83c2-f351a79d6b5e",
                     "name": "Gets the custom field information for the specified envelope.",
                     "request": {
                         "url": {
@@ -6419,7 +6419,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "fb360a2c-555b-4253-8435-62db4246bf8d",
+                    "_postman_id": "72bfc1bd-63b9-4616-a818-8a7feb0dc6fa",
                     "name": "Updates envelope custom fields in an envelope.",
                     "request": {
                         "url": {
@@ -6469,7 +6469,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "4c9ec8a5-524a-4554-bdc8-7b1dca30b9f5",
+                    "_postman_id": "316f749d-9430-42a7-8141-b04029d966b2",
                     "name": "Updates envelope custom fields for an envelope.",
                     "request": {
                         "url": {
@@ -6519,7 +6519,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f9034a57-a953-4a25-a3ae-c1235c4fef44",
+                    "_postman_id": "c9b6fb05-3806-4b9d-a24a-7a065fc20001",
                     "name": "Deletes envelope custom fields for draft and in-process envelopes.",
                     "request": {
                         "url": {
@@ -6569,7 +6569,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "acdd2d89-1fc4-432c-ac29-883dffc4fc61",
+                    "_postman_id": "5f55327e-9ae1-4c31-ab92-588a1468d6b3",
                     "name": "Returns formfields for an envelope",
                     "request": {
                         "url": {
@@ -6619,7 +6619,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "85219a06-b82b-40d1-b1a5-08e9a89461ad",
+                    "_postman_id": "748b02e8-9c8a-478e-9503-521975d5403e",
                     "name": "Updates formfields for an envelope",
                     "request": {
                         "url": {
@@ -6675,7 +6675,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "940a1792-3308-4c5d-8d3c-eaa77763b40e",
+                    "_postman_id": "f9e02c44-c810-4055-aa23-702046786d91",
                     "name": "Gets a list of envelope documents.",
                     "request": {
                         "url": {
@@ -6755,7 +6755,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a6f1e69b-0505-41d0-9d90-d0ec8516224a",
+                    "_postman_id": "2d36cfd2-6511-4c37-bdde-d3dba38e091d",
                     "name": "Adds one or more documents to an existing envelope document.",
                     "request": {
                         "url": {
@@ -6805,7 +6805,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "cf6754bb-f287-4772-95cb-f33c6706305e",
+                    "_postman_id": "1264d07f-6e75-4590-902b-3a9c2eddd752",
                     "name": "Deletes documents from a draft envelope.",
                     "request": {
                         "url": {
@@ -6855,7 +6855,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b9d14e5b-19ce-46e6-b3f9-c27f414cdbbc",
+                    "_postman_id": "d58026ec-a3d6-44d2-92aa-7e37e7838c63",
                     "name": "Gets a document from an envelope.",
                     "request": {
                         "url": {
@@ -6948,7 +6948,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b117f5c4-27e5-49f3-965a-41a0dc675d24",
+                    "_postman_id": "a4180922-8f29-4890-b06d-5fb47da1f32d",
                     "name": "Adds a document to an existing draft envelope.",
                     "request": {
                         "url": {
@@ -7008,7 +7008,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5f981064-e553-419e-b818-dcee8cd10700",
+                    "_postman_id": "51abb79b-b702-421a-ae33-b527a503f939",
                     "name": "Gets the custom document fields from an  existing envelope document.",
                     "request": {
                         "url": {
@@ -7064,7 +7064,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f36a60b3-c440-419c-b2a0-c723ec135089",
+                    "_postman_id": "bde0e1d7-a192-46e2-8db3-d2f6bd3a8872",
                     "name": "Updates existing custom document fields in an existing envelope document.",
                     "request": {
                         "url": {
@@ -7120,7 +7120,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7ea3abdf-6871-4312-b34b-a08ee2262c9f",
+                    "_postman_id": "e06440be-de3f-4833-9a6a-86ed68e14db2",
                     "name": "Creates custom document fields in an existing envelope document.",
                     "request": {
                         "url": {
@@ -7176,7 +7176,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "38e3dc17-59c8-4e67-9fd9-cfbf479640c4",
+                    "_postman_id": "ed72e710-074d-4c84-a55a-5626511009d0",
                     "name": "Deletes custom document fields from an existing envelope document.",
                     "request": {
                         "url": {
@@ -7232,7 +7232,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "06c1a774-addd-4c2f-9141-aa5e3cda5934",
+                    "_postman_id": "83139fa2-23b1-4a2c-96ab-c248e8059e8e",
                     "name": "Get the Original HTML Definition used to generate the Responsive HTML for a given document.",
                     "request": {
                         "url": {
@@ -7288,7 +7288,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "fe01f653-9b03-47a8-9e80-d20de84c76e9",
+                    "_postman_id": "c5376961-3b80-4b0d-84ad-75307fa0b5e5",
                     "name": "Returns document page image(s) based on input.",
                     "request": {
                         "url": {
@@ -7374,7 +7374,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9c9cba19-1bef-468a-afcc-91f4a822fb3c",
+                    "_postman_id": "ad3218ad-8085-4043-8583-802464834e9a",
                     "name": "Deletes a page from a document in an envelope.",
                     "request": {
                         "url": {
@@ -7435,7 +7435,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7aa8dd2f-e789-4c9e-abeb-cf405a3b17d8",
+                    "_postman_id": "5034dfa9-2a65-4e30-bfc9-f4ba12599d79",
                     "name": "Gets a page image from an envelope for display.",
                     "request": {
                         "url": {
@@ -7515,7 +7515,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "57df0076-bfd5-4986-a6b4-b6bc1c09f68d",
+                    "_postman_id": "1b545d99-b996-49e8-badb-889ec253e460",
                     "name": "Rotates page image from an envelope for display.",
                     "request": {
                         "url": {
@@ -7577,7 +7577,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b278d82e-2d2c-4c61-b7eb-9573042bf21e",
+                    "_postman_id": "f96129bc-905c-4ba6-9468-fcf80d33866f",
                     "name": "Returns tabs on the specified page.",
                     "request": {
                         "url": {
@@ -7639,7 +7639,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "64fbb2ae-d1be-41f6-abb8-a8ffef1bf40f",
+                    "_postman_id": "92dcaefd-c5ef-49f6-8f65-7d48ccc0d6e8",
                     "name": "Get Responsive HTML Preview for a document in an envelope.",
                     "request": {
                         "url": {
@@ -7695,7 +7695,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "515f7a4a-819c-4f6f-97d4-3b9e20cc1c0b",
+                    "_postman_id": "5ee34386-a34b-4156-ba7b-0246694ba2ec",
                     "name": "Returns tabs on the document.",
                     "request": {
                         "url": {
@@ -7761,7 +7761,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "45724279-5de9-45fd-9410-3d92f522cf9c",
+                    "_postman_id": "cdef8d1e-1d3d-4016-87d2-749ef2d3cc51",
                     "name": "Updates the tabs for an envelope document",
                     "request": {
                         "url": {
@@ -7817,7 +7817,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9f7562e5-bb8e-4921-83ab-599851c3b0ba",
+                    "_postman_id": "255516fb-ef0d-44ab-a643-068ea866aecb",
                     "name": "Adds the tabs to an envelope document",
                     "request": {
                         "url": {
@@ -7873,7 +7873,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "59a7c7e4-1dcb-490b-83df-d20b4e10122c",
+                    "_postman_id": "f12d340f-a3c1-4d6d-bd2d-e236f3bd4b8d",
                     "name": "Deletes tabs from an envelope document",
                     "request": {
                         "url": {
@@ -7929,7 +7929,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "545bb320-96c4-4665-b771-7cae93b48185",
+                    "_postman_id": "7a428c47-fb1c-481b-9faa-8f3dc0b46f24",
                     "name": "Gets the templates associated with a document in an existing envelope.",
                     "request": {
                         "url": {
@@ -7991,7 +7991,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a7305cbe-d4b9-483c-bfa7-757f5235ad15",
+                    "_postman_id": "6bed66a2-5f93-4682-ae5e-2aab5f67782a",
                     "name": "Adds templates to a document in an  envelope.",
                     "request": {
                         "url": {
@@ -8053,7 +8053,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "1535cedf-0231-4749-a540-291408556b20",
+                    "_postman_id": "51b0db16-d050-457a-bb6b-5ebaa8fa7a49",
                     "name": "Deletes a template from a document in an existing envelope.",
                     "request": {
                         "url": {
@@ -8114,7 +8114,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "78730a38-0a2e-4e30-901b-caf601fecf86",
+                    "_postman_id": "db3212c8-6ecc-4926-952b-5b6d54e74dd1",
                     "name": "Gets the email setting overrides for an envelope.",
                     "request": {
                         "url": {
@@ -8164,7 +8164,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "0c694311-e8de-4d10-901f-7158446c8c81",
+                    "_postman_id": "13e57d1f-c822-4498-9a94-aa5f18ad7eac",
                     "name": "Updates the email setting overrides for an envelope.",
                     "request": {
                         "url": {
@@ -8214,7 +8214,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5d771f23-f3cf-4991-bd6d-987fa08234fc",
+                    "_postman_id": "79ea6203-ef6c-4ea5-9e68-6a594eef0920",
                     "name": "Adds email setting overrides to an envelope.",
                     "request": {
                         "url": {
@@ -8264,7 +8264,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5d248f33-e9bd-45d7-a99a-5477302e6ccb",
+                    "_postman_id": "623e5c7f-fe49-4eb1-8df0-a948acdd6cfb",
                     "name": "Deletes the email setting overrides for an envelope.",
                     "request": {
                         "url": {
@@ -8314,7 +8314,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c345a709-9e81-43d0-9f36-c16dc0de3a06",
+                    "_postman_id": "ee650c58-d0b1-45ea-a7c9-9abe8a64eca0",
                     "name": "Returns envelope form data for an existing envelope.",
                     "request": {
                         "url": {
@@ -8364,7 +8364,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "15633612-89ae-4c10-ba21-44234778ae09",
+                    "_postman_id": "2a611cbb-3ae7-4fe5-bfd7-fbb2599bac44",
                     "name": "Get the Original HTML Definition used to generate the Responsive HTML for the envelope.",
                     "request": {
                         "url": {
@@ -8414,7 +8414,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "abc97a4a-d4bb-4fc8-a7ec-11e11fdf6631",
+                    "_postman_id": "d126bc83-0a6d-46c0-870c-47ffa9496dfc",
                     "name": "Gets envelope lock information.",
                     "request": {
                         "url": {
@@ -8464,7 +8464,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d5532edb-eb5e-42e5-9100-f09451b69e5c",
+                    "_postman_id": "d6ad6dff-40bd-445b-9bd3-4009e26d7bbf",
                     "name": "Updates an envelope lock.",
                     "request": {
                         "url": {
@@ -8514,7 +8514,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ba18a3ca-4f81-42a9-b2c9-e86ede137a2f",
+                    "_postman_id": "040b1246-5fdf-4a5f-8bb3-69da10d3666e",
                     "name": "Lock an envelope.",
                     "request": {
                         "url": {
@@ -8564,7 +8564,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ddd5bb9f-41d5-4bcc-b20a-e1732e8a9320",
+                    "_postman_id": "4c46fcdc-4152-4a06-853e-8f3ca86c5fe6",
                     "name": "Deletes an envelope lock.",
                     "request": {
                         "url": {
@@ -8614,7 +8614,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "865f028e-90fc-4010-a5f9-9385af72d0ec",
+                    "_postman_id": "c8226a94-ae23-4841-ac13-f41459aa96ac",
                     "name": "Gets envelope notification information.",
                     "request": {
                         "url": {
@@ -8664,7 +8664,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "90424ce8-1e66-4e80-81eb-7f11b46a8b08",
+                    "_postman_id": "0624e2c1-604d-4d5b-a464-a31bebe23a81",
                     "name": "Sets envelope notification (Reminders/Expirations) structure for an existing envelope.",
                     "request": {
                         "url": {
@@ -8714,7 +8714,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "aa1d72cd-3e23-4a66-a3dd-2f4a9cc96f29",
+                    "_postman_id": "959aa683-37ec-4c0b-85ff-fb396033b0ac",
                     "name": "Gets the status of recipients for an envelope.",
                     "request": {
                         "url": {
@@ -8782,7 +8782,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "8ccfb2af-f345-417b-95db-4e1b84befdde",
+                    "_postman_id": "e0739acf-61da-4fcb-ad20-b13beb8f5ec6",
                     "name": "Updates recipients in a draft envelope or corrects recipient information for an in process envelope.",
                     "request": {
                         "url": {
@@ -8846,7 +8846,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "223e6874-514b-47c8-bb7a-ca22b641400d",
+                    "_postman_id": "18b51782-5c20-4cf1-9401-43a04d7e77d5",
                     "name": "Adds one or more recipients to an envelope.",
                     "request": {
                         "url": {
@@ -8902,7 +8902,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a0c9729c-539c-40c4-a868-0617020c7ad3",
+                    "_postman_id": "dff791e2-9ca6-47a5-85cc-5dc354de3c3a",
                     "name": "Deletes recipients from an envelope.",
                     "request": {
                         "url": {
@@ -8952,7 +8952,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ba1f78ca-b1e6-4d61-99b4-aa7d35c2dbe2",
+                    "_postman_id": "2cf81e7c-3b62-4280-806d-0ed347304206",
                     "name": "Deletes a recipient from an envelope.",
                     "request": {
                         "url": {
@@ -9007,7 +9007,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e4ab8fad-b301-4dba-bd5c-66aaa9d583f5",
+                    "_postman_id": "560def49-46ea-4aed-8aea-7f1c2d43aa4f",
                     "name": "Gets the Electronic Record and Signature Disclosure associated with the account.",
                     "request": {
                         "url": {
@@ -9069,7 +9069,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e6784b32-4115-45de-b68b-b54020f448ed",
+                    "_postman_id": "99594a07-5689-4872-a8f5-bf60909f3ce9",
                     "name": "Reserved: Gets the Electronic Record and Signature Disclosure associated with the account.",
                     "request": {
                         "url": {
@@ -9132,7 +9132,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b66c1891-f0e4-4c04-8acb-0881dc9f7c55",
+                    "_postman_id": "6a73ca5f-e67f-4b2b-9824-f35a820935de",
                     "name": "Returns document visibility for the recipients",
                     "request": {
                         "url": {
@@ -9188,7 +9188,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7f39b35c-33c4-42ae-a367-542245c69ed7",
+                    "_postman_id": "9297e08b-816f-4111-8f30-097b42f95855",
                     "name": "Updates document visibility for the recipients",
                     "request": {
                         "url": {
@@ -9244,11 +9244,11 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f8d2b3d4-6af9-4893-a559-d0f6c2487b76",
+                    "_postman_id": "dbcd0eeb-dbd6-4d28-bea8-4ef512ab3993",
                     "name": "Returns a resource token to get access to the identity events stored in the proof service related to this recipient.",
                     "request": {
                         "url": {
-                            "raw": "{{baseUrl}}/v2.1/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients/{{recipientId}}/identity_proof_token",
+                            "raw": "{{baseUrl}}/v2.1/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients/{{recipientId}}/identity_proof_token?token_scopes={{token_scopes}}",
                             "auth": {},
                             "host": [
                                 "{{baseUrl}}"
@@ -9263,6 +9263,12 @@
                                 "{{recipientId}}",
                                 "identity_proof_token"
                             ],
+                            "query": [
+                                {
+                                    "key": "token_scopes",
+                                    "value": "{{token_scopes}}"
+                                }
+                            ],
                             "variable": [
                                 {
                                     "value": "{{accountId}}",
@@ -9275,10 +9281,6 @@
                                 {
                                     "value": "{{recipientId}}",
                                     "id": "recipientId"
-                                },
-                                {
-                                    "value": "{{token_scopes}}",
-                                    "id": "token_scopes"
                                 }
                             ]
                         },
@@ -9304,7 +9306,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e8085307-375a-4aca-9e8f-a268392f5dc2",
+                    "_postman_id": "77d0b851-c157-4717-892e-bcea531b5c05",
                     "name": "Gets the initials image for a user.",
                     "request": {
                         "url": {
@@ -9366,7 +9368,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c5ab660b-c967-441e-b879-890a5ad31036",
+                    "_postman_id": "3c3459fd-469f-44ff-9da4-115db2666f55",
                     "name": "Sets the initials image for an accountless signer.",
                     "request": {
                         "url": {
@@ -9427,7 +9429,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9698bcab-4c56-4f2b-ac30-c7c5ec946de1",
+                    "_postman_id": "03942431-3685-49fe-8aad-33bc367120d3",
                     "name": "Gets signature information for a signer or sign-in-person recipient.",
                     "request": {
                         "url": {
@@ -9483,7 +9485,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9ca16d2c-939d-4efa-8857-44dab896205d",
+                    "_postman_id": "3fdf1785-a9d0-4f8f-afb5-c80d368bc7c7",
                     "name": "Retrieve signature image information for a signer/sign-in-person recipient.",
                     "request": {
                         "url": {
@@ -9545,7 +9547,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9df55796-fd1c-4e57-82eb-8b851803d587",
+                    "_postman_id": "850b4b93-db7b-423e-86ef-638d172e9655",
                     "name": "Sets the signature image for an accountless signer.",
                     "request": {
                         "url": {
@@ -9606,7 +9608,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "966cb1ed-f64a-43b1-b8ac-d6bc61cc6a81",
+                    "_postman_id": "9f8ac024-65a9-42ca-b10f-e9fb637ae025",
                     "name": "Gets the tabs information for a signer or sign-in-person recipient in an envelope.",
                     "request": {
                         "url": {
@@ -9672,7 +9674,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e68fff26-47e2-4827-8f9c-e19723c9a006",
+                    "_postman_id": "caa092ee-e735-4c4c-b00a-78747e68ff02",
                     "name": "Updates the tabs for a recipient.\n\n",
                     "request": {
                         "url": {
@@ -9728,7 +9730,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e62c1eb5-fe8f-4117-93d9-196d8c835411",
+                    "_postman_id": "c6a57050-b8be-41ca-89ef-fad615b19287",
                     "name": "Adds tabs for a recipient.",
                     "request": {
                         "url": {
@@ -9784,7 +9786,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "70d9f07d-801f-4839-a045-1090e157f30c",
+                    "_postman_id": "370063d2-2d8d-4bc8-b9f6-60680c4f62b7",
                     "name": "Deletes the tabs associated with a recipient.",
                     "request": {
                         "url": {
@@ -9840,7 +9842,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3b5c2fe2-1b99-4572-8a6f-d3cc87cf215e",
+                    "_postman_id": "f108f0bf-c495-4187-bd5c-4a92b3309eed",
                     "name": "Provides a link to access the Identity manual review related to a recipient.",
                     "request": {
                         "url": {
@@ -9897,7 +9899,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "fb936896-5d78-48a1-9a2e-65314da8edab",
+                    "_postman_id": "c03b4dc1-7794-4e8f-9cad-1b42733b8830",
                     "name": "Updates document visibility for the recipients",
                     "request": {
                         "url": {
@@ -9948,7 +9950,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "8edb88b4-7dde-4fe8-bd96-7bef6e0a52ba",
+                    "_postman_id": "20f4e791-2079-4c33-b4d4-8d8135f69b57",
                     "name": "Get Responsive HTML Preview for all documents in an envelope.",
                     "request": {
                         "url": {
@@ -9998,7 +10000,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "801e6277-421f-44a8-99df-11bc674b88d4",
+                    "_postman_id": "f76793e4-ae2f-4a93-a392-d26c8fa801cb",
                     "name": "Get encrypted tabs for envelope.",
                     "request": {
                         "url": {
@@ -10048,7 +10050,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "22991788-a639-4290-b9b9-ffa8b1a83bf9",
+                    "_postman_id": "7d99bffc-d712-4179-8021-5f5a8fca6843",
                     "name": "Update encrypted tabs for envelope.",
                     "request": {
                         "url": {
@@ -10098,7 +10100,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6691cfb9-26de-4557-b616-11a213cb7d83",
+                    "_postman_id": "5991285c-edf9-4fb9-82a4-7f530d549909",
                     "name": "Get List of Templates used in an Envelope",
                     "request": {
                         "url": {
@@ -10154,7 +10156,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d2388874-d968-40c1-9839-dc44a2a45533",
+                    "_postman_id": "6b69329f-8f85-4ff4-9d0b-4f47f0b0bd22",
                     "name": "Adds templates to an envelope.",
                     "request": {
                         "url": {
@@ -10210,7 +10212,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7b2bf9eb-3813-4b46-96d4-401fb0694e28",
+                    "_postman_id": "b6984e99-98e1-47cc-8bc2-d57361b009e9",
                     "name": "Returns a URL to the envelope correction UI.",
                     "request": {
                         "url": {
@@ -10261,7 +10263,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c4d0354a-8d3f-4972-ab7b-c583fdc39bdd",
+                    "_postman_id": "4ef73890-46cb-445c-9c78-4c74e23f586c",
                     "name": "Revokes the correction view URL to the Envelope UI",
                     "request": {
                         "url": {
@@ -10312,7 +10314,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ce46895d-eb10-4994-9c97-cdda2444728f",
+                    "_postman_id": "1b7e6a9d-dbf0-42fd-a60b-d3f48aafd88c",
                     "name": "Returns a URL to the edit view UI.",
                     "request": {
                         "url": {
@@ -10363,7 +10365,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d30d2526-5a0d-40af-a048-7dc334e62e2c",
+                    "_postman_id": "61494b08-dd8c-4d63-9a21-c86550497ee4",
                     "name": "Returns a URL to the recipient view UI.",
                     "request": {
                         "url": {
@@ -10414,7 +10416,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6b4ece2b-9119-42d4-8157-25f9f7a0bd1c",
+                    "_postman_id": "39a5d8b3-8b92-4ec0-af26-967486bca230",
                     "name": "Provides a URL to start a recipient view of the Envelope UI",
                     "request": {
                         "url": {
@@ -10465,7 +10467,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "90d526e6-00ff-4ac5-bead-cfdcd48a0d92",
+                    "_postman_id": "ecfd319e-03b6-4728-8d10-0ef5eac0fc0b",
                     "name": "Returns a URL to the sender view UI.",
                     "request": {
                         "url": {
@@ -10516,7 +10518,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e60424e1-cefb-421f-b6c8-add678fcd55f",
+                    "_postman_id": "38a206b2-c688-437f-a995-5dc49221c254",
                     "name": "Provides a URL to start a shared recipient view of the Envelope UI",
                     "request": {
                         "url": {
@@ -10567,7 +10569,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "27687641-7db3-473a-ba18-5e255d28befd",
+                    "_postman_id": "1f48f90d-a522-4176-bbd6-ac9d58cf2a5a",
                     "name": "Returns the workflow definition for an envelope.",
                     "request": {
                         "url": {
@@ -10617,7 +10619,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f722e083-7468-4e08-b285-8c2735278dd9",
+                    "_postman_id": "f689200a-84b9-4fd3-85e8-16ac8536bc55",
                     "name": "Updates the envelope workflow definition for an envelope.",
                     "request": {
                         "url": {
@@ -10667,7 +10669,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "232e3572-5f0c-4549-8fbf-d69acec246ab",
+                    "_postman_id": "21d760da-a1f9-414a-90a3-950221cb797c",
                     "name": "Delete the workflow definition for an envelope.",
                     "request": {
                         "url": {
@@ -10717,7 +10719,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "55ec7f56-8c05-4934-a3c4-9a249c91117b",
+                    "_postman_id": "5e422592-eccf-45d0-b562-d6a80c0c5303",
                     "name": "Returns the scheduled sending rules for an envelope's workflow definition.",
                     "request": {
                         "url": {
@@ -10768,7 +10770,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "fcaa83e8-cc01-4510-a11e-8d04e140323e",
+                    "_postman_id": "84c095bd-637a-4887-9b0c-3bf9710ab4c0",
                     "name": "Updates the scheduled sending rules for an envelope's workflow definition.",
                     "request": {
                         "url": {
@@ -10819,7 +10821,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "00b82e9c-2cdc-4e45-bf96-0061d139c661",
+                    "_postman_id": "a344c5e8-8f9f-484d-a2b9-d832d2f94dc3",
                     "name": "Deletes the scheduled sending rules for the envelope's workflow.",
                     "request": {
                         "url": {
@@ -10870,7 +10872,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "fd5133bd-afbd-4f23-8d1f-87207baf0bae",
+                    "_postman_id": "fdc40bc1-f97c-4792-96b4-fcfbc9e01b40",
                     "name": "Creates and adds a new workflow step definition for an envelope's workflow",
                     "request": {
                         "url": {
@@ -10921,7 +10923,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "11e962bb-a65d-4da8-934e-c64d73f7b28f",
+                    "_postman_id": "a9997b00-1f16-4144-8c97-caf13a2bc30f",
                     "name": "Returns the workflow step definition for an envelope by step id.",
                     "request": {
                         "url": {
@@ -10977,7 +10979,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f92610b2-244a-483c-96aa-92e1f5b8cc97",
+                    "_postman_id": "ad8bf323-c2c0-4b31-988b-9a9f06b616a7",
                     "name": "Updates the envelope workflow step definition for an envelope.",
                     "request": {
                         "url": {
@@ -11033,7 +11035,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6da40292-1ee5-4689-81a4-e19d45f3acbb",
+                    "_postman_id": "2faaa3e3-94a2-4c71-87b0-244a72070c3e",
                     "name": "Deletes the envelope workflow step definition for an envelope's workflow by step id.",
                     "request": {
                         "url": {
@@ -11089,7 +11091,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "1b93d07f-ac7b-42f0-86f6-26b672ecaf80",
+                    "_postman_id": "1272e7d0-9693-4081-9ea7-b83681a63511",
                     "name": "Returns the delayed routing rules for an envelope's workflow step definition.",
                     "request": {
                         "url": {
@@ -11146,7 +11148,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c9ea1f2b-c042-4ca8-8fe2-465741f617f7",
+                    "_postman_id": "a2a5daf7-566e-43e1-ae9a-109fd3f86f1e",
                     "name": "Updates the delayed routing rules for an envelope's workflow step definition.",
                     "request": {
                         "url": {
@@ -11203,7 +11205,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7cbeca95-76b8-408e-8ad5-3da2063c9da7",
+                    "_postman_id": "fb1abe20-b4b2-437a-bcae-ff3ae0057ffc",
                     "name": "Deletes the delayed routing rules for the specified envelope workflow step.",
                     "request": {
                         "url": {
@@ -11260,7 +11262,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5216d763-a7ff-449d-859a-cb5721dea3dd",
+                    "_postman_id": "a4b0c7de-405d-45f7-b47b-3ddb74f05475",
                     "name": "Gets the envelope status for the specified envelopes.",
                     "request": {
                         "url": {
@@ -11355,7 +11357,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "fee93402-12c4-4442-afed-ac3e3cdd6ebc",
+                    "_postman_id": "89df4e75-3a50-4766-8491-95c3e3a7627f",
                     "name": "Returns a list of envelope transfer rules in the specified account.",
                     "request": {
                         "url": {
@@ -11410,7 +11412,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "593285ad-a04e-4846-b804-9ea9699263cd",
+                    "_postman_id": "e586c3ee-b9df-4495-959d-da89f5751e21",
                     "name": "Update envelope transfer rules for an account.",
                     "request": {
                         "url": {
@@ -11455,7 +11457,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e600b0d9-05ed-427f-91cf-7ac026f08a93",
+                    "_postman_id": "ea87ac75-2bc8-492a-845b-6e05e17488aa",
                     "name": "Add envelope transfer rules to an account.",
                     "request": {
                         "url": {
@@ -11500,7 +11502,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "0dd8bad8-5909-4c55-923a-ce5502efef40",
+                    "_postman_id": "564df94c-0aa4-4b7f-9860-568099ed71ea",
                     "name": "Update an envelope transfer rule for an account.",
                     "request": {
                         "url": {
@@ -11550,7 +11552,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "95854b7b-a9fe-445a-93c9-65f884eb0760",
+                    "_postman_id": "8d262993-fa8f-463c-a510-3e563d21cf21",
                     "name": "Delete envelope transfer rules for an account.",
                     "request": {
                         "url": {
@@ -11600,7 +11602,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6e4cde54-1ea1-421e-86e0-f2ea03104e88",
+                    "_postman_id": "fc3c2a20-aa8d-41f4-821c-e65e3ecc6e9e",
                     "name": "Returns the workflow definition for a template.",
                     "request": {
                         "url": {
@@ -11650,7 +11652,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "02c69b92-4735-441a-b23a-a039b103654a",
+                    "_postman_id": "aab1c84a-8503-4a4d-a6f3-2bc3160bd049",
                     "name": "Updates the workflow definition for a template.",
                     "request": {
                         "url": {
@@ -11700,7 +11702,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e2e72877-2c77-4050-ba31-64004aa08ae8",
+                    "_postman_id": "76c032ba-81e0-4149-93e8-260fbeeb2b64",
                     "name": "Delete the workflow definition for a template.",
                     "request": {
                         "url": {
@@ -11750,7 +11752,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "72249cb0-6225-4b40-9783-2687638e4341",
+                    "_postman_id": "c3d72af3-fe87-423d-baa0-9ca8e0add538",
                     "name": "Returns the scheduled sending rules for a template's workflow definition.",
                     "request": {
                         "url": {
@@ -11801,7 +11803,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "26143082-cdb0-480f-b8bb-7970f59c2741",
+                    "_postman_id": "a8de0b7e-0244-4128-ae45-b7aa52a25ff5",
                     "name": "Updates the scheduled sending rules for a template's workflow definition.",
                     "request": {
                         "url": {
@@ -11852,7 +11854,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9da5e0ad-eff5-4e8d-a78e-2ddf2c3e4828",
+                    "_postman_id": "01d41721-7fbd-4adb-9656-b8132a148ab2",
                     "name": "Deletes the scheduled sending rules for the template's workflow.",
                     "request": {
                         "url": {
@@ -11903,7 +11905,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5032be50-d7a5-47be-bd09-555e93921d5c",
+                    "_postman_id": "e5f790f8-b64e-49dc-9373-38fe109d00f4",
                     "name": "Creates and adds a new workflow step definition for a template's workflow",
                     "request": {
                         "url": {
@@ -11954,7 +11956,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9d7813e3-c8e4-4c2c-ad88-d228cc35421c",
+                    "_postman_id": "37fb8737-ad84-40c8-aad0-9c094be2b25e",
                     "name": "Returns the workflow step definition for a template by step id.",
                     "request": {
                         "url": {
@@ -12010,7 +12012,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "1f49de2e-1e2a-4a73-972a-8bb6e8300f18",
+                    "_postman_id": "0a54b821-e90b-464a-9eec-d40c7c1e6fa3",
                     "name": "Updates the template workflow step definition for an envelope.",
                     "request": {
                         "url": {
@@ -12066,7 +12068,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "4667a8ee-14ca-44d6-a4af-3c08f268f233",
+                    "_postman_id": "560401fd-ab71-412d-83cf-bc270eb67436",
                     "name": "Deletes the workflow step definition for an template's workflow by step id.",
                     "request": {
                         "url": {
@@ -12122,7 +12124,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "85c1d964-f502-4996-bfdc-b69a9b682716",
+                    "_postman_id": "aa5d0175-ce82-46d7-afc0-d43c27620993",
                     "name": "Returns the delayed routing rules for a template's workflow step definition.",
                     "request": {
                         "url": {
@@ -12179,7 +12181,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c3cbe6ce-3943-4ea8-9271-bf1bf40e00a5",
+                    "_postman_id": "54247f0b-cb44-4dcc-bb95-506336c5c509",
                     "name": "Updates the delayed routing rules for a template's workflow step definition.",
                     "request": {
                         "url": {
@@ -12236,7 +12238,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "922f7101-ed79-4227-997e-8b81b6c826c9",
+                    "_postman_id": "40410b73-9a5e-4551-bba3-83cecb8e9ac5",
                     "name": "Deletes the delayed routing rules for the specified template workflow step.",
                     "request": {
                         "url": {
@@ -12293,7 +12295,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "edc920b9-eb4d-4c73-8d66-7f29c7558625",
+                    "_postman_id": "17bec045-9db9-4d05-b3a9-bb4e04d3f5ba",
                     "name": "Returns a URL to the authentication view UI.",
                     "request": {
                         "url": {
@@ -12338,7 +12340,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "0624a318-c6e0-44fe-ad0b-5071fdc72a50",
+                    "_postman_id": "5c0f8cf3-a1e7-4baf-b935-3af1dc75a520",
                     "name": "Get notary jurisdictions for a user",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/current_user/notary/journals?count={{count}}&search_text={{search_text}}&start_position={{start_position}}",
@@ -12366,12 +12368,12 @@
             ]
         },
         {
-            "_postman_id": "722d89cd-2fee-4aad-bba2-2c60819d3b3d",
+            "_postman_id": "13effc9f-6561-42e1-9e44-d2bfcbe6dbfc",
             "name": "Connect",
             "description": "Folder for Connect",
             "item": [
                 {
-                    "_postman_id": "9a094423-78d0-4c97-a0fa-208b3de585e1",
+                    "_postman_id": "0f320c6a-4e08-4686-a1fd-f342bfe69848",
                     "name": "Get Connect Configuration Information",
                     "request": {
                         "url": {
@@ -12415,7 +12417,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "54c4e327-3f26-495d-9496-33103982ba25",
+                    "_postman_id": "48d36879-008b-4e77-b774-be8ad5e5e848",
                     "name": "Updates a specified Connect configuration.",
                     "request": {
                         "url": {
@@ -12459,7 +12461,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "10bbdabb-b1b6-4dfd-b4a2-d73e4d6912ec",
+                    "_postman_id": "9f905038-664d-4b49-8f11-7f5564fae3b9",
                     "name": "Creates a connect configuration for the specified account.",
                     "request": {
                         "url": {
@@ -12503,7 +12505,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f90856f5-575c-409c-843c-5947b01eaa81",
+                    "_postman_id": "a14c61fb-0f38-4b89-a569-d7b79ba4ce80",
                     "name": "Get a Connect Configuration Information",
                     "request": {
                         "url": {
@@ -12552,7 +12554,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d0ed1d57-3cfa-4996-aafe-4b0ab14f56d2",
+                    "_postman_id": "a7986111-696e-4bbe-bc12-a342120914d3",
                     "name": "Deletes the specified connect configuration.",
                     "request": {
                         "url": {
@@ -12601,7 +12603,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "15063875-a3fc-4938-b213-b854373be87c",
+                    "_postman_id": "f707e821-aa56-4013-a5c8-25e261b90ee5",
                     "name": "Returns all users from the configured Connect service.",
                     "request": {
                         "url": {
@@ -12678,7 +12680,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "049514e6-05ff-47e3-b40e-584e10490585",
+                    "_postman_id": "6cbd6d92-f7f9-425b-a5a3-e7840a679d5b",
                     "name": "Returns users from the configured Connect service.",
                     "request": {
                         "url": {
@@ -12754,7 +12756,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b8bbcc03-6022-4d41-b6b8-aea32f5c81b1",
+                    "_postman_id": "888df36e-e82a-40f9-a354-f8a67c90a386",
                     "name": "Republishes Connect information for the specified envelope.",
                     "request": {
                         "url": {
@@ -12805,7 +12807,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "14e88a84-44b3-4b50-b9fe-4e0453df44f0",
+                    "_postman_id": "915457e9-c132-43e6-a8eb-f04fcf58e353",
                     "name": "Republishes Connect information for multiple envelopes.",
                     "request": {
                         "url": {
@@ -12851,7 +12853,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d7d55def-04df-4391-b711-76c16d03367d",
+                    "_postman_id": "11107693-3226-4183-ab30-49da8c2462be",
                     "name": "Gets the Connect failure log information.",
                     "request": {
                         "url": {
@@ -12906,7 +12908,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "88402f55-0eea-47ee-a8b7-814badd52d84",
+                    "_postman_id": "b86e2ba9-faf5-4c1d-ae96-cdd8288951bf",
                     "name": "Deletes a Connect failure log entry.",
                     "request": {
                         "url": {
@@ -12956,7 +12958,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6d5b9a2e-aeba-411d-84b9-3a36519746b9",
+                    "_postman_id": "c9934197-4c9d-4a83-8aed-640613072704",
                     "name": "Gets the Connect log.",
                     "request": {
                         "url": {
@@ -13011,7 +13013,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "fdc17341-8405-45ac-86d1-71cce0690500",
+                    "_postman_id": "3dd1c075-8686-4d95-9dc4-7118c275fefb",
                     "name": "Gets a list of Connect log entries.",
                     "request": {
                         "url": {
@@ -13056,7 +13058,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "965bf131-922d-4996-9ac8-81b67b6f7f4e",
+                    "_postman_id": "bb47d7c4-70cb-47ee-a91b-a1755339b081",
                     "name": "Get the specified Connect log entry.",
                     "request": {
                         "url": {
@@ -13112,7 +13114,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "eb7a213a-a51f-45a6-a018-b076b54feecd",
+                    "_postman_id": "504fb85b-74be-4439-a952-845610862d88",
                     "name": "Deletes a specified Connect log entry.",
                     "request": {
                         "url": {
@@ -13162,7 +13164,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6c6362df-9cac-4613-b6e4-c7be7fabc5c8",
+                    "_postman_id": "9c1f45a5-2ac7-4ecd-9459-83a83a282f07",
                     "name": "Sets the Connect OAuth Config for the account.",
                     "request": {
                         "url": {
@@ -13207,7 +13209,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "854f4016-6c95-4f41-b7c5-761782e6eeda",
+                    "_postman_id": "2a73ce0f-ad5a-431a-980c-03b101048eca",
                     "name": "Updates the existing Connect OAuth Config for the account.",
                     "request": {
                         "url": {
@@ -13252,7 +13254,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "35ea280f-71a3-4c2c-8dc4-8431a753b408",
+                    "_postman_id": "17dbe43f-3720-4b42-bf3f-b111070f90b6",
                     "name": "Sets the Connect OAuth Config for the account.",
                     "request": {
                         "url": {
@@ -13297,7 +13299,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5add8f60-56c0-4047-903c-385eea595f5c",
+                    "_postman_id": "0d60f8a1-4257-4100-a7af-20e108bbf618",
                     "name": "Sets the Connect OAuth Config for the account.",
                     "request": {
                         "url": {
@@ -13344,12 +13346,12 @@
             ]
         },
         {
-            "_postman_id": "b3b95b83-93f6-4385-8c2d-fefb4519508e",
+            "_postman_id": "d01506e4-d257-4d24-b0f3-6cf004d0322d",
             "name": "Users",
             "description": "Folder for Users",
             "item": [
                 {
-                    "_postman_id": "db44c87b-1435-48d6-95cc-8ca485d658b4",
+                    "_postman_id": "e52f5dd6-ddb5-4806-9af3-c95da4cd2998",
                     "name": "Replaces contacts associated with an account for the DocuSign service.",
                     "request": {
                         "url": {
@@ -13393,7 +13395,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "37823c66-77db-4c8e-bad9-5050ab0e038d",
+                    "_postman_id": "d4d1af42-08e1-4681-a6e5-c654bb95648c",
                     "name": "Imports multiple new contacts into the contacts collection from CSV, JSON, or XML (based on content type).",
                     "request": {
                         "url": {
@@ -13437,7 +13439,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "2111372a-510c-435a-91a6-5da11b4a378f",
+                    "_postman_id": "33b64900-9e2e-4cc6-96dc-96a51d4cc83f",
                     "name": "Delete contacts associated with an account for the DocuSign service.",
                     "request": {
                         "url": {
@@ -13481,7 +13483,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b8b6ad3a-0e94-488c-9e51-72aa09819dba",
+                    "_postman_id": "509e9140-c2b4-476a-abfc-3ede549b6c54",
                     "name": "Gets a particular contact associated with the user's account.",
                     "request": {
                         "url": {
@@ -13536,7 +13538,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "88ebe929-e500-4a86-9d6c-16b9f0bfb923",
+                    "_postman_id": "cf20f40a-7954-4d2b-8857-349bb9df699a",
                     "name": "Replaces a particular contact associated with an account for the DocuSign service.",
                     "request": {
                         "url": {
@@ -13585,7 +13587,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "04cecc20-c2cc-4c77-a059-172d9674ff30",
+                    "_postman_id": "a9b8fb49-2602-4259-9407-8714d1566818",
                     "name": "Provides a URL to start an edit view of the Template UI",
                     "request": {
                         "url": {
@@ -13636,7 +13638,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3a7d3c7a-b9ab-4ee4-a167-b88a6a4947a7",
+                    "_postman_id": "3ab22a54-b01a-4586-9172-bd78b6fdefa2",
                     "name": "Retrieves the list of users for the specified account.",
                     "request": {
                         "url": {
@@ -13734,7 +13736,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "59f3e672-a182-4f4e-a9d3-1008ec395cbd",
+                    "_postman_id": "6582ddee-b2cb-484f-89c2-5a9dbc0354bf",
                     "name": "Change one or more user in the specified account.",
                     "request": {
                         "url": {
@@ -13784,7 +13786,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a37db4e8-7de6-43bc-b576-119d324c9362",
+                    "_postman_id": "a389937a-6a47-4bc7-b08a-77d8ec82b004",
                     "name": "Adds news user to the specified account.",
                     "request": {
                         "url": {
@@ -13828,7 +13830,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ab4727df-26bc-4fc4-912d-2884181c585b",
+                    "_postman_id": "c9ab8cdc-b230-4451-9362-ba9a80621eae",
                     "name": "Removes users account privileges.",
                     "request": {
                         "url": {
@@ -13878,7 +13880,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "110c2f38-3b7b-4acc-a497-2bfcb6c54dce",
+                    "_postman_id": "e4eeb102-6a22-452d-bc12-fc76cc00810f",
                     "name": "Gets the user information for a specified user.",
                     "request": {
                         "url": {
@@ -13937,7 +13939,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b404a27e-49db-49a5-ba65-7571dd49634a",
+                    "_postman_id": "c6ceae60-02b2-473f-9121-abeccb9cedb2",
                     "name": "Updates the specified user information.",
                     "request": {
                         "url": {
@@ -13992,7 +13994,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ec5f2a41-3a80-435e-92bd-0287d3d64751",
+                    "_postman_id": "7b3af585-673a-4168-a44f-c02035831f7a",
                     "name": "Retrieves the custom user settings for a specified user.",
                     "request": {
                         "url": {
@@ -14042,7 +14044,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c2c2c108-aee7-43c8-b6ff-7c0d8a205484",
+                    "_postman_id": "6feb0690-2571-4940-aa2f-39ebde274284",
                     "name": "Adds or updates custom user settings for the specified user.",
                     "request": {
                         "url": {
@@ -14092,7 +14094,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "fd8e56fc-c6ca-4b79-9dfc-91a4e0472574",
+                    "_postman_id": "52bba1e5-216a-4aad-9758-b88133c2ede0",
                     "name": "Deletes custom user settings for a specified user.",
                     "request": {
                         "url": {
@@ -14142,7 +14144,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ae44ddc1-7b16-4d9a-9e45-e56f64bf9ff7",
+                    "_postman_id": "b15c9e91-9dfa-4928-8b7c-e16c861ab3f7",
                     "name": "Retrieves the user profile for a specified user.",
                     "request": {
                         "url": {
@@ -14192,7 +14194,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c23e3f37-54e2-42af-991b-b7ddc273fa21",
+                    "_postman_id": "37be7f4b-fa2a-477f-950f-c770cca8132a",
                     "name": "Updates the user profile information for the specified user.",
                     "request": {
                         "url": {
@@ -14242,7 +14244,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "59c1b20a-1057-4677-aa46-07ae4f7e75cb",
+                    "_postman_id": "aff53b69-9068-4c51-9eb2-3847a4d3db6f",
                     "name": "Retrieves the user profile image for the specified user.",
                     "request": {
                         "url": {
@@ -14299,7 +14301,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "702e3a7d-bdd5-447d-a9ae-f1b3838fb917",
+                    "_postman_id": "0698d440-ff4a-4d13-9d17-47c8a8236b5f",
                     "name": "Updates the user profile image for a specified user.",
                     "request": {
                         "url": {
@@ -14355,7 +14357,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "346369dc-633f-4a65-86c1-15cfe879ec1c",
+                    "_postman_id": "75305040-faa6-4347-ae41-5dc0c6bd0c31",
                     "name": "Deletes the user profile image for the specified user.",
                     "request": {
                         "url": {
@@ -14406,7 +14408,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "48c2f70e-7381-4660-8d8d-e1df1d6a37fb",
+                    "_postman_id": "f46c517c-be5f-4b84-82f0-c750e9676abe",
                     "name": "Gets the user account settings for a specified user.",
                     "request": {
                         "url": {
@@ -14456,7 +14458,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "2b048178-b626-407e-9d61-9ef688958cb0",
+                    "_postman_id": "e0b91a76-c902-4fc6-8203-aff6e8da06c7",
                     "name": "Updates the user account settings for a specified user.",
                     "request": {
                         "url": {
@@ -14512,7 +14514,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "4c340877-1a14-4a33-ab9e-e53dfe4cf7d5",
+                    "_postman_id": "d77a44d3-14fc-440c-82d5-8bdd3160c3d2",
                     "name": "Retrieves a list of user signature definitions for a specified user.",
                     "request": {
                         "url": {
@@ -14568,7 +14570,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "31b90bea-153e-45bb-8716-806378792cb8",
+                    "_postman_id": "6705f50f-2fe2-40e3-86ec-ad9455c4959b",
                     "name": "Adds/updates a user signature.",
                     "request": {
                         "url": {
@@ -14618,7 +14620,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "46229eee-4d0a-4304-99f4-3cc3390cf6d1",
+                    "_postman_id": "e3620de2-8954-4fbd-9d49-516522e56ada",
                     "name": "Adds user Signature and initials images to a Signature.",
                     "request": {
                         "url": {
@@ -14668,7 +14670,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "24701297-72e3-4ef0-8977-d901990fb5f9",
+                    "_postman_id": "a62a9bdd-f28d-4594-88fd-730614ae765b",
                     "name": "Gets the user signature information for the specified user.",
                     "request": {
                         "url": {
@@ -14723,7 +14725,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "113926ca-c5ea-4b73-a636-276a29a80492",
+                    "_postman_id": "ab203460-5020-4d27-80d9-6e502e18997d",
                     "name": "Updates the user signature for a specified user.",
                     "request": {
                         "url": {
@@ -14784,7 +14786,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "daa2b08e-5a77-4fe9-a979-a91ed1822182",
+                    "_postman_id": "7dc51331-80d4-4449-acbf-f2dd7eab5c54",
                     "name": "Removes removes signature information for the specified user.",
                     "request": {
                         "url": {
@@ -14839,7 +14841,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "cb83ba99-a831-45aa-94bf-1a2b0761c929",
+                    "_postman_id": "1139c1c0-2341-4ba1-a77e-5a4fe5e10b23",
                     "name": "Retrieves the user initials image or the  user signature image for the specified user.",
                     "request": {
                         "url": {
@@ -14905,7 +14907,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "29bf9e39-28ea-4769-b97f-8669236bd23a",
+                    "_postman_id": "2a81036b-dde6-4408-a379-4c3a44f3dbd1",
                     "name": "Updates the user signature image or user initials image for the specified user.",
                     "request": {
                         "url": {
@@ -14976,7 +14978,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "32cc85a9-2f19-4a72-bd8c-72cec513218c",
+                    "_postman_id": "790cf402-76b6-4573-8909-a62061c4485c",
                     "name": "Deletes the user initials image or the  user signature image for the specified user.",
                     "request": {
                         "url": {
@@ -15038,12 +15040,12 @@
             ]
         },
         {
-            "_postman_id": "7f1c42a9-309f-4309-b26e-9a82d690b161",
+            "_postman_id": "9b7da64a-9045-4adc-8d18-90c376c1c59d",
             "name": "Folders",
             "description": "Folder for Folders",
             "item": [
                 {
-                    "_postman_id": "fc18becd-57fe-4471-a27e-2ed8a910e81f",
+                    "_postman_id": "538bd65c-f441-4573-8440-b4579d9904ad",
                     "name": "Gets a list of the folders for the account.",
                     "request": {
                         "url": {
@@ -15117,7 +15119,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e68847e8-66bc-435f-b8ae-12dfdcf455d6",
+                    "_postman_id": "99738249-1bce-4397-8327-2e888c1f82a7",
                     "name": "Gets a list of the envelopes in the specified folder.",
                     "request": {
                         "url": {
@@ -15200,7 +15202,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "8eabe58e-3fe1-454d-b3e2-11df3f12afc1",
+                    "_postman_id": "789cf949-b979-4315-8661-e545ee601186",
                     "name": "Moves an envelope from its current folder to the specified folder.",
                     "request": {
                         "url": {
@@ -15249,7 +15251,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7cbd72d6-ef8a-45c6-a4c9-4a7f986ab25e",
+                    "_postman_id": "9c4226fb-ae45-4e89-886a-4759d9248134",
                     "name": "Gets a list of envelopes in folders matching the specified criteria.",
                     "request": {
                         "url": {
@@ -15334,12 +15336,12 @@
             ]
         },
         {
-            "_postman_id": "c561cae8-44a1-4db2-b76e-aca6452e6fae",
+            "_postman_id": "97653127-88e1-428c-a402-74b73d454973",
             "name": "UserGroups",
             "description": "Folder for UserGroups",
             "item": [
                 {
-                    "_postman_id": "fae78dc2-f451-4232-a9e1-f72a186e1cfa",
+                    "_postman_id": "6fb8c9be-0943-4729-9218-8f3dec75380d",
                     "name": "Gets information about groups associated with the account.",
                     "request": {
                         "url": {
@@ -15405,7 +15407,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "db342457-e873-42dc-9847-3b19c44f7ff3",
+                    "_postman_id": "324045fa-b68e-42a6-bca9-2949a6985776",
                     "name": "Updates the group information for a group.",
                     "request": {
                         "url": {
@@ -15449,7 +15451,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3979eee9-cf51-42a3-a96e-c0fcec77ba24",
+                    "_postman_id": "46cd36f2-571b-47ef-8bdc-ee9a0d3d47b3",
                     "name": "Creates one or more groups for the account.",
                     "request": {
                         "url": {
@@ -15493,7 +15495,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "59b26945-523d-419e-bcc9-6767ba35f493",
+                    "_postman_id": "1843f992-54bb-4c55-8d41-908324731509",
                     "name": "Deletes an existing user group.",
                     "request": {
                         "url": {
@@ -15537,7 +15539,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "d46c7a43-c86e-489d-a4c6-4a2f7da60710",
+                    "_postman_id": "9f4f7c7c-29a4-4867-bb6b-6311a352bc66",
                     "name": "Gets group brand ID Information.\n",
                     "request": {
                         "url": {
@@ -15587,7 +15589,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "cdcaa453-7b8b-4fb4-b7c1-4ed8d4a5ea39",
+                    "_postman_id": "49777f6c-d656-4f0f-b2e9-24dd299af577",
                     "name": "Adds group brand ID information to a group.",
                     "request": {
                         "url": {
@@ -15637,7 +15639,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9556041c-5005-4442-b205-d1c7152d5362",
+                    "_postman_id": "753d6f1a-665b-478c-981a-75da4de2863a",
                     "name": "Deletes brand information from the requested group.",
                     "request": {
                         "url": {
@@ -15687,7 +15689,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6f49b5b9-74bb-48bc-b5b9-d16d6243424d",
+                    "_postman_id": "cd11962b-a7df-4b63-a539-f7ab555e3f8f",
                     "name": "Gets a list of users in a group.",
                     "request": {
                         "url": {
@@ -15747,7 +15749,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "309a0cb8-f83c-48a9-ab91-9cdfd2e62492",
+                    "_postman_id": "205777c2-f26a-470e-bbce-46622be52371",
                     "name": "Adds one or more users to an existing group.",
                     "request": {
                         "url": {
@@ -15797,7 +15799,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5d649bdb-3d11-4391-bba2-77bd6e99a247",
+                    "_postman_id": "2dad3fe2-1e35-4016-a9c9-050af52c52c8",
                     "name": "Deletes one or more users from a gro",
                     "request": {
                         "url": {
@@ -15849,12 +15851,12 @@
             ]
         },
         {
-            "_postman_id": "fbf88ac9-089e-4481-9aa8-a93866a3948b",
+            "_postman_id": "e1c03bd7-ddd8-4a99-988d-dd022424dcc7",
             "name": "Payments",
             "description": "Folder for Payments",
             "item": [
                 {
-                    "_postman_id": "cb8afb5d-5fcc-4779-8cfb-9ce7fbbb0b66",
+                    "_postman_id": "020c810c-40f7-44d1-bb0b-988bdc47bedf",
                     "name": "Get all payment gateway account for the provided accountId",
                     "request": {
                         "url": {
@@ -15900,12 +15902,12 @@
             ]
         },
         {
-            "_postman_id": "ff14fd6d-0040-48af-837e-e0adfe930c8f",
+            "_postman_id": "7ce14ee6-7da8-43d0-96ba-936749e6789f",
             "name": "PowerForms",
             "description": "Folder for PowerForms",
             "item": [
                 {
-                    "_postman_id": "0cbf2c5f-ba16-47f1-bf25-c7a513492192",
+                    "_postman_id": "df782ec5-7ac4-457c-8e2d-4cc9ed9d9847",
                     "name": "Returns the list of PowerForms available to the user.",
                     "request": {
                         "url": {
@@ -15975,7 +15977,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "282cb71c-28a0-463c-b45b-62786fba7e78",
+                    "_postman_id": "bbe55d42-fe54-46f1-b9bf-1cdf709de0e3",
                     "name": "Creates a new PowerForm.",
                     "request": {
                         "url": {
@@ -16019,7 +16021,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b907b9bc-1542-4d32-a3fc-804b6a0f2975",
+                    "_postman_id": "50868ec0-2ba5-499d-a5fc-564983c041a7",
                     "name": "Deletes one or more PowerForms",
                     "request": {
                         "url": {
@@ -16063,7 +16065,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f3f10a8e-7764-4a29-a5c8-14da6d52377c",
+                    "_postman_id": "4785ff66-aa0e-4acf-b91b-85ef6f21f7c0",
                     "name": "Returns a single PowerForm.",
                     "request": {
                         "url": {
@@ -16112,7 +16114,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3dbbabda-754a-4f93-94ae-494b3c5b3665",
+                    "_postman_id": "b421e81c-bfe0-4233-817f-ed4555ca52b5",
                     "name": "Creates a new PowerForm.",
                     "request": {
                         "url": {
@@ -16161,7 +16163,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "623f99e9-3138-4b40-be1a-d24049a92a95",
+                    "_postman_id": "a926cb04-1f18-4d90-ac0e-d1136b9ad78c",
                     "name": "Delete a PowerForm.",
                     "request": {
                         "url": {
@@ -16210,7 +16212,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6816c7c1-98eb-4bed-ad69-d6e0d1430005",
+                    "_postman_id": "a48fb847-2595-4844-bf4a-d752b5ce48e5",
                     "name": "Returns the form data associated with the usage of a PowerForm.",
                     "request": {
                         "url": {
@@ -16274,7 +16276,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f98dcda5-3c62-4833-9f0b-4b341a93cbe2",
+                    "_postman_id": "7a7dcef5-6322-4e8f-8e8d-94468652f521",
                     "name": "Returns the list of PowerForms available to the user.",
                     "request": {
                         "url": {
@@ -16327,12 +16329,12 @@
             ]
         },
         {
-            "_postman_id": "0587d8e2-de16-4671-849a-08c1b061e11b",
+            "_postman_id": "cff53739-deaa-4cd1-a1c4-b60d416089ef",
             "name": "EmailArchive",
             "description": "Folder for EmailArchive",
             "item": [
                 {
-                    "_postman_id": "46ef4eb1-5396-49c4-89e4-1f9673fab5a1",
+                    "_postman_id": "850e1def-6c0e-4056-b492-84203420392c",
                     "name": "Get the blind carbon copy email archive entries owned by the specified account",
                     "request": {
                         "url": {
@@ -16387,7 +16389,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "caee613f-bb92-47a3-b16e-9065aced3740",
+                    "_postman_id": "3ac5abe4-eeec-4689-b2a6-a955c02cc630",
                     "name": "Creates a blind carbon copy email archive entry",
                     "request": {
                         "url": {
@@ -16432,7 +16434,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "15d68e89-80e4-47c0-a0f8-c60b3f2c3066",
+                    "_postman_id": "f4223e56-46e8-4852-b6b5-a45daea9aeda",
                     "name": "Get the blind carbon copy email archive history entries for the specified archive",
                     "request": {
                         "url": {
@@ -16492,7 +16494,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a01e5c24-5c74-4e11-839a-38c917595443",
+                    "_postman_id": "46570240-66b3-4ae9-bbac-76836fdb56ea",
                     "name": "Delete a blind carbon copy email archive for an account.",
                     "request": {
                         "url": {
@@ -16544,12 +16546,12 @@
             ]
         },
         {
-            "_postman_id": "2bec121b-8f23-43d6-84f6-3c26d71a7eeb",
+            "_postman_id": "06c0efd5-3957-4b73-a09d-16f1e03c8eae",
             "name": "SigningGroups",
             "description": "Folder for SigningGroups",
             "item": [
                 {
-                    "_postman_id": "35e12af2-00cd-4274-81ef-718e52cc6631",
+                    "_postman_id": "92a749ca-c3d5-4498-9c8c-73c146776917",
                     "name": "Gets a list of the Signing Groups in an account.",
                     "request": {
                         "url": {
@@ -16603,7 +16605,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "10dd8c53-0b79-4b28-aa7b-ca6715c82cbf",
+                    "_postman_id": "4556d71c-d02a-4c2b-8ae8-02ab3ebcfffe",
                     "name": "Updates signing group names.",
                     "request": {
                         "url": {
@@ -16647,7 +16649,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a2a43e70-1f16-4463-81d5-461796af2a7d",
+                    "_postman_id": "fca495db-900f-4c46-82c9-5a922f30579c",
                     "name": "Creates a signing group. ",
                     "request": {
                         "url": {
@@ -16691,7 +16693,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ca09a4e3-cb4e-41dc-8009-ccb9dbb3bdb7",
+                    "_postman_id": "3ba7e94a-b9df-4efc-8455-216a69c07db5",
                     "name": "Deletes one or more signing groups.",
                     "request": {
                         "url": {
@@ -16735,7 +16737,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "91d6b1f3-34e6-44c1-ac5b-59ac714f8410",
+                    "_postman_id": "075a45cc-6bfe-4236-8251-63d7f60502a0",
                     "name": "Gets information about a signing group. ",
                     "request": {
                         "url": {
@@ -16784,7 +16786,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "bb6830e1-6467-4cad-a4a4-946215d32106",
+                    "_postman_id": "d93b0d9f-0c1c-442b-9fe6-1d14866e879b",
                     "name": "Updates a signing group. ",
                     "request": {
                         "url": {
@@ -16833,7 +16835,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c5fb189e-af33-476a-b713-c35f496b7157",
+                    "_postman_id": "c11e7278-d5df-4c46-b933-58686f4926e3",
                     "name": "Gets a list of members in a Signing Group.",
                     "request": {
                         "url": {
@@ -16883,7 +16885,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b984abcd-3a9a-4ab9-ab93-e7a68afc0c47",
+                    "_postman_id": "9164b03d-e474-4f86-8a91-314d89906b62",
                     "name": "Adds members to a signing group. ",
                     "request": {
                         "url": {
@@ -16933,7 +16935,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e8f1e5ba-7df8-4d30-9b29-f46b02ffa6a7",
+                    "_postman_id": "5ae6675d-7550-4bb1-8b23-ca71302340f6",
                     "name": "Deletes  one or more members from a signing group.",
                     "request": {
                         "url": {
@@ -16985,12 +16987,12 @@
             ]
         },
         {
-            "_postman_id": "1c5874b3-0347-455f-b97c-a5baec71148c",
+            "_postman_id": "1fa477d8-2fc1-4d4f-a073-d58b01bc4925",
             "name": "CustomTabs",
             "description": "Folder for CustomTabs",
             "item": [
                 {
-                    "_postman_id": "44230b2d-3f1a-4b4c-8f65-95d545ab991c",
+                    "_postman_id": "c67a71f1-fee9-4d48-ae2c-594a3bdde81b",
                     "name": "Gets a list of all account tabs.",
                     "request": {
                         "url": {
@@ -17040,7 +17042,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "33bbf82b-3013-4733-84b8-a3e4ebfd585c",
+                    "_postman_id": "5b01f666-3290-4dd6-995d-cb92bcd9dd01",
                     "name": "Creates a custom tab.",
                     "request": {
                         "url": {
@@ -17084,7 +17086,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b175b778-3558-4b42-b3a4-616524c8b3db",
+                    "_postman_id": "fad5104c-9ad2-425e-9dd7-d850085d6bb5",
                     "name": "Gets custom tab information.",
                     "request": {
                         "url": {
@@ -17133,7 +17135,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ccb75526-6d33-42ca-af77-ab6e047af3cc",
+                    "_postman_id": "7aa7e338-8455-47bc-885d-b8b420121db3",
                     "name": "Updates custom tab information.\n\n",
                     "request": {
                         "url": {
@@ -17182,7 +17184,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "747dcaf1-31fc-48df-8f45-e31014e80675",
+                    "_postman_id": "fd377ecc-03ef-4b60-a253-ac07a905b3c6",
                     "name": "Deletes custom tab information.",
                     "request": {
                         "url": {
@@ -17233,12 +17235,12 @@
             ]
         },
         {
-            "_postman_id": "fb00a8f4-4f60-4fc9-8c83-7a807c3dab84",
+            "_postman_id": "a295866f-69fe-4d17-9ffc-b42937c72459",
             "name": "Templates",
             "description": "Folder for Templates",
             "item": [
                 {
-                    "_postman_id": "601757c1-1c3d-41ec-84b0-92826089c5a9",
+                    "_postman_id": "3e437a30-0bf1-4199-b3ab-af266ba043cf",
                     "name": "Gets the definition of a template.",
                     "request": {
                         "url": {
@@ -17376,7 +17378,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3397b51d-dc0c-42e5-b16f-d5c3eda5fde6",
+                    "_postman_id": "721ae811-7562-4503-96e2-c4819929ba40",
                     "name": "Creates an envelope from a template.",
                     "request": {
                         "url": {
@@ -17420,7 +17422,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e3ee60f5-fa53-4c52-a098-77d8a467bd47",
+                    "_postman_id": "a7c16263-7d2b-4031-8bcc-005a18acffb4",
                     "name": "Gets a list of templates for a specified account.",
                     "request": {
                         "url": {
@@ -17475,7 +17477,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "16674cd9-3b9e-4bdb-b1ab-b3559e7fb4e3",
+                    "_postman_id": "8012e6df-f44d-44e1-9356-70d667f16cec",
                     "name": "Updates an existing template.",
                     "request": {
                         "url": {
@@ -17524,7 +17526,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "2585321b-8079-4363-8d90-f01a50e8d43c",
+                    "_postman_id": "60680599-4f25-4959-98d9-24385c200b17",
                     "name": "Shares a template with a group",
                     "request": {
                         "url": {
@@ -17578,7 +17580,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "72b3c67a-e5ad-4fc7-acea-1b126b24d42c",
+                    "_postman_id": "37d962eb-f3ce-4ba1-8ef8-f82e28e37f3d",
                     "name": "Removes a member group's sharing permissions for a template.",
                     "request": {
                         "url": {
@@ -17632,7 +17634,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "193e4494-4e68-485b-8d71-6aa71aabecb5",
+                    "_postman_id": "acf9be07-2554-434f-8d0f-ec4a5a0fb178",
                     "name": "Gets the custom document fields from a template.",
                     "request": {
                         "url": {
@@ -17682,7 +17684,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3238d4a7-a0c1-4a40-9e09-31f428d00278",
+                    "_postman_id": "131ca0bb-0da3-427b-bb26-65af8ea02d9f",
                     "name": "Updates envelope custom fields in a template.",
                     "request": {
                         "url": {
@@ -17732,7 +17734,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "fbeb2685-9e7c-4904-8c42-83a410fa508e",
+                    "_postman_id": "cc572085-b341-41c1-b845-7c232d0afc0c",
                     "name": "Creates custom document fields in an existing template document.",
                     "request": {
                         "url": {
@@ -17782,7 +17784,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6b027e76-71fd-4624-8650-cec111602080",
+                    "_postman_id": "7cccf550-633d-4824-b6ec-a468c4cc4b85",
                     "name": "Deletes envelope custom fields in a template.",
                     "request": {
                         "url": {
@@ -17832,7 +17834,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f579c769-494a-40ba-949b-1818b3c00fc1",
+                    "_postman_id": "8fdbac2d-8e19-4ed0-a84d-102bf232280f",
                     "name": "Gets a list of documents associated with a template.",
                     "request": {
                         "url": {
@@ -17888,7 +17890,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "258eee3f-e336-4686-b43c-80e46c30a2fa",
+                    "_postman_id": "12b06bb5-d384-424e-9aaf-b7fb6e8b6a7a",
                     "name": "Adds documents to a template document.",
                     "request": {
                         "url": {
@@ -17938,7 +17940,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e948ef46-2d0a-4159-b929-53332c1734c7",
+                    "_postman_id": "b05aa029-221e-42a9-ba17-21efeb912489",
                     "name": "Deletes documents from a template.",
                     "request": {
                         "url": {
@@ -17988,7 +17990,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "204f941e-fbaa-4f57-a44e-936ee9cdd931",
+                    "_postman_id": "0b3f92c6-e4f5-42e7-9bf2-267f74d160cd",
                     "name": "Gets PDF documents from a template.",
                     "request": {
                         "url": {
@@ -18057,7 +18059,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "27742160-0e77-4581-a946-7582c7df36c1",
+                    "_postman_id": "fad9046b-2ffd-42a3-8e72-a58454afadbe",
                     "name": "Adds a document to a template document.",
                     "request": {
                         "url": {
@@ -18118,7 +18120,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "818ceaf9-4930-446f-bc83-86c77d723fdb",
+                    "_postman_id": "a613ed67-ef8f-49fb-8d36-fcfb1a32e29b",
                     "name": "Gets the custom document fields for a an existing template document.",
                     "request": {
                         "url": {
@@ -18174,7 +18176,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "63899610-0bae-4cf8-bdc2-14bd33d4e237",
+                    "_postman_id": "ceeff85e-97b0-4400-80e3-7880ed8ca50e",
                     "name": "Updates existing custom document fields in an existing template document.",
                     "request": {
                         "url": {
@@ -18230,7 +18232,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "882f7908-2025-4ec7-92d1-4d2f9f475ed4",
+                    "_postman_id": "fc77b617-2568-4081-9529-87d34230138b",
                     "name": "Creates custom document fields in an existing template document.",
                     "request": {
                         "url": {
@@ -18286,7 +18288,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f33aec32-6da4-42fd-b221-bee083eb96a7",
+                    "_postman_id": "f3efe5d3-a9bc-4b65-aad2-2a045f64c4eb",
                     "name": "Deletes custom document fields from an existing template document.",
                     "request": {
                         "url": {
@@ -18342,7 +18344,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "34b6565f-db2e-42fd-859d-c138921fe819",
+                    "_postman_id": "2631dbe0-af34-490e-93c0-086a0117da6d",
                     "name": "Get the Original HTML Definition used to generate the Responsive HTML for a given document in a template.",
                     "request": {
                         "url": {
@@ -18398,7 +18400,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "1861d360-cb75-4328-aec3-50497751fbc3",
+                    "_postman_id": "44af7238-eb0c-4699-9507-cf2424b09517",
                     "name": "Deletes a page from a document in an template.",
                     "request": {
                         "url": {
@@ -18459,7 +18461,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e6f3337e-5be5-4820-8670-5a72d84d402b",
+                    "_postman_id": "a27f6e34-f29c-4d5f-aed0-00639282e0df",
                     "name": "Gets a page image from a template for display.",
                     "request": {
                         "url": {
@@ -18539,7 +18541,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "aea8e556-5b00-4dee-a5cd-ca7931acaf11",
+                    "_postman_id": "7741007d-0c7c-4401-8158-77b0f36e1327",
                     "name": "Rotates page image from a template for display.",
                     "request": {
                         "url": {
@@ -18601,7 +18603,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "71424cb4-1948-467b-88a0-eedd35d46361",
+                    "_postman_id": "6643555d-c212-4d15-9209-022a42ee0ff2",
                     "name": "Returns tabs on the specified page.",
                     "request": {
                         "url": {
@@ -18663,7 +18665,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5b46f478-912c-45e8-83ae-e90dfd567823",
+                    "_postman_id": "de2511fa-6cd1-4325-bdd5-0a6157835545",
                     "name": "Post Responsive HTML Preview for a document in a template.",
                     "request": {
                         "url": {
@@ -18719,7 +18721,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7916aa5e-0e8f-4099-ae1d-f5fb6463f3a2",
+                    "_postman_id": "412c960c-9a6b-410f-a317-a1d1c6b0ad3b",
                     "name": "Returns tabs on the document.",
                     "request": {
                         "url": {
@@ -18781,7 +18783,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "737baa4c-604f-4fd2-a31e-3493e248cf4e",
+                    "_postman_id": "e52ef6e5-bed7-4ed6-ae9d-c051867d5c17",
                     "name": "Updates the tabs for a template",
                     "request": {
                         "url": {
@@ -18837,7 +18839,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e9ef5944-a34f-4ea2-beed-cabbfa26fca8",
+                    "_postman_id": "b9b959f1-8b3f-45c0-9213-8f2ed6577976",
                     "name": "Adds the tabs to a tempate",
                     "request": {
                         "url": {
@@ -18893,7 +18895,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "515a3a54-9b8c-4f08-941e-2f6b0a8b222a",
+                    "_postman_id": "fa0f3c7b-b444-42cb-b5da-10b01d96e57f",
                     "name": "Deletes tabs from an envelope document",
                     "request": {
                         "url": {
@@ -18949,7 +18951,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "446706bb-2458-40f0-b8ce-c3234ee9bcc0",
+                    "_postman_id": "4817d417-c4a4-4753-9853-821408fb79bb",
                     "name": "Get the Original HTML Definition used to generate the Responsive HTML for the template.",
                     "request": {
                         "url": {
@@ -18999,7 +19001,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5af51a82-ae58-460b-9149-906e94e56996",
+                    "_postman_id": "bc514d6a-7d2d-474f-859b-bd3ea5c10de8",
                     "name": "Gets template lock information.",
                     "request": {
                         "url": {
@@ -19049,7 +19051,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "52e81cc3-c753-4784-af88-83c68fa028a2",
+                    "_postman_id": "1c49ec8f-6139-4ca3-808a-b29accb0da9a",
                     "name": "Updates a template lock.",
                     "request": {
                         "url": {
@@ -19099,7 +19101,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "1d82002c-5017-4b06-924e-2675833d6ad3",
+                    "_postman_id": "697a139b-e2bf-41cb-aedb-f0cee68c8c3e",
                     "name": "Lock a template.",
                     "request": {
                         "url": {
@@ -19149,7 +19151,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ac669281-67c2-4383-8b05-b171f9f6b134",
+                    "_postman_id": "d7ac9a48-c929-4510-9db1-f27d2682946f",
                     "name": "Deletes a template lock.",
                     "request": {
                         "url": {
@@ -19199,7 +19201,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "10f5cfa3-665a-4f11-a310-ead356b9376d",
+                    "_postman_id": "bd70691f-b7af-4323-a7e2-0517e9343947",
                     "name": "Gets template notification information.",
                     "request": {
                         "url": {
@@ -19249,7 +19251,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9679f8c3-fbfc-4877-b8ac-cfecc433913a",
+                    "_postman_id": "b459c404-55fd-44f0-81ef-993e2d7b1132",
                     "name": "Updates the notification  structure for an existing template.",
                     "request": {
                         "url": {
@@ -19299,7 +19301,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "caa06396-8ac7-4fe9-add2-c83d88fc3624",
+                    "_postman_id": "bce039d5-3fc9-4472-a5d9-4e66e708f06c",
                     "name": "Gets recipient information from a template.",
                     "request": {
                         "url": {
@@ -19363,7 +19365,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9f5ff1dc-a5a6-4874-91fe-80ba733d623e",
+                    "_postman_id": "881d1712-6bb2-45a9-9c71-8fe60fc2dd2e",
                     "name": "Updates recipients in a template.",
                     "request": {
                         "url": {
@@ -19419,7 +19421,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "bfdf7f24-f764-4a6b-bcce-beb65b654709",
+                    "_postman_id": "d104d809-e743-47e7-8a52-17885dba0f94",
                     "name": "Adds tabs for a recipient.",
                     "request": {
                         "url": {
@@ -19475,7 +19477,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3b630a17-3862-4e8f-af0d-d30d5959e466",
+                    "_postman_id": "9f61a8de-7371-4060-8379-54c01283d358",
                     "name": "Deletes recipients from a template.",
                     "request": {
                         "url": {
@@ -19525,7 +19527,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "2313a32e-31e3-4d7f-a288-95129045cde3",
+                    "_postman_id": "4d33fb71-6197-4b8e-86d6-d82640fbce23",
                     "name": "Deletes the specified recipient file from a template.",
                     "request": {
                         "url": {
@@ -19580,7 +19582,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "19a54e3e-a581-4af6-b6ef-71216af7fbd8",
+                    "_postman_id": "2fe8377e-1feb-4521-8ed1-ae40fbf57069",
                     "name": "Returns document visibility for the recipients",
                     "request": {
                         "url": {
@@ -19636,7 +19638,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f17d5650-bb03-4104-825e-5af5ffd8a98c",
+                    "_postman_id": "8aeded12-d716-48b5-b06d-63d33fab2ddf",
                     "name": "Updates document visibility for the recipients",
                     "request": {
                         "url": {
@@ -19692,7 +19694,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e03c5fba-830f-4a29-ab77-d9b98e513bd2",
+                    "_postman_id": "197a4699-9230-49f8-80af-795bfe378351",
                     "name": "Gets the tabs information for a signer or sign-in-person recipient in a template.",
                     "request": {
                         "url": {
@@ -19758,7 +19760,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "bb23febd-b18a-4d0b-93fb-6c11ad723220",
+                    "_postman_id": "9da5d958-5fac-4e32-b474-3fbc296ed861",
                     "name": "Updates the tabs for a recipient.",
                     "request": {
                         "url": {
@@ -19814,7 +19816,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f3f496a2-61f5-41b2-b07b-8c49f25cc838",
+                    "_postman_id": "f4bc0bc4-ec3d-4b77-adcd-d0ef332c8183",
                     "name": "Adds tabs for a recipient.",
                     "request": {
                         "url": {
@@ -19870,7 +19872,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "88e72537-1f8e-41e2-8fa8-62369d3c4386",
+                    "_postman_id": "fe6ea49d-b96d-414e-a7c7-892fc0945316",
                     "name": "Deletes the tabs associated with a recipient in a template.",
                     "request": {
                         "url": {
@@ -19926,7 +19928,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3665ff25-e3a5-42b2-b392-534cfdf10cac",
+                    "_postman_id": "4af439dc-27a4-4d19-aa95-a28b60f758cb",
                     "name": "Updates document visibility for the recipients",
                     "request": {
                         "url": {
@@ -19977,7 +19979,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c6c19697-03fc-4381-863a-5e3f1731704c",
+                    "_postman_id": "2e7e7c59-23a7-47e2-87ae-412212b2623c",
                     "name": "Get Responsive HTML Preview for all documents in a template.",
                     "request": {
                         "url": {
@@ -20027,7 +20029,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a99bd5ad-b849-48cf-ab62-f1549addb6fc",
+                    "_postman_id": "512c1435-db4f-4cea-92e7-1eddaa330829",
                     "name": "Provides a URL to start a recipient view of the Envelope UI",
                     "request": {
                         "url": {
@@ -20080,12 +20082,12 @@
             ]
         },
         {
-            "_postman_id": "94749be3-e25a-43c9-ae4d-599e372e3362",
+            "_postman_id": "bcb82f6c-cc56-4010-bbde-dbbaa75c31cf",
             "name": "CloudStorage",
             "description": "Folder for CloudStorage",
             "item": [
                 {
-                    "_postman_id": "dc9f5433-d4de-425d-88b0-fd273bf82898",
+                    "_postman_id": "97791b09-7d42-40b3-9640-457b40dc557f",
                     "name": "Get the Cloud Storage Provider configuration for the specified user.",
                     "request": {
                         "url": {
@@ -20141,7 +20143,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a7700fde-78fd-4526-941b-9ec3dacac388",
+                    "_postman_id": "2e56a39a-7352-48bb-9b1a-aa5ce8aa405b",
                     "name": "Configures the redirect URL information  for one or more cloud storage providers for the specified user.",
                     "request": {
                         "url": {
@@ -20191,7 +20193,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c6ba5e30-46e4-4d21-a874-e5a002062b72",
+                    "_postman_id": "a6be0376-1e75-482b-807e-bb72b7edf0f0",
                     "name": "Deletes the user authentication information for one or more cloud storage providers.",
                     "request": {
                         "url": {
@@ -20241,7 +20243,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f52f011f-10ee-4857-b71a-9b7037aa6ffe",
+                    "_postman_id": "3f2e9c8c-7a98-4b19-9b7e-122ea19e7484",
                     "name": "Gets the specified Cloud Storage Provider configuration for the User.",
                     "request": {
                         "url": {
@@ -20302,7 +20304,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "51a1ca90-9d94-4a7f-a81a-af870d6559dd",
+                    "_postman_id": "9fd0ed96-c33f-4618-99ea-652878ec19c9",
                     "name": "Deletes the user authentication information for the specified cloud storage provider.",
                     "request": {
                         "url": {
@@ -20357,7 +20359,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ece4b4f9-237c-4e57-8a5e-0f67e02fcfae",
+                    "_postman_id": "cfa0ba9f-eef8-4bef-9a70-892b9a95dd44",
                     "name": "Retrieves a list of all the items in a specified folder from the specified cloud storage provider.",
                     "request": {
                         "url": {
@@ -20439,7 +20441,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3ab98e1a-da84-4fb0-aeed-82e11e2ebdc7",
+                    "_postman_id": "8be16809-6945-4ef1-aafc-6a3b38e56277",
                     "name": "Gets a list of all the items from the specified cloud storage provider.",
                     "request": {
                         "url": {
@@ -20532,12 +20534,12 @@
             ]
         },
         {
-            "_postman_id": "87c2f8c2-8794-40ef-8eb9-799242baa882",
+            "_postman_id": "ce3f9102-56e8-4798-8f72-44de056b84db",
             "name": "Workspaces",
             "description": "Folder for Workspaces",
             "item": [
                 {
-                    "_postman_id": "4dfb9753-de79-4793-8e7b-e17a56ad8721",
+                    "_postman_id": "5b888ca4-e42c-4825-8292-fdf8ee5542cf",
                     "name": "List Workspaces",
                     "request": {
                         "url": {
@@ -20581,7 +20583,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3f6b8be5-a6ff-4417-897a-14c61df7b787",
+                    "_postman_id": "956dc5a8-3938-4181-bd51-ca1eb535985b",
                     "name": "Create a Workspace",
                     "request": {
                         "url": {
@@ -20625,7 +20627,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ab3e6dce-2012-4879-a49a-6b33b32888e0",
+                    "_postman_id": "4dcfe19d-5f39-4e00-8a0d-f5fabc824659",
                     "name": "Get Workspace",
                     "request": {
                         "url": {
@@ -20674,7 +20676,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "fcab2e6e-ca76-404b-a513-6b74ba0ed2a4",
+                    "_postman_id": "bf94513a-ac04-4d28-8641-4b43c3dab4f2",
                     "name": "Update Workspace",
                     "request": {
                         "url": {
@@ -20723,7 +20725,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "29f4331e-9a17-45d0-817b-177bd1b42b96",
+                    "_postman_id": "d8f201da-51dd-404b-ad14-4f4394d1fccc",
                     "name": "Delete Workspace",
                     "request": {
                         "url": {
@@ -20772,7 +20774,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "861ab1aa-c071-4180-802f-0aab45fefcfa",
+                    "_postman_id": "83a5179b-3428-4e50-b0b4-e8eb20f8e155",
                     "name": "List Workspace Folder Contents",
                     "request": {
                         "url": {
@@ -20857,7 +20859,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "2374a01a-28f6-46ab-b4f2-058351282c69",
+                    "_postman_id": "cbd25ae0-1681-4832-abfe-149aa16a33a8",
                     "name": "Deletes workspace one or more specific files/folders from the given folder or root.",
                     "request": {
                         "url": {
@@ -20912,7 +20914,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "2ffeb4af-7d41-46df-9c1b-9d1febb9a07e",
+                    "_postman_id": "1e4d2f56-8497-4596-9189-88dd8d810b03",
                     "name": "Creates a workspace file.",
                     "request": {
                         "url": {
@@ -20968,7 +20970,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "2cefb304-d6be-4885-b976-e109d528d62d",
+                    "_postman_id": "021f4c66-bdc4-442b-85ea-5797cbef361c",
                     "name": "Get Workspace File",
                     "request": {
                         "url": {
@@ -21039,7 +21041,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "0cc6b7fa-73fc-4771-a0e1-1f62a3deae7a",
+                    "_postman_id": "9099d581-b679-4c13-b2cd-0597fb30463c",
                     "name": "Update Workspace File Metadata",
                     "request": {
                         "url": {
@@ -21100,7 +21102,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "77439c32-5801-4211-bf06-7e8c6d90dfa2",
+                    "_postman_id": "8847409d-f9db-4bb3-b75e-a0f711844416",
                     "name": "List File Pages",
                     "request": {
                         "url": {
@@ -21186,12 +21188,12 @@
             ]
         },
         {
-            "_postman_id": "b61117a5-c0a4-49f3-b1e3-59452be11cab",
+            "_postman_id": "3c235314-e200-4674-b69b-f275cbd128b4",
             "name": "Notary",
             "description": "Folder for Notary",
             "item": [
                 {
-                    "_postman_id": "bc6ca41e-4c5e-4d84-8620-e053d72ceaa3",
+                    "_postman_id": "eef9dd09-34ca-4fec-9fb3-206fd55b102c",
                     "name": "Get notary settings for a user",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/current_user/notary?include_jurisdictions={{include_jurisdictions}}",
@@ -21217,7 +21219,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "769f4800-f66d-4798-af7c-dd4f420d2b99",
+                    "_postman_id": "7b2064d5-2787-4b8b-894e-2531a3dc6dbd",
                     "name": "Update a notary",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/current_user/notary",
@@ -21243,7 +21245,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "5cb1be80-b447-487d-a199-f6dcf4430ff5",
+                    "_postman_id": "c3524852-a3ff-4805-8012-38303c91e19c",
                     "name": "Add a notary to the system",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/current_user/notary",
@@ -21269,7 +21271,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "26c1cc2b-48c0-4051-84d2-84bb09654eda",
+                    "_postman_id": "8240e1d0-5eaf-4ca8-ab46-a6a73210aaef",
                     "name": "Get notary jurisdictions for a user",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/current_user/notary/jurisdictions",
@@ -21295,7 +21297,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "1770a7d1-10a6-4fa7-a7d2-9137153ca141",
+                    "_postman_id": "c5ba24fb-fefd-492c-bf86-a1ce23972240",
                     "name": "Add a notary jurisdiction to the system",
                     "request": {
                         "url": "{{baseUrl}}/v2.1/current_user/notary/jurisdictions",
@@ -21321,7 +21323,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "1321e804-ff40-4f68-90c1-c11835286d3f",
+                    "_postman_id": "deadd28f-ed34-4b05-8b54-6b7e2a0f1756",
                     "name": "Get notary a jurisdiction for a user",
                     "request": {
                         "url": {
@@ -21366,7 +21368,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c1846718-f267-4cd1-96cd-2bb3622d7b13",
+                    "_postman_id": "c8a1b720-aab4-437f-a0f5-6474262b36ba",
                     "name": "Update a notary jurisdiction",
                     "request": {
                         "url": {
@@ -21411,7 +21413,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c5712039-8aa6-450d-89ec-7fb171edd9c5",
+                    "_postman_id": "0ab787f3-be98-4dee-b59b-a3fbe99cfebd",
                     "name": "Delete a notary jurisdiction a specified user.",
                     "request": {
                         "url": {
@@ -21458,12 +21460,12 @@
             ]
         },
         {
-            "_postman_id": "781b02eb-d486-4880-8c84-58de3a21e13b",
+            "_postman_id": "68d819cc-ff95-4f71-8619-e5563e7ae430",
             "name": "Authentication",
             "description": "Folder for Authentication",
             "item": [
                 {
-                    "_postman_id": "d304fa77-876b-44fa-9352-abe60c2d4067",
+                    "_postman_id": "6f75e235-53a1-449c-b08d-88195ffe3d87",
                     "name": "01 Authorize Code Grant Access Token",
                     "event": [
                         {
@@ -21501,7 +21503,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e0cc84c7-814e-4bcf-b7ce-4851c7b4f38c",
+                    "_postman_id": "1a2985c9-6f08-44ce-82cb-122da131729b",
                     "name": "02 JWT Access Token",
                     "event": [
                         {
@@ -21539,7 +21541,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e462d6b3-cf20-44b6-844b-f587c6630869",
+                    "_postman_id": "81aab653-e132-42e4-8bde-c39cb7bbd925",
                     "name": "03 Refresh Access Token",
                     "event": [
                         {
@@ -21577,7 +21579,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3f02afac-0c1f-4484-8cf7-a47252a1dfaf",
+                    "_postman_id": "d9456054-5d13-423a-ba37-9adf2864628d",
                     "name": "04 Get User Info",
                     "event": [
                         {
@@ -21608,12 +21610,12 @@
             ]
         },
         {
-            "_postman_id": "ceed6125-6848-4042-993d-6612b3185e01",
+            "_postman_id": "8f4fbdc1-47db-46b7-955e-9074e361c4e3",
             "name": "Examples",
             "description": "Folder for Examples",
             "item": [
                 {
-                    "_postman_id": "b3c23e20-c322-4df8-ae6b-dedf8025285b",
+                    "_postman_id": "373fc5d1-c2bc-41d5-bc47-0722ca97db05",
                     "name": "1. Create an Envelope",
                     "event": [
                         {
@@ -21648,7 +21650,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "0cd9d9b3-f49a-431a-8a64-14b3054416f4",
+                    "_postman_id": "4b39dca9-e8e3-41f0-ace4-958de8a90581",
                     "name": "2. Create Envelope in Draft Stage",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
@@ -21674,7 +21676,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "68211fbd-127d-4b8a-9e94-98d4e86a62e6",
+                    "_postman_id": "1760a86f-700c-49e0-b1bd-67449b679d28",
                     "name": "3. Get Envelope Status",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}",
@@ -21695,7 +21697,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ddde4745-6ba5-4975-9d40-b8d5ec57c2dc",
+                    "_postman_id": "e0b50c79-77c3-4275-b907-967269296232",
                     "name": "4. Envelope Recipients",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients",
@@ -21716,7 +21718,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "77e09ea0-4b35-4ad9-8205-c59f1db3d0e2",
+                    "_postman_id": "5bb05fda-79ab-4161-8331-c428472165fa",
                     "name": "5. Add Tab to Envelope",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients/{{recipientId}}/tabs",
@@ -21742,7 +21744,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a4a1268e-2177-47fd-9476-111ead39c6ff",
+                    "_postman_id": "1e738a5d-1231-4722-9350-370fe6b7feb0",
                     "name": "6. Get Tabs in an Envelope",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients/{{recipientId}}/tabs",
@@ -21763,7 +21765,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b1339248-44ca-46db-9655-0d586660d41d",
+                    "_postman_id": "7b8afbac-fdc9-4ca3-9a82-f1fa9163d586",
                     "name": "7. Add an Attachment to Envelope",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/attachments",
@@ -21789,7 +21791,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e1bf3e5b-11c1-41d5-887d-13b958f8bc94",
+                    "_postman_id": "e7456e8d-c20d-45f8-bcb4-0679187f4a57",
                     "name": "8. List Attachments in an Envelope",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/attachments",
@@ -21810,7 +21812,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "025928f8-ecd5-4e58-9044-ab65cc148ab3",
+                    "_postman_id": "897a0909-8e43-4f72-a29a-a195b415b7cf",
                     "name": "9. Lists the Documents in an Envelope",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/documents",
@@ -21831,7 +21833,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "080f1efb-aaea-452e-86c5-0a4a07a6239d",
+                    "_postman_id": "f27b81c3-6132-4c59-a9e0-b65e20beee57",
                     "name": "10. Get a Document from Envelope",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/documents/{{documentId}}",
@@ -21852,7 +21854,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "ef809eb0-3e5e-4061-9e29-b225ac5acd2b",
+                    "_postman_id": "3c8779c4-6a5c-4318-9fa4-1616b3beb2f5",
                     "name": "11. Lock the Envelope",
                     "event": [
                         {
@@ -21887,7 +21889,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b080d75d-dce5-438f-ae42-153b19d2267a",
+                    "_postman_id": "06dcad67-72db-4422-b3cb-1cf95023ff64",
                     "name": "12. Lists the Existing Locks on an Envelope",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/lock",
@@ -21908,7 +21910,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "64a1609c-1df8-443e-b5c2-bebd307d7b2c",
+                    "_postman_id": "74dec772-2676-4479-809b-515b88b5fe62",
                     "name": "13. Delete Existing Lock on an Envelope",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/lock",
@@ -21929,7 +21931,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "edeffba2-b096-414d-a87a-fc6db74f86ba",
+                    "_postman_id": "33d0bef7-4991-4100-b493-1910597ec818",
                     "name": "14. Created Embedded View",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId_draft}}/views/recipient_preview",
@@ -21955,7 +21957,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "bb1ab3c9-7af0-4e41-92b7-a32963f11441",
+                    "_postman_id": "bf4d4f2b-38b0-4bcb-b55a-072d54367890",
                     "name": "15. Create an Account Template",
                     "event": [
                         {
@@ -21990,7 +21992,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "29950abe-b221-459c-80fd-b6be942d0d1c",
+                    "_postman_id": "382f45ad-4585-4db7-ac02-e41c7ef73f15",
                     "name": "16. Get Account Templates",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates",
@@ -22011,7 +22013,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "53098222-c9da-478c-8052-148ced6b7e51",
+                    "_postman_id": "5b079129-88a8-4659-8725-58f24876aede",
                     "name": "17. Get Template Definition",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates/{{templateId}}",
@@ -22032,7 +22034,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "cf28299e-25c8-422f-a696-099e365af144",
+                    "_postman_id": "edfa2ea0-a1bd-49ea-89dd-d3a9e0bea289",
                     "name": "18. Send Envelope with Template",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
@@ -22058,7 +22060,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "b409f55c-2bbd-4c5a-a1d3-b361b288dd9e",
+                    "_postman_id": "4fea1386-9757-440d-9dda-bf692be365e8",
                     "name": "19. Create a Template with Role Only",
                     "event": [
                         {
@@ -22093,7 +22095,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6ad523d5-b38e-423c-a907-42e1a3f6e488",
+                    "_postman_id": "62d41b11-2ed7-4976-a545-4fd4a187cd36",
                     "name": "20. Send an Envelope Using CompositeTemplates",
                     "request": {
                         "url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
@@ -22116,7 +22118,7 @@
             ]
         },
         {
-            "_postman_id": "0e047aa4-0404-4add-bba6-5accc2f7f51f",
+            "_postman_id": "698d24de-ce39-4243-9fcb-ddaef1e25c6f",
             "name": "Lists resources for REST version specified",
             "request": {
                 "url": "{{baseUrl}}/v2.1",
@@ -22142,7 +22144,7 @@
             "response": []
         },
         {
-            "_postman_id": "66ed1f3d-bbba-45b4-8511-af1398f55d3d",
+            "_postman_id": "2cce4afd-4d0b-4cc8-91e2-52547126e11e",
             "name": "Returns document page image(s) based on input.",
             "request": {
                 "url": {
