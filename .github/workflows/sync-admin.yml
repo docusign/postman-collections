@@ -1,0 +1,30 @@
+name: Sync Admin Postman Collection
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to trigger the action
+    paths:
+      - 'assets/admin-collection.json'
+
+jobs:
+  update-postman:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Update Admin Postman Collection
+      env:
+        POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+      run: |
+
+        # Run the Postman API to update the collection
+        GITHUB_COLLECTION_PATH="./assets/admin-collection.json"
+        COLLECTION_UID=${{ vars.ADMIN_COLLECTION_UID }}
+        
+        curl --location --request PUT "https://api.getpostman.com/collections/$COLLECTION_UID" \
+        --header "x-api-key: $POSTMAN_API_KEY" \
+        --header "Content-Type: application/json" \
+        --data "{\"collection\": $(cat $GITHUB_COLLECTION_PATH)}"

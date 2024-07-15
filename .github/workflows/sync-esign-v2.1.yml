@@ -1,0 +1,30 @@
+name: Sync ESign-V2.1 Postman Collection
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to trigger the action
+    paths:
+      - 'assets/esign-v2.1-collection.json'
+
+jobs:
+  update-postman:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Update ESign-V2.1 Postman Collection
+      env:
+        POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+      run: |
+
+        # Run the Postman API to update the collection
+        GITHUB_COLLECTION_PATH="./assets/esign-v2.1-collection.json"
+        COLLECTION_UID=${{ vars.ESIGN_COLLECTION_UID }}
+        
+        curl --location --request PUT "https://api.getpostman.com/collections/$COLLECTION_UID" \
+        --header "x-api-key: $POSTMAN_API_KEY" \
+        --header "Content-Type: application/json" \
+        --data "{\"collection\": $(cat $GITHUB_COLLECTION_PATH)}"
