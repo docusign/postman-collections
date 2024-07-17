@@ -1,19 +1,19 @@
 {
     "variables": [],
     "info": {
-        "name": "Click API",
-        "_postman_id": "3a84e8c9-495e-4419-a23b-d8a5bfdf2eaf",
+        "name": "DocuSign Click API",
+        "_postman_id": "82ab1eea-bc81-4223-92a1-f10c8ea83ecf",
         "description": "Elastic signing (also known as DocuSign Click)  lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable elastic template solution in your DocuSign integrations.",
         "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
     },
     "item": [
         {
-            "_postman_id": "63fa4bd6-a59a-49aa-a8fd-7d4fd0ee8117",
+            "_postman_id": "91b0aae6-8f99-472f-9641-aa11d3b84294",
             "name": "Accounts",
             "description": "Folder for Accounts",
             "item": [
                 {
-                    "_postman_id": "c954e562-2f71-4063-81f6-6b95d7b782c8",
+                    "_postman_id": "ed83099a-638d-4d0c-9004-c4f3d1829ce7",
                     "name": "Gets the current version and other information about the Click API.",
                     "request": {
                         "url": "https://{{hostenv}}/clickapi/service_information",
@@ -39,7 +39,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "7ecf526e-0dc0-41a9-b206-250819993763",
+                    "_postman_id": "976692c7-65ff-4013-ac4c-31c32be0ac21",
                     "name": "Gets all the clickwraps for a user.",
                     "request": {
                         "url": {
@@ -115,7 +115,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "44d77bed-4182-4599-bb9a-19a0d76476f9",
+                    "_postman_id": "b7d001a0-254a-467b-b0ed-8ad126a06696",
                     "name": "Creates a clickwrap for an account.",
                     "request": {
                         "url": {
@@ -161,7 +161,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c20bf651-7f98-4385-b271-70cac9b62553",
+                    "_postman_id": "322d9fdf-86ec-42be-abd6-c5bbb4809b98",
                     "name": "Deletes clickwraps for an account.",
                     "request": {
                         "url": {
@@ -213,7 +213,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "07cebe6a-99b1-45b7-8c25-fdb34b8fcd89",
+                    "_postman_id": "65c17c3d-9144-4a89-8c4f-c72f9e009ac3",
                     "name": "Gets a  single clickwrap object.",
                     "request": {
                         "url": {
@@ -264,7 +264,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "31811607-eb9e-4c33-b01c-c3088c02f8c7",
+                    "_postman_id": "4ee42fe0-5188-4158-86ae-2a9c023816cc",
                     "name": "Update a clickwrap by ID.",
                     "request": {
                         "url": {
@@ -315,7 +315,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "9b1664d0-3f4f-4cdc-ba2d-6ab2b7b458ac",
+                    "_postman_id": "8e362da5-0ad6-402c-b95e-8f09aff2fe45",
                     "name": "Deletes a clickwrap and all of its versions.",
                     "request": {
                         "url": {
@@ -372,7 +372,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3b07beec-69f2-4dc7-9a20-027a26020416",
+                    "_postman_id": "a740f880-a57f-47b8-a267-55a3d6e345ec",
                     "name": "Creates a unique URL for the agreement that you can embed in your application.",
                     "request": {
                         "url": {
@@ -424,7 +424,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "dbd5e52a-c9f5-4b6f-a87f-11c76b2e1663",
+                    "_postman_id": "6c9ed9d1-b8fc-4ec5-a61b-0c96a9d42b28",
                     "name": "Gets a specific agreement for a specified clickwrap.",
                     "request": {
                         "url": {
@@ -481,7 +481,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "1998192d-f548-4c3a-bff6-a8779112890a",
+                    "_postman_id": "b099c1c6-6bcd-40ee-9fd0-c2d425e19422",
                     "name": "Gets the completed user agreement PDF.",
                     "request": {
                         "url": {
@@ -545,7 +545,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "3a4cf044-6d8d-40fe-9180-f00ea8312f83",
+                    "_postman_id": "750be446-8df5-4e9b-9f4c-c08c3b3843bb",
                     "name": "Starts an export of clickwrap agreements for a specified date range.",
                     "request": {
                         "url": {
@@ -597,7 +597,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "a9ef66a1-8077-447f-ac13-7fe463c37272",
+                    "_postman_id": "2d510071-edaf-4a38-a051-6164f94f322a",
                     "name": "Get user agreements",
                     "request": {
                         "url": {
@@ -671,7 +671,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "286a9a0a-c245-4a42-a517-47b168c7fc2e",
+                    "_postman_id": "44c97950-1263-43a7-90a9-56eefbbfc704",
                     "name": "Gets all the versions of a clickwrap.",
                     "request": {
                         "url": {
@@ -723,7 +723,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "f409ccfb-f422-485b-826d-6ebe65bce268",
+                    "_postman_id": "ea21e0fc-39b7-4682-bae7-f9039762956e",
                     "name": "Creates a new clickwrap version.",
                     "request": {
                         "url": {
@@ -775,7 +775,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "2b2f2448-30fa-4c43-8033-3814ff6bd799",
+                    "_postman_id": "1a3c82e2-6972-4579-8838-6d9648db6bfe",
                     "name": "Deletes the versions of a clickwrap.",
                     "request": {
                         "url": {
@@ -833,7 +833,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "25085492-6772-4028-8010-9f642dd8e3e4",
+                    "_postman_id": "5dc4e400-c487-475f-a314-1f0ee32c9387",
                     "name": "Gets a specific version of a clickwrap by version ID.",
                     "request": {
                         "url": {
@@ -890,7 +890,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "97e67f22-3160-4cd3-a35c-e0f5e19feefe",
+                    "_postman_id": "4ea34fcf-e5e8-4354-ae8f-e1cdb7360463",
                     "name": "Updates clickwrap version status and ownership.",
                     "request": {
                         "url": {
@@ -947,7 +947,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "20286fd5-34d0-4f48-b195-af5c8af17f91",
+                    "_postman_id": "d65240c8-a397-405f-8178-18fc456bd883",
                     "name": "Deletes a clickwrap version by version ID.",
                     "request": {
                         "url": {
@@ -1004,7 +1004,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "669aa6a7-aa77-4f69-b7f1-f9653a9dcc85",
+                    "_postman_id": "417afa55-b55c-4f9a-8547-79b56e0468bc",
                     "name": "Downloads a document at an order within the agreement.",
                     "request": {
                         "url": {
@@ -1069,12 +1069,12 @@
             ]
         },
         {
-            "_postman_id": "e5dd0e0f-5b3f-47e3-a4c5-fe7d4232afe7",
+            "_postman_id": "8d7f645e-9bf5-41b6-a7e8-9ff4eadd2cd0",
             "name": "Authentication",
             "description": "Folder for Authentication",
             "item": [
                 {
-                    "_postman_id": "a660de82-6ae3-4f5a-83e9-09c9af2671b9",
+                    "_postman_id": "0d34dc69-b904-4507-9d6f-9642f0c69c8d",
                     "name": "01 Authorize Code Grant Access Token",
                     "event": [
                         {
@@ -1112,7 +1112,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "e507fbc2-703d-4850-a4b4-44d68612bab6",
+                    "_postman_id": "d75a7cce-e08e-4407-92a7-a8b54ee3a537",
                     "name": "02 JWT Access Token",
                     "event": [
                         {
@@ -1150,7 +1150,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "c3a3baaa-70b7-4f6b-a794-f94527e1a115",
+                    "_postman_id": "d38e1df4-e34f-4fc2-9efc-9ae4b3f95b37",
                     "name": "03 Refresh Access Token",
                     "event": [
                         {
@@ -1188,7 +1188,7 @@
                     "response": []
                 },
                 {
-                    "_postman_id": "6731c559-c896-4baa-8234-0595442ee419",
+                    "_postman_id": "8dba6538-42a1-4464-99a8-df44fd60c206",
                     "name": "04 Get User Info",
                     "event": [
                         {
@@ -1219,7 +1219,7 @@
             ]
         },
         {
-            "_postman_id": "6c3b7323-c20b-4ed0-8814-0abe07351583",
+            "_postman_id": "b4db467b-1aaf-42fd-b0fd-e3c2e2855064",
             "name": "Gets the agreement responses for a clickwrap version by version ID.",
             "request": {
                 "url": {
