@@ -1,880 +1,910 @@
 {
-    "variables": [],
-    "info": {
-        "name": "Maestro API",
-        "_postman_id": "d1d2e268-771b-4e1d-a425-65fa585ae802",
-        "description": "Maestro authors and executes experiences that allow non-coders the ability to define Simple Business Process without having to write code and to deploy them seamlessly without having to have development expertise",
-        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
-    },
-    "item": [
-        {
-            "_postman_id": "73523ee8-befb-4557-b510-8cad34fa697a",
-            "name": "Authentication",
-            "description": "Folder for Authentication",
-            "item": [
-                {
-                    "_postman_id": "adaacc23-176b-4d61-80c7-8116e3b4ed88",
-                    "name": "01 Authorize Code Grant Access Token",
-                    "event": [
-                        {
-                            "listen": "test",
-                            "script": {
-                                "type": "text/javascript",
-                                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-                            }
-                        }
-                    ],
-                    "request": {
-                        "url": "https://{{hostenv}}/oauth/token",
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Authorization",
-                                "value": "Basic {{encodedKeys}}",
-                                "description": ""
-                            }
-                        ],
-                        "body": {
-                            "mode": "urlencoded",
-                            "urlencoded": [
-                                {
-                                    "key": "code",
-                                    "value": "{{codeFromUrl}}"
-                                },
-                                {
-                                    "key": "grant_type",
-                                    "value": "authorization_code"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "_postman_id": "db76867a-cabc-42fd-a54b-bc58284fe0f1",
-                    "name": "02 JWT Access Token",
-                    "event": [
-                        {
-                            "listen": "test",
-                            "script": {
-                                "type": "text/javascript",
-                                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-                            }
-                        }
-                    ],
-                    "request": {
-                        "url": "https://{{hostenv}}/oauth/token",
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Authorization",
-                                "value": "Basic {{encodedKeys}}",
-                                "description": ""
-                            }
-                        ],
-                        "body": {
-                            "mode": "urlencoded",
-                            "urlencoded": [
-                                {
-                                    "key": "assertion",
-                                    "value": "{{assertionHere}}"
-                                },
-                                {
-                                    "key": "grant_type",
-                                    "value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "_postman_id": "3ed5b230-3f98-4e4c-944b-87024bcd32a2",
-                    "name": "03 Refresh Access Token",
-                    "event": [
-                        {
-                            "listen": "test",
-                            "script": {
-                                "type": "text/javascript",
-                                "exec": "var jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);\nvar jsonData = JSON.parse(responseBody);\npostman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-                            }
-                        }
-                    ],
-                    "request": {
-                        "url": "https://{{hostenv}}/oauth/token",
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Authorization",
-                                "value": "Basic {{encodedKeys}}",
-                                "description": ""
-                            }
-                        ],
-                        "body": {
-                            "mode": "urlencoded",
-                            "urlencoded": [
-                                {
-                                    "key": "refresh_token",
-                                    "value": "{{refreshToken}}"
-                                },
-                                {
-                                    "key": "grant_type",
-                                    "value": "refresh_token"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "_postman_id": "519316c7-f580-46e4-a16e-11afcaecd2fa",
-                    "name": "04 Get User Info",
-                    "event": [
-                        {
-                            "listen": "test",
-                            "script": {
-                                "type": "text/javascript",
-                                "exec": "var jsonData = JSON.parse(responseBody);\nvar accounts = jsonData.accounts;\nif (jsonData.hasOwnProperty(\"sub\")) { \n    postman.setEnvironmentVariable(\"userId\", jsonData.sub); \n} \n\nfor (var i=0; i< accounts.length; i++) { \n  if (accounts[i].hasOwnProperty(\"is_default\")) { \n   if (accounts[i].is_default === true) { \n     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); \n     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); \n     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); \n   } \n } \n} \n"
-                            }
-                        }
-                    ],
-                    "request": {
-                        "url": "https://{{hostenv}}/oauth/userinfo",
-                        "method": "Get",
-                        "header": [
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer {{accessToken}}",
-                                "description": ""
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": ""
-                        }
-                    },
-                    "response": []
-                }
-            ]
-        },
-        {
-            "_postman_id": "e0076818-d2b2-4047-aad2-ebead789a278",
-            "name": "Creates a new workflow instance after authenticating with DS Account Server",
-            "request": {
-                "url": {
-                    "raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/workflow_definitions/{{workflowDefinitionId}}/trigger?mtid={{mtid}}&mtsec={{mtsec}}",
-                    "protocol": "https",
-                    "auth": {},
-                    "host": [
-                        "{{hostenv}}"
-                    ],
-                    "path": [
-                        "api",
-                        "maestro",
-                        "v1",
-                        "accounts",
-                        "{{accountId}}",
-                        "workflow_definitions",
-                        "{{workflowDefinitionId}}",
-                        "trigger"
-                    ],
-                    "query": [
-                        {
-                            "key": "mtid",
-                            "value": "{{mtid}}"
-                        },
-                        {
-                            "key": "mtsec",
-                            "value": "{{mtsec}}"
-                        }
-                    ],
-                    "variable": [
-                        {
-                            "value": "{{accountId}}",
-                            "id": "accountId"
-                        },
-                        {
-                            "value": "{{workflowDefinitionId}}",
-                            "id": "workflowDefinitionId"
-                        }
-                    ]
-                },
-                "method": "POST",
-                "header": [
-                    {
-                        "key": "Accept",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer {{accessToken}}",
-                        "description": ""
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{}"
-                },
-                "description": "Creates a new workflow instance after authenticating with DS Account Server"
-            },
-            "response": []
-        },
-        {
-            "_postman_id": "e0b9a731-b6e3-42bf-a6cd-60d6cae612f8",
-            "name": "Cancels a running workflow instance.",
-            "request": {
-                "url": {
-                    "raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/instances/{{instanceId}}/cancel",
-                    "protocol": "https",
-                    "auth": {},
-                    "host": [
-                        "{{hostenv}}"
-                    ],
-                    "path": [
-                        "api",
-                        "maestro",
-                        "v1",
-                        "accounts",
-                        "{{accountId}}",
-                        "management",
-                        "instances",
-                        "{{instanceId}}",
-                        "cancel"
-                    ],
-                    "variable": [
-                        {
-                            "value": "{{accountId}}",
-                            "id": "accountId"
-                        },
-                        {
-                            "value": "{{instanceId}}",
-                            "id": "instanceId"
-                        }
-                    ]
-                },
-                "method": "POST",
-                "header": [
-                    {
-                        "key": "Accept",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer {{accessToken}}",
-                        "description": ""
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{}"
-                },
-                "description": "Cancels a running workflow instance."
-            },
-            "response": []
-        },
-        {
-            "_postman_id": "e5cb6f8d-a591-4adf-ad71-509eaefbfc22",
-            "name": "Get List of Step Histories",
-            "request": {
-                "url": {
-                    "raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/instances/{{instanceId}}/history",
-                    "protocol": "https",
-                    "auth": {},
-                    "host": [
-                        "{{hostenv}}"
-                    ],
-                    "path": [
-                        "api",
-                        "maestro",
-                        "v1",
-                        "accounts",
-                        "{{accountId}}",
-                        "management",
-                        "instances",
-                        "{{instanceId}}",
-                        "history"
-                    ],
-                    "variable": [
-                        {
-                            "value": "{{accountId}}",
-                            "id": "accountId"
-                        },
-                        {
-                            "value": "{{instanceId}}",
-                            "id": "instanceId"
-                        }
-                    ]
-                },
-                "method": "GET",
-                "header": [
-                    {
-                        "key": "Accept",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer {{accessToken}}",
-                        "description": ""
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{}"
-                },
-                "description": "Returns a list of step history for a workflow instance"
-            },
-            "response": []
-        },
-        {
-            "_postman_id": "a8afa539-3e70-4c45-8611-ca9aecd433d9",
-            "name": "Get Workflow Definitions metadata",
-            "request": {
-                "url": {
-                    "raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions?status={{status}}",
-                    "protocol": "https",
-                    "auth": {},
-                    "host": [
-                        "{{hostenv}}"
-                    ],
-                    "path": [
-                        "api",
-                        "maestro",
-                        "v1",
-                        "accounts",
-                        "{{accountId}}",
-                        "management",
-                        "workflow_definitions"
-                    ],
-                    "query": [
-                        {
-                            "key": "status",
-                            "value": "{{status}}"
-                        }
-                    ],
-                    "variable": [
-                        {
-                            "value": "{{accountId}}",
-                            "id": "accountId"
-                        }
-                    ]
-                },
-                "method": "GET",
-                "header": [
-                    {
-                        "key": "Accept",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer {{accessToken}}",
-                        "description": ""
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{}"
-                },
-                "description": "Returns a list of workflow definitions' metadata."
-            },
-            "response": []
-        },
-        {
-            "_postman_id": "8adaf1f1-6d58-4bc5-8a19-32c9b1465dc1",
-            "name": "Creates a new workflow definition.",
-            "request": {
-                "url": {
-                    "raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions",
-                    "protocol": "https",
-                    "auth": {},
-                    "host": [
-                        "{{hostenv}}"
-                    ],
-                    "path": [
-                        "api",
-                        "maestro",
-                        "v1",
-                        "accounts",
-                        "{{accountId}}",
-                        "management",
-                        "workflow_definitions"
-                    ],
-                    "variable": [
-                        {
-                            "value": "{{accountId}}",
-                            "id": "accountId"
-                        }
-                    ]
-                },
-                "method": "POST",
-                "header": [
-                    {
-                        "key": "Accept",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer {{accessToken}}",
-                        "description": ""
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{}"
-                },
-                "description": "Creates a new workflow definition."
-            },
-            "response": []
-        },
-        {
-            "_postman_id": "272c2875-dde9-4fe1-9fa9-c1b4f2ed8582",
-            "name": "Get Workflow Definition",
-            "request": {
-                "url": {
-                    "raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}?lastDeployedId={{lastDeployedId}}",
-                    "protocol": "https",
-                    "auth": {},
-                    "host": [
-                        "{{hostenv}}"
-                    ],
-                    "path": [
-                        "api",
-                        "maestro",
-                        "v1",
-                        "accounts",
-                        "{{accountId}}",
-                        "management",
-                        "workflow_definitions",
-                        "{{workflowDefinitionId}}"
-                    ],
-                    "query": [
-                        {
-                            "key": "lastDeployedId",
-                            "value": "{{lastDeployedId}}"
-                        }
-                    ],
-                    "variable": [
-                        {
-                            "value": "{{accountId}}",
-                            "id": "accountId"
-                        },
-                        {
-                            "value": "{{workflowDefinitionId}}",
-                            "id": "workflowDefinitionId"
-                        }
-                    ]
-                },
-                "method": "GET",
-                "header": [
-                    {
-                        "key": "Accept",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer {{accessToken}}",
-                        "description": ""
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{}"
-                },
-                "description": "Returns a workflow definition."
-            },
-            "response": []
-        },
-        {
-            "_postman_id": "5380bd0b-e192-4156-b324-9194fd252691",
-            "name": "Updates a workflow definition.",
-            "request": {
-                "url": {
-                    "raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}",
-                    "protocol": "https",
-                    "auth": {},
-                    "host": [
-                        "{{hostenv}}"
-                    ],
-                    "path": [
-                        "api",
-                        "maestro",
-                        "v1",
-                        "accounts",
-                        "{{accountId}}",
-                        "management",
-                        "workflow_definitions",
-                        "{{workflowDefinitionId}}"
-                    ],
-                    "variable": [
-                        {
-                            "value": "{{accountId}}",
-                            "id": "accountId"
-                        },
-                        {
-                            "value": "{{workflowDefinitionId}}",
-                            "id": "workflowDefinitionId"
-                        }
-                    ]
-                },
-                "method": "PUT",
-                "header": [
-                    {
-                        "key": "Accept",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer {{accessToken}}",
-                        "description": ""
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{}"
-                },
-                "description": "Updates a workflow definition."
-            },
-            "response": []
-        },
-        {
-            "_postman_id": "c5016447-c909-49da-8198-96e6ccc2ec85",
-            "name": "Deletes a workflow definition.",
-            "request": {
-                "url": {
-                    "raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}",
-                    "protocol": "https",
-                    "auth": {},
-                    "host": [
-                        "{{hostenv}}"
-                    ],
-                    "path": [
-                        "api",
-                        "maestro",
-                        "v1",
-                        "accounts",
-                        "{{accountId}}",
-                        "management",
-                        "workflow_definitions",
-                        "{{workflowDefinitionId}}"
-                    ],
-                    "variable": [
-                        {
-                            "value": "{{accountId}}",
-                            "id": "accountId"
-                        },
-                        {
-                            "value": "{{workflowDefinitionId}}",
-                            "id": "workflowDefinitionId"
-                        }
-                    ]
-                },
-                "method": "DELETE",
-                "header": [
-                    {
-                        "key": "Accept",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer {{accessToken}}",
-                        "description": ""
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{}"
-                },
-                "description": "Deletes a workflow definition."
-            },
-            "response": []
-        },
-        {
-            "_postman_id": "018015f9-106c-4071-ba89-efbae4e9fad2",
-            "name": "Gets configuration instances",
-            "request": {
-                "url": {
-                    "raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}/config_instances",
-                    "protocol": "https",
-                    "auth": {},
-                    "host": [
-                        "{{hostenv}}"
-                    ],
-                    "path": [
-                        "api",
-                        "maestro",
-                        "v1",
-                        "accounts",
-                        "{{accountId}}",
-                        "management",
-                        "workflow_definitions",
-                        "{{workflowDefinitionId}}",
-                        "config_instances"
-                    ],
-                    "variable": [
-                        {
-                            "value": "{{accountId}}",
-                            "id": "accountId"
-                        },
-                        {
-                            "value": "{{workflowDefinitionId}}",
-                            "id": "workflowDefinitionId"
-                        }
-                    ]
-                },
-                "method": "GET",
-                "header": [
-                    {
-                        "key": "Accept",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer {{accessToken}}",
-                        "description": ""
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{}"
-                },
-                "description": "Returns a list of configuration instances for a workflow definition"
-            },
-            "response": []
-        },
-        {
-            "_postman_id": "9ee1b282-e061-4a89-99d5-34881ec4842d",
-            "name": "Get List of Workflow Instances",
-            "request": {
-                "url": {
-                    "raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}/instances",
-                    "protocol": "https",
-                    "auth": {},
-                    "host": [
-                        "{{hostenv}}"
-                    ],
-                    "path": [
-                        "api",
-                        "maestro",
-                        "v1",
-                        "accounts",
-                        "{{accountId}}",
-                        "management",
-                        "workflow_definitions",
-                        "{{workflowDefinitionId}}",
-                        "instances"
-                    ],
-                    "variable": [
-                        {
-                            "value": "{{accountId}}",
-                            "id": "accountId"
-                        },
-                        {
-                            "value": "{{workflowDefinitionId}}",
-                            "id": "workflowDefinitionId"
-                        }
-                    ]
-                },
-                "method": "GET",
-                "header": [
-                    {
-                        "key": "Accept",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer {{accessToken}}",
-                        "description": ""
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{}"
-                },
-                "description": "Returns the list of instances for a deployed workflow definition."
-            },
-            "response": []
-        },
-        {
-            "_postman_id": "edec8677-5124-4c6a-b79c-4693f1701409",
-            "name": "Get Workflow Instance Details",
-            "request": {
-                "url": {
-                    "raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}/instances/{{instanceId}}",
-                    "protocol": "https",
-                    "auth": {},
-                    "host": [
-                        "{{hostenv}}"
-                    ],
-                    "path": [
-                        "api",
-                        "maestro",
-                        "v1",
-                        "accounts",
-                        "{{accountId}}",
-                        "management",
-                        "workflow_definitions",
-                        "{{workflowDefinitionId}}",
-                        "instances",
-                        "{{instanceId}}"
-                    ],
-                    "variable": [
-                        {
-                            "value": "{{accountId}}",
-                            "id": "accountId"
-                        },
-                        {
-                            "value": "{{workflowDefinitionId}}",
-                            "id": "workflowDefinitionId"
-                        },
-                        {
-                            "value": "{{instanceId}}",
-                            "id": "instanceId"
-                        }
-                    ]
-                },
-                "method": "GET",
-                "header": [
-                    {
-                        "key": "Accept",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer {{accessToken}}",
-                        "description": ""
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{}"
-                },
-                "description": "Returns the details for a specific instance for a deployed workflow definition."
-            },
-            "response": []
-        },
-        {
-            "_postman_id": "c92cba67-1850-4e7d-9570-b23bba1e2fc8",
-            "name": "Publishes or unpublishes a workflow definition.",
-            "request": {
-                "url": {
-                    "raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}/publish",
-                    "protocol": "https",
-                    "auth": {},
-                    "host": [
-                        "{{hostenv}}"
-                    ],
-                    "path": [
-                        "api",
-                        "maestro",
-                        "v1",
-                        "accounts",
-                        "{{accountId}}",
-                        "management",
-                        "workflow_definitions",
-                        "{{workflowDefinitionId}}",
-                        "publish"
-                    ],
-                    "variable": [
-                        {
-                            "value": "{{accountId}}",
-                            "id": "accountId"
-                        },
-                        {
-                            "value": "{{workflowDefinitionId}}",
-                            "id": "workflowDefinitionId"
-                        }
-                    ]
-                },
-                "method": "POST",
-                "header": [
-                    {
-                        "key": "Accept",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Content-Type",
-                        "value": "application/json",
-                        "description": ""
-                    },
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer {{accessToken}}",
-                        "description": ""
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{}"
-                },
-                "description": "Publishes or unpublishes a workflow definition."
-            },
-            "response": []
-        }
-    ]
+	"info": {
+		"_postman_id": "8ecb8fb1-181b-4be8-86a4-7b6fb7cc5342",
+		"name": "Docusign Maestro API",
+		"description": "Maestro authors and executes experiences that allow non-coders the ability to define Simple Business Process without having to write code and to deploy them seamlessly without having to have development expertise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "01 Authorize Code Grant Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+								],
+								"id": "0aaa38f6-df70-4070-bbc3-a52fbfd00212"
+							}
+						}
+					],
+					"id": "442b2eb1-aee5-4189-a9c5-ca9167bbc3c9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{encodedKeys}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "code",
+									"value": "{{codeFromUrl}}"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code"
+								}
+							]
+						},
+						"url": "https://{{hostenv}}/oauth/token"
+					},
+					"response": []
+				},
+				{
+					"name": "02 JWT Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+								],
+								"id": "62a2f179-6ad6-4408-ab0d-040b1657a042"
+							}
+						}
+					],
+					"id": "549c8f93-1551-4b5a-9b29-6adfb3cbacaf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{encodedKeys}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "assertion",
+									"value": "{{assertionHere}}"
+								},
+								{
+									"key": "grant_type",
+									"value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+								}
+							]
+						},
+						"url": "https://{{hostenv}}/oauth/token"
+					},
+					"response": []
+				},
+				{
+					"name": "03 Refresh Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+								],
+								"id": "3bc5ed34-431b-4006-bec5-1fc549e46197"
+							}
+						}
+					],
+					"id": "f8e1f100-fd11-4233-a4d2-24b97cbf271f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{encodedKeys}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "refresh_token",
+									"value": "{{refreshToken}}"
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token"
+								}
+							]
+						},
+						"url": "https://{{hostenv}}/oauth/token"
+					},
+					"response": []
+				},
+				{
+					"name": "04 Get User Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var accounts = jsonData.accounts;",
+									"if (jsonData.hasOwnProperty(\"sub\")) { ",
+									"    postman.setEnvironmentVariable(\"userId\", jsonData.sub); ",
+									"} ",
+									"",
+									"for (var i=0; i< accounts.length; i++) { ",
+									"  if (accounts[i].hasOwnProperty(\"is_default\")) { ",
+									"   if (accounts[i].is_default === true) { ",
+									"     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); ",
+									"     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); ",
+									"     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); ",
+									"   } ",
+									" } ",
+									"} ",
+									""
+								],
+								"id": "dc2bc21a-1f0c-4ab1-9f25-8784c621a8c8"
+							}
+						}
+					],
+					"id": "b23ab834-149b-4ee1-a6e1-400e2ae3f07b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "https://{{hostenv}}/oauth/userinfo"
+					},
+					"response": []
+				}
+			],
+			"id": "d3073454-ae1d-40c1-906d-196f6d9d3713",
+			"description": "Folder for Authentication"
+		},
+		{
+			"name": "Creates a new workflow instance after authenticating with DS Account Server",
+			"id": "14fc22ea-c5b8-4742-8c5e-e6e3ef2c91ca",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/workflow_definitions/{{workflowDefinitionId}}/trigger?mtid={{mtid}}&mtsec={{mtsec}}",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"api",
+						"maestro",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"workflow_definitions",
+						"{{workflowDefinitionId}}",
+						"trigger"
+					],
+					"query": [
+						{
+							"key": "mtid",
+							"value": "{{mtid}}"
+						},
+						{
+							"key": "mtsec",
+							"value": "{{mtsec}}"
+						}
+					],
+					"variable": [
+						{
+							"id": "b007e046-1cab-403e-8c22-e2e69fe3cec6",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						},
+						{
+							"id": "67720e45-7b1e-480f-89d0-8c708ef459bc",
+							"key": "workflowDefinitionId",
+							"value": "{{workflowDefinitionId}}"
+						}
+					]
+				},
+				"description": "Creates a new workflow instance after authenticating with DS Account Server"
+			},
+			"response": []
+		},
+		{
+			"name": "Cancels a running workflow instance.",
+			"id": "104d54e8-3bf4-403b-937e-2f81e3ba2df2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/instances/{{instanceId}}/cancel",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"api",
+						"maestro",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"management",
+						"instances",
+						"{{instanceId}}",
+						"cancel"
+					],
+					"variable": [
+						{
+							"id": "f525dbb1-cb1f-4b73-96cd-21e6ff43f1cb",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						},
+						{
+							"id": "b895af2e-2e03-44ae-a6be-30453cac5299",
+							"key": "instanceId",
+							"value": "{{instanceId}}"
+						}
+					]
+				},
+				"description": "Cancels a running workflow instance."
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of Step Histories",
+			"id": "b7324bf9-9898-465c-b440-6ab21e7bc570",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/instances/{{instanceId}}/history",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"api",
+						"maestro",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"management",
+						"instances",
+						"{{instanceId}}",
+						"history"
+					],
+					"variable": [
+						{
+							"id": "cfcaf384-57c9-43e0-bea2-0837eb0469cb",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						},
+						{
+							"id": "ce01560f-607d-4b20-a009-e720c62a14a0",
+							"key": "instanceId",
+							"value": "{{instanceId}}"
+						}
+					]
+				},
+				"description": "Returns a list of step history for a workflow instance"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Workflow Definitions metadata",
+			"id": "848f8b6d-c0f1-4638-95d3-517d4d7f5ea3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions?status={{status}}",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"api",
+						"maestro",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"management",
+						"workflow_definitions"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "{{status}}"
+						}
+					],
+					"variable": [
+						{
+							"id": "6e06526b-2eeb-4230-bd25-dda250e1b43d",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						}
+					]
+				},
+				"description": "Returns a list of workflow definitions' metadata."
+			},
+			"response": []
+		},
+		{
+			"name": "Creates a new workflow definition.",
+			"id": "335036eb-2487-4fd0-9fa3-c89eb0805649",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"api",
+						"maestro",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"management",
+						"workflow_definitions"
+					],
+					"variable": [
+						{
+							"id": "87f339d9-893c-4c14-ab1c-b15460c35c97",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						}
+					]
+				},
+				"description": "Creates a new workflow definition."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Workflow Definition",
+			"id": "3b718aeb-ce59-4238-bf53-f7cc5e2d5a77",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}?lastDeployedId={{lastDeployedId}}",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"api",
+						"maestro",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"management",
+						"workflow_definitions",
+						"{{workflowDefinitionId}}"
+					],
+					"query": [
+						{
+							"key": "lastDeployedId",
+							"value": "{{lastDeployedId}}"
+						}
+					],
+					"variable": [
+						{
+							"id": "4c1adcc5-c404-4dd1-9cc6-adbc37ad418c",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						},
+						{
+							"id": "e3ad244a-f36a-410d-af09-4f25faf1e8fb",
+							"key": "workflowDefinitionId",
+							"value": "{{workflowDefinitionId}}"
+						}
+					]
+				},
+				"description": "Returns a workflow definition."
+			},
+			"response": []
+		},
+		{
+			"name": "Updates a workflow definition.",
+			"id": "818788f9-f64c-4c7d-90f1-f506b0a84c74",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"api",
+						"maestro",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"management",
+						"workflow_definitions",
+						"{{workflowDefinitionId}}"
+					],
+					"variable": [
+						{
+							"id": "dcd8048a-c426-440f-8fa6-7b25c8b0dabb",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						},
+						{
+							"id": "49be58b0-a24e-4bc8-b454-7a2c960e62ab",
+							"key": "workflowDefinitionId",
+							"value": "{{workflowDefinitionId}}"
+						}
+					]
+				},
+				"description": "Updates a workflow definition."
+			},
+			"response": []
+		},
+		{
+			"name": "Deletes a workflow definition.",
+			"id": "f1ab97e8-4338-45a5-a68a-0abdc2cd8000",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"api",
+						"maestro",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"management",
+						"workflow_definitions",
+						"{{workflowDefinitionId}}"
+					],
+					"variable": [
+						{
+							"id": "244564a1-78a9-498f-8cf6-22ce263c3e5d",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						},
+						{
+							"id": "69f78063-a90f-4d1c-ad54-696982264a62",
+							"key": "workflowDefinitionId",
+							"value": "{{workflowDefinitionId}}"
+						}
+					]
+				},
+				"description": "Deletes a workflow definition."
+			},
+			"response": []
+		},
+		{
+			"name": "Gets configuration instances",
+			"id": "4533a4cd-40f2-4a35-8167-12ed1113eb4e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}/config_instances",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"api",
+						"maestro",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"management",
+						"workflow_definitions",
+						"{{workflowDefinitionId}}",
+						"config_instances"
+					],
+					"variable": [
+						{
+							"id": "1e4b7511-b891-44d3-b1c1-7672e055d43c",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						},
+						{
+							"id": "925e6252-bfc4-4581-ab68-00da218a6477",
+							"key": "workflowDefinitionId",
+							"value": "{{workflowDefinitionId}}"
+						}
+					]
+				},
+				"description": "Returns a list of configuration instances for a workflow definition"
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of Workflow Instances",
+			"id": "40fafd9e-872d-4d6d-822e-34d96542b26e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}/instances",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"api",
+						"maestro",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"management",
+						"workflow_definitions",
+						"{{workflowDefinitionId}}",
+						"instances"
+					],
+					"variable": [
+						{
+							"id": "c9b82d20-2a0d-4998-aed7-4852c52a6103",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						},
+						{
+							"id": "9cb043d3-d7b1-4732-a524-e466fb33b0e9",
+							"key": "workflowDefinitionId",
+							"value": "{{workflowDefinitionId}}"
+						}
+					]
+				},
+				"description": "Returns the list of instances for a deployed workflow definition."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Workflow Instance Details",
+			"id": "6fd92e6f-3a4c-4739-9adb-5cad283c70a8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}/instances/{{instanceId}}",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"api",
+						"maestro",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"management",
+						"workflow_definitions",
+						"{{workflowDefinitionId}}",
+						"instances",
+						"{{instanceId}}"
+					],
+					"variable": [
+						{
+							"id": "2b1b49f7-b8d3-4bb6-bd47-869e76ff8a7e",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						},
+						{
+							"id": "ede2bd41-63aa-442d-a516-e5f9cb453d2a",
+							"key": "workflowDefinitionId",
+							"value": "{{workflowDefinitionId}}"
+						},
+						{
+							"id": "a59d5f4c-6145-4c38-8879-becf64ec0b35",
+							"key": "instanceId",
+							"value": "{{instanceId}}"
+						}
+					]
+				},
+				"description": "Returns the details for a specific instance for a deployed workflow definition."
+			},
+			"response": []
+		},
+		{
+			"name": "Publishes or unpublishes a workflow definition.",
+			"id": "a8b1dd7f-70e2-47c8-9324-3297e63e251d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}/publish",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"api",
+						"maestro",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"management",
+						"workflow_definitions",
+						"{{workflowDefinitionId}}",
+						"publish"
+					],
+					"variable": [
+						{
+							"id": "a17732ec-28bc-4218-b02c-f58f29121737",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						},
+						{
+							"id": "2d61c0db-2e12-42cb-8571-8e29736a1ffe",
+							"key": "workflowDefinitionId",
+							"value": "{{workflowDefinitionId}}"
+						}
+					]
+				},
+				"description": "Publishes or unpublishes a workflow definition."
+			},
+			"response": []
+		}
+	]
 }
