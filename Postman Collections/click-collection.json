@@ -1,0 +1,1889 @@
+{
+	"info": {
+		"_postman_id": "52971d64-ca69-49ab-9702-7ce382ba772a",
+		"name": "Docusign Click API",
+		"description": "Docusign Elastic Signing lets you capture consent to standard agreement terms with a single click: terms and conditions, terms of service, terms of use, privacy policies, and more. The Click API lets you include this customizable solution in your Docusign integrations.\n\n**Additional Resources:**\n\n- [Full API Reference](https://developers.docusign.com/docs/web-forms-api/reference/)\n    \n- [Code Examples](https://developers.docusign.com/docs/click-api/how-to/)\n    \n- [Sample Apps showcasing Click API](https://developers.docusign.com/sample-apps/?filter=click)\n    \n- [SDKs](https://developers.docusign.com/docs/click-api/sdks/)\n    \n\n<video src=\"https://youtube.com/embed/YzOkSTL_SSA\" width=\"340\"></video>",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Accounts",
+			"item": [
+				{
+					"name": "Provides base service and version access information.",
+					"id": "44c80ae1-5059-484b-9149-af469335494f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": "https://{{hostenv}}/clickapi/service_information"
+					},
+					"response": []
+				},
+				{
+					"name": "Gets the Clickwraps for an account",
+					"id": "87dc9d32-7436-45ac-b2de-2915cb371af1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps?from_date={{from_date}}&ownerUserId={{ownerUserId}}&page_number={{page_number}}&status={{status}}&to_date={{to_date}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps"
+							],
+							"query": [
+								{
+									"key": "from_date",
+									"value": "{{from_date}}"
+								},
+								{
+									"key": "ownerUserId",
+									"value": "{{ownerUserId}}"
+								},
+								{
+									"key": "page_number",
+									"value": "{{page_number}}"
+								},
+								{
+									"key": "status",
+									"value": "{{status}}"
+								},
+								{
+									"key": "to_date",
+									"value": "{{to_date}}"
+								}
+							],
+							"variable": [
+								{
+									"id": "16c115a7-62bd-4c81-a76a-3b7b27e88a27",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Creates a Clickwrap for the specified accountId",
+					"id": "cc8f41d0-5634-4e27-8003-23c67e6be847",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps"
+							],
+							"variable": [
+								{
+									"id": "96ea50ef-edb8-451f-b65c-617d9c6c44f7",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes all the clickwraps for an account or the ones passed in query parameter clickwrapIds. It will not delete active clickwraps.",
+					"id": "49e0be2a-7715-481b-8aa7-e7f802629a34",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps?clickwrapIds={{clickwrapIds}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps"
+							],
+							"query": [
+								{
+									"key": "clickwrapIds",
+									"value": "{{clickwrapIds}}"
+								}
+							],
+							"variable": [
+								{
+									"id": "0f08b86f-7a2e-428f-80d9-92b81485d53a",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets the clickwrap for an account specified by clickwrapId",
+					"id": "558c0a4e-464d-4fd6-983a-5b9acd359d8c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}"
+							],
+							"variable": [
+								{
+									"id": "4153bc1b-22f5-4464-a393-0fc825adfdf2",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "685377f1-9f0f-42a0-a655-7ff20809b05c",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Updates the clickwrap specified by clickwrapId",
+					"id": "ee7c4b64-5e28-4437-946d-290d43058094",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}"
+							],
+							"variable": [
+								{
+									"id": "2c467e67-bf56-482c-915d-395282e7f472",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "f7e974f0-40c2-4b8c-92a3-1b96aeab1ede",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes the clickwrap and all its version specified by clickwrapId. Active clickwrap will not get deleted",
+					"id": "79a1f39a-1d83-4bc7-8c58-d7c3b876d096",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}?versions={{versions}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}"
+							],
+							"query": [
+								{
+									"key": "versions",
+									"value": "{{versions}}"
+								}
+							],
+							"variable": [
+								{
+									"id": "b06a951d-82b2-4ed5-8e33-d2dde2138808",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "399fbdb0-16d6-4527-9bf6-a01ee6cf1f16",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Checks if a user has agreed to a clickwrap and returns a response with the agreement url. Returns HttpStatusCode.OK if user has no pending agreement.",
+					"id": "f53bdc2f-4da8-4b40-9971-3a2f3662b072",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/agreements",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"agreements"
+							],
+							"variable": [
+								{
+									"id": "a8d5d92f-864a-4b60-80fc-d0af648a450c",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "e2f05fb6-623f-41ab-b008-7acfd233c223",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "",
+					"id": "20e976fb-3a21-4153-8a69-5403e5394d4f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/agreements/{{agreementId}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"agreements",
+								"{{agreementId}}"
+							],
+							"variable": [
+								{
+									"id": "8ea086e2-44f3-496e-8e42-429224101ddd",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "99d84370-3939-4fb1-b7f0-f2bbad9fab4b",
+									"key": "agreementId",
+									"value": "{{agreementId}}"
+								},
+								{
+									"id": "7b7df613-5a14-441d-8726-d131f36b97d3",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "",
+					"id": "b8151cf4-90bb-4974-b7ae-6d0e71a69e84",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/agreements/{{agreementId}}/download",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"agreements",
+								"{{agreementId}}",
+								"download"
+							],
+							"variable": [
+								{
+									"id": "7d19fa3f-fb56-4715-8fe9-c0b60263b034",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "179ee128-c7c8-4caa-a856-012d4ab33f0f",
+									"key": "agreementId",
+									"value": "{{agreementId}}"
+								},
+								{
+									"id": "d86fc829-f113-4010-96ca-3c441168c79d",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets the Clickwraps for an account",
+					"id": "eee3fa13-89f7-44b8-9717-2e5e6caab5a3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/users?client_user_id={{client_user_id}}&from_date={{from_date}}&page_number={{page_number}}&status={{status}}&to_date={{to_date}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"users"
+							],
+							"query": [
+								{
+									"key": "client_user_id",
+									"value": "{{client_user_id}}"
+								},
+								{
+									"key": "from_date",
+									"value": "{{from_date}}"
+								},
+								{
+									"key": "page_number",
+									"value": "{{page_number}}"
+								},
+								{
+									"key": "status",
+									"value": "{{status}}"
+								},
+								{
+									"key": "to_date",
+									"value": "{{to_date}}"
+								}
+							],
+							"variable": [
+								{
+									"id": "a7b62cf9-25db-4c74-9df3-cc36d941a73a",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "a29c53c5-3676-4d60-8bdd-ed655651fc36",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Creates the clickwrap version",
+					"id": "d80f36c2-632c-48f9-820d-d7e919165de6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"versions"
+							],
+							"variable": [
+								{
+									"id": "d88507a0-4b4f-412a-afa3-f007b001b606",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "86f9314f-2835-4ba3-b8dd-c4524d24bc68",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletes the versions specified by query parameter clickwrapVersionIds for a clickwrap, or all versions if no query parameter is specified. It will not delete if a version is active.",
+					"id": "d9b54d42-714d-4820-b02d-8ea198c8fe87",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions?clickwrapVersionIds={{clickwrapVersionIds}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"versions"
+							],
+							"query": [
+								{
+									"key": "clickwrapVersionIds",
+									"value": "{{clickwrapVersionIds}}"
+								}
+							],
+							"variable": [
+								{
+									"id": "2765fadd-ea2c-460d-b3d3-1a299db98bdd",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "df8e24ab-fe4b-4ba0-b346-498a3fa174b3",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets the Clickwrap version by clickwrapId and versionId for an account",
+					"id": "a706e49b-b4bf-4e35-a68a-b3976bc60711",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"versions",
+								"{{versionId}}"
+							],
+							"variable": [
+								{
+									"id": "3e06bcaa-67d6-4965-a5a4-1faa2e245c80",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "d38165f6-b235-4ccc-b7cb-ae9c09861e5c",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								},
+								{
+									"id": "b9a3e5c4-48fc-45f5-b4e7-de1f27dd3e9f",
+									"key": "versionId",
+									"value": "{{versionId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Updates the clickwrap version specified by versionId",
+					"id": "26baf36d-0b6d-42b3-bd4f-07d8d4e6e800",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"versions",
+								"{{versionId}}"
+							],
+							"variable": [
+								{
+									"id": "244a379f-578d-435f-8f63-ed7290cccb34",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "ed1927aa-3963-4cf0-a935-d032d9cddb28",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								},
+								{
+									"id": "2994c09f-b010-46f9-a0eb-cee4da716489",
+									"key": "versionId",
+									"value": "{{versionId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Clickwrap version specified by versionId",
+					"id": "48323bf7-ce84-4c63-9b20-33d72cca49f0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"versions",
+								"{{versionId}}"
+							],
+							"variable": [
+								{
+									"id": "e6b69f87-b349-4d08-9271-56bd383681c8",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "9c9e7d3d-ccfa-4ef4-832a-6792e3718c97",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								},
+								{
+									"id": "f71f8388-7e89-407a-9a69-fb6f93e01956",
+									"key": "versionId",
+									"value": "{{versionId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets the Clickwrap version by clickwrapId and versionNumber for an account",
+					"id": "42f13f28-d236-4ccb-8921-bc7a74bf2a69",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionNumber}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"versions",
+								"{{versionNumber}}"
+							],
+							"variable": [
+								{
+									"id": "9263fd51-27a6-4737-90e5-41f4265c68eb",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "02f058ab-6e9f-4c5a-a45e-c52e1e2ca462",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								},
+								{
+									"id": "24424926-ee89-4f6f-8520-718f74ca2d1a",
+									"key": "versionNumber",
+									"value": "{{versionNumber}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Updates the clickwrap version specified by versionNumber. Use versionId instead of versionNumber",
+					"id": "b28b7480-de0b-4a58-b093-b731716cb8fc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionNumber}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"versions",
+								"{{versionNumber}}"
+							],
+							"variable": [
+								{
+									"id": "5b345650-ce18-499f-98ce-09fe47da3859",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "ed24946e-a2f5-4945-a966-ba25c40756b6",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								},
+								{
+									"id": "852d2f71-2d31-4993-86ff-2c8eda366ab4",
+									"key": "versionNumber",
+									"value": "{{versionNumber}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Clickwrap version specified by versionNumber. Use versionId instead of versionNumber",
+					"id": "ed31aa14-c06e-43f5-9153-ce2dc8aed9ea",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionNumber}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"versions",
+								"{{versionNumber}}"
+							],
+							"variable": [
+								{
+									"id": "fb1aa612-625c-4197-8756-315016b7de09",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "792ed2da-bb83-49b2-a1f8-88b9d3f6b017",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								},
+								{
+									"id": "caad10f1-96eb-452a-913d-c3bd9fc0adc9",
+									"key": "versionNumber",
+									"value": "{{versionNumber}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets the agreement responses for a clickwrap version",
+					"id": "dc3ae1c4-0e95-4fea-8959-70fa8bd1abe0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionNumber}}/users?client_user_id={{client_user_id}}&from_date={{from_date}}&page_number={{page_number}}&status={{status}}&to_date={{to_date}}",
+							"protocol": "https",
+							"host": [
+								"{{hostenv}}"
+							],
+							"path": [
+								"clickapi",
+								"v1",
+								"accounts",
+								"{{accountId}}",
+								"clickwraps",
+								"{{clickwrapId}}",
+								"versions",
+								"{{versionNumber}}",
+								"users"
+							],
+							"query": [
+								{
+									"key": "client_user_id",
+									"value": "{{client_user_id}}"
+								},
+								{
+									"key": "from_date",
+									"value": "{{from_date}}"
+								},
+								{
+									"key": "page_number",
+									"value": "{{page_number}}"
+								},
+								{
+									"key": "status",
+									"value": "{{status}}"
+								},
+								{
+									"key": "to_date",
+									"value": "{{to_date}}"
+								}
+							],
+							"variable": [
+								{
+									"id": "00836400-08d4-4e3c-9dd1-5bfa1ab71cff",
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"id": "057452e2-2f81-4121-a40f-566c02339710",
+									"key": "clickwrapId",
+									"value": "{{clickwrapId}}"
+								},
+								{
+									"id": "78ac62c6-edfb-4b79-a060-4d6368451e85",
+									"key": "versionNumber",
+									"value": "{{versionNumber}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "359042f5-19de-4549-b084-eadf926252ed",
+			"description": "Folder for Accounts"
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "01 Authorize Code Grant Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+								],
+								"id": "c17bdef2-0628-439b-8ff3-9ef32a604446"
+							}
+						}
+					],
+					"id": "e0dfb3a7-b864-47d5-b369-715bf88d9d95",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{encodedKeys}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "code",
+									"value": "{{codeFromUrl}}"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code"
+								}
+							]
+						},
+						"url": "https://{{hostenv}}/oauth/token"
+					},
+					"response": []
+				},
+				{
+					"name": "02 JWT Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+								],
+								"id": "0b70ccd3-2e5f-4a1e-b802-3065652130e8"
+							}
+						}
+					],
+					"id": "35c9280a-defd-4201-b709-538e853a6bc4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{encodedKeys}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "assertion",
+									"value": "{{assertionHere}}"
+								},
+								{
+									"key": "grant_type",
+									"value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+								}
+							]
+						},
+						"url": "https://{{hostenv}}/oauth/token"
+					},
+					"response": []
+				},
+				{
+					"name": "03 Refresh Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+								],
+								"id": "71955f7a-c19c-4541-9e35-bb2933609526"
+							}
+						}
+					],
+					"id": "e15daa65-2a95-487a-9681-0d65d3f20846",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{encodedKeys}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "refresh_token",
+									"value": "{{refreshToken}}"
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token"
+								}
+							]
+						},
+						"url": "https://{{hostenv}}/oauth/token"
+					},
+					"response": []
+				},
+				{
+					"name": "04 Get User Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var accounts = jsonData.accounts;",
+									"if (jsonData.hasOwnProperty(\"sub\")) { ",
+									"    postman.setEnvironmentVariable(\"userId\", jsonData.sub); ",
+									"} ",
+									"",
+									"for (var i=0; i< accounts.length; i++) { ",
+									"  if (accounts[i].hasOwnProperty(\"is_default\")) { ",
+									"   if (accounts[i].is_default === true) { ",
+									"     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); ",
+									"     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); ",
+									"     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); ",
+									"   } ",
+									" } ",
+									"} ",
+									""
+								],
+								"id": "ce6570e7-3cb6-409c-864b-561aaca9badb"
+							}
+						}
+					],
+					"id": "1fbfa550-5ec5-4315-8095-20fc2c3e9fd4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "https://{{hostenv}}/oauth/userinfo"
+					},
+					"response": []
+				}
+			],
+			"id": "cdb6f121-ea16-484a-a7fd-b0cb77c688b3",
+			"description": "All Docusign REST APIs use OAuth 2.0 for authenticaiton. [You can find general autnetication information on the Developer Center.](https://developers.docusign.com/platform/auth/)\n\nInformation regarding [Web Forms API specific scopes can be found here](https://developers.docusign.com/docs/click-api/click101/auth/)."
+		},
+		{
+			"name": "Examples",
+			"item": [
+				{
+					"name": "1. Create an Envelope",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"envelopeId\", jsonData.envelopeId);"
+								],
+								"id": "857fd10c-4d32-4cb3-bb28-736836b2813a"
+							}
+						}
+					],
+					"id": "234aa9c9-3cb2-490e-9971-69e826eeea1f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"documents\": [\n    {\n      \"documentBase64\": {{document}},\n      \"documentId\": {{documentId}},\n      \"fileExtension\": \"pdf\",\n      \"name\": \"document\"\n    }\n  ],\n  \"emailSubject\": \"Simple Signing Example\",\n  \"recipients\": {\n    \"signers\": [\n      {\n        \"email\": {{user1}},\n        \"name\": {{user1_name}},\n        \"recipientId\": \"{{recipientId}}\"\n      }\n    ]\n  },\n  \"status\": \"sent\"\n}"
+						},
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
+						"description": "This example is a very basic example of creating an evenlope with a document and a single signer. This evenlope does not specify a tab."
+					},
+					"response": []
+				},
+				{
+					"name": "2. Create Envelope in Draft Stage",
+					"id": "61fe3bbb-e2f9-465f-81f7-01c7c8634ac5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"documents\": [\n    {\n      \"documentBase64\": {{document}},\n      \"documentId\": \"123\",\n      \"fileExtension\": \"pdf\",\n      \"name\": \"document\"\n    }\n  ],\n  \"emailSubject\": \"Simple Signing Example\",\n  \"recipients\": {\n    \"signers\": [\n      {\n        \"email\": {{user1}},\n        \"name\": {{user1_name}},\n        \"recipientId\": \"{{recipientId}}\"\n      }\n    ]\n  },\n  \"status\": \"created\"\n}"
+						},
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
+						"description": "In this example, we are creating an envelope similar to the previous step. However, we are keeping it in `draft` stage so can continue to make changes to it. If the status was set to `sent` the envelope would be sent to users."
+					},
+					"response": []
+				},
+				{
+					"name": "3. Get Envelope Status",
+					"id": "7bf51abe-90ae-4dbf-bb2b-5237cf9476de",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}",
+						"description": "If one needs to check the status of an envelope, they can use this endpoint to retrieve the status."
+					},
+					"response": []
+				},
+				{
+					"name": "4. Envelope Recipients",
+					"id": "c1f6d245-9ceb-4695-b3b2-1a04f83a6ad1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients",
+						"description": "In this example, we will list the recipents of an envelope. This endpoint is particularly useful if the envelope is in `draft` stage and we want to make changes to its recipents before sending."
+					},
+					"response": []
+				},
+				{
+					"name": "5. Add Tab to Envelope",
+					"id": "06369d2b-0593-4c3f-a53b-05d8050456a0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"signHereTabs\": [{\n        \"anchorString\": \"test\",\n        \"anchorXOffset\": \"1\",\n        \"anchorYOffset\": \"0\",\n        \"anchorIgnoreIfNotPresent\": \"false\",\n        \"anchorUnits\": \"inches\"\n    }]\n}"
+						},
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients/{{recipientId}}/tabs",
+						"description": "In this example, we will modify an evelope and add a tab to a document. This endpoint allows one to modify envelopes after they were created, which is very useful."
+					},
+					"response": []
+				},
+				{
+					"name": "6. Get Tabs in an Envelope",
+					"id": "909c1f7a-939e-4798-b14f-17c001832a67",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/recipients/{{recipientId}}/tabs",
+						"description": "After adding a new tab to the envelope, we can verify the tab was created by listing all the tabs in the envelope."
+					},
+					"response": []
+				},
+				{
+					"name": "7. Add an Attachment to Envelope",
+					"id": "af6051e6-32c7-4868-ba99-45cd85776fac",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"attachments\": [{\n        \"attachmentId\": \"123\",\n        \"data\": {{document}},\n        \"name\": \"sample_document\",\n        \"anchorIgnoreIfNotPresent\": \"false\",\n        \"anchorUnits\": \"inches\"\n    }]\n}"
+						},
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/attachments",
+						"description": "In this example, we will make further changes to our existing envelope by adding an attachmen to it."
+					},
+					"response": []
+				},
+				{
+					"name": "8. List Attachments in an Envelope",
+					"id": "a7895b4a-e085-4f5d-89ae-94d6a5374eb1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/attachments",
+						"description": "In this example, we will verify the attachment was added by listing all the attachments in the envelope."
+					},
+					"response": []
+				},
+				{
+					"name": "9. Lists the Documents in an Envelope",
+					"id": "badcc97a-3f62-4cce-aaf5-474b6065897d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/documents",
+						"description": "In this example, we will list all the documents that are included in an envelope."
+					},
+					"response": []
+				},
+				{
+					"name": "10. Get a Document from Envelope",
+					"id": "ceb0fb39-24dc-4f72-99b5-f10278e57da3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/documents/{{documentId}}",
+						"description": "In this example, we will download one document from the envelope. This approach allows one to inspect the document after envelope was created."
+					},
+					"response": []
+				},
+				{
+					"name": "11. Lock the Envelope",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"lockToken\", jsonData.lockToken);"
+								],
+								"id": "5e9d5e97-b8dc-4e9a-bb82-fd71c7ba82ca"
+							}
+						}
+					],
+					"id": "c9ae49f1-9cd0-4125-94a3-9df308212bf9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"lockDurationInSeconds\": \"500\",\n  \"lockType\": \"edit\"\n}"
+						},
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/lock",
+						"description": "This method locks the specified envelope and sets the time until the lock expires to prevent other users or recipients from changing the envelope.\n\nThe response to this request returns a `lockToken` parameter. You must use the lockToken to update or delete an existing lock. You must also include the `lockToken` in the header for every PUT call that you make on the envelope while it is locked. If you do not include the `lockToken`, the system returns the following error:\n\n```{\n   \"errorCode\": \"EDIT_LOCK_NOT_LOCK_OWNER\",\n   \"message\": \"The user is not the owner of the lock. The template is locked by another user or in another application\"\n}```\n\n`Note`: Users must have envelope locking capability enabled to use this function (userSetting canLockEnvelopes must be set to true for the user)."
+					},
+					"response": []
+				},
+				{
+					"name": "12. Lists the Existing Locks on an Envelope",
+					"id": "d785d0f9-77e3-4ee8-a840-19babe441d69",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/lock",
+						"description": "In this example, we will list all the locks existing on an envelope."
+					},
+					"response": []
+				},
+				{
+					"name": "13. Delete Existing Lock on an Envelope",
+					"id": "632f57ac-b9e3-4501-90f2-bfed8b821b4f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId}}/lock",
+						"description": "This example will delete the lock we created on the envelope."
+					},
+					"response": []
+				},
+				{
+					"name": "14. Created Embedded View",
+					"id": "61ed3060-1e85-45a7-aaa1-66037e239c32",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"returnUrl\": \"http://httpbin.org/get\",\n    \"authenticationMethod\": \"none\",\n    \"email\": {{user1}},\n    \"userName\": {{user1_name}}\n}"
+						},
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes/{{envelopeId_draft}}/views/recipient_preview",
+						"description": "In this example, we will create an embedded preview of what our recipients see when the envelope is sent out to them."
+					},
+					"response": []
+				},
+				{
+					"name": "15. Create an Account Template",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"templateId\", jsonData.templateId);"
+								],
+								"id": "2c04b1e3-6a9f-462d-bd69-f0b6ca80c3fa"
+							}
+						}
+					],
+					"id": "31e23bdb-951f-4bea-a016-f636f8043912",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"documents\": [\n    {\n      \"name\": \"agreement\",\n      \"documentBase64\": {{document}},\n      \"documentId\": {{documentId}},\n      \"fileExtension\": \"pdf\"\n    }\n  ],\n  \"emailBlurb\": \"Email message\",\n  \"emailSubject\": \"email subject\",\n  \"recipients\": {\n    \"signers\": [\n      {\n        \"recipientId\": \"1\",\n        \"roleName\": \"seller\",\n        \"email\":{{user1}},\n        \"name\": {{user1_name}},\n        \"tabs\": {\n          \"signHereTabs\": [\n            {\n              \"documentId\": \"123\",\n              \"pageNumber\": 1,\n              \"xPosition\": \"4\",\n              \"yPosition\": \"4\"\n            }\n          ]\n        }\n      }\n    ]\n  }\n}"
+						},
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates",
+						"description": "In this example, we will create a template with document, tabs and its recipients specified. This is a great future if we know we will be sending the same envelope multiple times."
+					},
+					"response": []
+				},
+				{
+					"name": "16. Get Account Templates",
+					"id": "4262a9bc-7173-4065-8b3e-a61e1987ef35",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates",
+						"description": "We can always see the templates that have been created by listing them. The templates we just created in the previous step is listed here."
+					},
+					"response": []
+				},
+				{
+					"name": "17. Get Template Definition",
+					"id": "08f7ea09-24b1-4ad1-baa7-0ec4df66d8b2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates/{{templateId}}",
+						"description": "If one is not sure which template is the one they want to use, they can fetch the template after listing it and verify that it is the one they want to use."
+					},
+					"response": []
+				},
+				{
+					"name": "18. Send Envelope with Template",
+					"id": "76bf9301-7e91-4da2-b3a6-331ca17c56a5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emailBlurb\": \"Create an envelope with a templateId\",\n    \"emailSubject\": \"Template\",\n    \"templateId\": \"{{templateId}}\",\n    \"status\": \"sent\"\n}"
+						},
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
+						"description": "Send an envelop with a single template."
+					},
+					"response": []
+				},
+				{
+					"name": "19. Create a Template with Role Only",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"templateId\", jsonData.templateId);"
+								],
+								"id": "4badc339-9324-4b53-9999-2223dfe8a4b5"
+							}
+						}
+					],
+					"id": "b0b9518f-cbcd-4800-bf5b-afa3b9dc23d9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"documents\": [\n    {\n      \"name\": \"agreement\",\n      \"documentBase64\": {{document}},\n      \"documentId\": {{documentId}},\n      \"fileExtension\": \"pdf\"\n    }\n  ],\n  \"emailBlurb\": \"Email message\",\n  \"emailSubject\": \"email subject\",\n  \"recipients\": {\n    \"signers\": [\n      {\n        \"recipientId\": \"1\",\n        \"roleName\": \"seller\",\n      }\n    ]\n  }\n}"
+						},
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/templates",
+						"description": "In order to make templates more board and be able to use them in `CompositeTemplates` we can create them by specifying the role only. This way, the recipients can be specified at envelope creation. This example shows how useful templates can be."
+					},
+					"response": []
+				},
+				{
+					"name": "20. Send an Envelope Using CompositeTemplates",
+					"id": "05060b95-921b-4d76-b3f6-1acdca5e49d2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emailBlurb\": \"Create an envelope with a templateId\",\n    \"emailSubject\": \"Template\",\n    \"compositeTemplates\": [\n        {\n            \"serverTemplates\": [\n                {\n                    \"sequence\": \"1\",\n                    \"templateId\": \"{{templateId}}\"\n                }\n            ],\n            \"inlineTemplates\": [\n                {\n                    \"recipients\": {\n                        \"signers\": [\n                            {\n                                \"email\": \"{{user1}}\",\n                                \"name\": \"{{user1_name}}\",\n                                \"recipientId\": \"2\",\n                                \"roleName\": \"seller\",\n                                \"tabs\": {\n                                    \"signHereTabs\": [\n                                        {\n                                            \"anchorString\": \"test\",\n                                            \"anchorUnits\": \"pixels\",\n                                            \"anchorXOffset\": \"200\",\n                                            \"anchorYOffset\": \"10\"\n                                        }\n                                    ]\n                                }\n                            }\n                        ]\n                    },\n                    \"sequence\": \"2\"\n                }\n            ]\n        }\n    ],\n    \"status\": \"sent\"\n}"
+						},
+						"url": "{{baseUrl}}/{{apiVersion}}/accounts/{{accountId}}/envelopes",
+						"description": "In this example, we will use the template we created in previous step and we will use `CompositeTemplates` to add a signer and a tab to it using `inlineTemplates`. You can see how one can create a template and keep reusing it this way."
+					},
+					"response": []
+				}
+			],
+			"id": "df7bf60e-192f-4b16-962c-fa0308e444ea",
+			"description": "Folder for Examples"
+		},
+		{
+			"name": "Gets the agreement responses for a clickwrap version",
+			"id": "11a15549-ce03-44cb-bc4b-77baac49f70c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{hostenv}}/clickapi/v1/accounts/{{accountId}}/clickwraps/{{clickwrapId}}/versions/{{versionId}}/users?client_user_id={{client_user_id}}&from_date={{from_date}}&page_number={{page_number}}&status={{status}}&to_date={{to_date}}",
+					"protocol": "https",
+					"host": [
+						"{{hostenv}}"
+					],
+					"path": [
+						"clickapi",
+						"v1",
+						"accounts",
+						"{{accountId}}",
+						"clickwraps",
+						"{{clickwrapId}}",
+						"versions",
+						"{{versionId}}",
+						"users"
+					],
+					"query": [
+						{
+							"key": "client_user_id",
+							"value": "{{client_user_id}}"
+						},
+						{
+							"key": "from_date",
+							"value": "{{from_date}}"
+						},
+						{
+							"key": "page_number",
+							"value": "{{page_number}}"
+						},
+						{
+							"key": "status",
+							"value": "{{status}}"
+						},
+						{
+							"key": "to_date",
+							"value": "{{to_date}}"
+						}
+					],
+					"variable": [
+						{
+							"id": "0c206928-a5d6-4567-8b6b-bbcfb02eb485",
+							"key": "accountId",
+							"value": "{{accountId}}"
+						},
+						{
+							"id": "c047247a-41d6-42cf-bb5f-2d4cc52951a1",
+							"key": "clickwrapId",
+							"value": "{{clickwrapId}}"
+						},
+						{
+							"id": "e6dc8b20-b454-470f-a67d-4fffa8b204a3",
+							"key": "versionId",
+							"value": "{{versionId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
