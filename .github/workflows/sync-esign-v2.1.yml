@@ -24,7 +24,14 @@ jobs:
         GITHUB_COLLECTION_PATH="./assets/esign-v2.1-collection.json"
         COLLECTION_UID=${{ vars.ESIGN_COLLECTION_UID }}
         
+        # Read the file content and wrap it inside a collection object
+        WRAPPED_CONTENT=$(jq -n --argfile data "$GITHUB_COLLECTION_PATH" '{"collection": $data}')
+        
+        # Write the wrapped content to a temporary file
+        echo "$WRAPPED_CONTENT" > wrapped_collection.json
+        
+        # Use curl with --data-binary to handle large file content
         curl --location --request PUT "https://api.getpostman.com/collections/$COLLECTION_UID" \
-        --header "x-api-key: $POSTMAN_API_KEY" \
-        --header "Content-Type: application/json" \
-        --data "{\"collection\": $(cat $GITHUB_COLLECTION_PATH)}"
+             --header "x-api-key: $POSTMAN_API_KEY" \
+             --header "Content-Type: application/json" \
+             --data-binary @wrapped_collection.json
