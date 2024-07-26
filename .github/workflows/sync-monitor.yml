@@ -3,7 +3,7 @@ name: Sync Monitor Postman Collection
 on:
   push:
     branches:
-      - main  # Change this to the branch you want to trigger the action
+      - master  # Change this to the branch you want to trigger the action
     paths:
       - 'assets/monitor-collection.json'
 
