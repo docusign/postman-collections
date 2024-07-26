@@ -37,7 +37,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/accounts/:accountId/workflow_definitions/:workflowDefinitionId/trigger?mtid=<uuid>&mtsec=<uuid>",
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/workflow_definitions/:workflowDefinitionId/trigger?mtid=UUID&mtsec=UUID",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -52,24 +52,22 @@
 							"query": [
 								{
 									"key": "mtid",
-									"value": "<uuid>",
+									"value": "UUID",
 									"description": "Managed Token Id registered with Docusign Account Server"
 								},
 								{
 									"key": "mtsec",
-									"value": "<uuid>",
+									"value": "UUID",
 									"description": "Managed Token Secret registered with Docusign account server"
 								}
 							],
 							"variable": [
 								{
-									"id": "9ba22e37-a0c9-4fc1-8d71-cd940e779a35",
 									"key": "accountId",
 									"value": "<uuid>",
 									"description": "(Required) The account ID."
 								},
 								{
-									"id": "77287602-d4cc-46d3-a1d9-08037d68fc2a",
 									"key": "workflowDefinitionId",
 									"value": "<uuid>",
 									"description": "(Required) Workflow definition ID."
