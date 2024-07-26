@@ -1,32 +1,17 @@
 {
 	"info": {
 		"_postman_id": "8ecb8fb1-181b-4be8-86a4-7b6fb7cc5342",
-		"name": "Docusign Maestro API",
+		"name": "Maestro API",
 		"description": "Maestro authors and executes experiences that allow non-coders the ability to define Simple Business Process without having to write code and to deploy them seamlessly without having to have development expertise",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Authentication",
+			"name": "WorkflowTrigger",
 			"item": [
 				{
-					"name": "01 Authorize Code Grant Access Token",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-								],
-								"id": "0aaa38f6-df70-4070-bbc3-a52fbfd00212"
-							}
-						}
-					],
-					"id": "442b2eb1-aee5-4189-a9c5-ca9167bbc3c9",
+					"name": "Creates a new workflow instance after authenticating with DS Account Server",
+					"id": "e0076818-d2b2-4047-aad2-ebead789a278",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -34,45 +19,498 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "Basic {{encodedKeys}}"
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
 							}
 						],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
+							"mode": "raw",
+							"raw": "{\n  \"instanceName\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"participants\": \"<object>\",\n  \"payload\": \"<object>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/workflow_definitions/:workflowDefinitionId/trigger?mtid=<uuid>&mtsec=<uuid>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								":accountId",
+								"workflow_definitions",
+								":workflowDefinitionId",
+								"trigger"
+							],
+							"query": [
 								{
-									"key": "code",
-									"value": "{{codeFromUrl}}"
+									"key": "mtid",
+									"value": "<uuid>",
+									"description": "Managed Token Id registered with Docusign Account Server"
 								},
 								{
-									"key": "grant_type",
-									"value": "authorization_code"
+									"key": "mtsec",
+									"value": "<uuid>",
+									"description": "Managed Token Secret registered with Docusign account server"
+								}
+							],
+							"variable": [
+								{
+									"id": "9ba22e37-a0c9-4fc1-8d71-cd940e779a35",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The account ID."
+								},
+								{
+									"id": "77287602-d4cc-46d3-a1d9-08037d68fc2a",
+									"key": "workflowDefinitionId",
+									"value": "<uuid>",
+									"description": "(Required) Workflow definition ID."
 								}
 							]
 						},
-						"url": "https://{{hostenv}}/oauth/token"
+						"description": "Creates a new workflow instance after authenticating with DS Account Server"
 					},
-					"response": []
-				},
-				{
-					"name": "02 JWT Access Token",
-					"event": [
+					"response": [
 						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+							"id": "1b32433c-afd2-4c2d-b02b-ffe75e366b8d",
+							"name": "Returns a workflow instance trigger URL that can be used to trigger a new instance or return to an instance in progress",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
 								],
-								"id": "62a2f179-6ad6-4408-ab0d-040b1657a042"
-							}
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"instanceName\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"participants\": \"<object>\",\n  \"payload\": \"<object>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/workflow_definitions/:workflowDefinitionId/trigger?mtid=00000000-0000-0000-0000-000000000000&mtsec=00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"trigger"
+									],
+									"query": [
+										{
+											"key": "mtid",
+											"value": "00000000-0000-0000-0000-000000000000"
+										},
+										{
+											"key": "mtsec",
+											"value": "00000000-0000-0000-0000-000000000000"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"instanceId\": \"00000000-0000-0000-0000-000000000000\",\n  \"workflowInstanceUrl\": \"https://HRzW.icSGlKAxv9VwQ\"\n}"
+						},
+						{
+							"id": "29e4730b-83f2-48ba-8873-0a8703593e11",
+							"name": "Bad Request received",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"instanceName\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"participants\": \"<object>\",\n  \"payload\": \"<object>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/workflow_definitions/:workflowDefinitionId/trigger?mtid=00000000-0000-0000-0000-000000000000&mtsec=00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"trigger"
+									],
+									"query": [
+										{
+											"key": "mtid",
+											"value": "00000000-0000-0000-0000-000000000000"
+										},
+										{
+											"key": "mtsec",
+											"value": "00000000-0000-0000-0000-000000000000"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "f64565cd-78a7-440b-ae32-400a2c84a957",
+							"name": "Authentication details are invalid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"instanceName\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"participants\": \"<object>\",\n  \"payload\": \"<object>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/workflow_definitions/:workflowDefinitionId/trigger?mtid=00000000-0000-0000-0000-000000000000&mtsec=00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"trigger"
+									],
+									"query": [
+										{
+											"key": "mtid",
+											"value": "00000000-0000-0000-0000-000000000000"
+										},
+										{
+											"key": "mtsec",
+											"value": "00000000-0000-0000-0000-000000000000"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "7721a2d0-a12d-46d1-b444-fc13ee199714",
+							"name": "Authorization Denied",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"instanceName\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"participants\": \"<object>\",\n  \"payload\": \"<object>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/workflow_definitions/:workflowDefinitionId/trigger?mtid=00000000-0000-0000-0000-000000000000&mtsec=00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"trigger"
+									],
+									"query": [
+										{
+											"key": "mtid",
+											"value": "00000000-0000-0000-0000-000000000000"
+										},
+										{
+											"key": "mtsec",
+											"value": "00000000-0000-0000-0000-000000000000"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "c0578025-04f2-47d9-9c86-9c0fd7955d69",
+							"name": "Resource not found when workflow definition id or workflow instance id doesn't exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"instanceName\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"participants\": \"<object>\",\n  \"payload\": \"<object>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/workflow_definitions/:workflowDefinitionId/trigger?mtid=00000000-0000-0000-0000-000000000000&mtsec=00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"trigger"
+									],
+									"query": [
+										{
+											"key": "mtid",
+											"value": "00000000-0000-0000-0000-000000000000"
+										},
+										{
+											"key": "mtsec",
+											"value": "00000000-0000-0000-0000-000000000000"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "60b11a95-6e40-4c3b-bd47-e0f6d8c74837",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"instanceName\": \"<string>\",\n  \"metadata\": \"<object>\",\n  \"participants\": \"<object>\",\n  \"payload\": \"<object>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/workflow_definitions/:workflowDefinitionId/trigger?mtid=00000000-0000-0000-0000-000000000000&mtsec=00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"trigger"
+									],
+									"query": [
+										{
+											"key": "mtid",
+											"value": "00000000-0000-0000-0000-000000000000"
+										},
+										{
+											"key": "mtsec",
+											"value": "00000000-0000-0000-0000-000000000000"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
 						}
-					],
-					"id": "549c8f93-1551-4b5a-9b29-6adfb3cbacaf",
+					]
+				}
+			],
+			"id": "7c84e068-51bc-49ff-a7d9-cca3d0df5e81",
+			"description": "Method to trigger a workflow."
+		},
+		{
+			"name": "WorkflowInstanceManagement",
+			"item": [
+				{
+					"name": "Cancels a running workflow instance.",
+					"id": "e0b9a731-b6e3-42bf-a6cd-60d6cae612f8",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -80,103 +518,255 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "Basic {{encodedKeys}}"
+								"key": "Accept",
+								"value": "application/json"
 							}
 						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
+						"url": {
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/management/instances/:instanceId/cancel",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								":accountId",
+								"management",
+								"instances",
+								":instanceId",
+								"cancel"
+							],
+							"variable": [
 								{
-									"key": "assertion",
-									"value": "{{assertionHere}}"
+									"id": "d63fc5e2-7555-4d11-86db-c0bd2afa4baa",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The account ID."
 								},
 								{
-									"key": "grant_type",
-									"value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+									"id": "7e472f64-2177-4014-aa94-325eea43b7b9",
+									"key": "instanceId",
+									"value": "<uuid>",
+									"description": "(Required) The instance ID of the workflow to cancel."
 								}
 							]
 						},
-						"url": "https://{{hostenv}}/oauth/token"
+						"description": "Cancels a running workflow instance."
 					},
-					"response": []
-				},
-				{
-					"name": "03 Refresh Access Token",
-					"event": [
+					"response": [
 						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+							"id": "f8a4673c-69e6-4530-8811-a20362ee8aa4",
+							"name": "Return Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
 								],
-								"id": "3bc5ed34-431b-4006-bec5-1fc549e46197"
-							}
-						}
-					],
-					"id": "f8e1f100-fd11-4233-a4d2-24b97cbf271f",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Basic {{encodedKeys}}"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "refresh_token",
-									"value": "{{refreshToken}}"
-								},
-								{
-									"key": "grant_type",
-									"value": "refresh_token"
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/instances/:instanceId/cancel",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"instances",
+										":instanceId",
+										"cancel"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) The instance ID of the workflow to cancel."
+										}
+									]
 								}
-							]
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"message\": \"Lorem commodo ad ipsum\",\n  \"code\": \"aute ea\"\n}"
 						},
-						"url": "https://{{hostenv}}/oauth/token"
-					},
-					"response": []
+						{
+							"id": "a32767d3-e11e-4adf-8438-3de05a3b1eb5",
+							"name": "Authentication details are invalid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/instances/:instanceId/cancel",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"instances",
+										":instanceId",
+										"cancel"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) The instance ID of the workflow to cancel."
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "9c767f62-21b7-49d2-ada1-14337ffa03ae",
+							"name": "The requested resource was not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/instances/:instanceId/cancel",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"instances",
+										":instanceId",
+										"cancel"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) The instance ID of the workflow to cancel."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "9fc6379d-2490-4b56-b126-877c1e269eeb",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/instances/:instanceId/cancel",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"instances",
+										":instanceId",
+										"cancel"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) The instance ID of the workflow to cancel."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						}
+					]
 				},
 				{
-					"name": "04 Get User Info",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"var accounts = jsonData.accounts;",
-									"if (jsonData.hasOwnProperty(\"sub\")) { ",
-									"    postman.setEnvironmentVariable(\"userId\", jsonData.sub); ",
-									"} ",
-									"",
-									"for (var i=0; i< accounts.length; i++) { ",
-									"  if (accounts[i].hasOwnProperty(\"is_default\")) { ",
-									"   if (accounts[i].is_default === true) { ",
-									"     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); ",
-									"     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); ",
-									"     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); ",
-									"   } ",
-									" } ",
-									"} ",
-									""
-								],
-								"id": "dc2bc21a-1f0c-4ab1-9f25-8784c621a8c8"
-							}
-						}
-					],
-					"id": "b23ab834-149b-4ee1-a6e1-400e2ae3f07b",
+					"name": "Gets configuration instances",
+					"id": "018015f9-106c-4071-ba89-efbae4e9fad2",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -184,727 +774,3088 @@
 						"method": "GET",
 						"header": [
 							{
-								"key": "Authorization",
-								"value": "Bearer {{accessToken}}"
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/config_instances",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								":accountId",
+								"management",
+								"workflow_definitions",
+								":workflowDefinitionId",
+								"config_instances"
+							],
+							"variable": [
+								{
+									"id": "a67f8947-1afc-4dc5-bcb1-8da2a2e917e8",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The account ID."
+								},
+								{
+									"id": "12042715-cfa6-4948-8fa0-f15db5e03312",
+									"key": "workflowDefinitionId",
+									"value": "<uuid>",
+									"description": "(Required) Workflow definition ID."
+								}
+							]
+						},
+						"description": "Returns a list of configuration instances for a workflow definition"
+					},
+					"response": [
+						{
+							"id": "5b3d5584-faac-4756-8e9e-57d804e04a82",
+							"name": "Returns a list of configuration instances for a workflow definition",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/config_instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"config_instances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"configInstances\": [\n    {\n      \"savedValues\": {\n        \"sint_8b8\": -14189373.023724183\n      },\n      \"stepId\": \"urn:uuid:f4c5fa48-49e9-ee39-0501-94a0ab82460e\"\n    },\n    {\n      \"savedValues\": {\n        \"nostrud_9_\": 48923604.57976231\n      },\n      \"stepId\": \"132cb0d2-66fb-7e96-f83d-f999f22f8d4e\"\n    }\n  ],\n  \"count\": 22120598.5499243,\n  \"workflowDefinitionId\": \"fb00ccb2-3edd-357b-e913-b3e194b60579\"\n}"
+						},
+						{
+							"id": "0fa2748a-8c1c-4882-bdc3-8540fac217f5",
+							"name": "Bad request received",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/config_instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"config_instances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "fb0e150d-4676-4fda-8a73-1389af90af58",
+							"name": "Authentication details are invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/config_instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"config_instances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "403d9312-4c5e-48f3-b0db-aa5b4f49956b",
+							"name": "Authorization details are invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/config_instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"config_instances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "10297160-937b-4e50-a3b1-c7b5f792932a",
+							"name": "Resource not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/config_instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"config_instances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "a9c9d68c-1419-4dcc-8833-13b1ef4fb775",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/config_instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"config_instances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get List of Workflow Instances",
+					"id": "9ee1b282-e061-4a89-99d5-34881ec4842d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/instances",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								":accountId",
+								"management",
+								"workflow_definitions",
+								":workflowDefinitionId",
+								"instances"
+							],
+							"variable": [
+								{
+									"id": "d856143c-c379-4550-b39e-2b0660703e01",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The account ID."
+								},
+								{
+									"id": "a0c7548b-110b-47e4-a68f-add3d10c8e9d",
+									"key": "workflowDefinitionId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the workflow definition to delete."
+								}
+							]
+						},
+						"description": "Returns the list of instances for a deployed workflow definition."
+					},
+					"response": [
+						{
+							"id": "81b1ce62-e54b-46b9-81c7-9c0b401cabe3",
+							"name": "A list of workflow instances for a workflow definition in the specified account.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"instances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) The ID of the workflow definition to delete."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "[\n  {\n    \"templateId\": \"00000000-0000-0000-0000-000000000000\",\n    \"dacId\": \"00000000-0000-0000-0000-000000000000\",\n    \"creatorId\": \"00000000-0000-0000-0000-000000000000\",\n    \"users\": {\n      \"exercitation_f\": \"esse qui al\",\n      \"consequat_8cd\": \"dolore aute nisi sed\",\n      \"cupidatat_23\": \"reprehenderit in offi\"\n    },\n    \"instanceState\": \"Failed\",\n    \"accountId\": \"00000000-0000-0000-0000-000000000000\",\n    \"endDate\": \"2010-06-28T13:46:43.330Z\",\n    \"instanceName\": \"ea ex\",\n    \"progress\": {\n      \"completedSteps\": -23708850.946384892,\n      \"currentCompletedStepName\": \"est ea elit\",\n      \"totalSteps\": 70338253.38199997\n    },\n    \"startDate\": \"1987-10-31T00:40:58.375Z\",\n    \"startedBy\": {\n      \"startedById\": \"<uuid>\",\n      \"startedByName\": \"sed anim id ipsum amet\",\n      \"startedByType\": \"Anonymous\"\n    }\n  },\n  {\n    \"templateId\": \"00000000-0000-0000-0000-000000000000\",\n    \"dacId\": \"00000000-0000-0000-0000-000000000000\",\n    \"creatorId\": \"00000000-0000-0000-0000-000000000000\",\n    \"users\": {\n      \"Lorem_6a_\": \"proident labore non\",\n      \"cillume\": \"qui ipsum laborum\"\n    },\n    \"instanceState\": \"Canceled\",\n    \"accountId\": \"00000000-0000-0000-0000-000000000000\",\n    \"endDate\": \"1997-03-30T05:26:44.996Z\",\n    \"instanceName\": \"in eiusm\",\n    \"progress\": {\n      \"completedSteps\": -22667918.536169916,\n      \"currentCompletedStepName\": \"non quis dolor fugiat deserunt\",\n      \"totalSteps\": 22016984.209318176\n    },\n    \"startDate\": \"1982-10-21T14:38:21.507Z\",\n    \"startedBy\": {\n      \"startedById\": \"<uuid>\",\n      \"startedByName\": \"nostrud nulla Duis\",\n      \"startedByType\": \"OnBehalfOf\"\n    }\n  }\n]"
+						},
+						{
+							"id": "ba220787-46d0-466f-8866-e323ef8106f7",
+							"name": "Authentication details are invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"instances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) The ID of the workflow definition to delete."
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "9dc0bb2f-cae1-468f-9094-81183f8f1a92",
+							"name": "Authorization details are invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"instances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) The ID of the workflow definition to delete."
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "c5ef9481-0093-4b79-a39f-70235ca36ceb",
+							"name": "The requested resource was not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"instances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) The ID of the workflow definition to delete."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "fb7dd435-0eac-4242-918f-36a8f187ae83",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"instances"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) The ID of the workflow definition to delete."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Workflow Instance Details",
+					"id": "edec8677-5124-4c6a-b79c-4693f1701409",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/instances/:instanceId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								":accountId",
+								"management",
+								"workflow_definitions",
+								":workflowDefinitionId",
+								"instances",
+								":instanceId"
+							],
+							"variable": [
+								{
+									"id": "c9f08631-76ab-4fcd-9a2f-8f31c2cd0c1a",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The account ID."
+								},
+								{
+									"id": "f35272e4-57f5-4bbf-a7af-c6b418d8b637",
+									"key": "workflowDefinitionId",
+									"value": "<uuid>",
+									"description": "(Required) Workflow definition ID."
+								},
+								{
+									"id": "2ae32a28-9ba4-4041-8d1e-335af8ee3791",
+									"key": "instanceId",
+									"value": "<uuid>",
+									"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
+								}
+							]
+						},
+						"description": "Returns the details for a specific instance for a deployed workflow definition."
+					},
+					"response": [
+						{
+							"id": "def953f4-e21e-4450-88c9-d5a5ee3d4921",
+							"name": "Details for a specific instance for a workflow definition in the specified account.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/instances/:instanceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"instances",
+										":instanceId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"templateId\": \"00000000-0000-0000-0000-000000000000\",\n  \"dacId\": \"00000000-0000-0000-0000-000000000000\",\n  \"creatorId\": \"00000000-0000-0000-0000-000000000000\",\n  \"users\": {\n    \"Lorem_bac\": \"pr\"\n  },\n  \"instanceState\": \"In Progress\",\n  \"accountId\": \"00000000-0000-0000-0000-000000000000\",\n  \"endDate\": \"1996-08-20T20:16:44.719Z\",\n  \"instanceName\": \"qui Excepteur aliquip\",\n  \"progress\": {\n    \"completedSteps\": 17159441.86342129,\n    \"currentCompletedStepName\": \"esse reprehenderit dolore\",\n    \"totalSteps\": -19247268.087260097\n  },\n  \"startDate\": \"2017-01-10T17:10:54.019Z\",\n  \"startedBy\": {\n    \"startedById\": \"<uuid>\",\n    \"startedByName\": \"sunt irure\",\n    \"startedByType\": \"Anonymous\"\n  }\n}"
+						},
+						{
+							"id": "6dc7b271-045a-4400-b488-537c335a03c0",
+							"name": "Authentication details are invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/instances/:instanceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"instances",
+										":instanceId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "6bb66788-74f4-42f7-982a-04266d89dd5b",
+							"name": "Authorization details are invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/instances/:instanceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"instances",
+										":instanceId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "c8c8694d-2183-4189-b68c-d8ef69d8cc95",
+							"name": "The requested resource was not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/instances/:instanceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"instances",
+										":instanceId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "f3bcf67e-a001-4e0f-bf54-9d0b14203746",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/instances/:instanceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"instances",
+										":instanceId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						}
+					]
+				}
+			],
+			"id": "9f651321-1cb2-40bd-87a2-31adec5a919f",
+			"description": "Methods to get information about workflow instances."
+		},
+		{
+			"name": "WorkflowManagement",
+			"item": [
+				{
+					"name": "Get List of Step Histories",
+					"id": "e5cb6f8d-a591-4adf-ad71-509eaefbfc22",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/management/instances/:instanceId/history",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								":accountId",
+								"management",
+								"instances",
+								":instanceId",
+								"history"
+							],
+							"variable": [
+								{
+									"id": "49295cb4-9a4d-42cd-93f7-86b2677e81e6",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The account ID."
+								},
+								{
+									"id": "faf50d22-e6f8-4a81-9185-18982c68ee52",
+									"key": "instanceId",
+									"value": "<uuid>",
+									"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
+								}
+							]
+						},
+						"description": "Returns a list of step history for a workflow instance"
+					},
+					"response": [
+						{
+							"id": "53870adb-4096-4ea3-9073-75976dd35451",
+							"name": "History of workflow steps is returned",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/instances/:instanceId/history",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"instances",
+										":instanceId",
+										"history"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "[\n  {\n    \"dacId\": \"00000000-0000-0000-0000-000000000000\",\n    \"stepName\": \"dolor\",\n    \"stepState\": \"In Progress\",\n    \"userId\": \"urn:uuid:274f92c8-67ad-c6c0-5cc9-4bb15a432d76\",\n    \"accountId\": \"00000000-0000-0000-0000-000000000000\",\n    \"dsStepId\": \"67cd4202-4511-6510-6a22-58f899adf268\",\n    \"endDate\": \"1946-06-23T16:44:44.177Z\",\n    \"error\": {\n      \"code\": \"Duis\",\n      \"endTime\": \"1964-07-02T11:20:20.355Z\",\n      \"error\": {\n        \"code\": \"qui dolor\",\n        \"message\": \"elit exercit\"\n      },\n      \"name\": \"\",\n      \"startTime\": \"1948-03-28T00:32:46.834Z\"\n    },\n    \"outputModuleProperties\": {\n      \"minimda5\": \"ex\"\n    },\n    \"startDate\": \"1960-12-31T08:40:45.138Z\",\n    \"stepId\": \"00000000-0000-0000-0000-000000000000\"\n  },\n  {\n    \"dacId\": \"00000000-0000-0000-0000-000000000000\",\n    \"stepName\": \"minim eu\",\n    \"stepState\": \"Failed\",\n    \"userId\": \"urn:uuid:a23eef72-2421-33e1-a570-1615308d1b14\",\n    \"accountId\": \"00000000-0000-0000-0000-000000000000\",\n    \"dsStepId\": \"50cd7d11-070b-1310-0fc0-38e92af40050\",\n    \"endDate\": \"1976-02-16T12:44:40.819Z\",\n    \"error\": {\n      \"code\": \"fugiat sunt amet voluptate irure\",\n      \"endTime\": \"1983-02-07T23:23:59.683Z\",\n      \"error\": {\n        \"code\": \"et\",\n        \"message\": \"do consequat reprehenderit dolor proident\"\n      },\n      \"name\": \"veniam irure in reprehenderit\",\n      \"startTime\": \"2007-05-25T16:05:12.959Z\"\n    },\n    \"outputModuleProperties\": {\n      \"ut_\": -39864880,\n      \"Duis_5\": -60840620,\n      \"exercitation__2\": 12381040.910591245\n    },\n    \"startDate\": \"1984-12-31T05:19:50.769Z\",\n    \"stepId\": \"00000000-0000-0000-0000-000000000000\"\n  }\n]"
+						},
+						{
+							"id": "79ffb5fc-b70a-46a5-b601-c3fc3e710483",
+							"name": "Authentication details are invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/instances/:instanceId/history",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"instances",
+										":instanceId",
+										"history"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "ade6c2a0-0e6a-4eb2-adf6-5d4506e210e4",
+							"name": "Authorization details are invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/instances/:instanceId/history",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"instances",
+										":instanceId",
+										"history"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "90e3549a-9d47-44da-b3e3-f3c7deef595c",
+							"name": "The requested resource was not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/instances/:instanceId/history",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"instances",
+										":instanceId",
+										"history"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "a830fbb7-50f6-44c7-8b2c-5e3ca2da5b7d",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/instances/:instanceId/history",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"instances",
+										":instanceId",
+										"history"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "instanceId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Workflow Definitions metadata",
+					"id": "a8afa539-3e70-4c45-8611-ca9aecd433d9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions?status=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								":accountId",
+								"management",
+								"workflow_definitions"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "<string>",
+									"description": "Workflow definition metadata status. <!-- filter -->"
+								}
+							],
+							"variable": [
+								{
+									"id": "08713970-41d8-4c91-824d-321dbd2f5c30",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The account ID."
+								}
+							]
+						},
+						"description": "Returns a list of workflow definitions' metadata."
+					},
+					"response": [
+						{
+							"id": "1fcc92e8-8bf7-41f2-82da-425208295422",
+							"name": "Returns a list of workflow definitions' metadata.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions?status=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "<string>"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"count\": 1,\n  \"value\": [\n    {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"accountId\": \"e8b5bd74-5bf6-4795-967a-89b4e8d550e5\",\n      \"createdDate\": \"1961-03-20T15:52:26.208Z\",\n      \"isDraft\": false,\n      \"lastDeployedId\": \"64655d8192f160c93b2366a1\",\n      \"lastDeployedVersion\": \"pariatur sint aliqua aliquip\",\n      \"lastUpdatedDate\": \"1980-07-15T19:28:32.826Z\",\n      \"name\": \"Ut reprehenderit culpa minim\",\n      \"status\": \"archived\",\n      \"triggerUrl\": \"http://utgXDtJYhg.sopiO8bw4dGZm4DSPzn3+TUgW3V6NeUf8vmcJtfDg.I5KTjm9zyF\"\n    },\n    {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"accountId\": \"05fec9a6-afdd-cc8f-15f2-58a589871b3a\",\n      \"createdDate\": \"1947-05-13T23:30:22.484Z\",\n      \"isDraft\": false,\n      \"lastDeployedId\": \"64655d8192f160c93b2366a1\",\n      \"lastDeployedVersion\": \"Excepteur in\",\n      \"lastUpdatedDate\": \"2008-11-23T19:05:49.054Z\",\n      \"name\": \"aliquip et nostrud o\",\n      \"status\": \"publishing\",\n      \"triggerUrl\": \"http://dP.hvgFCd43BOLjlfi+\"\n    }\n  ]\n}"
+						},
+						{
+							"id": "9f95a4f5-1323-41a7-8fea-f52f23b51f4e",
+							"name": "Bad Request received",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions?status=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "<string>"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "2469c318-ec40-43fc-b6ba-d3d162c63b09",
+							"name": "Authentication details are invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions?status=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "<string>"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "24d23262-4a8a-4d74-827b-dd444f18c97b",
+							"name": "Authorization details are invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions?status=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "<string>"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "2fdadd75-441e-4883-b4c4-7886de98afb6",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions?status=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "<string>"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Creates a new workflow definition.",
+					"id": "8adaf1f1-6d58-4bc5-8a19-32c9b1465dc1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n  \"workflowDefinition\": {\n    \"workflowName\": \"<string>\",\n    \"workflowDescription\": \"<string>\",\n    \"documentVersion\": \"<string>\",\n    \"schemaVersion\": \"<string>\",\n    \"accountId\": \"<uuid>\",\n    \"trigger\": {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"type\": \"<string>\",\n      \"httpType\": \"<string>\",\n      \"input\": {\n        \"commodo_4d\": \"<object>\",\n        \"labore_\": \"<object>\",\n        \"ut_\": \"<object>\"\n      },\n      \"output\": {\n        \"adipisicing_64\": \"<object>\",\n        \"Excepteure9\": \"<object>\",\n        \"Ut_a\": \"<object>\"\n      },\n      \"eventType\": \"<string>\"\n    },\n    \"variables\": {\n      \"commodo24\": \"<object>\"\n    },\n    \"steps\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"createdByName\": \"<string>\",\n    \"participants\": {\n      \"dolore_83\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"reprehenderitb8\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"veniamc8\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      }\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						"url": "https://{{hostenv}}/oauth/userinfo"
+						"url": {
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								":accountId",
+								"management",
+								"workflow_definitions"
+							],
+							"variable": [
+								{
+									"id": "2a3f866d-c612-418b-9162-f548fab37e0e",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The account ID."
+								}
+							]
+						},
+						"description": "Creates a new workflow definition."
 					},
-					"response": []
+					"response": [
+						{
+							"id": "33d61601-5927-4555-b3a2-cd3bb61ecfb6",
+							"name": "Return Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"workflowDefinitionId\": \"<uuid>\",\n  \"workflowDefinition\": {\n    \"workflowName\": \"<string>\",\n    \"workflowDescription\": \"<string>\",\n    \"documentVersion\": \"1.0.0\",\n    \"schemaVersion\": \"1.0.0\",\n    \"accountId\": \"<uuid>\",\n    \"trigger\": {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"type\": \"<string>\",\n      \"httpType\": \"<string>\",\n      \"input\": {\n        \"cupidatatf94\": \"<object>\",\n        \"magna_69\": \"<object>\"\n      },\n      \"output\": {\n        \"eiusmod_b4d\": \"<object>\",\n        \"ipsum9\": \"<object>\"\n      },\n      \"eventType\": \"<string>\"\n    },\n    \"variables\": {\n      \"cupidatat_4\": \"<object>\",\n      \"irure_6d4\": \"<object>\",\n      \"aute_49_\": \"<object>\"\n    },\n    \"steps\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"createdByName\": \"<string>\",\n    \"participants\": {\n      \"magna1\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"est__40\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"sint17_\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      }\n    }\n  },\n  \"isValidWorkflowDefinition\": true,\n  \"validationErrors\": [\n    {\n      \"message\": \"aute reprehenderit sint Ut magna\",\n      \"code\": \"sunt tempor\"\n    },\n    {\n      \"message\": \"fugiat proident tempor consequa\",\n      \"code\": \"adipisicing occaecat sint ut\"\n    }\n  ]\n}"
+						},
+						{
+							"id": "84607baa-d6bb-4519-b9de-f0c3a10c5699",
+							"name": "Authentication details are invalid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "a71ad37e-d26b-49ae-b33d-1e5b0040219a",
+							"name": "The requested resource was not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "f11e920c-88da-4310-a6bd-390f58095240",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Deletes a workflow definition.",
+					"id": "c5016447-c909-49da-8198-96e6ccc2ec85",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								":accountId",
+								"management",
+								"workflow_definitions",
+								":workflowDefinitionId"
+							],
+							"variable": [
+								{
+									"id": "27992b59-d9ff-4aec-acaf-cff79ec5ed47",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The account ID."
+								},
+								{
+									"id": "bf600192-27f1-4092-9cd0-1213e1133d31",
+									"key": "workflowDefinitionId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the workflow definition to delete."
+								}
+							]
+						},
+						"description": "Deletes a workflow definition."
+					},
+					"response": [
+						{
+							"id": "b7bbfef0-b436-4a47-b5f9-4370e300a80d",
+							"name": "Returns Delete Successful.",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) The ID of the workflow definition to delete."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"workflowDefinitionId\": \"<uuid>\",\n  \"pollUrl\": \"http://ZcNIoqI.ovtLawPReQKnQTQk-cDVXcKOmObut0xaW7M5J7cpM1G2c,\"\n}"
+						},
+						{
+							"id": "11aec2ba-b1ce-4107-a132-7db5c982fee5",
+							"name": "Resource not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) The ID of the workflow definition to delete."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "7979a97f-0b8e-4e84-ab9f-1195440f2a1d",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) The ID of the workflow definition to delete."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Workflow Definition",
+					"id": "272c2875-dde9-4fe1-9fa9-c1b4f2ed8582",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId?lastDeployedId=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								":accountId",
+								"management",
+								"workflow_definitions",
+								":workflowDefinitionId"
+							],
+							"query": [
+								{
+									"key": "lastDeployedId",
+									"value": "<string>",
+									"description": "The ID of the deployed workflow definition."
+								}
+							],
+							"variable": [
+								{
+									"id": "c456c24f-38c1-4e0b-949b-ae3fc0b4a641",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The account ID."
+								},
+								{
+									"id": "86a90060-b9ed-4c92-b043-e4c8047fecef",
+									"key": "workflowDefinitionId",
+									"value": "<uuid>",
+									"description": "(Required) Workflow definition ID."
+								}
+							]
+						},
+						"description": "Returns a workflow definition."
+					},
+					"response": [
+						{
+							"id": "2fe2e61d-bd23-4b8a-8d47-5fc781a98f32",
+							"name": "Returns a workflow definition.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId?lastDeployedId=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"query": [
+										{
+											"key": "lastDeployedId",
+											"value": "<string>"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"id\": \"00000000-0000-0000-0000-000000000000\",\n  \"accountId\": \"<uuid>\",\n  \"createdDate\": \"1949-03-27T09:32:00.201Z\",\n  \"isDraft\": false,\n  \"lastDeployedId\": \"64655d8192f160c93b2366a1\",\n  \"lastDeployedVersion\": \"Excepteur aute amet enim\",\n  \"lastDeployedWorkflowDefinition\": {\n    \"workflowName\": \"<string>\",\n    \"workflowDescription\": \"<string>\",\n    \"documentVersion\": \"1.0.0\",\n    \"schemaVersion\": \"1.0.0\",\n    \"accountId\": \"<uuid>\",\n    \"trigger\": {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"type\": \"<string>\",\n      \"httpType\": \"<string>\",\n      \"input\": {\n        \"et50c\": \"<object>\",\n        \"eiusmod2_7\": \"<object>\",\n        \"sunt889\": \"<object>\"\n      },\n      \"output\": {\n        \"officia__\": \"<object>\",\n        \"occaecat1\": \"<object>\"\n      },\n      \"eventType\": \"<string>\"\n    },\n    \"variables\": {\n      \"Duis_f7\": \"<object>\"\n    },\n    \"steps\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"createdByName\": \"<string>\",\n    \"participants\": {\n      \"velit_92\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"sint9\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"minim_84\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"dolore_a1\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      }\n    }\n  },\n  \"lastUpdatedDate\": \"1949-07-31T07:53:04.007Z\",\n  \"status\": \"archiving\",\n  \"triggerUrl\": \"https://CqMqycPNUAVCZGAtRnkaehEzYNxisoCi.feiLJAGxYcHEJA2AAj0bXXuzWdq2BL3+Y-oVAxY\",\n  \"validationErrors\": [\n    {\n      \"message\": \"enim qui ullamco\",\n      \"code\": \"volup\"\n    },\n    {\n      \"message\": \"et Ut sit ullamco\",\n      \"code\": \"eu officia veniam quis\"\n    }\n  ],\n  \"workflowDefinition\": {\n    \"workflowName\": \"<string>\",\n    \"workflowDescription\": \"<string>\",\n    \"documentVersion\": \"1.0.0\",\n    \"schemaVersion\": \"1.0.0\",\n    \"accountId\": \"<uuid>\",\n    \"trigger\": {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"type\": \"<string>\",\n      \"httpType\": \"<string>\",\n      \"input\": {\n        \"labore_4a\": \"<object>\"\n      },\n      \"output\": {\n        \"est_e\": \"<object>\",\n        \"Excepteur_1\": \"<object>\",\n        \"do1c\": \"<object>\"\n      },\n      \"eventType\": \"<string>\"\n    },\n    \"variables\": {\n      \"sed_6\": \"<object>\"\n    },\n    \"steps\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"createdByName\": \"<string>\",\n    \"participants\": {\n      \"nulla_e\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"Excepteur_17a\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      }\n    }\n  }\n}"
+						},
+						{
+							"id": "7c963b40-7b25-4650-878c-dd055eeac4a1",
+							"name": "Bad Request received",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId?lastDeployedId=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"query": [
+										{
+											"key": "lastDeployedId",
+											"value": "<string>"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "62d9546c-47d3-44f2-8356-48d11b087224",
+							"name": "Authentication details are invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId?lastDeployedId=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"query": [
+										{
+											"key": "lastDeployedId",
+											"value": "<string>"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "e1d589cd-b34f-4f08-a18b-7714f1ae3dc2",
+							"name": "Authorization details are invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId?lastDeployedId=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"query": [
+										{
+											"key": "lastDeployedId",
+											"value": "<string>"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "4742ad49-b8c7-495c-ae7e-26dcbe88227e",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId?lastDeployedId=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"query": [
+										{
+											"key": "lastDeployedId",
+											"value": "<string>"
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Updates a workflow definition.",
+					"id": "5380bd0b-e192-4156-b324-9194fd252691",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"workflowDefinition\": {\n    \"workflowName\": \"<string>\",\n    \"workflowDescription\": \"<string>\",\n    \"documentVersion\": \"<string>\",\n    \"schemaVersion\": \"<string>\",\n    \"accountId\": \"<uuid>\",\n    \"trigger\": {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"type\": \"<string>\",\n      \"httpType\": \"<string>\",\n      \"input\": {\n        \"veniam3\": \"<object>\",\n        \"aliquip_7\": \"<object>\"\n      },\n      \"output\": {\n        \"esse__8b\": \"<object>\"\n      },\n      \"eventType\": \"<string>\"\n    },\n    \"variables\": {\n      \"ad_2a\": \"<object>\",\n      \"sint_8a4\": \"<object>\"\n    },\n    \"steps\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"createdByName\": \"<string>\",\n    \"participants\": {\n      \"labore_\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"do2fc\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      }\n    }\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								":accountId",
+								"management",
+								"workflow_definitions",
+								":workflowDefinitionId"
+							],
+							"variable": [
+								{
+									"id": "5474f1a5-6450-465f-bee3-d758694f1706",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The account ID."
+								},
+								{
+									"id": "6a327157-e621-4895-905c-053baacfeebc",
+									"key": "workflowDefinitionId",
+									"value": "<uuid>",
+									"description": "(Required) Workflow definition ID."
+								}
+							]
+						},
+						"description": "Updates a workflow definition."
+					},
+					"response": [
+						{
+							"id": "4f6a55de-3283-4a4c-9ecb-7393dcd4930e",
+							"name": "Return Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"workflowDefinitionId\": \"<uuid>\",\n  \"workflowDefinition\": {\n    \"workflowName\": \"<string>\",\n    \"workflowDescription\": \"<string>\",\n    \"documentVersion\": \"1.0.0\",\n    \"schemaVersion\": \"1.0.0\",\n    \"accountId\": \"<uuid>\",\n    \"trigger\": {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"type\": \"<string>\",\n      \"httpType\": \"<string>\",\n      \"input\": {\n        \"sit_8c7\": \"<object>\"\n      },\n      \"output\": {\n        \"doloree02\": \"<object>\",\n        \"ipsumc4a\": \"<object>\",\n        \"officia1\": \"<object>\"\n      },\n      \"eventType\": \"<string>\"\n    },\n    \"variables\": {\n      \"commodo31\": \"<object>\",\n      \"voluptate_d\": \"<object>\"\n    },\n    \"steps\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"createdByName\": \"<string>\",\n    \"participants\": {\n      \"laborum599\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"ad60a\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"idb\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"dolore_43\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"proidentc\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      }\n    }\n  },\n  \"isValidWorkflowDefinition\": true,\n  \"validationErrors\": [\n    {\n      \"message\": \"minim esse\",\n      \"code\": \"tempor\"\n    },\n    {\n      \"message\": \"incididunt eu sunt et\",\n      \"code\": \"nostrud ut dolore\"\n    }\n  ]\n}"
+						},
+						{
+							"id": "b9a265d2-2def-4f97-a283-cd2fda1062b6",
+							"name": "Bad request, malformed input",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "69f42f5f-aa94-452d-ae3f-a9d63691118f",
+							"name": "Authentication details are invalid",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "2dc5088f-3705-497f-8ac5-5e221f399723",
+							"name": "The requested resource was not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "6512c26e-ec56-4d8c-a31e-8418355a593a",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Publishes or unpublishes a workflow definition.",
+					"id": "c92cba67-1850-4e7d-9570-b23bba1e2fc8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deploymentStatus\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/publish",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"accounts",
+								":accountId",
+								"management",
+								"workflow_definitions",
+								":workflowDefinitionId",
+								"publish"
+							],
+							"variable": [
+								{
+									"id": "55a36a4a-0c2d-4d97-8eac-15a4171dc0f2",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The account ID."
+								},
+								{
+									"id": "bac2220f-de74-4a6a-b87a-465d78937057",
+									"key": "workflowDefinitionId",
+									"value": "<uuid>",
+									"description": "(Required) Workflow definition ID."
+								}
+							]
+						},
+						"description": "Publishes or unpublishes a workflow definition."
+					},
+					"response": [
+						{
+							"id": "5acdcf36-6cd1-4b79-a9cb-1bd7e8872375",
+							"name": "Return Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"deploymentStatus\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/publish",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"publish"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"message\": \"aliquip dolor eiusmod reprehenderit ea\",\n  \"pollUrl\": \"http://PAdiJdOmxfU.tcgLgXRFixOfyI.RraKx6kqoubKgI\",\n  \"method\": \"occaecat sunt\",\n  \"receivedTime\": \"2023-12-13T10:58:14.319Z\"\n}"
+						},
+						{
+							"id": "41b3bd55-7887-450f-bc31-d6daa36e2e0d",
+							"name": "Workflow Definition is invalid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"deploymentStatus\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/publish",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"publish"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"message\": \"commodo magna veniam anim labore\",\n  \"validationErrors\": [\n    {\n      \"message\": \"ullamco nostrud\",\n      \"code\": \"ullamco fugiat eu\"\n    },\n    {\n      \"message\": \"incididunt\",\n      \"code\": \"tempor consequat\"\n    }\n  ]\n}"
+						},
+						{
+							"id": "cbc087fe-a0c5-49b4-a658-6b2e3df25914",
+							"name": "Authentication details are invalid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"deploymentStatus\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/publish",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"publish"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "3599152d-87f4-461b-9844-0890a2ea484d",
+							"name": "The requested resource was not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"deploymentStatus\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/publish",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"publish"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						},
+						{
+							"id": "6a10e498-d51d-4303-9ab1-46fd56d94e65",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"deploymentStatus\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/accounts/:accountId/management/workflow_definitions/:workflowDefinitionId/publish",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"accounts",
+										":accountId",
+										"management",
+										"workflow_definitions",
+										":workflowDefinitionId",
+										"publish"
+									],
+									"variable": [
+										{
+											"key": "accountId",
+											"value": "<uuid>",
+											"description": "(Required) The account ID."
+										},
+										{
+											"key": "workflowDefinitionId",
+											"value": "<uuid>",
+											"description": "(Required) Workflow definition ID."
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"ERR_10004\",\n  \"message\": \"ad ut in nost\"\n}"
+						}
+					]
 				}
 			],
-			"id": "d3073454-ae1d-40c1-906d-196f6d9d3713",
-			"description": "Folder for Authentication"
-		},
+			"id": "a548bb24-1f1e-49d3-8e9c-b79af37dd990",
+			"description": "Returns the history of the workflow instance steps."
+		}
+	],
+	"variable": [
 		{
-			"name": "Creates a new workflow instance after authenticating with DS Account Server",
-			"id": "14fc22ea-c5b8-4742-8c5e-e6e3ef2c91ca",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{}"
-				},
-				"url": {
-					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/workflow_definitions/{{workflowDefinitionId}}/trigger?mtid={{mtid}}&mtsec={{mtsec}}",
-					"protocol": "https",
-					"host": [
-						"{{hostenv}}"
-					],
-					"path": [
-						"api",
-						"maestro",
-						"v1",
-						"accounts",
-						"{{accountId}}",
-						"workflow_definitions",
-						"{{workflowDefinitionId}}",
-						"trigger"
-					],
-					"query": [
-						{
-							"key": "mtid",
-							"value": "{{mtid}}"
-						},
-						{
-							"key": "mtsec",
-							"value": "{{mtsec}}"
-						}
-					],
-					"variable": [
-						{
-							"id": "b007e046-1cab-403e-8c22-e2e69fe3cec6",
-							"key": "accountId",
-							"value": "{{accountId}}"
-						},
-						{
-							"id": "67720e45-7b1e-480f-89d0-8c708ef459bc",
-							"key": "workflowDefinitionId",
-							"value": "{{workflowDefinitionId}}"
-						}
-					]
-				},
-				"description": "Creates a new workflow instance after authenticating with DS Account Server"
-			},
-			"response": []
-		},
-		{
-			"name": "Cancels a running workflow instance.",
-			"id": "104d54e8-3bf4-403b-937e-2f81e3ba2df2",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{}"
-				},
-				"url": {
-					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/instances/{{instanceId}}/cancel",
-					"protocol": "https",
-					"host": [
-						"{{hostenv}}"
-					],
-					"path": [
-						"api",
-						"maestro",
-						"v1",
-						"accounts",
-						"{{accountId}}",
-						"management",
-						"instances",
-						"{{instanceId}}",
-						"cancel"
-					],
-					"variable": [
-						{
-							"id": "f525dbb1-cb1f-4b73-96cd-21e6ff43f1cb",
-							"key": "accountId",
-							"value": "{{accountId}}"
-						},
-						{
-							"id": "b895af2e-2e03-44ae-a6be-30453cac5299",
-							"key": "instanceId",
-							"value": "{{instanceId}}"
-						}
-					]
-				},
-				"description": "Cancels a running workflow instance."
-			},
-			"response": []
-		},
-		{
-			"name": "Get List of Step Histories",
-			"id": "b7324bf9-9898-465c-b440-6ab21e7bc570",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}"
-					}
-				],
-				"url": {
-					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/instances/{{instanceId}}/history",
-					"protocol": "https",
-					"host": [
-						"{{hostenv}}"
-					],
-					"path": [
-						"api",
-						"maestro",
-						"v1",
-						"accounts",
-						"{{accountId}}",
-						"management",
-						"instances",
-						"{{instanceId}}",
-						"history"
-					],
-					"variable": [
-						{
-							"id": "cfcaf384-57c9-43e0-bea2-0837eb0469cb",
-							"key": "accountId",
-							"value": "{{accountId}}"
-						},
-						{
-							"id": "ce01560f-607d-4b20-a009-e720c62a14a0",
-							"key": "instanceId",
-							"value": "{{instanceId}}"
-						}
-					]
-				},
-				"description": "Returns a list of step history for a workflow instance"
-			},
-			"response": []
-		},
-		{
-			"name": "Get Workflow Definitions metadata",
-			"id": "848f8b6d-c0f1-4638-95d3-517d4d7f5ea3",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}"
-					}
-				],
-				"url": {
-					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions?status={{status}}",
-					"protocol": "https",
-					"host": [
-						"{{hostenv}}"
-					],
-					"path": [
-						"api",
-						"maestro",
-						"v1",
-						"accounts",
-						"{{accountId}}",
-						"management",
-						"workflow_definitions"
-					],
-					"query": [
-						{
-							"key": "status",
-							"value": "{{status}}"
-						}
-					],
-					"variable": [
-						{
-							"id": "6e06526b-2eeb-4230-bd25-dda250e1b43d",
-							"key": "accountId",
-							"value": "{{accountId}}"
-						}
-					]
-				},
-				"description": "Returns a list of workflow definitions' metadata."
-			},
-			"response": []
-		},
-		{
-			"name": "Creates a new workflow definition.",
-			"id": "335036eb-2487-4fd0-9fa3-c89eb0805649",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{}"
-				},
-				"url": {
-					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions",
-					"protocol": "https",
-					"host": [
-						"{{hostenv}}"
-					],
-					"path": [
-						"api",
-						"maestro",
-						"v1",
-						"accounts",
-						"{{accountId}}",
-						"management",
-						"workflow_definitions"
-					],
-					"variable": [
-						{
-							"id": "87f339d9-893c-4c14-ab1c-b15460c35c97",
-							"key": "accountId",
-							"value": "{{accountId}}"
-						}
-					]
-				},
-				"description": "Creates a new workflow definition."
-			},
-			"response": []
-		},
-		{
-			"name": "Get Workflow Definition",
-			"id": "3b718aeb-ce59-4238-bf53-f7cc5e2d5a77",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}"
-					}
-				],
-				"url": {
-					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}?lastDeployedId={{lastDeployedId}}",
-					"protocol": "https",
-					"host": [
-						"{{hostenv}}"
-					],
-					"path": [
-						"api",
-						"maestro",
-						"v1",
-						"accounts",
-						"{{accountId}}",
-						"management",
-						"workflow_definitions",
-						"{{workflowDefinitionId}}"
-					],
-					"query": [
-						{
-							"key": "lastDeployedId",
-							"value": "{{lastDeployedId}}"
-						}
-					],
-					"variable": [
-						{
-							"id": "4c1adcc5-c404-4dd1-9cc6-adbc37ad418c",
-							"key": "accountId",
-							"value": "{{accountId}}"
-						},
-						{
-							"id": "e3ad244a-f36a-410d-af09-4f25faf1e8fb",
-							"key": "workflowDefinitionId",
-							"value": "{{workflowDefinitionId}}"
-						}
-					]
-				},
-				"description": "Returns a workflow definition."
-			},
-			"response": []
-		},
-		{
-			"name": "Updates a workflow definition.",
-			"id": "818788f9-f64c-4c7d-90f1-f506b0a84c74",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{}"
-				},
-				"url": {
-					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}",
-					"protocol": "https",
-					"host": [
-						"{{hostenv}}"
-					],
-					"path": [
-						"api",
-						"maestro",
-						"v1",
-						"accounts",
-						"{{accountId}}",
-						"management",
-						"workflow_definitions",
-						"{{workflowDefinitionId}}"
-					],
-					"variable": [
-						{
-							"id": "dcd8048a-c426-440f-8fa6-7b25c8b0dabb",
-							"key": "accountId",
-							"value": "{{accountId}}"
-						},
-						{
-							"id": "49be58b0-a24e-4bc8-b454-7a2c960e62ab",
-							"key": "workflowDefinitionId",
-							"value": "{{workflowDefinitionId}}"
-						}
-					]
-				},
-				"description": "Updates a workflow definition."
-			},
-			"response": []
-		},
-		{
-			"name": "Deletes a workflow definition.",
-			"id": "f1ab97e8-4338-45a5-a68a-0abdc2cd8000",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{}"
-				},
-				"url": {
-					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}",
-					"protocol": "https",
-					"host": [
-						"{{hostenv}}"
-					],
-					"path": [
-						"api",
-						"maestro",
-						"v1",
-						"accounts",
-						"{{accountId}}",
-						"management",
-						"workflow_definitions",
-						"{{workflowDefinitionId}}"
-					],
-					"variable": [
-						{
-							"id": "244564a1-78a9-498f-8cf6-22ce263c3e5d",
-							"key": "accountId",
-							"value": "{{accountId}}"
-						},
-						{
-							"id": "69f78063-a90f-4d1c-ad54-696982264a62",
-							"key": "workflowDefinitionId",
-							"value": "{{workflowDefinitionId}}"
-						}
-					]
-				},
-				"description": "Deletes a workflow definition."
-			},
-			"response": []
-		},
-		{
-			"name": "Gets configuration instances",
-			"id": "4533a4cd-40f2-4a35-8167-12ed1113eb4e",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}"
-					}
-				],
-				"url": {
-					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}/config_instances",
-					"protocol": "https",
-					"host": [
-						"{{hostenv}}"
-					],
-					"path": [
-						"api",
-						"maestro",
-						"v1",
-						"accounts",
-						"{{accountId}}",
-						"management",
-						"workflow_definitions",
-						"{{workflowDefinitionId}}",
-						"config_instances"
-					],
-					"variable": [
-						{
-							"id": "1e4b7511-b891-44d3-b1c1-7672e055d43c",
-							"key": "accountId",
-							"value": "{{accountId}}"
-						},
-						{
-							"id": "925e6252-bfc4-4581-ab68-00da218a6477",
-							"key": "workflowDefinitionId",
-							"value": "{{workflowDefinitionId}}"
-						}
-					]
-				},
-				"description": "Returns a list of configuration instances for a workflow definition"
-			},
-			"response": []
-		},
-		{
-			"name": "Get List of Workflow Instances",
-			"id": "40fafd9e-872d-4d6d-822e-34d96542b26e",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}"
-					}
-				],
-				"url": {
-					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}/instances",
-					"protocol": "https",
-					"host": [
-						"{{hostenv}}"
-					],
-					"path": [
-						"api",
-						"maestro",
-						"v1",
-						"accounts",
-						"{{accountId}}",
-						"management",
-						"workflow_definitions",
-						"{{workflowDefinitionId}}",
-						"instances"
-					],
-					"variable": [
-						{
-							"id": "c9b82d20-2a0d-4998-aed7-4852c52a6103",
-							"key": "accountId",
-							"value": "{{accountId}}"
-						},
-						{
-							"id": "9cb043d3-d7b1-4732-a524-e466fb33b0e9",
-							"key": "workflowDefinitionId",
-							"value": "{{workflowDefinitionId}}"
-						}
-					]
-				},
-				"description": "Returns the list of instances for a deployed workflow definition."
-			},
-			"response": []
-		},
-		{
-			"name": "Get Workflow Instance Details",
-			"id": "6fd92e6f-3a4c-4739-9adb-5cad283c70a8",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}"
-					}
-				],
-				"url": {
-					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}/instances/{{instanceId}}",
-					"protocol": "https",
-					"host": [
-						"{{hostenv}}"
-					],
-					"path": [
-						"api",
-						"maestro",
-						"v1",
-						"accounts",
-						"{{accountId}}",
-						"management",
-						"workflow_definitions",
-						"{{workflowDefinitionId}}",
-						"instances",
-						"{{instanceId}}"
-					],
-					"variable": [
-						{
-							"id": "2b1b49f7-b8d3-4bb6-bd47-869e76ff8a7e",
-							"key": "accountId",
-							"value": "{{accountId}}"
-						},
-						{
-							"id": "ede2bd41-63aa-442d-a516-e5f9cb453d2a",
-							"key": "workflowDefinitionId",
-							"value": "{{workflowDefinitionId}}"
-						},
-						{
-							"id": "a59d5f4c-6145-4c38-8879-becf64ec0b35",
-							"key": "instanceId",
-							"value": "{{instanceId}}"
-						}
-					]
-				},
-				"description": "Returns the details for a specific instance for a deployed workflow definition."
-			},
-			"response": []
-		},
-		{
-			"name": "Publishes or unpublishes a workflow definition.",
-			"id": "a8b1dd7f-70e2-47c8-9324-3297e63e251d",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{accessToken}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{}"
-				},
-				"url": {
-					"raw": "https://{{hostenv}}/api/maestro/v1/accounts/{{accountId}}/management/workflow_definitions/{{workflowDefinitionId}}/publish",
-					"protocol": "https",
-					"host": [
-						"{{hostenv}}"
-					],
-					"path": [
-						"api",
-						"maestro",
-						"v1",
-						"accounts",
-						"{{accountId}}",
-						"management",
-						"workflow_definitions",
-						"{{workflowDefinitionId}}",
-						"publish"
-					],
-					"variable": [
-						{
-							"id": "a17732ec-28bc-4218-b02c-f58f29121737",
-							"key": "accountId",
-							"value": "{{accountId}}"
-						},
-						{
-							"id": "2d61c0db-2e12-42cb-8571-8e29736a1ffe",
-							"key": "workflowDefinitionId",
-							"value": "{{workflowDefinitionId}}"
-						}
-					]
-				},
-				"description": "Publishes or unpublishes a workflow definition."
-			},
-			"response": []
+			"key": "baseUrl",
+			"value": "https://apps.docusign.com/api/maestro"
 		}
 	]
 }
