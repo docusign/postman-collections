@@ -37,7 +37,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/accounts/:accountId/workflow_definitions/:workflowDefinitionId/trigger?mtid=UUID&mtsec=UUID",
+							"raw": "{{baseUrl}}/v1/accounts/:accountId/workflow_definitions/:workflowDefinitionId/trigger?mtid=<uuid>&mtsec=<uuid>",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -52,12 +52,12 @@
 							"query": [
 								{
 									"key": "mtid",
-									"value": "UUID",
+									"value": "<uuid>",
 									"description": "Managed Token Id registered with Docusign Account Server"
 								},
 								{
 									"key": "mtsec",
-									"value": "UUID",
+									"value": "<uuid>",
 									"description": "Managed Token Secret registered with Docusign account server"
 								}
 							],
@@ -140,7 +140,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -210,7 +211,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -280,7 +282,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -350,7 +353,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -420,7 +424,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -490,7 +495,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -500,7 +506,7 @@
 					]
 				}
 			],
-			"id": "7c84e068-51bc-49ff-a7d9-cca3d0df5e81",
+			"id": "ae50f859-267d-44aa-b3b0-2ab6949d82ab",
 			"description": "Method to trigger a workflow."
 		},
 		{
@@ -536,13 +542,11 @@
 							],
 							"variable": [
 								{
-									"id": "d63fc5e2-7555-4d11-86db-c0bd2afa4baa",
 									"key": "accountId",
 									"value": "<uuid>",
 									"description": "(Required) The account ID."
 								},
 								{
-									"id": "7e472f64-2177-4014-aa94-325eea43b7b9",
 									"key": "instanceId",
 									"value": "<uuid>",
 									"description": "(Required) The instance ID of the workflow to cancel."
@@ -597,7 +601,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -649,7 +654,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -701,7 +707,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -753,7 +760,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -792,13 +800,11 @@
 							],
 							"variable": [
 								{
-									"id": "a67f8947-1afc-4dc5-bcb1-8da2a2e917e8",
 									"key": "accountId",
 									"value": "<uuid>",
 									"description": "(Required) The account ID."
 								},
 								{
-									"id": "12042715-cfa6-4948-8fa0-f15db5e03312",
 									"key": "workflowDefinitionId",
 									"value": "<uuid>",
 									"description": "(Required) Workflow definition ID."
@@ -853,7 +859,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -905,7 +912,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -957,7 +965,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1009,7 +1018,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1061,7 +1071,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1113,7 +1124,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1152,13 +1164,11 @@
 							],
 							"variable": [
 								{
-									"id": "d856143c-c379-4550-b39e-2b0660703e01",
 									"key": "accountId",
 									"value": "<uuid>",
 									"description": "(Required) The account ID."
 								},
 								{
-									"id": "a0c7548b-110b-47e4-a68f-add3d10c8e9d",
 									"key": "workflowDefinitionId",
 									"value": "<uuid>",
 									"description": "(Required) The ID of the workflow definition to delete."
@@ -1213,7 +1223,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1265,7 +1276,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1317,7 +1329,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1369,7 +1382,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1421,7 +1435,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1461,19 +1476,16 @@
 							],
 							"variable": [
 								{
-									"id": "c9f08631-76ab-4fcd-9a2f-8f31c2cd0c1a",
 									"key": "accountId",
 									"value": "<uuid>",
 									"description": "(Required) The account ID."
 								},
 								{
-									"id": "f35272e4-57f5-4bbf-a7af-c6b418d8b637",
 									"key": "workflowDefinitionId",
 									"value": "<uuid>",
 									"description": "(Required) Workflow definition ID."
 								},
 								{
-									"id": "2ae32a28-9ba4-4041-8d1e-335af8ee3791",
 									"key": "instanceId",
 									"value": "<uuid>",
 									"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
@@ -1534,7 +1546,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1592,7 +1605,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1650,7 +1664,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1708,7 +1723,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1766,7 +1782,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1776,7 +1793,7 @@
 					]
 				}
 			],
-			"id": "9f651321-1cb2-40bd-87a2-31adec5a919f",
+			"id": "d1ff757a-1c7a-4acf-bc83-fe4dcf4f3424",
 			"description": "Methods to get information about workflow instances."
 		},
 		{
@@ -1812,13 +1829,11 @@
 							],
 							"variable": [
 								{
-									"id": "49295cb4-9a4d-42cd-93f7-86b2677e81e6",
 									"key": "accountId",
 									"value": "<uuid>",
 									"description": "(Required) The account ID."
 								},
 								{
-									"id": "faf50d22-e6f8-4a81-9185-18982c68ee52",
 									"key": "instanceId",
 									"value": "<uuid>",
 									"description": "(Required) Workflow instance ID. <!-- dacid -->\nA string in UUID format: 4a6d6a08-xxxx-xxxx-xxxx-bae4fecc99c8\n"
@@ -1873,7 +1888,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1925,7 +1941,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -1977,7 +1994,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2029,7 +2047,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2081,7 +2100,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2125,7 +2145,6 @@
 							],
 							"variable": [
 								{
-									"id": "08713970-41d8-4c91-824d-321dbd2f5c30",
 									"key": "accountId",
 									"value": "<uuid>",
 									"description": "(Required) The account ID."
@@ -2179,7 +2198,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2230,7 +2250,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2281,7 +2302,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2332,7 +2354,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2383,7 +2406,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2412,7 +2436,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"workflowDefinition\": {\n    \"workflowName\": \"<string>\",\n    \"workflowDescription\": \"<string>\",\n    \"documentVersion\": \"<string>\",\n    \"schemaVersion\": \"<string>\",\n    \"accountId\": \"<uuid>\",\n    \"trigger\": {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"type\": \"<string>\",\n      \"httpType\": \"<string>\",\n      \"input\": {\n        \"commodo_4d\": \"<object>\",\n        \"labore_\": \"<object>\",\n        \"ut_\": \"<object>\"\n      },\n      \"output\": {\n        \"adipisicing_64\": \"<object>\",\n        \"Excepteure9\": \"<object>\",\n        \"Ut_a\": \"<object>\"\n      },\n      \"eventType\": \"<string>\"\n    },\n    \"variables\": {\n      \"commodo24\": \"<object>\"\n    },\n    \"steps\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"createdByName\": \"<string>\",\n    \"participants\": {\n      \"dolore_83\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"reprehenderitb8\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"veniamc8\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      }\n    }\n  }\n}",
+							"raw": "{\n  \"workflowDefinition\": {\n    \"workflowName\": \"<string>\",\n    \"workflowDescription\": \"<string>\",\n    \"documentVersion\": \"<string>\",\n    \"schemaVersion\": \"<string>\",\n    \"accountId\": \"<uuid>\",\n    \"trigger\": {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"type\": \"<string>\",\n      \"httpType\": \"<string>\",\n      \"input\": {\n        \"aute827\": \"<object>\",\n        \"cillumb4\": \"<object>\",\n        \"velitd4b\": \"<object>\"\n      },\n      \"output\": {\n        \"dolor_e5\": \"<object>\",\n        \"dolore_7\": \"<object>\"\n      },\n      \"eventType\": \"<string>\"\n    },\n    \"variables\": {\n      \"non_3bf\": \"<object>\",\n      \"inf_\": \"<object>\",\n      \"aliqua6\": \"<object>\",\n      \"uta3\": \"<object>\",\n      \"incididunt_c9\": \"<object>\"\n    },\n    \"steps\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"createdByName\": \"<string>\",\n    \"participants\": {\n      \"anim_f7\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      }\n    }\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2433,7 +2457,6 @@
 							],
 							"variable": [
 								{
-									"id": "2a3f866d-c612-418b-9162-f548fab37e0e",
 									"key": "accountId",
 									"value": "<uuid>",
 									"description": "(Required) The account ID."
@@ -2481,7 +2504,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2526,7 +2550,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2571,7 +2596,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2616,7 +2642,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2654,13 +2681,11 @@
 							],
 							"variable": [
 								{
-									"id": "27992b59-d9ff-4aec-acaf-cff79ec5ed47",
 									"key": "accountId",
 									"value": "<uuid>",
 									"description": "(Required) The account ID."
 								},
 								{
-									"id": "bf600192-27f1-4092-9cd0-1213e1133d31",
 									"key": "workflowDefinitionId",
 									"value": "<uuid>",
 									"description": "(Required) The ID of the workflow definition to delete."
@@ -2714,7 +2739,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2765,7 +2791,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2816,7 +2843,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2861,13 +2889,11 @@
 							],
 							"variable": [
 								{
-									"id": "c456c24f-38c1-4e0b-949b-ae3fc0b4a641",
 									"key": "accountId",
 									"value": "<uuid>",
 									"description": "(Required) The account ID."
 								},
 								{
-									"id": "86a90060-b9ed-4c92-b043-e4c8047fecef",
 									"key": "workflowDefinitionId",
 									"value": "<uuid>",
 									"description": "(Required) Workflow definition ID."
@@ -2927,7 +2953,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -2984,7 +3011,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3041,7 +3069,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3098,7 +3127,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3155,7 +3185,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3184,7 +3215,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"workflowDefinition\": {\n    \"workflowName\": \"<string>\",\n    \"workflowDescription\": \"<string>\",\n    \"documentVersion\": \"<string>\",\n    \"schemaVersion\": \"<string>\",\n    \"accountId\": \"<uuid>\",\n    \"trigger\": {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"type\": \"<string>\",\n      \"httpType\": \"<string>\",\n      \"input\": {\n        \"veniam3\": \"<object>\",\n        \"aliquip_7\": \"<object>\"\n      },\n      \"output\": {\n        \"esse__8b\": \"<object>\"\n      },\n      \"eventType\": \"<string>\"\n    },\n    \"variables\": {\n      \"ad_2a\": \"<object>\",\n      \"sint_8a4\": \"<object>\"\n    },\n    \"steps\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"createdByName\": \"<string>\",\n    \"participants\": {\n      \"labore_\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      },\n      \"do2fc\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      }\n    }\n  }\n}",
+							"raw": "{\n  \"workflowDefinition\": {\n    \"workflowName\": \"<string>\",\n    \"workflowDescription\": \"<string>\",\n    \"documentVersion\": \"<string>\",\n    \"schemaVersion\": \"<string>\",\n    \"accountId\": \"<uuid>\",\n    \"trigger\": {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"type\": \"<string>\",\n      \"httpType\": \"<string>\",\n      \"input\": {\n        \"do_29d\": \"<object>\",\n        \"ut2a6\": \"<object>\",\n        \"incididunt_8db\": \"<object>\"\n      },\n      \"output\": {\n        \"aute_cd\": \"<object>\"\n      },\n      \"eventType\": \"<string>\"\n    },\n    \"variables\": {\n      \"sed_2\": \"<object>\",\n      \"consequat_c\": \"<object>\",\n      \"et34\": \"<object>\"\n    },\n    \"steps\": [\n      \"<object>\",\n      \"<object>\"\n    ],\n    \"createdByName\": \"<string>\",\n    \"participants\": {\n      \"consequate\": {\n        \"participantRole\": \"<string>\",\n        \"participantEmail\": \"<uuid>\",\n        \"participantFirstName\": \"<uuid>\",\n        \"participantLastName\": \"<uuid>\"\n      }\n    }\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3206,13 +3237,11 @@
 							],
 							"variable": [
 								{
-									"id": "5474f1a5-6450-465f-bee3-d758694f1706",
 									"key": "accountId",
 									"value": "<uuid>",
 									"description": "(Required) The account ID."
 								},
 								{
-									"id": "6a327157-e621-4895-905c-053baacfeebc",
 									"key": "workflowDefinitionId",
 									"value": "<uuid>",
 									"description": "(Required) Workflow definition ID."
@@ -3266,7 +3295,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3317,7 +3347,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3368,7 +3399,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3419,7 +3451,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3470,7 +3503,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3522,13 +3556,11 @@
 							],
 							"variable": [
 								{
-									"id": "55a36a4a-0c2d-4d97-8eac-15a4171dc0f2",
 									"key": "accountId",
 									"value": "<uuid>",
 									"description": "(Required) The account ID."
 								},
 								{
-									"id": "bac2220f-de74-4a6a-b87a-465d78937057",
 									"key": "workflowDefinitionId",
 									"value": "<uuid>",
 									"description": "(Required) Workflow definition ID."
@@ -3592,7 +3624,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3653,7 +3686,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3714,7 +3748,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3775,7 +3810,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3836,7 +3872,8 @@
 							"header": [
 								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json",
+									"enabled": true
 								}
 							],
 							"cookie": [],
@@ -3846,7 +3883,7 @@
 					]
 				}
 			],
-			"id": "a548bb24-1f1e-49d3-8e9c-b79af37dd990",
+			"id": "0f3928f6-f41f-4325-b34e-1e121feae75f",
 			"description": "Returns the history of the workflow instance steps."
 		}
 	],
