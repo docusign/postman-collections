@@ -1,211 +1,17 @@
 {
 	"info": {
 		"_postman_id": "0746e914-ca2b-4b5b-a937-a34929577b48",
-		"name": "Docusign Web Forms API",
-		"description": "Leverage the power of Web Forms in your agreement processes. Enjoy greater flexibility to manage forms using your own code including the creation and management of form instances with prefilled data. This API works with Docusign JS to enable the embedding of a web form instance in your web application.\n\n**Additional Resources:**\n\n- [Full API Reference](https://developers.docusign.com/docs/web-forms-api/reference/)\n    \n- [Code Examples](https://developers.docusign.com/docs/web-forms-api/how-to/)\n    \n- [MyWebForms Sample App](https://mywebforms.sampleapps.docusign.com/)\n    \n- [SDKs](https://developers.docusign.com/docs/web-forms-api/sdks/)\n    \n\n<video src=\"https://youtube.com/embed/d7mtIjkdF5E\" width=\"340\"></video>",
+		"name": "Web Forms API version 1.1",
+		"description": "The Web Forms API facilitates generating semantic HTML forms around everyday contracts.\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Authentication",
+			"name": "Instances",
 			"item": [
 				{
-					"name": "01 Authorize Code Grant Access Token",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-								],
-								"id": "639b4332-bb53-4167-b851-faee8b90ba58"
-							}
-						}
-					],
-					"id": "11add7c8-d2e2-471d-a87d-cabb09122e74",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Basic {{encodedKeys}}"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "code",
-									"value": "{{codeFromUrl}}"
-								},
-								{
-									"key": "grant_type",
-									"value": "authorization_code"
-								}
-							]
-						},
-						"url": "https://{{hostenv}}/oauth/token"
-					},
-					"response": []
-				},
-				{
-					"name": "02 JWT Access Token",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-								],
-								"id": "8dba89c0-8707-4bd2-a17e-98c4292d1ae1"
-							}
-						}
-					],
-					"id": "0fd88665-9513-44c5-8550-12c2dba812ae",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Basic {{encodedKeys}}"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "assertion",
-									"value": "{{assertionHere}}"
-								},
-								{
-									"key": "grant_type",
-									"value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
-								}
-							]
-						},
-						"url": "https://{{hostenv}}/oauth/token"
-					},
-					"response": []
-				},
-				{
-					"name": "03 Refresh Access Token",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
-									"var jsonData = JSON.parse(responseBody);",
-									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
-								],
-								"id": "e496297d-894a-4ed2-a161-066154a0833a"
-							}
-						}
-					],
-					"id": "72b193a7-a220-4335-bb8d-e4c4560c7583",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Basic {{encodedKeys}}"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "refresh_token",
-									"value": "{{refreshToken}}"
-								},
-								{
-									"key": "grant_type",
-									"value": "refresh_token"
-								}
-							]
-						},
-						"url": "https://{{hostenv}}/oauth/token"
-					},
-					"response": []
-				},
-				{
-					"name": "04 Get User Info",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"type": "text/javascript",
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"var accounts = jsonData.accounts;",
-									"if (jsonData.hasOwnProperty(\"sub\")) { ",
-									"    postman.setEnvironmentVariable(\"userId\", jsonData.sub); ",
-									"} ",
-									"",
-									"for (var i=0; i< accounts.length; i++) { ",
-									"  if (accounts[i].hasOwnProperty(\"is_default\")) { ",
-									"   if (accounts[i].is_default === true) { ",
-									"     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); ",
-									"     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); ",
-									"     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); ",
-									"   } ",
-									" } ",
-									"} ",
-									""
-								],
-								"id": "f2f89370-3b8f-41a7-a98b-06815591b8c0"
-							}
-						}
-					],
-					"id": "7b640955-98c0-4736-9e24-ac17b38603f4",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{accessToken}}"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": "https://{{hostenv}}/oauth/userinfo"
-					},
-					"response": []
-				}
-			],
-			"id": "612a6569-e6ca-412f-b0e5-6f2e347d7c27",
-			"description": "All Docusign REST APIs use OAuth 2.0 for authenticaiton. [You can find general autnetication information on the Developer Center.](https://developers.docusign.com/platform/auth/)  \n  \nInformation regarding [Web Forms API specific scopes can be found here](https://developers.docusign.com/docs/web-forms-api/plan-integration/authentication/)."
-		},
-		{
-			"name": "WebForms",
-			"item": [
-				{
-					"name": "List Forms",
-					"id": "efcfcfc5-2a36-4351-9f0e-1cfa303ac449",
+					"name": "Lists the instances of a given web form configuration.",
+					"id": "82e92798-053f-4d9a-8802-99245f5cb2bc",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -215,193 +21,412 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{accessToken}}"
 							}
 						],
 						"url": {
-							"raw": "https://{{hostenv}}/webforms/v1.1/accounts/{{account_id}}/forms?user_filter=all&is_standalone={{is_standalone}}&is_published={{is_published}}&sort_by={{sort_by}}&search={{search}}&start_position={{start_position}}&count={{count}}",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
 							"host": [
-								"{{hostenv}}"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"webforms",
 								"v1.1",
 								"accounts",
-								"{{account_id}}",
-								"forms"
-							],
-							"query": [
-								{
-									"key": "user_filter",
-									"value": "all"
-								},
-								{
-									"key": "is_standalone",
-									"value": "{{is_standalone}}"
-								},
-								{
-									"key": "is_published",
-									"value": "{{is_published}}"
-								},
-								{
-									"key": "sort_by",
-									"value": "{{sort_by}}"
-								},
-								{
-									"key": "search",
-									"value": "{{search}}"
-								},
-								{
-									"key": "start_position",
-									"value": "{{start_position}}"
-								},
-								{
-									"key": "count",
-									"value": "{{count}}"
-								}
-							],
-							"variable": [
-								{
-									"id": "ee036a80-8844-478b-bb0a-061257f79476",
-									"key": "account_id",
-									"value": "{{account_id}}"
-								}
-							]
-						},
-						"description": "List all the forms for the active user that can be in an active or draft state"
-					},
-					"response": []
-				},
-				{
-					"name": "Get Form",
-					"id": "3588834f-34d5-436c-8ca7-410a1744a086",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{accessToken}}"
-							}
-						],
-						"url": {
-							"raw": "https://{{hostenv}}/webforms/v1.1/accounts/{{account_id}}/forms/{{form_id}}?state=draft",
-							"protocol": "https",
-							"host": [
-								"{{hostenv}}"
-							],
-							"path": [
-								"webforms",
-								"v1.1",
-								"accounts",
-								"{{account_id}}",
+								":accountId",
 								"forms",
-								"{{form_id}}"
-							],
-							"query": [
-								{
-									"key": "state",
-									"value": "draft"
-								}
-							],
-							"variable": [
-								{
-									"id": "6bb56aea-2db0-4205-9bad-74480cb7038f",
-									"key": "account_id",
-									"value": "{{account_id}}"
-								},
-								{
-									"id": "8c85f63b-4ef9-4daa-8988-3ca97c1b58e6",
-									"key": "form_id",
-									"value": "{{form_id}}"
-								}
-							]
-						},
-						"description": "Retrieves form information filter by form id and state. The `state` parameter is optional and can accept value from `draft, active`."
-					},
-					"response": []
-				},
-				{
-					"name": "List instances",
-					"id": "75dd32d2-c90e-4b9d-ba9a-9c37b7db8b3f",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{accessToken}}"
-							}
-						],
-						"url": {
-							"raw": "https://{{hostenv}}/webforms/v1.1/accounts/{{account_id}}/forms/{{form_id}}/instances?client_user_id={{client_user_id}}",
-							"protocol": "https",
-							"host": [
-								"{{hostenv}}"
-							],
-							"path": [
-								"webforms",
-								"v1.1",
-								"accounts",
-								"{{account_id}}",
-								"forms",
-								"{{form_id}}",
+								":formId",
 								"instances"
 							],
 							"query": [
 								{
+									"description": "A unique identifier for a user from the client's system. This value can be anything your backend system would use to track individual form instances, such as employee IDs, email addresses, or surrogate key values.",
 									"key": "client_user_id",
-									"value": "{{client_user_id}}"
+									"value": "<string>",
+									"disabled": true
 								}
 							],
 							"variable": [
 								{
-									"id": "48714b29-148f-4a82-9da4-b0b280f092bb",
-									"key": "account_id",
-									"value": "{{account_id}}"
+									"id": "fd2c1158-90da-40d0-b685-b607bf71a8b7",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the account to which the web form belongs."
 								},
 								{
-									"id": "204098f3-b782-44d1-8606-9a7e73344a91",
-									"key": "form_id",
-									"value": "{{form_id}}"
+									"id": "116d75b3-34f4-42ca-8148-0c22ff6c5c07",
+									"key": "formId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the form configuration.\n"
 								}
 							]
 						},
-						"description": "List all the instances of a web form in an account. When filtered by clientUserId, it will return instances having same clientUserId"
+						"description": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nRetrieves all the instances of a given web form configuration.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `webforms_instance_read`."
 					},
-					"response": []
+					"response": [
+						{
+							"id": "7b60d506-dded-49bc-91e4-8058d78a5fae",
+							"name": "List of all Web Form Instances with associated metadata.",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"query": [
+										{
+											"description": "A unique identifier for a user from the client's system. This value can be anything your backend system would use to track individual form instances, such as employee IDs, email addresses, or surrogate key values.",
+											"key": "client_user_id",
+											"value": "<string>",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"formUrl\": \"<string>\",\n      \"instanceToken\": \"<string>\",\n      \"tokenExpirationDateTime\": \"<dateTime>\",\n      \"formId\": \"<uuid>\",\n      \"accountId\": \"<uuid>\",\n      \"clientUserId\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"EXPIRED\",\n      \"envelopes\": [\n        {\n          \"id\": \"<uuid>\"\n        },\n        {\n          \"id\": \"<uuid>\"\n        }\n      ],\n      \"instanceMetadata\": {\n        \"expirationDateTime\": \"<dateTime>\",\n        \"createdBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"createdDateTime\": \"<dateTime>\",\n        \"lastModifiedDateTime\": \"<dateTime>\",\n        \"lastModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        }\n      },\n      \"formValues\": {\n        \"aliqua_59d\": {},\n        \"amet_\": {}\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"formUrl\": \"<string>\",\n      \"instanceToken\": \"<string>\",\n      \"tokenExpirationDateTime\": \"<dateTime>\",\n      \"formId\": \"<uuid>\",\n      \"accountId\": \"<uuid>\",\n      \"clientUserId\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"INITIATED\",\n      \"envelopes\": [\n        {\n          \"id\": \"<uuid>\"\n        },\n        {\n          \"id\": \"<uuid>\"\n        }\n      ],\n      \"instanceMetadata\": {\n        \"expirationDateTime\": \"<dateTime>\",\n        \"createdBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"createdDateTime\": \"<dateTime>\",\n        \"lastModifiedDateTime\": \"<dateTime>\",\n        \"lastModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        }\n      },\n      \"formValues\": {\n        \"est_8\": {},\n        \"pariatur2\": {},\n        \"sed9\": {}\n      }\n    }\n  ]\n}"
+						},
+						{
+							"id": "a347bd3f-aede-4b33-ba1e-063a768cec78",
+							"name": "The authentication information is either missing or invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"query": [
+										{
+											"description": "A unique identifier for a user from the client's system. This value can be anything your backend system would use to track individual form instances, such as employee IDs, email addresses, or surrogate key values.",
+											"key": "client_user_id",
+											"value": "<string>",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "f91cc2e1-0d53-4b2f-829a-5708018da300",
+							"name": "The requestor is not authorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"query": [
+										{
+											"description": "A unique identifier for a user from the client's system. This value can be anything your backend system would use to track individual form instances, such as employee IDs, email addresses, or surrogate key values.",
+											"key": "client_user_id",
+											"value": "<string>",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "d01af005-1e9f-452e-abcc-5b601e7ecb47",
+							"name": "The requested resource is not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"query": [
+										{
+											"description": "A unique identifier for a user from the client's system. This value can be anything your backend system would use to track individual form instances, such as employee IDs, email addresses, or surrogate key values.",
+											"key": "client_user_id",
+											"value": "<string>",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "c9c1de9f-8b28-4a06-96ff-91ab30b16424",
+							"name": "The service encountered an unexpected condition that prevented it from fulfilling the request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"query": [
+										{
+											"description": "A unique identifier for a user from the client's system. This value can be anything your backend system would use to track individual form instances, such as employee IDs, email addresses, or surrogate key values.",
+											"key": "client_user_id",
+											"value": "<string>",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "7c261f4e-d05f-4f40-97c6-507335dfb9cc",
+							"name": "Service is temporarily unavailable",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"query": [
+										{
+											"description": "A unique identifier for a user from the client's system. This value can be anything your backend system would use to track individual form instances, such as employee IDs, email addresses, or surrogate key values.",
+											"key": "client_user_id",
+											"value": "<string>",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Service Unavailable",
+							"code": 503,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						}
+					]
 				},
 				{
-					"name": "Creates an instance of the web form",
-					"id": "e64089af-2993-490d-b475-eafcc13bd0f7",
+					"name": "Gets a web form instance.",
+					"id": "f3592e29-ba1f-49e3-8a7c-8891ddb3b80e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -409,57 +434,522 @@
 						"method": "POST",
 						"header": [
 							{
-								"key": "Accept",
-								"value": "application/json"
-							},
-							{
 								"key": "Content-Type",
 								"value": "application/json"
 							},
 							{
-								"key": "Authorization",
-								"value": "Bearer {{accessToken}}"
+								"key": "Accept",
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{}"
+							"raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "https://{{hostenv}}/webforms/v1.1/accounts/{{account_id}}/forms/{{form_id}}/instances",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
 							"host": [
-								"{{hostenv}}"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"webforms",
 								"v1.1",
 								"accounts",
-								"{{account_id}}",
+								":accountId",
 								"forms",
-								"{{form_id}}",
+								":formId",
 								"instances"
 							],
 							"variable": [
 								{
-									"id": "6a11b8d5-4dcd-497c-85b1-6926a596c9d9",
-									"key": "account_id",
-									"value": "{{account_id}}"
+									"id": "3735f092-d4f3-4a6d-a764-695cc5f82b66",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the account to which the web form belongs."
 								},
 								{
-									"id": "f456fe9e-e8ed-40f1-aecf-3fe829f62bda",
-									"key": "form_id",
-									"value": "{{form_id}}"
+									"id": "8a0ee7a1-a7d0-4e42-a17d-d9164402e651",
+									"key": "formId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the web form configuration."
 								}
 							]
 						},
-						"description": "Creates an instance of the web form."
+						"description": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nCreates an instance of a web form.\n\nThis endpoint returns a `formUrl` and `instanceToken` that you combine to obtain a secure URL. Use this URL to render the web form instance in your application.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `webforms_instance_write`.\n\n\n### Related topics\n\n- [How to create and embed a web form instance](/docs/web-forms-api/how-to/create-embed-web-form-instance/)"
 					},
-					"response": []
+					"response": [
+						{
+							"id": "531049a3-a8b8-4757-8758-47cd70700fee",
+							"name": "Web Form Instance with metadata",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"formUrl\": \"<string>\",\n  \"instanceToken\": \"<string>\",\n  \"tokenExpirationDateTime\": \"<dateTime>\",\n  \"formId\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"clientUserId\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"SUBMITTED\",\n  \"envelopes\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"instanceMetadata\": {\n    \"expirationDateTime\": \"<dateTime>\",\n    \"createdBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"createdDateTime\": \"<dateTime>\",\n    \"lastModifiedDateTime\": \"<dateTime>\",\n    \"lastModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    }\n  },\n  \"formValues\": {\n    \"dolor_9\": {},\n    \"labore_a\": {}\n  }\n}"
+						},
+						{
+							"id": "2dbd80e8-56d5-439f-8100-32ddc2ddd572",
+							"name": "The form instance cannot be created, possibly due to validation failure.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "b96463ca-2f03-4b9f-92f2-6168abbf3039",
+							"name": "The authentication information is either missing or invalid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "ba1bf984-f5b1-4b1c-ac4d-77b7d8b10fc5",
+							"name": "The requestor is not authorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "36f6cabe-ea1d-494f-81ba-133ac33e86ee",
+							"name": "The requested resource is not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "26a5f86e-7f75-4c68-98e3-c1d733c2ff54",
+							"name": "The service encountered an unexpected condition that prevented it from fulfilling the request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "86681846-5033-439d-bb2e-d7794bd84acb",
+							"name": "service is temporarily unavailable",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Service Unavailable",
+							"code": 503,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						}
+					]
 				},
 				{
-					"name": "Get form instance",
-					"id": "0f920db2-6156-4a1a-a721-d083318e617f",
+					"name": "Creates a secure web form instance.",
+					"id": "85897929-f48e-47ee-8a59-77aa17d0137d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -469,57 +959,387 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{accessToken}}"
 							}
 						],
 						"url": {
-							"raw": "https://{{hostenv}}/webforms/v1.1/accounts/{{account_id}}/forms/{{form_id}}/instances/{{instance_id}}",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId",
 							"host": [
-								"{{hostenv}}"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"webforms",
 								"v1.1",
 								"accounts",
-								"{{account_id}}",
+								":accountId",
 								"forms",
-								"{{form_id}}",
+								":formId",
 								"instances",
-								"{{instance_id}}"
+								":instanceId"
 							],
 							"variable": [
 								{
-									"id": "dde9cf15-be59-48b0-a248-ee3e4f1eb3a0",
-									"key": "account_id",
-									"value": "{{account_id}}"
+									"id": "00ea5341-8ec7-4623-87fd-fcfb0fba1a9e",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the account to which the web form belongs."
 								},
 								{
-									"id": "6a8c4471-05eb-4603-ba37-aca811c25d07",
-									"key": "form_id",
-									"value": "{{form_id}}"
+									"id": "77baac8d-928f-4022-b738-b31b2ef0c8b8",
+									"key": "formId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the web form configuration."
 								},
 								{
-									"id": "17c027cd-d3d5-4b34-b223-60970b595ecc",
-									"key": "instance_id",
-									"value": "{{instance_id}}"
+									"id": "e7e3d9f7-2f92-4e77-a5e6-7612169f8411",
+									"key": "instanceId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the form instance."
 								}
 							]
 						},
-						"description": "Retrieves instance information filter by instance id"
+						"description": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nGets an instance of a web form specified by the configuration and instance IDs. To get all instances associated with a given configuration, use the [listInstances endpoint](/docs/web-forms-api/reference/webforms/instances/listinstances/).\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `webforms_instance_read`."
 					},
-					"response": []
+					"response": [
+						{
+							"id": "7d2ff432-5dd5-4c18-af76-473e414bbcc3",
+							"name": "Web Form Instance with metadata",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"formUrl\": \"<string>\",\n  \"instanceToken\": \"<string>\",\n  \"tokenExpirationDateTime\": \"<dateTime>\",\n  \"formId\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"clientUserId\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"SUBMITTED\",\n  \"envelopes\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"instanceMetadata\": {\n    \"expirationDateTime\": \"<dateTime>\",\n    \"createdBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"createdDateTime\": \"<dateTime>\",\n    \"lastModifiedDateTime\": \"<dateTime>\",\n    \"lastModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    }\n  },\n  \"formValues\": {\n    \"dolor_9\": {},\n    \"labore_a\": {}\n  }\n}"
+						},
+						{
+							"id": "e75a23c0-ca29-4de3-8f2a-ad3e1becd279",
+							"name": "The authentication information is either missing or invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "2f4ecbd3-22bf-41d6-aa2a-14b034a623f8",
+							"name": "The requestor is not authorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "014a1648-e675-4f20-9ed2-aa303bae1061",
+							"name": "The requested resource is not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "06e06fd0-2cd7-467c-aa2d-0faf6567ce50",
+							"name": "The service encountered an unexpected condition that prevented it from fulfilling the request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "630eb731-4bf6-4335-b408-065715965baa",
+							"name": "service is temporarily unavailable",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "Service Unavailable",
+							"code": 503,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						}
+					]
 				},
 				{
-					"name": "Refreshes the instance token",
-					"id": "8e09f63d-8762-4390-81e7-49e868bf1d9a",
+					"name": "Refreshes the instance token.",
+					"id": "a27c575a-e3d7-42b8-a7f0-ac8c902b9c0c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -529,62 +1349,1301 @@
 							{
 								"key": "Accept",
 								"value": "application/json"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer {{accessToken}}"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{}"
-						},
 						"url": {
-							"raw": "https://{{hostenv}}/webforms/v1.1/accounts/{{account_id}}/forms/{{form_id}}/instances/{{instance_id}}/refresh",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId/refresh",
 							"host": [
-								"{{hostenv}}"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"webforms",
 								"v1.1",
 								"accounts",
-								"{{account_id}}",
+								":accountId",
 								"forms",
-								"{{form_id}}",
+								":formId",
 								"instances",
-								"{{instance_id}}",
+								":instanceId",
 								"refresh"
 							],
 							"variable": [
 								{
-									"id": "aea56fd1-cf76-41f9-851e-e43c70eb5de5",
-									"key": "account_id",
-									"value": "{{account_id}}"
+									"id": "d52e0414-a64e-40cc-9587-287500432484",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the account to which the web form belongs."
 								},
 								{
-									"id": "90766db5-329b-4b82-b98e-e7ecd0101d2d",
-									"key": "form_id",
-									"value": "{{form_id}}"
+									"id": "8277c248-48b8-44aa-9c29-645abf5d3345",
+									"key": "formId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the web form configuration."
 								},
 								{
-									"id": "7dce6c67-29d9-47e1-9702-50d4f8a30ea9",
-									"key": "instance_id",
-									"value": "{{instance_id}}"
+									"id": "f64a880c-03e2-40e7-a9fa-8e144a72343a",
+									"key": "instanceId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the form instance."
 								}
 							]
 						},
-						"description": "Generates new instance token for the existing Web Form Instance."
+						"description": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nGenerates a new instance token for an existing web form instance. Tokens expire after five minutes.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `webforms_instance_write`."
 					},
-					"response": []
+					"response": [
+						{
+							"id": "33314f99-9589-4bbc-a70d-ba444326cdf5",
+							"name": "Web Form Instance with new instance token and metadata",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId",
+										"refresh"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"formUrl\": \"<string>\",\n  \"instanceToken\": \"<string>\",\n  \"tokenExpirationDateTime\": \"<dateTime>\",\n  \"formId\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"clientUserId\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"SUBMITTED\",\n  \"envelopes\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"instanceMetadata\": {\n    \"expirationDateTime\": \"<dateTime>\",\n    \"createdBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"createdDateTime\": \"<dateTime>\",\n    \"lastModifiedDateTime\": \"<dateTime>\",\n    \"lastModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    }\n  },\n  \"formValues\": {\n    \"dolor_9\": {},\n    \"labore_a\": {}\n  }\n}"
+						},
+						{
+							"id": "7a71b826-5011-4e2f-ad1e-c01d0ac653e9",
+							"name": "The instance token cannot be created, possibly because the validation failed.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId",
+										"refresh"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "0cead7d7-1994-45fe-8b54-94ceb71e7f28",
+							"name": "The authentication information is either missing or invalid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId",
+										"refresh"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "646e9a33-49b5-47b7-8d76-c152e48e5867",
+							"name": "The requestor is not authorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId",
+										"refresh"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "1bd04ba5-8441-487b-9dcf-13aea7f46a6b",
+							"name": "The requested resource is not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId",
+										"refresh"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "8d7618ec-6c51-4fb9-9d37-e8c3140528da",
+							"name": "The service encountered an unexpected condition that prevented it from fulfilling the request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId",
+										"refresh"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "9be34d43-94aa-446d-ae17-57dfa1f3c835",
+							"name": "service is temporarily unavailable",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId/instances/:instanceId/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId",
+										"instances",
+										":instanceId",
+										"refresh"
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										},
+										{
+											"key": "instanceId"
+										}
+									]
+								}
+							},
+							"status": "Service Unavailable",
+							"code": 503,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						}
+					]
 				}
 			],
-			"id": "8d6b3c2d-4ae3-4c66-9e8e-1f4cc9c8bc9e",
-			"description": "Folder for WebForms"
+			"id": "a84b681c-9541-44c1-8368-c37a53e791af",
+			"description": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nMethods to create and retrieve instances of a web form. Each instance is secure and unique to a user session."
+		},
+		{
+			"name": "Configurations",
+			"item": [
+				{
+					"name": "Returns a list of web form configurations.",
+					"id": "64b3a088-135c-4ee7-9b5f-fe6ddb37313b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1.1",
+								"accounts",
+								":accountId",
+								"forms"
+							],
+							"query": [
+								{
+									"description": "Set to `owned_by_me` to return only forms owned by the authenticated user. By default, all forms are returned.",
+									"key": "user_filter",
+									"value": "all",
+									"disabled": true
+								},
+								{
+									"description": "Set to `true` or `false` to filter by whether forms are [stand-alone (not tied to a template)](https://support.docusign.com/s/document-item?bundleId=yff1696971835267&topicId=gua1698120920620.html). By default, all forms are returned.",
+									"key": "is_standalone",
+									"value": "<boolean>",
+									"disabled": true
+								},
+								{
+									"description": "When `true`, only published forms are returned. By default, published and unpublished forms are both returned.",
+									"key": "is_published",
+									"value": "<boolean>",
+									"disabled": true
+								},
+								{
+									"description": "Sorts the results. You can sort by the time that the web forms were created or last modified, in descending or ascending order. Valid values:\n\n* `lastModifiedDateTime:desc` (default)\n* `lastModifiedDateTime:asc`\n* `createdDateTime:desc`\n* `createdDateTime:asc`",
+									"key": "sort_by",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"description": "When set, filters results by whether each web form configuration contains the given text in its `formProperties.name` property.",
+									"key": "search",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"description": "The zero-based index of the result from which to start returning results.\n\nUse with `count` to limit the number of results.\n\nThe default value is 0.",
+									"key": "start_position",
+									"value": "<string>",
+									"disabled": true
+								},
+								{
+									"description": "The maximum number of results to return.\n\nUse `start_position` to specify the number of results to skip.",
+									"key": "count",
+									"value": "<string>",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"id": "bb45a607-01b0-4a84-82fa-da7d47195569",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the account to which the web form belongs.\n"
+								}
+							]
+						},
+						"description": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nThis method returns a list of web form configurations for a given account. Use the query parameters to sort and filter the response.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `webforms_read`."
+					},
+					"response": [
+						{
+							"id": "b5ce94d5-b5e9-49e3-a60c-912ccfc51471",
+							"name": "A list of forms assigned to the account",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms"
+									],
+									"query": [
+										{
+											"description": "Set to `owned_by_me` to return only forms owned by the authenticated user. By default, all forms are returned.",
+											"key": "user_filter",
+											"value": "all",
+											"disabled": true
+										},
+										{
+											"description": "Set to `true` or `false` to filter by whether forms are [stand-alone (not tied to a template)](https://support.docusign.com/s/document-item?bundleId=yff1696971835267&topicId=gua1698120920620.html). By default, all forms are returned.",
+											"key": "is_standalone",
+											"value": "<boolean>",
+											"disabled": true
+										},
+										{
+											"description": "When `true`, only published forms are returned. By default, published and unpublished forms are both returned.",
+											"key": "is_published",
+											"value": "<boolean>",
+											"disabled": true
+										},
+										{
+											"description": "Sorts the results. You can sort by the time that the web forms were created or last modified, in descending or ascending order. Valid values:\n\n* `lastModifiedDateTime:desc` (default)\n* `lastModifiedDateTime:asc`\n* `createdDateTime:desc`\n* `createdDateTime:asc`",
+											"key": "sort_by",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "When set, filters results by whether each web form configuration contains the given text in its `formProperties.name` property.",
+											"key": "search",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "The zero-based index of the result from which to start returning results.\n\nUse with `count` to limit the number of results.\n\nThe default value is 0.",
+											"key": "start_position",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "The maximum number of results to return.\n\nUse `start_position` to specify the number of results to skip.",
+											"key": "count",
+											"value": "<string>",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"accountId\": \"<uuid>\",\n      \"isPublished\": \"<boolean>\",\n      \"isEnabled\": \"<boolean>\",\n      \"isUploaded\": \"<boolean>\",\n      \"hasDraftChanges\": \"<boolean>\",\n      \"formState\": \"active\",\n      \"formProperties\": {\n        \"name\": \"<string>\",\n        \"isPrivateAccess\": \"<boolean>\"\n      },\n      \"formMetadata\": {\n        \"source\": \"templates\",\n        \"type\": \"standalone\",\n        \"sourceFormId\": \"<uuid>\",\n        \"owner\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"sender\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"formContentModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"formPropertiesModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastPublishedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastEnabledBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastDisabledBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"archivedDateTime\": \"<dateTime>\",\n        \"createdDateTime\": \"<dateTime>\",\n        \"lastModifiedDateTime\": \"<dateTime>\",\n        \"formContentModifiedDateTime\": \"<dateTime>\",\n        \"formPropertiesModifiedDateTime\": \"<dateTime>\",\n        \"lastPublishedDateTime\": \"<dateTime>\",\n        \"lastEnabledDateTime\": \"<dateTime>\",\n        \"lastDisabledDateTime\": \"<dateTime>\",\n        \"lastSenderConsentDateTime\": \"<dateTime>\",\n        \"publishedSlug\": \"<string>\",\n        \"publishedComponentNames\": {\n          \"consequat_\": \"Number\",\n          \"reprehenderit84\": \"Number\",\n          \"deseruntdf\": \"TextBox\"\n        }\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"accountId\": \"<uuid>\",\n      \"isPublished\": \"<boolean>\",\n      \"isEnabled\": \"<boolean>\",\n      \"isUploaded\": \"<boolean>\",\n      \"hasDraftChanges\": \"<boolean>\",\n      \"formState\": \"active\",\n      \"formProperties\": {\n        \"name\": \"<string>\",\n        \"isPrivateAccess\": \"<boolean>\"\n      },\n      \"formMetadata\": {\n        \"source\": \"templates\",\n        \"type\": \"hasEsignTemplate\",\n        \"sourceFormId\": \"<uuid>\",\n        \"owner\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"sender\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"formContentModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"formPropertiesModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastPublishedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastEnabledBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastDisabledBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"archivedDateTime\": \"<dateTime>\",\n        \"createdDateTime\": \"<dateTime>\",\n        \"lastModifiedDateTime\": \"<dateTime>\",\n        \"formContentModifiedDateTime\": \"<dateTime>\",\n        \"formPropertiesModifiedDateTime\": \"<dateTime>\",\n        \"lastPublishedDateTime\": \"<dateTime>\",\n        \"lastEnabledDateTime\": \"<dateTime>\",\n        \"lastDisabledDateTime\": \"<dateTime>\",\n        \"lastSenderConsentDateTime\": \"<dateTime>\",\n        \"publishedSlug\": \"<string>\",\n        \"publishedComponentNames\": {\n          \"est4_\": \"Number\"\n        }\n      }\n    }\n  ],\n  \"resultSetSize\": \"<number>\",\n  \"totalSetSize\": \"<number>\",\n  \"startPosition\": \"<number>\",\n  \"endPosition\": \"<number>\",\n  \"nextUrl\": \"<string>\",\n  \"previousUrl\": \"<string>\"\n}"
+						},
+						{
+							"id": "f7e8d259-bc71-4aee-91a3-4a814c21d6c7",
+							"name": "The authentication information is either missing or invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms"
+									],
+									"query": [
+										{
+											"description": "Set to `owned_by_me` to return only forms owned by the authenticated user. By default, all forms are returned.",
+											"key": "user_filter",
+											"value": "all",
+											"disabled": true
+										},
+										{
+											"description": "Set to `true` or `false` to filter by whether forms are [stand-alone (not tied to a template)](https://support.docusign.com/s/document-item?bundleId=yff1696971835267&topicId=gua1698120920620.html). By default, all forms are returned.",
+											"key": "is_standalone",
+											"value": "<boolean>",
+											"disabled": true
+										},
+										{
+											"description": "When `true`, only published forms are returned. By default, published and unpublished forms are both returned.",
+											"key": "is_published",
+											"value": "<boolean>",
+											"disabled": true
+										},
+										{
+											"description": "Sorts the results. You can sort by the time that the web forms were created or last modified, in descending or ascending order. Valid values:\n\n* `lastModifiedDateTime:desc` (default)\n* `lastModifiedDateTime:asc`\n* `createdDateTime:desc`\n* `createdDateTime:asc`",
+											"key": "sort_by",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "When set, filters results by whether each web form configuration contains the given text in its `formProperties.name` property.",
+											"key": "search",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "The zero-based index of the result from which to start returning results.\n\nUse with `count` to limit the number of results.\n\nThe default value is 0.",
+											"key": "start_position",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "The maximum number of results to return.\n\nUse `start_position` to specify the number of results to skip.",
+											"key": "count",
+											"value": "<string>",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "affa34f7-a6f8-492c-90cf-495277fa43d4",
+							"name": "The requestor is not authorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms"
+									],
+									"query": [
+										{
+											"description": "Set to `owned_by_me` to return only forms owned by the authenticated user. By default, all forms are returned.",
+											"key": "user_filter",
+											"value": "all",
+											"disabled": true
+										},
+										{
+											"description": "Set to `true` or `false` to filter by whether forms are [stand-alone (not tied to a template)](https://support.docusign.com/s/document-item?bundleId=yff1696971835267&topicId=gua1698120920620.html). By default, all forms are returned.",
+											"key": "is_standalone",
+											"value": "<boolean>",
+											"disabled": true
+										},
+										{
+											"description": "When `true`, only published forms are returned. By default, published and unpublished forms are both returned.",
+											"key": "is_published",
+											"value": "<boolean>",
+											"disabled": true
+										},
+										{
+											"description": "Sorts the results. You can sort by the time that the web forms were created or last modified, in descending or ascending order. Valid values:\n\n* `lastModifiedDateTime:desc` (default)\n* `lastModifiedDateTime:asc`\n* `createdDateTime:desc`\n* `createdDateTime:asc`",
+											"key": "sort_by",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "When set, filters results by whether each web form configuration contains the given text in its `formProperties.name` property.",
+											"key": "search",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "The zero-based index of the result from which to start returning results.\n\nUse with `count` to limit the number of results.\n\nThe default value is 0.",
+											"key": "start_position",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "The maximum number of results to return.\n\nUse `start_position` to specify the number of results to skip.",
+											"key": "count",
+											"value": "<string>",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "6fe7e456-7f96-4692-8b7a-253dedc2e373",
+							"name": "The requested resource was not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms"
+									],
+									"query": [
+										{
+											"description": "Set to `owned_by_me` to return only forms owned by the authenticated user. By default, all forms are returned.",
+											"key": "user_filter",
+											"value": "all",
+											"disabled": true
+										},
+										{
+											"description": "Set to `true` or `false` to filter by whether forms are [stand-alone (not tied to a template)](https://support.docusign.com/s/document-item?bundleId=yff1696971835267&topicId=gua1698120920620.html). By default, all forms are returned.",
+											"key": "is_standalone",
+											"value": "<boolean>",
+											"disabled": true
+										},
+										{
+											"description": "When `true`, only published forms are returned. By default, published and unpublished forms are both returned.",
+											"key": "is_published",
+											"value": "<boolean>",
+											"disabled": true
+										},
+										{
+											"description": "Sorts the results. You can sort by the time that the web forms were created or last modified, in descending or ascending order. Valid values:\n\n* `lastModifiedDateTime:desc` (default)\n* `lastModifiedDateTime:asc`\n* `createdDateTime:desc`\n* `createdDateTime:asc`",
+											"key": "sort_by",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "When set, filters results by whether each web form configuration contains the given text in its `formProperties.name` property.",
+											"key": "search",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "The zero-based index of the result from which to start returning results.\n\nUse with `count` to limit the number of results.\n\nThe default value is 0.",
+											"key": "start_position",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "The maximum number of results to return.\n\nUse `start_position` to specify the number of results to skip.",
+											"key": "count",
+											"value": "<string>",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "0a42370b-90a9-4768-90b0-86c9dc69d388",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms"
+									],
+									"query": [
+										{
+											"description": "Set to `owned_by_me` to return only forms owned by the authenticated user. By default, all forms are returned.",
+											"key": "user_filter",
+											"value": "all",
+											"disabled": true
+										},
+										{
+											"description": "Set to `true` or `false` to filter by whether forms are [stand-alone (not tied to a template)](https://support.docusign.com/s/document-item?bundleId=yff1696971835267&topicId=gua1698120920620.html). By default, all forms are returned.",
+											"key": "is_standalone",
+											"value": "<boolean>",
+											"disabled": true
+										},
+										{
+											"description": "When `true`, only published forms are returned. By default, published and unpublished forms are both returned.",
+											"key": "is_published",
+											"value": "<boolean>",
+											"disabled": true
+										},
+										{
+											"description": "Sorts the results. You can sort by the time that the web forms were created or last modified, in descending or ascending order. Valid values:\n\n* `lastModifiedDateTime:desc` (default)\n* `lastModifiedDateTime:asc`\n* `createdDateTime:desc`\n* `createdDateTime:asc`",
+											"key": "sort_by",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "When set, filters results by whether each web form configuration contains the given text in its `formProperties.name` property.",
+											"key": "search",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "The zero-based index of the result from which to start returning results.\n\nUse with `count` to limit the number of results.\n\nThe default value is 0.",
+											"key": "start_position",
+											"value": "<string>",
+											"disabled": true
+										},
+										{
+											"description": "The maximum number of results to return.\n\nUse `start_position` to specify the number of results to skip.",
+											"key": "count",
+											"value": "<string>",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieves a web form configuration.",
+					"id": "4c098f54-2d5f-4f87-8842-343bcb99ca10",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1.1",
+								"accounts",
+								":accountId",
+								"forms",
+								":formId"
+							],
+							"query": [
+								{
+									"description": "The state of the web form configuration. Valid values:\n\n- `active`\n- `draft`",
+									"key": "state",
+									"value": "draft",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"id": "c1ebf761-14ff-4e66-8da7-e27d12507f38",
+									"key": "accountId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the account to which the web form belongs."
+								},
+								{
+									"id": "17923eda-9e92-4f1a-ab33-4024641a8b62",
+									"key": "formId",
+									"value": "<uuid>",
+									"description": "(Required) The ID of the web form configuration.\n"
+								}
+							]
+						},
+						"description": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nRetrieves a web form configuration.\n\nIf you make changes to an active form configuration, the unchanged active version will also be maintained. The two versions will have the same `formId` but different `formState` values. Use the `state` query parameter to indicate which version to return.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `webforms_read`."
+					},
+					"response": [
+						{
+							"id": "f2b1f120-a79a-492f-b195-01a7cc4c3176",
+							"name": "Web Form that represents a single active version with metadata",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId"
+									],
+									"query": [
+										{
+											"description": "The state of the web form configuration. Valid values:\n\n- `active`\n- `draft`",
+											"key": "state",
+											"value": "draft",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"isPublished\": \"<boolean>\",\n  \"isEnabled\": \"<boolean>\",\n  \"isUploaded\": \"<boolean>\",\n  \"hasDraftChanges\": \"<boolean>\",\n  \"formState\": \"active\",\n  \"formProperties\": {\n    \"name\": \"<string>\",\n    \"isPrivateAccess\": \"<boolean>\"\n  },\n  \"formMetadata\": {\n    \"source\": \"blank\",\n    \"type\": \"standalone\",\n    \"sourceFormId\": \"<uuid>\",\n    \"owner\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"sender\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"formContentModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"formPropertiesModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastPublishedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastEnabledBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastDisabledBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"archivedDateTime\": \"<dateTime>\",\n    \"createdDateTime\": \"<dateTime>\",\n    \"lastModifiedDateTime\": \"<dateTime>\",\n    \"formContentModifiedDateTime\": \"<dateTime>\",\n    \"formPropertiesModifiedDateTime\": \"<dateTime>\",\n    \"lastPublishedDateTime\": \"<dateTime>\",\n    \"lastEnabledDateTime\": \"<dateTime>\",\n    \"lastDisabledDateTime\": \"<dateTime>\",\n    \"lastSenderConsentDateTime\": \"<dateTime>\",\n    \"publishedSlug\": \"<string>\",\n    \"publishedComponentNames\": {\n      \"enim_b\": \"RadioButtonGroup\"\n    }\n  },\n  \"versionId\": \"<integer>\",\n  \"formContent\": {\n    \"components\": {\n      \"magna_fc_\": {\n        \"componentKey\": \"<string>\",\n        \"componentType\": \"<string>\",\n        \"componentName\": \"<string>\"\n      },\n      \"Ut_ac6\": {\n        \"componentKey\": \"<string>\",\n        \"componentType\": \"<string>\",\n        \"componentName\": \"<string>\"\n      }\n    },\n    \"isStandalone\": \"<boolean>\",\n    \"brandId\": \"<uuid>\",\n    \"templates\": [\n      {\n        \"originalTemplateId\": \"<uuid>\",\n        \"clonedTemplateId\": \"<uuid>\",\n        \"importedDateTime\": \"<dateTime>\",\n        \"recipientIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"originalTemplateId\": \"<uuid>\",\n        \"clonedTemplateId\": \"<uuid>\",\n        \"importedDateTime\": \"<dateTime>\",\n        \"recipientIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  }\n}"
+						},
+						{
+							"id": "07920e33-ab3c-43ea-8965-9970edc28196",
+							"name": "The authentication information is either missing or invalid",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId"
+									],
+									"query": [
+										{
+											"description": "The state of the web form configuration. Valid values:\n\n- `active`\n- `draft`",
+											"key": "state",
+											"value": "draft",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "c20fc518-ccf2-4f9e-a582-4e124663d0d5",
+							"name": "The requested resource was not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId"
+									],
+									"query": [
+										{
+											"description": "The state of the web form configuration. Valid values:\n\n- `active`\n- `draft`",
+											"key": "state",
+											"value": "draft",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "0843a96f-01a7-44dc-80fe-e90721153a1e",
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "Added as a part of security scheme: oauth2",
+										"key": "Authorization",
+										"value": "<token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/v1.1/accounts/:accountId/forms/:formId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1.1",
+										"accounts",
+										":accountId",
+										"forms",
+										":formId"
+									],
+									"query": [
+										{
+											"description": "The state of the web form configuration. Valid values:\n\n- `active`\n- `draft`",
+											"key": "state",
+											"value": "draft",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "accountId"
+										},
+										{
+											"key": "formId"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"id": "88997e7e-d45e-4f7e-9055-c218c14f21da",
+			"description": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nA web form configuration is a definition that you can use to create many instances. To create a web form configuration, use the [Web Forms Builder](https://support.docusign.com/s/document-item?language=en_US&bundleId=gmi1660583110357&topicId=gpc1660591510274.html). These methods enable you to get data about one or multiple web form configurations."
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": {
+			"scope": "webforms_read webforms_write webforms_instance_read webforms_instance_write",
+			"accessTokenUrl": "https://account-tk1.tk.docusign.dev/oauth/token",
+			"authUrl": "https://account-tk1.tk.docusign.dev/oauth/auth",
+			"grant_type": "authorization_code"
+		}
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://apps.docusign.com/api/webforms"
 		}
 	]
 }
