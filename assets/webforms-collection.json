@@ -2,10 +2,204 @@
 	"info": {
 		"_postman_id": "0746e914-ca2b-4b5b-a937-a34929577b48",
 		"name": "Web Forms API",
-		"description": "The Web Forms API facilitates generating semantic HTML forms around everyday contracts.\n",
+		"description": "Leverage the power of Web Forms in your agreement processes. Enjoy greater flexibility to manage forms using your own code including the creation and management of form instances with prefilled data. This API works with Docusign JS to enable the embedding of a web form instance in your web application.\n\n**Additional Resources:**\n\n- [Full API Reference](https://developers.docusign.com/docs/web-forms-api/reference/)\n    \n- [Code Examples](https://developers.docusign.com/docs/web-forms-api/how-to/)\n    \n- [MyWebForms Sample App](https://mywebforms.sampleapps.docusign.com/)\n    \n- [SDKs](https://developers.docusign.com/docs/web-forms-api/sdks/)\n    \n\n<video src=\"https://youtube.com/embed/d7mtIjkdF5E\" width=\"340\"></video>",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "01 Authorize Code Grant Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+								],
+								"id": "7d0581b9-238c-43a2-8d3a-7d21ee2105e7"
+							}
+						}
+					],
+					"id": "65001d88-4ad2-4bcc-ba59-0ef07d340672",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{encodedKeys}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "code",
+									"value": "{{codeFromUrl}}"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code"
+								}
+							]
+						},
+						"url": "https://{{hostenv}}/oauth/token"
+					},
+					"response": []
+				},
+				{
+					"name": "02 JWT Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+								],
+								"id": "8f9ea483-8b96-4b7a-8769-eca429948e8b"
+							}
+						}
+					],
+					"id": "df81e2ad-e5cf-48be-af16-19f46b12c14f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{encodedKeys}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "assertion",
+									"value": "{{assertionHere}}"
+								},
+								{
+									"key": "grant_type",
+									"value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+								}
+							]
+						},
+						"url": "https://{{hostenv}}/oauth/token"
+					},
+					"response": []
+				},
+				{
+					"name": "03 Refresh Access Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.access_token);",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"refreshToken\", jsonData.refresh_token);"
+								],
+								"id": "25c281b1-b79d-49ab-b70d-93698c28908c"
+							}
+						}
+					],
+					"id": "26710b95-3493-4e69-8ea1-895141cd82fe",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{encodedKeys}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "refresh_token",
+									"value": "{{refreshToken}}"
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token"
+								}
+							]
+						},
+						"url": "https://{{hostenv}}/oauth/token"
+					},
+					"response": []
+				},
+				{
+					"name": "04 Get User Info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"var accounts = jsonData.accounts;",
+									"if (jsonData.hasOwnProperty(\"sub\")) { ",
+									"    postman.setEnvironmentVariable(\"userId\", jsonData.sub); ",
+									"} ",
+									"",
+									"for (var i=0; i< accounts.length; i++) { ",
+									"  if (accounts[i].hasOwnProperty(\"is_default\")) { ",
+									"   if (accounts[i].is_default === true) { ",
+									"     postman.setEnvironmentVariable(\"accountId\", accounts[i].account_id); ",
+									"     postman.setEnvironmentVariable(\"baseUrl\", accounts[i].base_uri + \"/restapi/\"); ",
+									"     postman.setEnvironmentVariable(\"accountName\", accounts[i].account_name); ",
+									"   } ",
+									" } ",
+									"} ",
+									""
+								],
+								"id": "db4a787f-96a5-4aab-aac6-ffb3b83d493d"
+							}
+						}
+					],
+					"id": "cdc93b83-8fb4-48a8-b65d-6eb075a8de68",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "https://{{hostenv}}/oauth/userinfo"
+					},
+					"response": []
+				}
+			],
+			"id": "a8a59dcf-d8d0-46cc-9007-4d6bd0fe8ead",
+			"description": "All Docusign REST APIs use OAuth 2.0 for authenticaiton. [You can find general autnetication information on the Developer Center.](https://developers.docusign.com/platform/auth/)\n\nInformation regarding [Web Forms API specific scopes can be found here](https://developers.docusign.com/docs/admin-api/click101/auth/)."
+		},
 		{
 			"name": "Instances",
 			"item": [
