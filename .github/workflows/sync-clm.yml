@@ -1,11 +1,11 @@
-name: Sync Maestro Postman Collection
+name: Sync CLM Postman Collection
 
 on:
   push:
     branches:
       - master  # Change this to the branch you want to trigger the action
     paths:
-      - 'assets/maestro-collection.json'
+      - 'assets/clm-collection.json'
 
 jobs:
   update-postman:
@@ -15,14 +15,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Update Maestro Postman Collection
+    - name: Update CLM Postman Collection
       env:
         POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
       run: |
 
         # Run the Postman API to update the collection
-        GITHUB_COLLECTION_PATH="./assets/maestro-collection.json"
-        COLLECTION_UID=${{ vars.MAESTRO_COLLECTION_UID }}
+        GITHUB_COLLECTION_PATH="./assets/clm-collection.json"
+        COLLECTION_UID=${{ vars.CLM_COLLECTION_UID }}
         
         # Read the file content and wrap it inside a collection object
         WRAPPED_CONTENT=$(jq -n --argfile data "$GITHUB_COLLECTION_PATH" '{"collection": $data}')
