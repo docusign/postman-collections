@@ -1,0 +1,673 @@
+{
+    "item": [
+        {
+            "name": "Agreements",
+            "description": "",
+            "item": [
+                {
+                    "id": "988f4f32-03c8-4f28-8466-c65ef0b94331",
+                    "name": "Retrieve a list of agreements",
+                    "request": {
+                        "name": "Retrieve a list of agreements",
+                        "description": {
+                            "content": "This operation retrieves a list of all agreements available in the system. It provides a high-level overview of each agreement, including its unique identifier (`id`), title, type, status, and involved parties. The list also includes important metadata, such as the agreement's creation and modification timestamps, and information on the agreement's source system (e.g., eSign, CLM).\n\nEach agreement entry includes essential details that allow users to quickly assess the agreements and determine which ones are relevant for their needs. For example, the agreement's status can help users understand whether an agreement is still active, pending, or completed.\n\nThe response also includes provisions that outline the key legal, financial, and lifecycle conditions, along with custom user-defined fields, providing a comprehensive understanding of each agreement.\n\n### Use Cases:\n- **Retrieving a list of agreements for integration into external systems**: Export or sync agreement data into other platforms (e.g., CRM, ERP systems) to align business processes across different tools.\n- **Providing data for RAG (Retrieval-Augmented Generation) applications or Copilots**: The list of agreements can be a valuable data source for AI/LLM-based applications that answer user queries about agreements. \n  It allows Copilots to understand what agreements exist and offer insights based on their details.\n- **Filtering agreements by type or status**: Determine which agreements are active, pending, or completed, and gather a summary of key provisions across multiple agreements.\n- **Auditing or reporting**: Generate a report on agreements based on type, status, or date created, helping with compliance tracking and internal reviews.\n- **Metadata tracking**: Track when agreements were created, modified, and by whom, ensuring proper governance and version control.\n\n### Key Features:\n- **Comprehensive Agreement Overview**: Provides high-level visibility into all agreements, with essential details for each one, including status, type, and involved parties.\n- **Metadata and Provisions**: Returns important metadata and provisions (legal, financial, and custom) for each agreement, helping users understand their obligations and contract terms.\n- **Source System Information**: Captures details about where the agreement originated (e.g., eSign, CLM), making it easier to integrate and track agreements across different business systems.\n- **Data for AI Applications**: The operation is designed to support LLM-powered apps, making it ideal for use in RAG-based applications and Copilots that query agreements for decision-making or information purposes.\n",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "path": [
+                                "agreements"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "disabled": true,
+                                    "description": {
+                                        "content": "The maximum number of items that can be returned in a single page.",
+                                        "type": "text/plain"
+                                    },
+                                    "key": "limit",
+                                    "value": "<integer>"
+                                },
+                                {
+                                    "disabled": true,
+                                    "description": {
+                                        "content": "An opaque token that helps retrieve the a page of data.",
+                                        "type": "text/plain"
+                                    },
+                                    "key": "ctoken",
+                                    "value": "<string>"
+                                }
+                            ],
+                            "variable": []
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "method": "GET",
+                        "body": {},
+                        "auth": null
+                    },
+                    "response": [
+                        {
+                            "id": "c85f8f04-5749-4501-a92b-45820833cb8b",
+                            "name": "A collection of agreements.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "agreements"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "disabled": true,
+                                            "description": {
+                                                "content": "The maximum number of items that can be returned in a single page.",
+                                                "type": "text/plain"
+                                            },
+                                            "key": "limit",
+                                            "value": "<integer>"
+                                        },
+                                        {
+                                            "disabled": true,
+                                            "description": {
+                                                "content": "An opaque token that helps retrieve the a page of data.",
+                                                "type": "text/plain"
+                                            },
+                                            "key": "ctoken",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"data\": [\n    {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"title\": \"<string>\",\n      \"file_name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"category\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"status\": \"<string>\",\n      \"parties\": [\n        {\n          \"id\": \"<string>\",\n          \"name_in_agreement\": \"<string>\",\n          \"preferred_name\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name_in_agreement\": \"<string>\",\n          \"preferred_name\": \"<string>\"\n        }\n      ],\n      \"provisions\": {\n        \"effective_date\": \"<date>\",\n        \"expiration_date\": \"<date>\",\n        \"execution_date\": \"<date>\",\n        \"term_length\": \"P99116M\",\n        \"assignment_type\": \"<string>\",\n        \"assignment_change_of_control\": \"<string>\",\n        \"assignment_termination_rights\": \"<string>\",\n        \"confidentiality_obligation_period\": \"PT-6086M\",\n        \"governing_law\": \"<string>\",\n        \"jurisdiction\": \"<string>\",\n        \"nda_type\": \"<string>\",\n        \"annual_agreement_value\": \"<double>\",\n        \"annual_agreement_value_currency_code\": \"KGS\",\n        \"total_agreement_value\": \"<double>\",\n        \"total_agreement_value_currency_code\": \"KWD\",\n        \"payment_terms_due_date\": \"OTHER\",\n        \"can_charge_late_payment_fees\": \"<boolean>\",\n        \"late_payment_fee_percent\": \"<integer>\",\n        \"liability_cap_fixed_amount\": \"<double>\",\n        \"liability_cap_currency_code\": \"BRL\",\n        \"liability_cap_multiplier\": \"<double>\",\n        \"liability_cap_duration\": \"P7337931Y-092556887DT5905634119.2774H\",\n        \"price_cap_percent_increase\": \"<float>\",\n        \"renewal_type\": \"<string>\",\n        \"renewal_notice_period\": \"P5M398892739DT-921720.01M\",\n        \"renewal_notice_date\": \"<dateTime>\",\n        \"auto_renewal_term_length\": \"P-2584969504W\",\n        \"renewal_extension_period\": \"P-44793679617Y9269759372DT25409029H40473.45708M-75.53S\",\n        \"renewal_process_owner\": \"<string>\",\n        \"renewal_additional_info\": \"<string>\",\n        \"termination_period_for_cause\": \"P6.9888WT-324952939S\",\n        \"termination_period_for_convenience\": \"P-40198Y75M6114068443W-832.96695873673DT83119.4158737H-5500418.93S\"\n      },\n      \"additional_user_defined_data\": {\n        \"velit6d\": \"<string>\",\n        \"aute_32\": \"<string>\",\n        \"elit__e\": \"<string>\",\n        \"velit8b\": \"<string>\",\n        \"sunt5\": \"<string>\"\n      },\n      \"additional_custom_clm_data\": {\n        \"sita73\": \"<string>\"\n      },\n      \"additional_custom_esign_data\": {\n        \"laboris_7a\": \"<string>\",\n        \"ipsum_4c3\": \"<string>\"\n      },\n      \"related_agreement_documents\": {\n        \"parent_agreement_document_id\": \"00000000-0000-0000-0000-000000000000\"\n      },\n      \"languages\": [\n        \"/i-mingo/\",\n        \"/ge-Npyn/\"\n      ],\n      \"source_name\": \"<string>\",\n      \"source_id\": \"<string>\",\n      \"source_account_id\": \"<string>\",\n      \"metadata\": {\n        \"created_at\": \"<dateTime>\",\n        \"created_by\": \"<string>\",\n        \"modified_at\": \"<dateTime>\",\n        \"modified_by\": \"<string>\",\n        \"request_id\": \"<uuid>\",\n        \"response_timestamp\": \"<dateTime>\",\n        \"response_duration_ms\": \"<integer>\"\n      }\n    },\n    {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"title\": \"<string>\",\n      \"file_name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"category\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"status\": \"<string>\",\n      \"parties\": [\n        {\n          \"id\": \"<string>\",\n          \"name_in_agreement\": \"<string>\",\n          \"preferred_name\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name_in_agreement\": \"<string>\",\n          \"preferred_name\": \"<string>\"\n        }\n      ],\n      \"provisions\": {\n        \"effective_date\": \"<date>\",\n        \"expiration_date\": \"<date>\",\n        \"execution_date\": \"<date>\",\n        \"term_length\": \"P674592Y-64069144.9W\",\n        \"assignment_type\": \"<string>\",\n        \"assignment_change_of_control\": \"<string>\",\n        \"assignment_termination_rights\": \"<string>\",\n        \"confidentiality_obligation_period\": \"P6727661572Y75308D\",\n        \"governing_law\": \"<string>\",\n        \"jurisdiction\": \"<string>\",\n        \"nda_type\": \"<string>\",\n        \"annual_agreement_value\": \"<double>\",\n        \"annual_agreement_value_currency_code\": \"NGN\",\n        \"total_agreement_value\": \"<double>\",\n        \"total_agreement_value_currency_code\": \"NIO\",\n        \"payment_terms_due_date\": \"OTHER\",\n        \"can_charge_late_payment_fees\": \"<boolean>\",\n        \"late_payment_fee_percent\": \"<integer>\",\n        \"liability_cap_fixed_amount\": \"<double>\",\n        \"liability_cap_currency_code\": \"VND\",\n        \"liability_cap_multiplier\": \"<double>\",\n        \"liability_cap_duration\": \"P2Y423867888M-6599372W\",\n        \"price_cap_percent_increase\": \"<float>\",\n        \"renewal_type\": \"<string>\",\n        \"renewal_notice_period\": \"P971M-15754615929W\",\n        \"renewal_notice_date\": \"<dateTime>\",\n        \"auto_renewal_term_length\": \"P72Y8945119396W\",\n        \"renewal_extension_period\": \"P63261494590YT592M-02192961288S\",\n        \"renewal_process_owner\": \"<string>\",\n        \"renewal_additional_info\": \"<string>\",\n        \"termination_period_for_cause\": \"P4668YT-505349H-88S\",\n        \"termination_period_for_convenience\": \"P-35769322M-53997W\"\n      },\n      \"additional_user_defined_data\": {\n        \"do9bf\": \"<string>\",\n        \"nullae1\": \"<string>\"\n      },\n      \"additional_custom_clm_data\": {\n        \"voluptatea\": \"<string>\"\n      },\n      \"additional_custom_esign_data\": {\n        \"exa\": \"<string>\",\n        \"velit8\": \"<string>\"\n      },\n      \"related_agreement_documents\": {\n        \"parent_agreement_document_id\": \"00000000-0000-0000-0000-000000000000\"\n      },\n      \"languages\": [\n        \"/i-mingo/\",\n        \"/i-mingo/\"\n      ],\n      \"source_name\": \"<string>\",\n      \"source_id\": \"<string>\",\n      \"source_account_id\": \"<string>\",\n      \"metadata\": {\n        \"created_at\": \"<dateTime>\",\n        \"created_by\": \"<string>\",\n        \"modified_at\": \"<dateTime>\",\n        \"modified_by\": \"<string>\",\n        \"request_id\": \"<uuid>\",\n        \"response_timestamp\": \"<dateTime>\",\n        \"response_duration_ms\": \"<integer>\"\n      }\n    }\n  ],\n  \"metadata\": {\n    \"response_timestamp\": \"<dateTime>\",\n    \"response_duration_ms\": \"<integer>\",\n    \"page_limit\": \"<integer>\",\n    \"page_token_current\": \"<string>\",\n    \"page_token_next\": \"<string>\",\n    \"page_token_prev\": \"<string>\",\n    \"total_items\": \"<integer>\",\n    \"request_id\": \"<uuid>\"\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"<uri>\"\n    },\n    \"next\": {\n      \"href\": \"<uri>\"\n    },\n    \"prev\": {\n      \"href\": \"<uri>\"\n    }\n  }\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "a53a952b-2e99-484c-9d1a-6df7d777f6cc",
+                            "name": "Bad Request - The request could not be understood or was missing required parameters.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "agreements"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "disabled": true,
+                                            "description": {
+                                                "content": "The maximum number of items that can be returned in a single page.",
+                                                "type": "text/plain"
+                                            },
+                                            "key": "limit",
+                                            "value": "<integer>"
+                                        },
+                                        {
+                                            "disabled": true,
+                                            "description": {
+                                                "content": "An opaque token that helps retrieve the a page of data.",
+                                                "type": "text/plain"
+                                            },
+                                            "key": "ctoken",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "e1ddecbb-8316-4291-a72e-62646ec5bb74",
+                            "name": "Unauthorized - Authentication is required and has failed or not been provided.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "agreements"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "disabled": true,
+                                            "description": {
+                                                "content": "The maximum number of items that can be returned in a single page.",
+                                                "type": "text/plain"
+                                            },
+                                            "key": "limit",
+                                            "value": "<integer>"
+                                        },
+                                        {
+                                            "disabled": true,
+                                            "description": {
+                                                "content": "An opaque token that helps retrieve the a page of data.",
+                                                "type": "text/plain"
+                                            },
+                                            "key": "ctoken",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Unauthorized",
+                            "code": 401,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "a4b6d222-e2f1-4b05-9093-8622856bd89b",
+                            "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "agreements"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "disabled": true,
+                                            "description": {
+                                                "content": "The maximum number of items that can be returned in a single page.",
+                                                "type": "text/plain"
+                                            },
+                                            "key": "limit",
+                                            "value": "<integer>"
+                                        },
+                                        {
+                                            "disabled": true,
+                                            "description": {
+                                                "content": "An opaque token that helps retrieve the a page of data.",
+                                                "type": "text/plain"
+                                            },
+                                            "key": "ctoken",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Forbidden",
+                            "code": 403,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "04f6a9c3-94fc-4fa8-93ab-929d3956b076",
+                            "name": "Not Found - The requested resource could not be found.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "agreements"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "disabled": true,
+                                            "description": {
+                                                "content": "The maximum number of items that can be returned in a single page.",
+                                                "type": "text/plain"
+                                            },
+                                            "key": "limit",
+                                            "value": "<integer>"
+                                        },
+                                        {
+                                            "disabled": true,
+                                            "description": {
+                                                "content": "An opaque token that helps retrieve the a page of data.",
+                                                "type": "text/plain"
+                                            },
+                                            "key": "ctoken",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "499ff35f-437d-407e-ac30-ca72d91c722e",
+                            "name": "Internal Server Error",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "agreements"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "disabled": true,
+                                            "description": {
+                                                "content": "The maximum number of items that can be returned in a single page.",
+                                                "type": "text/plain"
+                                            },
+                                            "key": "limit",
+                                            "value": "<integer>"
+                                        },
+                                        {
+                                            "disabled": true,
+                                            "description": {
+                                                "content": "An opaque token that helps retrieve the a page of data.",
+                                                "type": "text/plain"
+                                            },
+                                            "key": "ctoken",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Internal Server Error",
+                            "code": 500,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        }
+                    ],
+                    "event": [],
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    }
+                },
+                {
+                    "id": "e2beeb80-f5a7-415a-9eec-4464ae601859",
+                    "name": "Retrieve detailed information about a specific agreement",
+                    "request": {
+                        "name": "Retrieve detailed information about a specific agreement",
+                        "description": {
+                            "content": "This operation retrieves detailed information about a specific agreement, identified by its unique `id`. The response provides a comprehensive view of the agreement, including its title, type, status, summary, and the full list of involved parties.\n\nIn addition to general details, the operation returns provisions that define the agreement's legal, financial, lifecycle, and custom conditions. It also provides key metadata, such as creation and modification timestamps, related agreements, and user-defined or custom attributes, which help represent the structure and context of the agreement.\n\nThe operation is essential for retrieving the full context of an agreement, enabling users to understand the contract's scope, key provisions, and the legal or financial obligations that have been agreed upon.\n\n### Use Cases:\n- **Integrating agreement data into external systems**: Sync detailed agreement information, such as legal and financial provisions, into external systems like ERP, CRM, or contract management tools to streamline workflows.\n- **Providing detailed data for RAG (Retrieval-Augmented Generation) applications or Copilots**: Retrieve detailed agreement data for use in LLM-based applications that answer specific user queries about their agreements, such as the status of a contract, its provisions, or involved parties.\n- **Retrieving the complete details of a specific agreement**: Use the full details of the agreement, including legal and financial provisions, for auditing, compliance, or review purposes.\n- **Accessing agreement provisions for verification**: Verify compliance with specific legal or financial terms of the agreement, ensuring that all parties are following the agreed-upon conditions.\n- **Tracking agreement changes and history**: Fetch metadata and related agreements to understand the evolution of an agreement, including modifications, associated agreements, and additional context provided by custom fields.\n- **Reviewing user-defined or custom attributes**: Examine custom fields or attributes to get more context about the agreement, particularly where the business has defined custom provisions or attributes.\n\n### Key Features:\n- **Detailed Agreement Overview**: Provides a comprehensive view of a specific agreement, including its title, type, status, summary, and more.\n- **Provisions for Legal, Financial, and Lifecycle Conditions**: Includes the full set of provisions that define the terms and conditions of the agreement, making it ideal for compliance and auditing purposes.\n- **Metadata and History**: Tracks the agreement’s history through metadata such as creation and modification dates and user-defined fields.\n- **Data Source for AI Applications**: Enables LLM-based applications to access granular agreement data, providing AI/ML-based solutions (such as Copilots) with the necessary context to answer detailed queries about an agreement.\n- **Involved Parties and Related Agreements**: Lists all parties involved and related agreements, allowing users to see all associated legal documents and relationships between agreements.   \n",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "path": [
+                                "agreements",
+                                ":agreementId"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": [
+                                {
+                                    "type": "any",
+                                    "value": "00000000-0000-0000-0000-000000000000",
+                                    "key": "agreementId",
+                                    "disabled": false,
+                                    "description": {
+                                        "content": "(Required) ",
+                                        "type": "text/plain"
+                                    }
+                                }
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "method": "GET",
+                        "body": {},
+                        "auth": null
+                    },
+                    "response": [
+                        {
+                            "id": "6e6b3d57-ada6-4846-a93e-3aead0abf2fe",
+                            "name": "A JSON object containing details of the requested agreement document.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "agreements",
+                                        ":agreementId"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"id\": \"00000000-0000-0000-0000-000000000000\",\n  \"title\": \"<string>\",\n  \"file_name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"category\": \"<string>\",\n  \"summary\": \"<string>\",\n  \"status\": \"<string>\",\n  \"parties\": [\n    {\n      \"id\": \"<string>\",\n      \"name_in_agreement\": \"<string>\",\n      \"preferred_name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name_in_agreement\": \"<string>\",\n      \"preferred_name\": \"<string>\"\n    }\n  ],\n  \"provisions\": {\n    \"effective_date\": \"<date>\",\n    \"expiration_date\": \"<date>\",\n    \"execution_date\": \"<date>\",\n    \"term_length\": \"P875Y\",\n    \"assignment_type\": \"<string>\",\n    \"assignment_change_of_control\": \"<string>\",\n    \"assignment_termination_rights\": \"<string>\",\n    \"confidentiality_obligation_period\": \"P69578127Y-320388D\",\n    \"governing_law\": \"<string>\",\n    \"jurisdiction\": \"<string>\",\n    \"nda_type\": \"<string>\",\n    \"annual_agreement_value\": \"<double>\",\n    \"annual_agreement_value_currency_code\": \"GNF\",\n    \"total_agreement_value\": \"<double>\",\n    \"total_agreement_value_currency_code\": \"BWP\",\n    \"payment_terms_due_date\": \"OTHER\",\n    \"can_charge_late_payment_fees\": \"<boolean>\",\n    \"late_payment_fee_percent\": \"<integer>\",\n    \"liability_cap_fixed_amount\": \"<double>\",\n    \"liability_cap_currency_code\": \"WST\",\n    \"liability_cap_multiplier\": \"<double>\",\n    \"liability_cap_duration\": \"P-63307237.3252D\",\n    \"price_cap_percent_increase\": \"<float>\",\n    \"renewal_type\": \"<string>\",\n    \"renewal_notice_period\": \"P396Y928821DT-544453526H59.5126701806M1185042547S\",\n    \"renewal_notice_date\": \"<dateTime>\",\n    \"auto_renewal_term_length\": \"P-24Y7678M-5215240285.32W42669770D\",\n    \"renewal_extension_period\": \"P-83516374599Y\",\n    \"renewal_process_owner\": \"<string>\",\n    \"renewal_additional_info\": \"<string>\",\n    \"termination_period_for_cause\": \"PT76.40675679170M\",\n    \"termination_period_for_convenience\": \"P-7789555W34.9977207D\"\n  },\n  \"additional_user_defined_data\": {\n    \"tempor_f3_\": \"<string>\",\n    \"pariatur_85\": \"<string>\",\n    \"est56a\": \"<string>\"\n  },\n  \"additional_custom_clm_data\": {\n    \"consequat_7\": \"<string>\"\n  },\n  \"additional_custom_esign_data\": {\n    \"elit0\": \"<string>\",\n    \"laborum_2\": \"<string>\",\n    \"aliquip_a4\": \"<string>\"\n  },\n  \"related_agreement_documents\": {\n    \"parent_agreement_document_id\": \"00000000-0000-0000-0000-000000000000\"\n  },\n  \"languages\": [\n    \"/i-mingo/\",\n    \"/ma/\"\n  ],\n  \"source_name\": \"<string>\",\n  \"source_id\": \"<string>\",\n  \"source_account_id\": \"<string>\",\n  \"metadata\": {\n    \"created_at\": \"<dateTime>\",\n    \"created_by\": \"<string>\",\n    \"modified_at\": \"<dateTime>\",\n    \"modified_by\": \"<string>\",\n    \"request_id\": \"<uuid>\",\n    \"response_timestamp\": \"<dateTime>\",\n    \"response_duration_ms\": \"<integer>\"\n  }\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "6e4b93ca-a94b-46ba-9511-5d761bf5b7b0",
+                            "name": "Bad Request - The request could not be understood or was missing required parameters.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "agreements",
+                                        ":agreementId"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "0256d1a6-9617-4d64-ba83-15d7cce0ac25",
+                            "name": "Unauthorized - Authentication is required and has failed or not been provided.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "agreements",
+                                        ":agreementId"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Unauthorized",
+                            "code": 401,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "7727440f-a293-4429-9a2f-c6b70ba939ca",
+                            "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "agreements",
+                                        ":agreementId"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Forbidden",
+                            "code": 403,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "18e48e5f-afa4-487b-a71e-893b04379e3e",
+                            "name": "Not Found - The requested resource could not be found.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "agreements",
+                                        ":agreementId"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "60f40aaa-433d-471e-9562-263811bf5c6d",
+                            "name": "Internal Server Error",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "agreements",
+                                        ":agreementId"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Internal Server Error",
+                            "code": 500,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        }
+                    ],
+                    "event": [],
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    }
+                }
+            ]
+        }
+    ],
+    "event": [],
+    "variable": [
+        {
+            "key": "accountId",
+            "value": "00000000-0000-0000-0000-000000000000"
+        },
+        {
+            "key": "baseUrl",
+            "value": "https://api.docusign.com/v1/accounts/{{accountId}}"
+        }
+    ],
+    "info": {
+        "_postman_id": "bd60d7a5-19d0-4e6d-bba8-a204fe467045",
+        "name": "Agreements API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": {
+            "content": "API for retrieving agreements\n\nContact Support:\n Name: Docusign Developer Center\n Email: devcenter@docusign.com",
+            "type": "text/plain"
+        }
+    }
+}
