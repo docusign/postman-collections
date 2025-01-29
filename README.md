@@ -1,6 +1,6 @@
-# The DocuSign Postman Collections
+# The Docusign Postman Collections
 
-This repo contains Postman collections for the DocuSign eSignature API, Rooms API, Click API, and DocuSign Admin API. 
+This repo contains Postman collections for the DocuSign eSignature API, Rooms API, Click API, Monitor API, Maestro API, Navigator API and Docusign Admin API. 
 
 Guide: https://developers.docusign.com/tools/postman/
 
@@ -16,4 +16,4 @@ Follow the guide to install and configure the Postman collection of your choice.
 
 ## License 
 
-The DocuSign Postman Collections are licensed under the [MIT License](LICENSE).
+The Docusign Postman Collections are licensed under the [MIT License](LICENSE).
