@@ -25,7 +25,7 @@ jobs:
         COLLECTION_UID=${{ vars.MAESTRO_COLLECTION_UID }}
         
         # Read the file content and wrap it inside a collection object
-        WRAPPED_CONTENT=$(jq -n --argfile data "$GITHUB_COLLECTION_PATH" '{"collection": $data}')
+        WRAPPED_CONTENT=$(jq -n --slurpfile data "$GITHUB_COLLECTION_PATH" '{"collection": $data[0]}')
         
         # Write the wrapped content to a temporary file
         echo "$WRAPPED_CONTENT" > wrapped_collection.json
