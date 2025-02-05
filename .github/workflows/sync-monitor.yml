@@ -6,32 +6,14 @@ on:
       - master  # Change this to the branch you want to trigger the action
     paths:
       - 'assets/monitor-collection.json'
+  
+  workflow_dispatch:  # Enables manual trigger from GitHub UI
 
 jobs:
-  update-postman:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Update Monitor Postman Collection
-      env:
-        POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
-      run: |
-
-        # Run the Postman API to update the collection
-        GITHUB_COLLECTION_PATH="./assets/monitor-collection.json"
-        COLLECTION_UID=${{ vars.MONITOR_COLLECTION_UID }}
-        
-        # Read the file content and wrap it inside a collection object
-        WRAPPED_CONTENT=$(jq -n --argfile data "$GITHUB_COLLECTION_PATH" '{"collection": $data}')
-        
-        # Write the wrapped content to a temporary file
-        echo "$WRAPPED_CONTENT" > wrapped_collection.json
-        
-        # Use curl with --data-binary to handle large file content
-        curl --location --request PUT "https://api.getpostman.com/collections/$COLLECTION_UID" \
-             --header "x-api-key: $POSTMAN_API_KEY" \
-             --header "Content-Type: application/json" \
-             --data-binary @wrapped_collection.json
+  sync-postman-collection:
+    uses: ./.github/workflows/sync-postman-collection.yml
+    with:
+      collection-uid: ${{ vars.MONITOR_COLLECTION_UID }}
+      collection-path: './assets/monitor-collection.json'
+    secrets:
+      POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
