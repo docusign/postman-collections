@@ -1,0 +1,58 @@
+# .github/workflows/sync-postman-collection.yml
+name: Update Postman Collection
+
+on:
+  workflow_call:
+    inputs:
+      collection-uid:
+        description: 'The UID of the Postman collection to update'
+        required: true
+        type: string
+      collection-path:
+        description: 'The path to the Postman collection JSON file in the repository'
+        required: true
+        type: string
+    secrets:
+      POSTMAN_API_KEY:
+        description: 'API key for authenticating with Postman'
+        required: true
+jobs:
+  update-postman:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Update Postman Collection
+        env:
+          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+          COLLECTION_UID: ${{ inputs.collection-uid }}
+          GITHUB_COLLECTION_PATH: ${{ inputs.collection-path }}
+        run: |
+         
+          # Read the file content and wrap it inside a collection object
+          WRAPPED_CONTENT=$(jq -n --slurpfile data "$GITHUB_COLLECTION_PATH" '{"collection": $data[0]}')
+          
+          # Write the wrapped content to a temporary file
+          echo "$WRAPPED_CONTENT" > wrapped_collection.json
+          
+          # Make API request and capture response & HTTP status
+          HTTP_RESPONSE=$(curl --silent --write-out "HTTPSTATUS:%{http_code}" --location --request PUT \
+              "https://api.getpostman.com/collections/$COLLECTION_UID" \
+              --header "x-api-key: $POSTMAN_API_KEY" \
+              --header "Content-Type: application/json" \
+              --data-binary @wrapped_collection.json)
+
+          # Extract body and status code
+          HTTP_BODY=$(echo "$HTTP_RESPONSE" | sed -e 's/HTTPSTATUS\:.*//g')
+          HTTP_STATUS=$(echo "$HTTP_RESPONSE" | tr -d '\n' | sed -e 's/.*HTTPSTATUS://')
+
+          # Output the response body and status code
+          echo "API Response: $HTTP_BODY"
+          echo "HTTP Status Code: $HTTP_STATUS"
+
+          # Fail the job if the API request was not successful (HTTP 200-299 are success codes)
+          if [[ "$HTTP_STATUS" -lt 200 || "$HTTP_STATUS" -ge 300 ]]; then
+            echo "❌ API request failed with status code $HTTP_STATUS"
+            exit 1
+          fi
