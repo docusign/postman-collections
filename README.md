@@ -11,6 +11,7 @@ This repo contains Postman collections for the following Docusign APIs:
 * [DocuSign Admin](https://developers.docusign.com/docs/admin-api/)
 * [Monitor](https://developers.docusign.com/docs/monitor-api/)
 * [Notary](https://developers.docusign.com/docs/notary-api/)
+* [Workspaces](https://developers.docusign.com/docs/workspaces-api/)
 
 We provide the following resources to help you get started: 
 

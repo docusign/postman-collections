@@ -1,0 +1,19 @@
+name: Sync Workspaces Postman Collection
+
+on:
+  push:
+    branches:
+      - master  # Change this to the branch you want to trigger the action
+    paths:
+      - './assets/workspaces-collection.json'
+  
+  workflow_dispatch:  # Enables manual trigger from GitHub UI
+
+jobs:
+  sync-postman-collection:
+    uses: ./.github/workflows/sync-postman-collection.yml
+    with:
+      collection-uid: ${{ vars.WORKSPACES_COLLECTION_UID }}
+      collection-path: './assets/workspaces-collection.json'
+    secrets:
+      POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
