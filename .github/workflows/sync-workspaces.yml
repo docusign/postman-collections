@@ -5,13 +5,13 @@ on:
     branches:
       - master  # Change this to the branch you want to trigger the action
     paths:
-      - './assets/workspaces-collection.json'
+      - 'assets/workspaces-collection.json'
   
   workflow_dispatch:  # Enables manual trigger from GitHub UI
 
 jobs:
   sync-postman-collection:
-    uses: ./.github/workflows/sync-postman-collection.yml
+    uses: ./.github/workflows/sync-postman-collections.yml
     with:
       collection-uid: ${{ vars.WORKSPACES_COLLECTION_UID }}
       collection-path: './assets/workspaces-collection.json'
