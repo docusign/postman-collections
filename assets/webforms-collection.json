@@ -1,8 +1,865 @@
 {
+    "_": {
+        "postman_id": "809af234-0bd9-45bb-ba70-3a814c62a84b"
+    },
     "item": [
         {
+            "id": "d83a5e7b-7c83-4a7d-9557-e4d2f8e01684",
+            "name": "🔐 Quick Auth Setup → Then Run APIs",
+            "description": {
+                "content": "This folder contains a curated set of requests for rapid Docusign integration. By configuring authentication at the folder level, you can execute all contained requests without manual per request setup. Successful execution of the authentication flows within this folder will populate the **Environment and Collection variables** ``{{​access_token}}`` and ``{{​refresh_token}}``.\n\nOnce these values are saved to your active environment, they will be globally available for all requests in this folder.\n\nEvery request in this folder is configured with auth type as **inherit auth from the parent**. To ensure seamless execution, the folder itself is set to the **Bearer Token** authorization type, using ``{{​access_token}}`` as the value.\n\n**Note**: When viewing the Folder's **Authorization** tab, ensure the **Token** field contains only the variable ``{{​access_token}}``. Do not include the word \"Bearer\" in the text box, as Postman automatically generates the correct ``Authorization: Bearer [token]`` header.\n\n## **Choose your Authentication Type**\n\nDocusign uses OAuth 2.0 to secure your API requests. Using OAuth, your app requests access and performs actions, such as requesting a signature, on behalf of one of your users.\n\nDocusign provides four scenarios for implementing OAuth:\n\n- [<b>Authenticate with the JWT Grant</b>](https://developers.docusign.com/platform/auth/jwt-get-token/)\n- [<b>Authenticate with the Confidential Authorization Code Grant</b>](https://developers.docusign.com/platform/auth/confidential-authcode-get-token/)\n- [<b>Authenticate with Public Authorization Code Grant</b>](https://developers.docusign.com/platform/auth/public-authcode-get-token/)\n- [<b>Authenticate with Implicit Code Grant</b>](https://developers.docusign.com/platform/auth/implicit/)\n\n| Flow | When to use | Human present? | Client secret? |\n|------|-------------|---------------|----------------|\n| **JWT (Service Integration)** | Server/daemon jobs acting on behalf of a user after one-time consent has been granted. | No (after consent) | No (requires privateKey) |\n| **Confidential Authorization Code Grant** | Server-side applications that can securely store a secret. Supports refresh_token. | Yes (initial sign-in) | Yes |\n| **Public Authorization Code Grant (PKCE)** | SPA, Mobile, or Desktop apps that cannot securely store a secret. | Yes (initial sign-in) | No (uses PKCE flow) |\n\n## Prerequisites\n\nBefore obtaining the access token, ensure the following environment or collection variables are configured in Postman.\n\n| Variable | Example Value | Description |\n|----------|---------------|-------------|\n| ``{{​authServer}}`` | Demo: https://account-d.docusign.com <br> Production: https://account.docusign.com | Authentication base URL. |\n| ``{{​redirectUri}}`` | http://localhost:8080/ | A redirect URI (callback URI) where Docusign sends users after authentication. |\n| ``{{​scope}}`` | signature extended | Permissions requested (e.g., signature, impersonation for JWT). See: https://developers.docusign.com/platform/auth/reference/scopes/ |\n| ``{{​integrationKey}}`` | Example: f8db556a-xxxx-4f30-xxxx-648ea46axxxx | Integration key identifying your app. Create one: https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key |\n| ``{{​clientSecret}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | Secret key for confidential integrations: https://developers.docusign.com/platform/configure-app/#secret-key |\n| ``{{​publicIntegrationKey}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | Public integration key used for PKCE flows. |\n| ``{{​userId}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | User GUID. Find it here: https://developers.docusign.com/platform/configure-app/#user-id |\n| ``{{​privateKey}}`` | -----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY----- | RSA private key for JWT flow: https://developers.docusign.com/platform/configure-app/#rsa-key-pair |\n\n## Steps to get token\n\n1. JWT (Service Integration)\n    \n    1. Open the **01 - JWT / Service Integration** folder.\n        \n    2. Execute the GET request of **01-1 – Construct Consent URL**.\n        \n    3. Open the returned **authorizeUrl** in a browser.\n        \n    4. Sign in and grant consent (must include **impersonation**).\n        \n    5. After consent is granted, you can close the browser.\n        \n    6. Run **01-2 - JWT Token (exchange)**\n        \n2. Confidential Auth Code\n    \n    1. Open the **02 – Authorization Code Grant (Confidential Client)** folder.\n        \n    2. Execute the GET request of **02-1 – Construct Authorization URL**.\n        \n    3. Open the returned **authorizeUrl** in a browser tab.\n        \n    4. Sign in and grant consent.\n        \n    5. Copy the **?code=** value from the URL and set it as ``{{​authCodeNoPkce}}``.\n        \n    6. Run **02-2 – Exchange Authorization Code for Tokens**.\n        \n3. Public Auth Code (PKCE)\n    \n    1. Open the **03 – Authorization Code Grant with PKCE (Public Client)** folder**.**\n        \n    2. Execute the GET request of **03-1 – Construct Authorization URL with PKCE**.\n        \n    3. Open the returned **authorizeUrl** in a browser tab.\n        \n    4. Sign in and grant consent.\n        \n    5. Copy the **?code=** value from the URL and set it as ``{{​authCodePkce}}``.\n        \n    6. Ensure the Origin parameter added in Apps and Keys page is set in headers of  **03-2 – Exchange Authorization Code for Tokens (PKCE)** and CORS is activated with all the HTTP operations. For further information, refer [Set the CORS configuration of your app.](https://developers.docusign.com/platform/configure-app/#cors-configuration)\n        \n    7. Run **03-2 – Exchange Authorization Code for Tokens (PKCE)**.\n        \n4. Execute 05 – User Info to verify your user details and base URI.\n    \n\n## Notes\n\n- If the access token has expired, execute 04 – Refresh Access Token using the refresh token. Default expiration is 8 hours (`expires_in` is in seconds).\n    \n- Moving to Production: Switch ``{{​authServer}}`` to [https://account.docusign.com](https://account.docusign.com) and re-consent. The base URI can be accessed by executing 05 – User Info.",
+                "type": "text/plain"
+            },
+            "item": [
+                {
+                    "id": "e195d81d-6f01-4bb8-bb60-dc0147a7b14f",
+                    "name": "01 - JWT / Service Integration",
+                    "description": {
+                        "content": "This request demonstrates authentication using JSON Web Tokens (JWT) Grant for accessing APIs without user interaction.\n\n1. Before making the first call, an administrator or the target user must grant consent to your **Integration Key** (Client ID) to allow specific scopes.To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/).\n    \n2. Your server constructs and digitally signs a **JWT** using your **private key** and the user's ID.\n    \n3. The signed JWT is exchanged with the authorization server for a short-lived access token. This access token is then used in subsequent API calls.\n    \n\nThis workflow is ideal for background processes, scheduled tasks, and integrations that require impersonating a user without constant user interaction.\n\n**Variables**\n\nFor context around what JWT Grant authentication is, when you should use it, and its advantages and disadvantages, see [JSON Web Token (JWT) Grant](https://developers.docusign.com/platform/auth/jwt/).\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). | — |\n| ``{{​userId}}`` | ✅ | Find your [User ID](https://developers.docusign.com/platform/configure-app/#user-id) in the Apps and Keys page. | — |\n| ``{{​privateKey}}`` | ✅ | The **PEM formatted Private Key** used for RS256 signing the JWT. | — |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use https://account.docusign.com for Production). | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | `organization_read organization_write group_read user_read user_write account_read domain_read` |\n| ``{{​USE_CUSTOM_ASSERTION}}`` | Optional | `true` to use your own ``{{​jwt_assertion}}`` | `false` |",
+                        "type": "text/plain"
+                    },
+                    "item": [
+                        {
+                            "id": "9edfcd48-9b32-4c37-936d-b402ad4397a0",
+                            "name": "01-1 - Construct Consent URL (JWT)",
+                            "request": {
+                                "description": {
+                                    "content": "## **Grant Consent for JWT (Impersonation)**\n\n1. Execute this helper request.\n    \n2. Open the returned authorizeUrl in a browser.\n    \n3. Sign in and grant consent (must include `impersonation`).\n    \n4. After consent is granted, you can close the browser.\n    \n5. Run **01-2 - JWT Token (exchange)**.",
+                                    "type": "text/plain"
+                                },
+                                "url": {
+                                    "port": "blank",
+                                    "host": [
+                                        "about"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "method": "GET"
+                            },
+                            "response": [],
+                            "event": [
+                                {
+                                    "listen": "prerequest",
+                                    "script": {
+                                        "id": "4e743821-8ca8-4031-b98d-b3e8a235478c",
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "exec": [
+                                            "const u = utils;",
+                                            "try {",
+                                            "  const authServer = u.getVar(pm, 'authServer', undefined, { required: true });",
+                                            "  const integrationKey = u.getVar(pm, 'integrationKey', undefined, { required: true });",
+                                            "  const redirect = u.encVar(pm, 'redirectUri', undefined, { required: true });",
+                                            "  let scopeStr = u.getScope(pm);",
+                                            "  if (!String(scopeStr).split(/\\s+/).includes('impersonation')) scopeStr = (scopeStr + ' impersonation').trim();",
+                                            "  const scopeParam = encodeURIComponent(scopeStr);",
+                                            "  const authorize = `${authServer}/oauth/auth?response_type=code&client_id=${integrationKey}&redirect_uri=${redirect}&scope=${scopeParam}`;",
+                                            "  const prompt = 'Open the URL, sign in, grant consent (JWT / impersonation). When done, you can close the browser and run 01-2 - JWT Token (exchange).';",
+                                            "  pm.collectionVariables.set('_jwtHelper_authorizationUrl', authorize);",
+                                            "  pm.collectionVariables.set('_jwtHelper_prompt', prompt);",
+                                            "  // echo visual only",
+                                            "  let echoUrl = 'https://postman-echo.com/response-headers'",
+                                            "    + '?message=' + encodeURIComponent(u.asciiSafe(prompt))",
+                                            "    + '&authorizeUrl=' + encodeURIComponent(authorize);",
+                                            "  pm.request.method = 'GET';",
+                                            "  pm.request.url = echoUrl;",
+                                            "} catch (e) {",
+                                            "  pm.execution.setNextRequest(null);",
+                                            "  throw e;",
+                                            "}"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "id": "540080c6-39a2-47ba-a90b-0299dc7c3b9b",
+                                        "type": "text/javascript",
+                                        "packages": {},
+                                        "exec": [
+                                            "try {",
+                                            "  const url = pm.collectionVariables.get('_jwtHelper_authorizationUrl');",
+                                            "  const txt = pm.collectionVariables.get('_jwtHelper_prompt');",
+                                            "  let html = `<style>body{font-family:system-ui;padding:1rem}code{word-break:break-all;background:#f5f5f5;padding:.25rem .5rem;border-radius:4px}</style>`;",
+                                            "  html += `<h3>JWT Consent - Authorize</h3><p>${txt}</p><code>${url}</code>`;",
+                                            "  pm.visualizer.set(html);",
+                                            "} catch(e){ pm.visualizer.set(`<p style='color:#b71c1c'><strong>Helper error:</strong> ${e.message}</p>`); }"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "fd503396-be62-42fb-9d3b-379b8ca64576",
+                            "name": "01-2 - JWT Token (exchange)",
+                            "request": {
+                                "description": {
+                                    "content": "Exchanges the signed JWT (``{{​jwt_assertion}}``) for an access token.\n\n**Two ways to supply the JWT assertion**\n1) **Auto-mint (default):** Set ``{{​integrationKey}}``, ``{{​userId}}``, ``{{​authServer}}``, and ``{{​privateKey}}``. The script mints a JWT and sets ``{{​jwt_assertion}}`` for you.\n2) **Custom assertion:** Set ``{{​USE_CUSTOM_ASSERTION}}`` to `true` **and** provide ``{{​jwt_assertion}}`` yourself (PEM not needed).\n\n**Output:** ``{{​access_token}}``. (JWT does **not** return a refresh token.)",
+                                    "type": "text/plain"
+                                },
+                                "url": {
+                                    "path": [
+                                        "oauth",
+                                        "token"
+                                    ],
+                                    "host": [
+                                        "{{authServer}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "urlencoded",
+                                    "urlencoded": [
+                                        {
+                                            "key": "grant_type",
+                                            "value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+                                        },
+                                        {
+                                            "key": "assertion",
+                                            "value": "{{jwt_assertion}}"
+                                        }
+                                    ]
+                                },
+                                "auth": {
+                                    "type": "noauth",
+                                    "noauth": []
+                                }
+                            },
+                            "response": [],
+                            "event": [
+                                {
+                                    "listen": "prerequest",
+                                    "script": {
+                                        "id": "41738650-10da-40a2-a2d3-bbfcbbe4eaa3",
+                                        "type": "text/javascript",
+                                        "exec": [
+                                            "pm.environment.unset('jwt_error');",
+                                            "const USE_CUSTOM_ASSERTION = String(pm.environment.get('USE_CUSTOM_ASSERTION') || 'false').toLowerCase() === 'true';",
+                                            "try {",
+                                            "  if (USE_CUSTOM_ASSERTION) {",
+                                            "    // Require the caller to provide a ready-made JWT assertion",
+                                            "    const custom = utils.getVar(pm, 'jwt_assertion', undefined, { required: true });",
+                                            "    pm.environment.set('jwt_assertion', custom);",
+                                            "  } else {",
+                                            "    // Mint a new JWT assertion from key material",
+                                            "    const integrationKey   = utils.getVar(pm, 'integrationKey',   undefined, { required: true });",
+                                            "    const userId     = utils.getVar(pm, 'userId',     undefined, { required: true });",
+                                            "    const authServer = utils.getVar(pm, 'authServer', undefined, { required: true });",
+                                            "    const pem        = utils.getVar(pm, 'privateKey', undefined, { required: true });",
+                                            "    const scope      = utils.getScope(pm);",
+                                            "    const jwt = utils.mintJwt({ integrationKey, userId, authServer, privateKeyPem: pem, scope, expSeconds: 3600 });",
+                                            "    pm.environment.set('jwt_assertion', jwt);",
+                                            "  }",
+                                            "} catch(e){",
+                                            "  pm.environment.set('jwt_error', e.message||String(e));",
+                                            "  pm.execution.setNextRequest(null);",
+                                            "  throw e;",
+                                            "}"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "id": "7a234a70-e1ba-4aa4-9f22-ebebb2093cc5",
+                                        "type": "text/javascript",
+                                        "exec": [
+                                            "const err  = pm.environment.get('jwt_error');",
+                                            "if (err){ pm.test('❌ '+err, ()=>pm.expect.fail(err)); pm.environment.unset('jwt_error'); return; }",
+                                            "if (pm.response.code !== 200){",
+                                            "  let why='Unknown error';",
+                                            "  try{ const j=pm.response.json(); why=j.error||j.error_description||why; }catch(_){ }",
+                                            "  pm.test(`❌ Token request failed (${pm.response.code})`, ()=>pm.expect.fail(why));",
+                                            "  return;",
+                                            "}",
+                                            "const token = utils.storeTokensFromResponse(pm, pm.response.json());",
+                                            "pm.environment.unset('jwt_assertion');",
+                                            "pm.test('✅ Access token stored', ()=> pm.expect(token).to.be.a('string'));"
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "event": []
+                },
+                {
+                    "id": "12431997-cad7-4e85-9912-ee5385aeae19",
+                    "name": " 02 - Authorization Code Grant (Confidential Client)",
+                    "description": {
+                        "content": "This folder implements the **Authorization Code Grant** flow. This process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nAuthorization Code Grant is a type of OAuth 2.0 flow used to obtain an access token. [Confidential Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#confidential-authorization-code-grant), which should be used by apps that can secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). |  |\n| ``{{​clientSecret}}`` | ✅ | The secret key identifies your integration app through a unique key. [Create a Secret Key](https://developers.docusign.com/platform/configure-app/#secret-key). |  |\n| ``{{​​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``webforms_read webforms_instance_read webforms_instance_write`` |\n| ``{{​authCodeNoPkce}}`` | ✅ (Only on exchange) | Paste the `?code` here (env or collection var) |  |",
+                        "type": "text/plain"
+                    },
+                    "item": [
+                        {
+                            "id": "4246dd2e-b421-472e-83d9-8ee6c50fa016",
+                            "name": "02-1 - Construct Authorization URL",
+                            "request": {
+                                "description": {
+                                    "content": "## **Get the Authorization Code**\n\n1. Execute the GET request of 02-1 - Construct Authorization URL.\n    \n2. Open the returned authorizeUrl and open in a browser tab.\n    \n3. Sign in, allow access and grant consent.\n    \n4. The browser will redirect to your redirectUri.\n    \n5. Copy the code value from the resulting URL query string.\n    \n6. Paste the copied code into a new or existing Environment or Collection Variable named ``{{​authCodeNoPkce}}``.",
+                                    "type": "text/plain"
+                                },
+                                "url": {
+                                    "port": "blank",
+                                    "host": [
+                                        "about"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "method": "GET"
+                            },
+                            "response": [],
+                            "event": [
+                                {
+                                    "listen": "prerequest",
+                                    "script": {
+                                        "id": "82259a5d-2aeb-4357-bbe1-d8b9de43b5f5",
+                                        "type": "text/javascript",
+                                        "exec": [
+                                            "const u = utils;",
+                                            "try {",
+                                            "  const authServer = u.getVar(pm, 'authServer', undefined, { required: true });",
+                                            "  const integrationKey   = u.getVar(pm, 'integrationKey',   undefined, { required: true });",
+                                            "  const redirect   = u.encVar(pm, 'redirectUri', undefined, { required: true });",
+                                            "  const scopeStr   = u.getScope(pm);",
+                                            "  const scopeParam = encodeURIComponent(scopeStr);",
+                                            "  const authorize = `${authServer}/oauth/auth?response_type=code&client_id=${integrationKey}&redirect_uri=${redirect}&scope=${scopeParam}`;",
+                                            "  const prompt = 'Open the URL, sign in, grant consent, copy ?code= and paste it into an **environment or collection variable** named \"authCodeNoPkce\". Then run 02-2 - Exchange Authorization Code for Tokens.';",
+                                            "  pm.collectionVariables.set('_confidentialHelper_authorizationUrl', authorize);",
+                                            "  pm.collectionVariables.set('_confidentialHelper_prompt', prompt);",
+                                            "  // echo visual only",
+                                            "  let echoUrl = 'https://postman-echo.com/response-headers'",
+                                            "    + '?message=' + encodeURIComponent(u.asciiSafe(prompt))",
+                                            "    + '&authorizeUrl=' + encodeURIComponent(authorize);",
+                                            "  pm.request.method = 'GET';",
+                                            "  pm.request.url = echoUrl;",
+                                            "} catch (e) {",
+                                            "  pm.execution.setNextRequest(null);",
+                                            "  throw e;",
+                                            "}"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "id": "c3267649-21b1-489a-b6aa-c5e5e50be008",
+                                        "type": "text/javascript",
+                                        "exec": [
+                                            "try {",
+                                            "  const url  = pm.collectionVariables.get('_confidentialHelper_authorizationUrl');",
+                                            "  const txt  = pm.collectionVariables.get('_confidentialHelper_prompt');",
+                                            "  let html = `<style>body{font-family:system-ui;padding:1rem}code{word-break:break-all;background:#f5f5f5;padding:.25rem .5rem;border-radius:4px}</style>`;",
+                                            "  html += `<h3>Confidential Auth Code - Authorize</h3><p>${txt}</p><code>${url}</code>`;",
+                                            "  pm.visualizer.set(html);",
+                                            "} catch(e){ pm.visualizer.set(`<p style='color:#b71c1c'><strong>Helper error:</strong> ${e.message}</p>`); }"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "44c40633-7565-4b7e-8cd9-4692dd3354a3",
+                            "name": "02-2 - Exchange Authorization Code for Tokens",
+                            "request": {
+                                "description": {
+                                    "content": "## **Exchanging Code for Tokens**\n\nThis request exchanges the temporary Authorization Code for usable access and refresh tokens.\n\n1. Verify that your environment or collection variables for ``{{​integrationKey}}``, ``{{​clientSecret}}``, and ``{{​authCodeNoPkce}}`` are all populated with the correct values.\n    \n2. Execute this request.\n    \n3. Check the response body: The response will contain the `access_token` and `refresh_token`.\n    \n4. The Pre-request or test script automatically extracts the access_token and refresh_token and saves them as environment variables. This lets you use the Bearer Token authentication instead of manual UI logins for later API calls.",
+                                    "type": "text/plain"
+                                },
+                                "url": {
+                                    "path": [
+                                        "oauth",
+                                        "token"
+                                    ],
+                                    "host": [
+                                        "{{authServer}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "urlencoded",
+                                    "urlencoded": [
+                                        {
+                                            "key": "grant_type",
+                                            "value": "authorization_code"
+                                        },
+                                        {
+                                            "key": "code",
+                                            "value": "{{authCodeNoPkce}}"
+                                        },
+                                        {
+                                            "key": "client_id",
+                                            "value": "{{integrationKey}}"
+                                        },
+                                        {
+                                            "key": "client_secret",
+                                            "value": "{{clientSecret}}"
+                                        }
+                                    ]
+                                },
+                                "auth": {
+                                    "type": "noauth",
+                                    "noauth": []
+                                }
+                            },
+                            "response": [],
+                            "event": [
+                                {
+                                    "listen": "prerequest",
+                                    "script": {
+                                        "id": "c4121bc6-116a-42c9-b203-2d68554dd634",
+                                        "type": "text/javascript",
+                                        "exec": [
+                                            "try {",
+                                            "  // Accept either variables OR literal body params for these inputs:",
+                                            "  utils.requireVarOrUrlencoded(pm, 'integrationKey',       'client_id',       'Integration Key (client_id)');",
+                                            "  utils.requireVarOrUrlencoded(pm, 'clientSecret',   'client_secret',   'client secret (clientSecret/client_secret)');",
+                                            "  utils.requireVarOrUrlencoded(pm, 'authCodeNoPkce', 'code',            'authorization code (authCodeNoPkce/code)');",
+                                            "} catch(e){ pm.execution.setNextRequest(null); throw e; }"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "id": "f0d4aeac-ccf9-4526-a97d-e5798248041a",
+                                        "type": "text/javascript",
+                                        "exec": [
+                                            "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
+                                            "const token = utils.storeTokensFromResponse(pm, pm.response.json());",
+                                            "pm.test('✅ Access token stored', ()=> pm.expect(token).to.be.a('string'));"
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "event": []
+                },
+                {
+                    "id": "8fa55867-0a2b-48db-86b6-65e4a0dc4bd1",
+                    "name": "03 - Authorization Code Grant with PKCE (Public Client)",
+                    "description": {
+                        "content": "This folder implements the **Public Authorization Code Grant (with PKCE)** flow, which is the required OAuth 2.0 standard for public applications like Single Page Applications (SPAs) and mobile apps.\n\nThis process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nPublic Authorization Code Grant (with PKCE) is a type of OAuth 2.0 flow used to obtain an access token. [Public Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#public-authorization-code-grant), which does not require that your app secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​publicIntegrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). If absent, it falls back to ``{{​integrationKey}}``. |  |\n| ``{{​integrationKey}}`` | Fallback | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). |  |\n| ``{{​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``webforms_read webforms_instance_read webforms_instance_write`` |",
+                        "type": "text/plain"
+                    },
+                    "item": [
+                        {
+                            "id": "23f9db09-1be7-4ba4-b6bd-6a503c611f9d",
+                            "name": "03-1 - Construct Authorization URL with PKCE",
+                            "request": {
+                                "description": {
+                                    "content": "This request generates the authorization URL required to start the OAuth 2.0 flow.\n\n## Get the Authorization Code\n\n1. Execute the GET request of _03-1 - Construct Authorization URL with PKCE_.\n    \n2. Open the returned _authorizeUrl_ and open in a browser tab.\n    \n3. Sign in, allow access and grant consent.\n    \n4. The browser will redirect to your redirectUri.\n    \n5. Copy the _code_ value from the resulting URL query string.\n    \n\nPaste the copied _code_ into a new or existing Environment or Collection Variable named ``{{​authCodePkce}}``.",
+                                    "type": "text/plain"
+                                },
+                                "url": {
+                                    "port": "blank",
+                                    "host": [
+                                        "about"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "auth": {
+                                    "type": "noauth",
+                                    "noauth": []
+                                }
+                            },
+                            "response": [],
+                            "event": [
+                                {
+                                    "listen": "prerequest",
+                                    "script": {
+                                        "id": "68965795-4a53-4335-8510-582202e5de28",
+                                        "type": "text/javascript",
+                                        "exec": [
+                                            "const u = utils;",
+                                            "try {",
+                                            "  const authServer = u.getVar(pm, 'authServer', undefined, { required: true });",
+                                            "  const redirect   = u.encVar(pm, 'redirectUri', undefined, { required: true });",
+                                            "  const scopeStr   = u.getScope(pm);",
+                                            "  // prefer explicit publicIntegrationKey; otherwise require integrationKey",
+                                            "  const pubId = pm.environment.get('publicIntegrationKey') && pm.environment.get('publicIntegrationKey').trim();",
+                                            "  const integrationKey = pubId ? pubId : u.getVar(pm, 'integrationKey', undefined, { required: true });",
+                                            "  const { codeVerifier, codeChallenge } = u.ensurePkce(pm);",
+                                            "  pm.environment.set('codeVerifier', codeVerifier);",
+                                            "  pm.environment.set('codeChallenge', codeChallenge);",
+                                            "  const url = `${authServer}/oauth/auth?response_type=code&client_id=${integrationKey}&redirect_uri=${redirect}&code_challenge_method=S256&code_challenge=${codeChallenge}&scope=${encodeURIComponent(scopeStr)}`;",
+                                            "  const prompt = 'Open the URL, sign in, grant consent, copy ?code= and paste it into an **environment or collection variable** named \"authCodePkce\". Then run 03-2 - Exchange Authorization Code for Tokens (PKCE).';",
+                                            "  pm.collectionVariables.set('_publicHelper_authorizationUrl', url);",
+                                            "  pm.collectionVariables.set('_publicHelper_prompt', prompt);",
+                                            "  let echoUrl = 'https://postman-echo.com/response-headers'",
+                                            "    + '?message=' + encodeURIComponent(u.asciiSafe(prompt))",
+                                            "    + '&authorizeUrl=' + encodeURIComponent(url);",
+                                            "  pm.request.method='GET'; pm.request.url=echoUrl;",
+                                            "} catch (e) { pm.execution.setNextRequest(null); throw e; }"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "id": "6a790609-5211-4b6c-8d15-a465b608af2a",
+                                        "type": "text/javascript",
+                                        "exec": [
+                                            "try {",
+                                            "  const url  = pm.collectionVariables.get('_publicHelper_authorizationUrl');",
+                                            "  const txt  = pm.collectionVariables.get('_publicHelper_prompt');",
+                                            "  let html = `<style>body{font-family:system-ui;padding:1rem}code{word-break:break-all;background:#f5f5f5;padding:.25rem .5rem;border-radius:4px}</style>`;",
+                                            "  html += `<h3>Public Auth Code (PKCE) - Authorize</h3><p>${txt}</p><code>${url}</code>`;",
+                                            "  pm.visualizer.set(html);",
+                                            "} catch(e){ pm.visualizer.set(`<p style='color:#b71c1c'><strong>Helper error:</strong> ${e.message}</p>`); }"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "bcca5b30-0277-48b7-af94-7cb3be8d0cd7",
+                            "name": "03-2 - Exchange Authorization Code for Tokens (PKCE)",
+                            "request": {
+                                "description": {
+                                    "content": "## Exchanging Code for Tokens\n\nThis request exchanges the temporary Authorization Code using PKCE for usable access and refresh tokens.\n\n1. Verify that your environment or collection variables for ``{{​integrationKey}}``, and ``{{​authCodeWithPkce}}`` and the automatically generated ``{{​code_verifier}}`` are all populated with the correct values.\n    \n2. Ensure the Origin parameter added in Apps and Keys page is set in headers of  _03-2 - Exchange Authorization Code for Tokens (PKCE)_ and CORS is activated with all the HTTP operations. For further information, refer [Set the CORS configuration of your app.](https://developers.docusign.com/platform/configure-app/#cors-configuration)\n    \n3. Execute this request.\n    \n4. Check the response body: The response will contain the _access_token_ and _refresh_token_.\n    \n5. The Pre-request or test script should automatically extract and set the ``{{​access_token}}`` and ``{{​refresh_token}}`` variables for use in subsequent API calls.",
+                                    "type": "text/plain"
+                                },
+                                "url": {
+                                    "path": [
+                                        "oauth",
+                                        "token"
+                                    ],
+                                    "host": [
+                                        "{{authServer}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/x-www-form-urlencoded"
+                                    },
+                                    {
+                                        "key": "Origin",
+                                        "value": "https://localhost:3000"
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "urlencoded",
+                                    "urlencoded": [
+                                        {
+                                            "key": "grant_type",
+                                            "value": "authorization_code"
+                                        },
+                                        {
+                                            "key": "client_id",
+                                            "value": "{{publicIntegrationKey}}"
+                                        },
+                                        {
+                                            "key": "code",
+                                            "value": "{{authCodePkce}}"
+                                        },
+                                        {
+                                            "key": "code_verifier",
+                                            "value": "{{codeVerifier}}"
+                                        }
+                                    ]
+                                },
+                                "auth": {
+                                    "type": "noauth",
+                                    "noauth": []
+                                }
+                            },
+                            "response": [],
+                            "event": [
+                                {
+                                    "listen": "prerequest",
+                                    "script": {
+                                        "id": "4c8e5b4c-d253-441d-82a0-1edb1e69372f",
+                                        "type": "text/javascript",
+                                        "exec": [
+                                            "try {",
+                                            "  // Client ID can be body literal (client_id) OR a variable (publicIntegrationKey/integrationKey)",
+                                            "  const hasLiteralClientId = utils.hasUrlencoded(pm, 'client_id');",
+                                            "  const hasPublicVar = utils.isString(pm.environment.get('publicIntegrationKey')) || utils.isString(pm.collectionVariables.get('publicIntegrationKey')) || utils.isString(pm.globals.get('publicIntegrationKey'));",
+                                            "  const hasClientVar = utils.isString(pm.environment.get('integrationKey')) || utils.isString(pm.collectionVariables.get('integrationKey')) || utils.isString(pm.globals.get('integrationKey'));",
+                                            "  if (!hasLiteralClientId && !(hasPublicVar || hasClientVar)){",
+                                            "    throw new Error('Missing client id. Set publicIntegrationKey/integrationKey or place a literal client_id in the body.');",
+                                            "  }",
+                                            "  utils.requireVarOrUrlencoded(pm, 'authCodePkce', 'code', 'authorization code (authCodePkce/code)');",
+                                            "  utils.requireVarOrUrlencoded(pm, 'codeVerifier', 'code_verifier', 'PKCE code verifier (codeVerifier/code_verifier)');",
+                                            "} catch(e){ pm.execution.setNextRequest(null); throw e; }"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "listen": "test",
+                                    "script": {
+                                        "id": "82a1b293-57b6-4a87-bbdc-5d0ee1c694f5",
+                                        "type": "text/javascript",
+                                        "exec": [
+                                            "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
+                                            "const token = utils.storeTokensFromResponse(pm, pm.response.json());",
+                                            "pm.test('✅ Access token stored', ()=> pm.expect(token).to.be.a('string'));"
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "event": []
+                },
+                {
+                    "id": "5207f937-37ee-44d5-9d9e-003f53756ae9",
+                    "name": "04 - Refresh Access Token",
+                    "request": {
+                        "description": {
+                            "content": "This request uses the long-lived refresh token to obtain a new access token, ensuring continuous API access without user re-authentication.\n\n1. Verify that the ``{{​refresh_token}}`` variable is populated from the previous \"Exchange Code for Tokens\" request.\n    \n2. Execute this request.\n    \n3. The response will contain a brand new _access_token_.\n    \n4. The test script should automatically extract and overwrite the old value of the ``{{​access_token}}`` variable with the new token.",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "path": [
+                                "oauth",
+                                "token"
+                            ],
+                            "host": [
+                                "{{authServer}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                            }
+                        ],
+                        "method": "POST",
+                        "body": {
+                            "mode": "urlencoded",
+                            "urlencoded": [
+                                {
+                                    "key": "grant_type",
+                                    "value": "refresh_token"
+                                },
+                                {
+                                    "key": "client_id",
+                                    "value": "{{integrationKey}}"
+                                },
+                                {
+                                    "key": "refresh_token",
+                                    "value": "{{refresh_token}}"
+                                }
+                            ]
+                        },
+                        "auth": {
+                            "type": "basic",
+                            "basic": [
+                                {
+                                    "type": "string",
+                                    "value": "{{clientSecret}}",
+                                    "key": "password"
+                                },
+                                {
+                                    "type": "string",
+                                    "value": "{{integrationKey}}",
+                                    "key": "username"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [],
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "id": "cc662610-70b8-427f-9b05-e6d2759c50ed",
+                                "type": "text/javascript",
+                                "exec": [
+                                    "pm.test('Token refreshed', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
+                                    "",
+                                    "if (pm.response.code === 200) {",
+                                    "    var TOKEN = UTILS.STORETOKENSFROMRESPONSE(PM, PM.RESPONSE.JSON());",
+                                    "    PM.TEST('✅ ACCESS TOKEN STORED', ()=> PM.EXPECT(TOKEN).TO.BE.A('STRING'));",
+                                    "}"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "1c03dc4f-0891-419e-a3e7-960499ecd1e5",
+                    "name": "05 - User Info",
+                    "request": {
+                        "description": {
+                            "content": "The **User Info** request serves as the validation step following any successful OAuth 2.0 flow. It confirms the access token's validity and retrieves the fundamental identity details of your Docusign account.\n\n- **Identity Validation:** The primary response fields, such as `\"sub\"` (the user ID), `\"name\"`, and `\"email\"`, confirms **who** the application is acting on behalf of.\n    \n- **API Configuration:.** The default account contains the `account_id` (`1b63b53e-xxxx-4728-xxxx-e5aef8f305d1`) and the correct `base_uri`. Your application must extract these values to construct the correct endpoints for making calls like sending envelopes or managing templates.\n    \n\nThis request validates the entire authentication process and supplies all the required user and account context to interact with the Docusign API.",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "path": [
+                                "oauth",
+                                "userinfo"
+                            ],
+                            "host": [
+                                "{{authServer}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        },
+                        "method": "GET"
+                    },
+                    "response": [],
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "id": "5ae0dd15-df7f-4acc-ab44-921f9d8a5cd9",
+                                "type": "text/javascript",
+                                "packages": {},
+                                "exec": [
+                                    "pm.test('UserInfo returned', () => { pm.expect(pm.response.code).to.equal(200); });",
+                                    "let j = {};",
+                                    "try { j = pm.response.json(); } catch(_) {}",
+                                    "if (j && Array.isArray(j.accounts) && j.accounts.length){",
+                                    "  const def = j.accounts.find(a => a.is_default) || j.accounts[0];",
+                                    "  if (def && def.account_id) pm.environment.set('account_id', def.account_id);",
+                                    "  if (def && def.base_uri) pm.environment.set('base_uri', def.base_uri);",
+                                    "}",
+                                    "pm.test('✅ Parsed userinfo (optional vars stored if present)', () => pm.expect(true).to.equal(true));"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "id": "05ce85f9-3845-412a-91fd-ef5a5cef119d",
+                        "type": "text/javascript",
+                        "packages": {
+                            "npm:jsrsasign@11.1.0": {
+                                "id": "npm:jsrsasign@11.1.0"
+                            }
+                        },
+                        "exec": [
+                            "/* ------------------------------------------------------------------",
+                            " * utils: Shared helpers for the Auth folder (folder-level pre-request).",
+                            " * These run before each request in this folder. Pass `pm` into helpers.",
+                            " * ------------------------------------------------------------------ */",
+                            "utils = (function(){",
+                            "  const jsrsasign = pm.require('npm:jsrsasign@11.1.0');",
+                            "  const { KJUR, KEYUTIL } = jsrsasign;",
+                            "",
+                            "  /** isString(v): true if v is a non-empty string */",
+                            "  const isString = v => typeof v === 'string' && v.trim() !== '';",
+                            "",
+                            "  /** isPlaceholder(v): true if value looks like a {{variable}} */",
+                            "  const isPlaceholder = v => isString(v) && v.startsWith('{{') && v.endsWith('}}');",
+                            "",
+                            "  /** asciiSafe(s): strip non-ASCII for header-safe echo endpoints */",
+                            "  const asciiSafe = s => String(s||'').replace(/[^\\x20-\\x7E]/g, '');",
+                            "",
+                            "  function _missingMsg(name){",
+                            "    return `Missing ${name}. Set it in your active Environment or in Collection variables.`;",
+                            "  }",
+                            "",
+                            "  /**",
+                            "   * getVar(pm, name, fallback, {required=false})",
+                            "   * Resolve var from env → collection → globals. Throws if required and missing.",
+                            "   * @returns {string}",
+                            "   */",
+                            "  function getVar(pm_, name, fallback, { required = false } = {}){",
+                            "    const sources = [pm_.environment.get(name), pm_.collectionVariables.get(name), pm_.globals.get(name)];",
+                            "    const v = sources.find(isString);",
+                            "    if (v !== undefined) return v;",
+                            "    if (required) { throw new Error(_missingMsg(name)); }",
+                            "    return (fallback !== undefined ? fallback : `{{${name}}}`);",
+                            "  }",
+                            "",
+                            "  /** encVar(pm, name, fallback, opt): getVar + encodeURIComponent (unless placeholder) */",
+                            "  function encVar(pm_, name, fallback, opt){",
+                            "    const v = getVar(pm_, name, fallback, opt);",
+                            "    return isPlaceholder(v) ? v : encodeURIComponent(v);",
+                            "  }",
+                            "",
+                            "  /** getScope(pm): returns scope string (defaults to 'webforms_read webforms_instance_read webforms_instance_write') */",
+                            "  function getScope(pm_){",
+                            "    return getVar(pm_, 'scope', 'webforms_read webforms_instance_read webforms_instance_write');",
+                            "  }",
+                            "",
+                            "  /** deriveBaseHost(url): strips scheme or uses URL.host */",
+                            "  function deriveBaseHost(u){",
+                            "    try { return new URL(u).host; }",
+                            "    catch { return String(u||'').replace(/^(https?:\\/\\/)/i,''); }",
+                            "  }",
+                            "",
+                            "  /**",
+                            "   * Safely add/remove a urlencoded body param by key using body.update().",
+                            "   */",
+                            "  function setUrlencodedEnabled(pm_, key, enabled){",
+                            "    const body = pm_.request && pm_.request.body;",
+                            "    if (!body || body.mode !== 'urlencoded') return;",
+                            "    let current = [];",
+                            "    try {",
+                            "      if (body.urlencoded && typeof body.urlencoded.toJSON === 'function') {",
+                            "        current = body.urlencoded.toJSON();",
+                            "      } else if (body.urlencoded && typeof body.urlencoded.all === 'function') {",
+                            "        current = body.urlencoded.all();",
+                            "      } else if (Array.isArray(body.urlencoded)) {",
+                            "        current = body.urlencoded;",
+                            "      }",
+                            "    } catch(_) {}",
+                            "    const filtered = current.filter(p => p.key !== key);",
+                            "    const next = enabled ? filtered.concat({ key, value: '', type: 'text' }) : filtered;",
+                            "    body.update({ mode: 'urlencoded', urlencoded: next });",
+                            "  }",
+                            "",
+                            "  // ---- presence checks in urlencoded vs vars --------------------------------",
+                            "  function _urlencodedList(pm_){",
+                            "    const body = pm_.request && pm_.request.body;",
+                            "    if (!body || body.mode !== 'urlencoded') return [];",
+                            "    try {",
+                            "      if (body.urlencoded && typeof body.urlencoded.toJSON === 'function') return body.urlencoded.toJSON();",
+                            "      if (Array.isArray(body.urlencoded)) return body.urlencoded;",
+                            "    } catch(_) {}",
+                            "    return [];",
+                            "  }",
+                            "  function hasUrlencoded(pm_, key){",
+                            "    const row = _urlencodedList(pm_).find(p => p.key === key);",
+                            "    if (!row) return false;",
+                            "    const val = (row.value||'').trim();",
+                            "    return val !== '' && !isPlaceholder(val);",
+                            "  }",
+                            "  function requireVarOrUrlencoded(pm_, varName, bodyKey, displayName){",
+                            "    const hasVar = isString(pm_.environment.get(varName)) || isString(pm_.collectionVariables.get(varName)) || isString(pm_.globals.get(varName));",
+                            "    if (hasVar || hasUrlencoded(pm_, bodyKey)) return;",
+                            "    throw new Error(_missingMsg(displayName || varName));",
+                            "  }",
+                            "",
+                            "  // ---- PKCE helpers -------------------------------------------------------",
+                            "  const toB64Url = s => s.replace(/\\+/g,'-').replace(/\\//g,'_').replace(/=+$/, '');",
+                            "  const hexToBytes = h => (h.match(/.{2}/g)||[]).map(x=>parseInt(x,16));",
+                            "",
+                            "  /** sha256b64url(s): SHA-256 of string → base64url */",
+                            "  function sha256b64url(s){",
+                            "    const hex = KJUR.crypto.Util.sha256(s);",
+                            "    const raw = String.fromCharCode(...hexToBytes(hex));",
+                            "    return toB64Url(btoa(raw));",
+                            "  }",
+                            "",
+                            "  /**",
+                            "   * ensurePkce(pm): returns { codeVerifier, codeChallenge }, generating if missing.",
+                            "   */",
+                            "  function ensurePkce(pm_){",
+                            "    let codeVerifier = pm_.environment.get('codeVerifier');",
+                            "    if (!codeVerifier){",
+                            "      const bytes = new Uint8Array(32); crypto.getRandomValues(bytes);",
+                            "      const v1 = toB64Url(btoa(String.fromCharCode(...bytes)));",
+                            "      bytes.reverse();",
+                            "      const v2 = toB64Url(btoa(String.fromCharCode(...bytes)));",
+                            "      codeVerifier = (v1+v2).slice(0,96);",
+                            "      pm_.environment.set('codeVerifier', codeVerifier);",
+                            "    }",
+                            "    let codeChallenge = pm_.environment.get('codeChallenge');",
+                            "    if (!codeChallenge){ codeChallenge = sha256b64url(codeVerifier); pm_.environment.set('codeChallenge', codeChallenge); }",
+                            "    return { codeVerifier, codeChallenge };",
+                            "  }",
+                            "",
+                            "  // ---- JWT mint -----------------------------------------------------------",
+                            "  /**",
+                            "   * mintJwt({ integrationKey, userId, authServer, privateKeyPem, scope, expSeconds=3600 })",
+                            "   * Signs an RS256 JWT for Docusign OAuth (aud = authServer host).",
+                            "   * @returns {string} Signed JWT",
+                            "   */",
+                            "  function mintJwt({ integrationKey, userId, authServer, privateKeyPem, scope, expSeconds = 3600 }){",
+                            "    const aud = deriveBaseHost(authServer);",
+                            "    const now = Math.floor(Date.now()/1000);",
+                            "    const head = { typ: 'JWT', alg: 'RS256' };",
+                            "    const body = { iss: integrationKey, sub: userId, aud, iat: now, exp: now + expSeconds, scope: scope || 'webforms_read webforms_instance_read webforms_instance_write' };",
+                            "    const keyObj = KEYUTIL.getKey(privateKeyPem);",
+                            "    return KJUR.jws.JWS.sign('RS256', JSON.stringify(head), JSON.stringify(body), keyObj);",
+                            "  }",
+                            "",
+                            "  // ---- Token storage (env → collection → runtime; snake_case only) -------",
+                            "  function _setScopedOne(pm_, key, val){",
+                            "    if (val == null) return false;",
+                            "    try { pm_.environment.set(key, val); return true; } catch(_) {}",
+                            "    try { pm_.collectionVariables.set(key, val); return true; } catch(_) {}",
+                            "    try { pm_.variables.set(key, val); return true; } catch(_) {}",
+                            "    return false;",
+                            "  }",
+                            "  function _unsetAll(pm_, key){",
+                            "    try { pm_.environment.unset(key); } catch(_) {}",
+                            "    try { pm_.collectionVariables.unset(key); } catch(_) {}",
+                            "    try { pm_.variables.unset(key); } catch(_) {}",
+                            "  }",
+                            "",
+                            "  /**",
+                            "   * storeTokensFromResponse(pm, r): saves tokens to env/collection/runtime in snake_case.",
+                            "   * Sets: access_token, refresh_token, token_type, expires_in, access_token_expires_at, received_at.",
+                            "   * @returns {string|null} access_token",
+                            "   */",
+                            "  function storeTokensFromResponse(pm_, r){",
+                            "    if (!r){",
+                            "      ['access_token','refresh_token','token_type','expires_in','access_token_expires_at','received_at'].forEach(k=>_unsetAll(pm_,k));",
+                            "      return null;",
+                            "    }",
+                            "    if (r.access_token != null) _setScopedOne(pm_, 'access_token', r.access_token); else _unsetAll(pm_, 'access_token');",
+                            "    if (r.refresh_token != null) _setScopedOne(pm_, 'refresh_token', r.refresh_token); else _unsetAll(pm_, 'refresh_token');",
+                            "    if (r.token_type != null) _setScopedOne(pm_, 'token_type', r.token_type); else _unsetAll(pm_, 'token_type');",
+                            "    if (r.expires_in != null){",
+                            "      _setScopedOne(pm_, 'expires_in', r.expires_in);",
+                            "      const expAt = String(Math.floor(Date.now()/1000) + Number(r.expires_in||0));",
+                            "      _setScopedOne(pm_, 'access_token_expires_at', expAt);",
+                            "    } else {",
+                            "      _unsetAll(pm_, 'expires_in');",
+                            "      _unsetAll(pm_, 'access_token_expires_at');",
+                            "    }",
+                            "    if (r.access_token) _setScopedOne(pm_, 'received_at', new Date().toISOString()); else _unsetAll(pm_, 'received_at');",
+                            "    return r.access_token || null;",
+                            "  }",
+                            "",
+                            "  return {",
+                            "    isString, isPlaceholder, asciiSafe, deriveBaseHost, mintJwt,",
+                            "    getVar: (pm_, n, f, o)=>getVar(pm_, n, f, o), encVar: (pm_, n, f, o)=>encVar(pm_, n, f, o), getScope: (pm_)=>getScope(pm_),",
+                            "    setUrlencodedEnabled: (pm_, k, e)=>setUrlencodedEnabled(pm_, k, e), ensurePkce: (pm_)=>ensurePkce(pm_),",
+                            "    hasUrlencoded: (pm_, k)=>hasUrlencoded(pm_, k), requireVarOrUrlencoded: (pm_, vn, bk, dn)=>requireVarOrUrlencoded(pm_, vn, bk, dn),",
+                            "    storeTokensFromResponse: (pm_, r)=>storeTokensFromResponse(pm_, r)",
+                            "  };",
+                            "})();"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "id": "6968fc48-4754-434b-bb64-19c641c4a925",
             "name": "Instances",
-            "description": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nMethods to create and retrieve instances of a web form. Each instance is secure and unique to a user session.",
+            "description": {
+                "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nMethods to create and retrieve instances of a web form. Each instance is secure and unique to a user session.",
+                "type": "text/plain"
+            },
             "item": [
                 {
                     "id": "82e92798-053f-4d9a-8802-99245f5cb2bc",
@@ -38,24 +895,24 @@
                             ],
                             "variable": [
                                 {
-                                    "type": "any",
-                                    "value": "<uuid>",
-                                    "key": "accountId",
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the account to which the web form belongs.",
                                         "type": "text/plain"
-                                    }
-                                },
-                                {
+                                    },
                                     "type": "any",
                                     "value": "<uuid>",
-                                    "key": "formId",
+                                    "key": "accountId"
+                                },
+                                {
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the form configuration.\n",
                                         "type": "text/plain"
-                                    }
+                                    },
+                                    "type": "any",
+                                    "value": "<uuid>",
+                                    "key": "formId"
                                 }
                             ]
                         },
@@ -66,8 +923,7 @@
                             }
                         ],
                         "method": "GET",
-                        "body": {},
-                        "auth": null
+                        "body": {}
                     },
                     "response": [
                         {
@@ -448,24 +1304,24 @@
                             "query": [],
                             "variable": [
                                 {
-                                    "type": "any",
-                                    "value": "<uuid>",
-                                    "key": "accountId",
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the account to which the web form belongs.",
                                         "type": "text/plain"
-                                    }
-                                },
-                                {
+                                    },
                                     "type": "any",
                                     "value": "<uuid>",
-                                    "key": "formId",
+                                    "key": "accountId"
+                                },
+                                {
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the web form configuration.",
                                         "type": "text/plain"
-                                    }
+                                    },
+                                    "type": "any",
+                                    "value": "<uuid>",
+                                    "key": "formId"
                                 }
                             ]
                         },
@@ -482,15 +1338,14 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"assertionId\": \"<string>\",\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"Kerberos\",\n  \"expirationOffset\": \"<long>\",\n  \"formValues\": {\n    \"est5e\": {}\n  },\n  \"returnUrl\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                            "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"assertionId\": \"<string>\",\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"HTTPBasicAuth\",\n  \"brandId\": \"<uuid>\",\n  \"expirationOffset\": \"<long>\",\n  \"formValues\": {\n    \"velit_ea\": {}\n  },\n  \"recipients\": [\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    },\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    }\n  ],\n  \"returnUrl\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"sendOption\": \"now\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
                                     "language": "json"
                                 }
                             }
-                        },
-                        "auth": null
+                        }
                     },
                     "response": [
                         {
@@ -951,34 +1806,34 @@
                             "query": [],
                             "variable": [
                                 {
-                                    "type": "any",
-                                    "value": "<uuid>",
-                                    "key": "accountId",
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the account to which the web form belongs.",
                                         "type": "text/plain"
-                                    }
-                                },
-                                {
+                                    },
                                     "type": "any",
                                     "value": "<uuid>",
-                                    "key": "formId",
+                                    "key": "accountId"
+                                },
+                                {
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the web form configuration.",
                                         "type": "text/plain"
-                                    }
-                                },
-                                {
+                                    },
                                     "type": "any",
                                     "value": "<uuid>",
-                                    "key": "instanceId",
+                                    "key": "formId"
+                                },
+                                {
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the form instance.",
                                         "type": "text/plain"
-                                    }
+                                    },
+                                    "type": "any",
+                                    "value": "<uuid>",
+                                    "key": "instanceId"
                                 }
                             ]
                         },
@@ -989,8 +1844,7 @@
                             }
                         ],
                         "method": "GET",
-                        "body": {},
-                        "auth": null
+                        "body": {}
                     },
                     "response": [
                         {
@@ -1319,34 +2173,34 @@
                             "query": [],
                             "variable": [
                                 {
-                                    "type": "any",
-                                    "value": "<uuid>",
-                                    "key": "accountId",
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the account to which the web form belongs.",
                                         "type": "text/plain"
-                                    }
-                                },
-                                {
+                                    },
                                     "type": "any",
                                     "value": "<uuid>",
-                                    "key": "formId",
+                                    "key": "accountId"
+                                },
+                                {
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the web form configuration.",
                                         "type": "text/plain"
-                                    }
-                                },
-                                {
+                                    },
                                     "type": "any",
                                     "value": "<uuid>",
-                                    "key": "instanceId",
+                                    "key": "formId"
+                                },
+                                {
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the form instance.",
                                         "type": "text/plain"
-                                    }
+                                    },
+                                    "type": "any",
+                                    "value": "<uuid>",
+                                    "key": "instanceId"
                                 }
                             ]
                         },
@@ -1357,8 +2211,7 @@
                             }
                         ],
                         "method": "POST",
-                        "body": {},
-                        "auth": null
+                        "body": {}
                     },
                     "response": [
                         {
@@ -1717,11 +2570,16 @@
                         "disableBodyPruning": true
                     }
                 }
-            ]
+            ],
+            "event": []
         },
         {
+            "id": "fae9e984-1bae-4ca1-9ae3-4dd87cc23df9",
             "name": "Configurations",
-            "description": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nA web form configuration is a definition that you can use to create many instances. To create a web form configuration, use the [Web Forms Builder](https://support.docusign.com/s/document-item?language=en_US&bundleId=gmi1660583110357&topicId=gpc1660591510274.html). These methods enable you to get data about one or multiple web form configurations.",
+            "description": {
+                "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nA web form configuration is a definition that you can use to create many instances. To create a web form configuration, use the [Web Forms Builder](https://support.docusign.com/s/document-item?language=en_US&bundleId=gmi1660583110357&topicId=gpc1660591510274.html). These methods enable you to get data about one or multiple web form configurations.",
+                "type": "text/plain"
+            },
             "item": [
                 {
                     "id": "64b3a088-135c-4ee7-9b5f-fe6ddb37313b",
@@ -1809,14 +2667,14 @@
                             ],
                             "variable": [
                                 {
-                                    "type": "any",
-                                    "value": "<uuid>",
-                                    "key": "accountId",
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the account to which the web form belongs.\n",
                                         "type": "text/plain"
-                                    }
+                                    },
+                                    "type": "any",
+                                    "value": "<uuid>",
+                                    "key": "accountId"
                                 }
                             ]
                         },
@@ -1827,8 +2685,7 @@
                             }
                         ],
                         "method": "GET",
-                        "body": {},
-                        "auth": null
+                        "body": {}
                     },
                     "response": [
                         {
@@ -2420,24 +3277,24 @@
                             ],
                             "variable": [
                                 {
-                                    "type": "any",
-                                    "value": "<uuid>",
-                                    "key": "accountId",
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the account to which the web form belongs.",
                                         "type": "text/plain"
-                                    }
-                                },
-                                {
+                                    },
                                     "type": "any",
                                     "value": "<uuid>",
-                                    "key": "formId",
+                                    "key": "accountId"
+                                },
+                                {
                                     "disabled": false,
                                     "description": {
                                         "content": "(Required) The ID of the web form configuration.\n",
                                         "type": "text/plain"
-                                    }
+                                    },
+                                    "type": "any",
+                                    "value": "<uuid>",
+                                    "key": "formId"
                                 }
                             ]
                         },
@@ -2448,8 +3305,7 @@
                             }
                         ],
                         "method": "GET",
-                        "body": {},
-                        "auth": null
+                        "body": {}
                     },
                     "response": [
                         {
@@ -2686,39 +3542,106 @@
                         "disableBodyPruning": true
                     }
                 }
-            ]
+            ],
+            "event": []
         }
     ],
     "auth": {
         "type": "oauth2",
         "oauth2": [
             {
-                "type": "any",
-                "value": "webforms_read webforms_write webforms_instance_read webforms_instance_write",
-                "key": "scope"
-            },
-            {
-                "type": "any",
-                "value": "https://account-tk1.tk.docusign.dev/oauth/token",
-                "key": "accessTokenUrl"
-            },
-            {
-                "type": "any",
-                "value": "https://account-tk1.tk.docusign.dev/oauth/auth",
-                "key": "authUrl"
-            },
-            {
-                "type": "any",
+                "key": "grant_type",
                 "value": "authorization_code",
-                "key": "grant_type"
+                "type": "string"
+            },
+            {
+                "key": "authUrl",
+                "value": "{{authServer}}/oauth/auth",
+                "type": "string"
+            },
+            {
+                "key": "accessTokenUrl",
+                "value": "{{authServer}}/oauth/token",
+                "type": "string"
+            },
+            {
+                "key": "clientId",
+                "value": "{{integrationKey}}",
+                "type": "string"
+            },
+            {
+                "key": "clientSecret",
+                "value": "{{clientSecret}}",
+                "type": "string"
+            },
+            {
+                "key": "callbackUrl",
+                "value": "{{redirectUri}}",
+                "type": "string"
+            },
+            {
+                "key": "redirect_uri",
+                "value": "{{redirectUri}}",
+                "type": "string"
+            },
+            {
+                "key": "scope",
+                "value": "{{scope}}",
+                "type": "string"
+            },
+            {
+                "key": "addTokenTo",
+                "value": "header",
+                "type": "string"
             }
         ]
     },
     "event": [],
     "variable": [
         {
-            "key": "baseUrl",
-            "value": "https://apps.docusign.com/api/webforms"
+            "type": "any",
+            "value": "https://apps.docusign.com/api/webforms",
+            "key": "baseUrl"
+        },
+        {
+            "type": "any",
+            "value": "https://account-d.docusign.com",
+            "key": "authServer"
+        },
+        {
+            "type": "any",
+            "value": "webforms_read webforms_instance_read webforms_instance_write",
+            "key": "scope"
+        },
+        {
+            "type": "any",
+            "value": "",
+            "key": "integrationKey"
+        },
+        {
+            "type": "any",
+            "value": "",
+            "key": "clientSecret"
+        },
+        {
+            "type": "any",
+            "value": "",
+            "key": "publicIntegrationKey"
+        },
+        {
+            "type": "any",
+            "value": "",
+            "key": "userId"
+        },
+        {
+            "type": "any",
+            "value": "",
+            "key": "privateKey"
+        },
+        {
+            "type": "any",
+            "value": "false",
+            "key": "USE_CUSTOM_ASSERTION"
         }
     ],
     "info": {
