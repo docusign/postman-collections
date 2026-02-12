@@ -1,30 +1,30 @@
 {
     "_": {
-        "postman_id": "c4b4127d-1d50-42fd-a4d9-4b52efe34171"
+        "postman_id": "d8ff96a9-03d1-48c4-8e78-3fa88377738f"
     },
     "item": [
         {
-            "id": "9130a0bf-4525-468a-b50f-db0eeb394b11",
+            "id": "b850effb-dc4c-4dfe-bd9a-2480cc7aa88d",
             "name": "🔐 Quick Auth Setup → Then Run APIs",
             "description": {
-                "content": "Use this folder to authenticate with **Docusign** and populate ``{{​access_token}}`` (and ``{{​refresh_token}}`` when available). All other requests can either inherit **OAuth 2.0** from the collection (UI token) or you can set a request to **Bearer {{​access_token}}** to use variable-based auth instead.\n\n### Which flow should I use?\n\n| Flow | When to use | Human present? | Client secret? |\n| --- | --- | --- | --- |\n| **Confidential Auth Code** | Server apps that can store a secret; supports refresh tokens | Yes | **Yes** |\n| **Public Auth Code (PKCE)** | SPA/mobile or apps that **cannot** store a secret | Yes | No (uses PKCE) |\n| **JWT (Service Integration)** | Server/daemon jobs acting for a user after one-time consent | No (after consent) | No (needs private key) |\n\n**Prerequisites**\n- ``{{​authServer}}`` → `https://account-d.docusign.com` (Developer) or `https://account.docusign.com` (Prod)\n- ``{{​redirectUri}}`` registered on your Integration Key\n- ``{{​scope}}`` (typical: `signature`; add `impersonation` for JWT; `extended` for rolling refresh)\n- IDs/secrets: ``{{​integrationKey}}``, ``{{​clientSecret}}`` (confidential), ``{{​publicIntegrationKey}}`` (PKCE), ``{{​userId}}`` & ``{{​privateKey}}`` (JWT)\n\n**Run the flows**\n1) *Confidential Auth Code*: Open **02-1 Helper** → sign in & copy `?code` → set ``{{​authCodeNoPkce}}`` (env or collection) → run **02-2 Exchange**.\n2) *Public Auth Code (PKCE)*: Open **03-1 Helper** → sign in & copy `?code` → set ``{{​authCodePkce}}`` (env or collection) → run **03-2 Exchange**.\n3) *JWT*: Ensure consent for `signature impersonation` → run **01-2 JWT Token (exchange)** to mint a token.\n\n**Notes**\n- Access tokens are short-lived; refresh tokens typically ~30 days.\n- Moving to Prod: switch ``{{​authServer}}`` and re-consent; API base paths differ between demo/prod.",
+                "content": "This folder contains a curated set of requests for rapid Docusign integration. By configuring authentication at the folder level, you can execute all contained requests without manual per request setup. Successful execution of the authentication flows within this folder will populate the **Environment and Collection variables** ``{{​access_token}}`` and ``{{​refresh_token}}``.\n\nOnce these values are saved to your active environment, they will be globally available for all requests in this folder.\n\nEvery request in this folder is configured with auth type as **inherit auth from the parent**. To ensure seamless execution, the folder itself is set to the **Bearer Token** authorization type, using ``{{​access_token}}`` as the value.\n\n**Note**: When viewing the Folder's **Authorization** tab, ensure the **Token** field contains only the variable ``{{​access_token}}``. Do not include the word \"Bearer\" in the text box, as Postman automatically generates the correct ``Authorization: Bearer [token]`` header.\n\n## **Choose your Authentication Type**\n\nDocusign uses OAuth 2.0 to secure your API requests. Using OAuth, your app requests access and performs actions, such as requesting a signature, on behalf of one of your users.\n\nDocusign provides four scenarios for implementing OAuth:\n\n- [<b>Authenticate with the JWT Grant</b>](https://developers.docusign.com/platform/auth/jwt-get-token/)\n- [<b>Authenticate with the Confidential Authorization Code Grant</b>](https://developers.docusign.com/platform/auth/confidential-authcode-get-token/)\n- [<b>Authenticate with Public Authorization Code Grant</b>](https://developers.docusign.com/platform/auth/public-authcode-get-token/)\n- [<b>Authenticate with Implicit Code Grant</b>](https://developers.docusign.com/platform/auth/implicit/)\n\n| Flow | When to use | Human present? | Client secret? |\n|------|-------------|---------------|----------------|\n| **JWT (Service Integration)** | Server/daemon jobs acting on behalf of a user after one-time consent has been granted. | No (after consent) | No (requires privateKey) |\n| **Confidential Authorization Code Grant** | Server-side applications that can securely store a secret. Supports refresh_token. | Yes (initial sign-in) | Yes |\n| **Public Authorization Code Grant (PKCE)** | SPA, Mobile, or Desktop apps that cannot securely store a secret. | Yes (initial sign-in) | No (uses PKCE flow) |\n\n## Prerequisites\n\nBefore obtaining the access token, ensure the following environment or collection variables are configured in Postman.\n\n| Variable | Example Value | Description |\n|----------|---------------|-------------|\n| ``{{​authServer}}`` | Demo: https://account-d.docusign.com <br> Production: https://account.docusign.com | Authentication base URL. |\n| ``{{​redirectUri}}`` | http://localhost:8080/ | A redirect URI (callback URI) where Docusign sends users after authentication. |\n| ``{{​scope}}`` | signature extended | Permissions requested (e.g., signature, impersonation for JWT). See: https://developers.docusign.com/platform/auth/reference/scopes/ |\n| ``{{​integrationKey}}`` | Example: f8db556a-xxxx-4f30-xxxx-648ea46axxxx | Integration key identifying your app. Create one: https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key |\n| ``{{​clientSecret}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | Secret key for confidential integrations: https://developers.docusign.com/platform/configure-app/#secret-key |\n| ``{{​publicIntegrationKey}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | Public integration key used for PKCE flows. |\n| ``{{​userId}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | User GUID. Find it here: https://developers.docusign.com/platform/configure-app/#user-id |\n| ``{{​privateKey}}`` | -----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY----- | RSA private key for JWT flow: https://developers.docusign.com/platform/configure-app/#rsa-key-pair |\n\n## Steps to get token\n\n1. JWT (Service Integration)\n    \n    1. Open the **01 - JWT / Service Integration** folder.\n        \n    2. Execute the GET request of **01-1 – Construct Consent URL**.\n        \n    3. Open the returned **authorizeUrl** in a browser.\n        \n    4. Sign in and grant consent (must include **impersonation**).\n        \n    5. After consent is granted, you can close the browser.\n        \n    6. Run **01-2 - JWT Token (exchange)**\n        \n2. Confidential Auth Code\n    \n    1. Open the **02 – Authorization Code Grant (Confidential Client)** folder.\n        \n    2. Execute the GET request of **02-1 – Construct Authorization URL**.\n        \n    3. Open the returned **authorizeUrl** in a browser tab.\n        \n    4. Sign in and grant consent.\n        \n    5. Copy the **?code=** value from the URL and set it as ``{{​authCodeNoPkce}}``.\n        \n    6. Run **02-2 – Exchange Authorization Code for Tokens**.\n        \n3. Public Auth Code (PKCE)\n    \n    1. Open the **03 – Authorization Code Grant with PKCE (Public Client)** folder**.**\n        \n    2. Execute the GET request of **03-1 – Construct Authorization URL with PKCE**.\n        \n    3. Open the returned **authorizeUrl** in a browser tab.\n        \n    4. Sign in and grant consent.\n        \n    5. Copy the **?code=** value from the URL and set it as ``{{​authCodePkce}}``.\n        \n    6. Ensure the Origin parameter added in Apps and Keys page is set in headers of  **03-2 – Exchange Authorization Code for Tokens (PKCE)** and CORS is activated with all the HTTP operations. For further information, refer [Set the CORS configuration of your app.](https://developers.docusign.com/platform/configure-app/#cors-configuration)\n        \n    7. Run **03-2 – Exchange Authorization Code for Tokens (PKCE)**.\n        \n4. Execute 05 – User Info to verify your user details and base URI.\n    \n\n## Notes\n\n- If the access token has expired, execute 04 – Refresh Access Token using the refresh token. Default expiration is 8 hours (`expires_in` is in seconds).\n    \n- Moving to Production: Switch ``{{​authServer}}`` to [https://account.docusign.com](https://account.docusign.com) and re-consent. The base URI can be accessed by executing 05 – User Info.",
                 "type": "text/plain"
             },
             "item": [
                 {
-                    "id": "8591f95a-df37-444b-af68-9a23086fe588",
+                    "id": "8655e0e7-e92c-4443-acbc-e215a24ae115",
                     "name": "01 - JWT / Service Integration",
                     "description": {
-                        "content": "Use JWT when your backend needs to call APIs without the user present. First, the target user (or an admin) must grant consent to your Integration Key for `signature impersonation`. Then your server signs a JWT with your **private key** and exchanges it for an access token.\n\n**Variables**\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | Integration Key (OAuth client) | — |\n| ``{{​userId}}`` | ✅ | Target user (GUID) to impersonate | — |\n| ``{{​privateKey}}`` | ✅ | PEM for RS256 signing | — |\n| ``{{​authServer}}`` | ✅ | Audience derived from this host | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Scopes for the token | `adm_store_unified_repo_read models_read document_uploader_read document_uploader_write` |\n| ``{{​USE_CUSTOM_ASSERTION}}`` | Optional | `true` to use your own ``{{​jwt_assertion}}`` | `false` |",
+                        "content": "This request demonstrates authentication using JSON Web Tokens (JWT) Grant for accessing APIs without user interaction.\n\n1. Before making the first call, an administrator or the target user must grant consent to your **Integration Key** (Client ID) to allow specific scopes.To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/).\n    \n2. Your server constructs and digitally signs a **JWT** using your **private key** and the user's ID.\n    \n3. The signed JWT is exchanged with the authorization server for a short-lived access token. This access token is then used in subsequent API calls.\n    \n\nThis workflow is ideal for background processes, scheduled tasks, and integrations that require impersonating a user without constant user interaction.\n\n**Variables**\n\nFor context around what JWT Grant authentication is, when you should use it, and its advantages and disadvantages, see [JSON Web Token (JWT) Grant](https://developers.docusign.com/platform/auth/jwt/).\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). | — |\n| ``{{​userId}}`` | ✅ | Find your [User ID](https://developers.docusign.com/platform/configure-app/#user-id) in the Apps and Keys page. | — |\n| ``{{​privateKey}}`` | ✅ | The **PEM formatted Private Key** used for RS256 signing the JWT. | — |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use https://account.docusign.com for Production). | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | `organization_read organization_write group_read user_read user_write account_read domain_read` |\n| ``{{​USE_CUSTOM_ASSERTION}}`` | Optional | `true` to use your own ``{{​jwt_assertion}}`` | `false` |",
                         "type": "text/plain"
                     },
                     "item": [
                         {
-                            "id": "cdb5f283-1c9a-4fc5-bc63-32e45bfffe0b",
+                            "id": "0c591747-4614-4c6f-a3f1-92ae66387469",
                             "name": "01-1 - Construct Consent URL (JWT)",
                             "request": {
                                 "description": {
-                                    "content": "## **Grant Consent for JWT (Impersonation)**\n\n1. Execute this helper request.\n    \n2. Open the returned authorizeUrl in a browser.\n    \n3. Sign in and grant consent (must include `impersonation`).\n    \n4. After consent is granted, you can close the browser.\n    \n5. Run **01-1 - JWT Token (exchange)**.\n    \n\n## **Get the Authorization Code**\n\n1. Execute the GET request of 02-1 - Construct Authorization URL.\n    \n2. Open the returned authorizeUrl and open in a browser tab.\n    \n3. Sign in, allow access and grant consent.\n    \n4. The browser will redirect to your redirectUri.\n    \n5. Copy the code value from the resulting URL query string.\n    \n6. Paste the copied code into a new or existing Environment or Collection Variable named `{{​authCodeNoPkce}}`.",
+                                    "content": "## **Grant Consent for JWT (Impersonation)**\n\n1. Execute this helper request.\n    \n2. Open the returned authorizeUrl in a browser.\n    \n3. Sign in and grant consent (must include `impersonation`).\n    \n4. After consent is granted, you can close the browser.\n    \n5. Run **01-2 - JWT Token (exchange)**.",
                                     "type": "text/plain"
                                 },
                                 "url": {
@@ -42,7 +42,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "c36ef563-afdc-4198-861c-1943013aa6e2",
+                                        "id": "23b206b8-4031-470b-be39-126390fffcea",
                                         "type": "text/javascript",
                                         "packages": {},
                                         "exec": [
@@ -74,7 +74,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "ed24f3a7-c6e3-4830-8f0d-9bcd26d851ee",
+                                        "id": "fa4febe7-f952-4d14-ab98-f0b318f0d3ee",
                                         "type": "text/javascript",
                                         "packages": {},
                                         "exec": [
@@ -91,7 +91,7 @@
                             ]
                         },
                         {
-                            "id": "6d3f7e18-a6b6-4245-9e32-ccb0cbea8158",
+                            "id": "2724db9a-e556-4868-af33-0b7f98f13977",
                             "name": "01-2 - JWT Token (exchange)",
                             "request": {
                                 "description": {
@@ -139,7 +139,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "625de3e7-1eb7-454a-a566-c8d89fbaef4c",
+                                        "id": "b9ce0030-ce9c-4358-8666-e84eba60184b",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.environment.unset('jwt_error');",
@@ -170,7 +170,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "0ccaca7f-210f-4445-a0e2-7329f19d65fa",
+                                        "id": "36cb1747-f405-4462-a72e-20f9a5ea53ed",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const err  = pm.environment.get('jwt_error');",
@@ -193,7 +193,7 @@
                     "event": []
                 },
                 {
-                    "id": "d7bd80e3-2a60-4fa3-a67a-da0e9f11aea1",
+                    "id": "4f49bd6e-220d-435f-a74f-9264741d6c75",
                     "name": " 02 - Authorization Code Grant (Confidential Client)",
                     "description": {
                         "content": "This folder implements the **Authorization Code Grant** flow. This process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nAuthorization Code Grant is a type of OAuth 2.0 flow used to obtain an access token. [Confidential Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#confidential-authorization-code-grant), which should be used by apps that can secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). |  |\n| ``{{​clientSecret}}`` | ✅ | The secret key identifies your integration app through a unique key. [Create a Secret Key](https://developers.docusign.com/platform/configure-app/#secret-key). |  |\n| ``{{​​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``adm_store_unified_repo_read models_read document_uploader_read document_uploader_write`` |\n| ``{{​authCodeNoPkce}}`` | ✅ (Only on exchange) | Paste the `?code` here (env or collection var) |  |",
@@ -201,7 +201,7 @@
                     },
                     "item": [
                         {
-                            "id": "e5378c83-607a-4d7c-b802-197024ab5426",
+                            "id": "e95b5cdb-a0db-47d8-8d1f-fb321f03d689",
                             "name": "02-1 - Construct Authorization URL",
                             "request": {
                                 "description": {
@@ -223,7 +223,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "d620d88d-4f49-40ff-ae97-e7be69570ad3",
+                                        "id": "de57bce6-1ff7-4b6d-8c51-09a19d2649e0",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const u = utils;",
@@ -253,7 +253,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "fa031eb2-cdf5-4aac-8ce0-035c10afb605",
+                                        "id": "99706298-a631-426e-9947-98769b2214e5",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -269,7 +269,7 @@
                             ]
                         },
                         {
-                            "id": "6f393c10-2dfd-474b-9a41-61483672c5fc",
+                            "id": "8b65bec3-b47c-48d8-bfcc-406927cf87bc",
                             "name": "02-2 - Exchange Authorization Code for Tokens",
                             "request": {
                                 "description": {
@@ -325,7 +325,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "e78e0825-c114-4a13-8e78-88fce1742e39",
+                                        "id": "e0dfe13b-8107-418b-b508-22d9e3199e5f",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -340,7 +340,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "4f58716f-5342-42d3-83b4-bf7490298d2e",
+                                        "id": "7f19c781-b9b0-4283-be0a-ce173e04cce6",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -355,7 +355,7 @@
                     "event": []
                 },
                 {
-                    "id": "8edafbee-dec8-4d9c-931c-1fea515a97b4",
+                    "id": "6d5b52bc-95b2-4556-9301-7cb017570861",
                     "name": "03 - Authorization Code Grant with PKCE (Public Client)",
                     "description": {
                         "content": "This folder implements the **Public Authorization Code Grant (with PKCE)** flow, which is the required OAuth 2.0 standard for public applications like Single Page Applications (SPAs) and mobile apps.\n\nThis process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nPublic Authorization Code Grant (with PKCE) is a type of OAuth 2.0 flow used to obtain an access token. [Public Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#public-authorization-code-grant), which does not require that your app secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​publicIntegrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). If absent, it falls back to ``{{​integrationKey}}``. |  |\n| ``{{​integrationKey}}`` | Fallback | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). |  |\n| ``{{​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``adm_store_unified_repo_read models_read document_uploader_read document_uploader_write`` |",
@@ -363,11 +363,11 @@
                     },
                     "item": [
                         {
-                            "id": "3b10a8c4-8160-4231-80b5-6274b15e948b",
+                            "id": "2b1718eb-e5c6-4c52-bc54-bdeb74cc6ffb",
                             "name": "03-1 - Construct Authorization URL with PKCE",
                             "request": {
                                 "description": {
-                                    "content": "This request generates the authorization URL required to start the OAuth 2.0 flow.\n\n## Get the Authorization Code\n\n1. Execute the GET request of _03-1 - Construct Authorization URL_.\n    \n2. Open the returned _authorizeUrl_ and open in a browser tab.\n    \n3. Sign in, allow access and grant consent.\n    \n4. The browser will redirect to your redirectUri.\n    \n5. Copy the _code_ value from the resulting URL query string.\n    \n\nPaste the copied _code_ into a new or existing Environment or Collection Variable named ``{{​authCodePkce}}``.",
+                                    "content": "This request generates the authorization URL required to start the OAuth 2.0 flow.\n\n## Get the Authorization Code\n\n1. Execute the GET request of _03-1 - Construct Authorization URL with PKCE_.\n    \n2. Open the returned _authorizeUrl_ and open in a browser tab.\n    \n3. Sign in, allow access and grant consent.\n    \n4. The browser will redirect to your redirectUri.\n    \n5. Copy the _code_ value from the resulting URL query string.\n    \n\nPaste the copied _code_ into a new or existing Environment or Collection Variable named ``{{​authCodePkce}}``.",
                                     "type": "text/plain"
                                 },
                                 "url": {
@@ -389,7 +389,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "248cffd2-13c0-42bb-b252-54dfad32c661",
+                                        "id": "02e8daf6-7ea8-474a-9f2e-49c84fa23e5f",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const u = utils;",
@@ -418,7 +418,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "e09a4bf0-9392-4516-9238-5ce76937e6d4",
+                                        "id": "0c79f206-e792-4265-9b81-8feb9d369a1b",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -434,7 +434,7 @@
                             ]
                         },
                         {
-                            "id": "9ad7641c-7681-4771-a550-58e63811f7c3",
+                            "id": "3b25ac10-dff8-422f-b042-987fb5d1783a",
                             "name": "03-2 - Exchange Authorization Code for Tokens (PKCE)",
                             "request": {
                                 "description": {
@@ -456,6 +456,10 @@
                                     {
                                         "key": "Content-Type",
                                         "value": "application/x-www-form-urlencoded"
+                                    },
+                                    {
+                                        "key": "Origin",
+                                        "value": "https://localhost:3000"
                                     }
                                 ],
                                 "method": "POST",
@@ -490,7 +494,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "46c64040-3fe9-4ac8-948c-2456227ed1a5",
+                                        "id": "10f16cb5-f35b-453d-ba71-51c97182aa21",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -510,7 +514,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "7e7b5e18-78c2-4553-ac4c-7f6974641068",
+                                        "id": "f6f2804f-e806-4e09-ae4e-080e6755717b",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -525,7 +529,7 @@
                     "event": []
                 },
                 {
-                    "id": "a750a827-a214-47aa-b382-ba96db74b5a7",
+                    "id": "1421407c-a2a4-4cc6-9a80-d84d9cb76006",
                     "name": "04 - Refresh Access Token",
                     "request": {
                         "description": {
@@ -588,7 +592,7 @@
                         {
                             "listen": "test",
                             "script": {
-                                "id": "7c6940ce-cfb4-478c-88d2-43864740d99e",
+                                "id": "b22706f0-2310-4259-aaaa-646730b88787",
                                 "type": "text/javascript",
                                 "exec": [
                                     "pm.test('Token refreshed', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -603,7 +607,7 @@
                     ]
                 },
                 {
-                    "id": "b1d8b6d2-db85-4892-8d81-ef06ecb48615",
+                    "id": "9c0d793b-3976-4b0f-b449-b44776ed7607",
                     "name": "05 - User Info",
                     "request": {
                         "description": {
@@ -628,7 +632,7 @@
                         {
                             "listen": "test",
                             "script": {
-                                "id": "e5243341-3831-47af-b222-ef657be7fb8f",
+                                "id": "3b21ddfe-9662-480c-90af-f5e1719c4c28",
                                 "type": "text/javascript",
                                 "packages": {},
                                 "exec": [
@@ -651,7 +655,7 @@
                 {
                     "listen": "prerequest",
                     "script": {
-                        "id": "3b1dc9b7-e4ab-43dd-9267-ba72d9c5d73f",
+                        "id": "2937d4c1-2801-45ed-b619-89ab7a37ffa4",
                         "type": "text/javascript",
                         "packages": {
                             "npm:jsrsasign@11.1.0": {
@@ -850,7 +854,7 @@
             ]
         },
         {
-            "id": "c7e093e1-1ee3-4d7b-841f-e2af2bf505fd",
+            "id": "2be21b2d-4afd-4f03-8247-fa6f7a3ec378",
             "name": "BulkJob",
             "description": {
                 "content": "",
@@ -858,7 +862,7 @@
             },
             "item": [
                 {
-                    "id": "97a51ce5-3dbd-4d24-8603-af23bbf1e104",
+                    "id": "e2383b13-b716-4fb1-b8a5-0ff1ebc2f8e6",
                     "name": "Create new bulk job with presigned URLs direct to Azure Blob Store",
                     "request": {
                         "name": "Create new bulk job with presigned URLs direct to Azure Blob Store",
@@ -904,7 +908,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"IQoDNrvzhQGIqQYaXQUI0\",\n    \"uQOTA2DXcuXuOwIfQb-pP\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
+                            "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"e9lvBXfDboMhCXYh-u_pO\",\n    \"oNWhlM6KomzvXRqQziU36\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -915,7 +919,7 @@
                     },
                     "response": [
                         {
-                            "id": "4e0e56bd-fd16-4d9c-a4b1-708892d0739a",
+                            "id": "19a827b1-f9f9-4d30-9420-1c9f3a4bd298",
                             "name": "Job created successfully",
                             "originalRequest": {
                                 "url": {
@@ -953,7 +957,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"IQoDNrvzhQGIqQYaXQUI0\",\n    \"uQOTA2DXcuXuOwIfQb-pP\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
+                                    "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"e9lvBXfDboMhCXYh-u_pO\",\n    \"oNWhlM6KomzvXRqQziU36\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -970,11 +974,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"status\": \"IN_PROGRESS\",\n  \"status_enum\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"modified_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\",\n  \"metadata\": {\n    \"request_id\": \"<uuid>\",\n    \"response_duration\": \"<integer>\",\n    \"response_timestamp\": \"<dateTime>\"\n  },\n  \"_action_templates\": {\n    \"upload_document\": {\n      \"constraints\": {\n        \"allowed_formats\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_documents_per_job\": \"<integer>\",\n        \"max_size_mb\": \"<integer>\",\n        \"timeout_seconds\": \"<integer>\"\n      },\n      \"description\": \"<string>\",\n      \"error_status_codes\": {},\n      \"headers\": {},\n      \"method\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"success_status_code\": \"<integer>\",\n      \"template_variables\": {}\n    },\n    \"upload_metadata\": {\n      \"constraints\": {\n        \"allowed_formats\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_documents_per_job\": \"<integer>\",\n        \"max_size_mb\": \"<integer>\",\n        \"timeout_seconds\": \"<integer>\"\n      },\n      \"description\": \"<string>\",\n      \"error_status_codes\": {},\n      \"headers\": {},\n      \"method\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"success_status_code\": \"<integer>\",\n      \"template_variables\": {}\n    }\n  },\n  \"_embedded\": {\n    \"document_status_enum\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"documents\": [\n      {\n        \"_actions\": {\n          \"upload_document\": \"<uri>\",\n          \"upload_metadata\": \"<uri>\"\n        },\n        \"agreement_id\": \"<uuid>\",\n        \"error\": \"<string>\",\n        \"error_code\": \"<integer>\",\n        \"id\": \"<uuid>\",\n        \"sequence\": \"<integer>\",\n        \"status\": \"IN_PROGRESS\"\n      },\n      {\n        \"_actions\": {\n          \"upload_document\": \"<uri>\",\n          \"upload_metadata\": \"<uri>\"\n        },\n        \"agreement_id\": \"<uuid>\",\n        \"error\": \"<string>\",\n        \"error_code\": \"<integer>\",\n        \"id\": \"<uuid>\",\n        \"sequence\": \"<integer>\",\n        \"status\": \"IN_PROGRESS\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": \"<uri>\"\n  },\n  \"constraints\": {\n    \"allowed_formats\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"max_documents_per_job\": \"<integer>\",\n    \"max_size_mb\": \"<integer>\",\n    \"timeout_seconds\": \"<integer>\"\n  },\n  \"external_job_id\": \"<uuid>\",\n  \"message\": \"<string>\",\n  \"ttl_period\": \"<string>\"\n}",
+                            "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"status\": \"FAILED\",\n  \"status_enum\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"modified_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\",\n  \"metadata\": {\n    \"request_id\": \"<uuid>\",\n    \"response_duration\": \"<integer>\",\n    \"response_timestamp\": \"<dateTime>\"\n  },\n  \"_action_templates\": {\n    \"upload_document\": {\n      \"constraints\": {\n        \"allowed_formats\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_documents_per_job\": \"<integer>\",\n        \"max_size_mb\": \"<integer>\",\n        \"timeout_seconds\": \"<integer>\"\n      },\n      \"description\": \"<string>\",\n      \"error_status_codes\": {},\n      \"headers\": {},\n      \"method\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"success_status_code\": \"<integer>\",\n      \"template_variables\": {}\n    },\n    \"upload_metadata\": {\n      \"constraints\": {\n        \"allowed_formats\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_documents_per_job\": \"<integer>\",\n        \"max_size_mb\": \"<integer>\",\n        \"timeout_seconds\": \"<integer>\"\n      },\n      \"description\": \"<string>\",\n      \"error_status_codes\": {},\n      \"headers\": {},\n      \"method\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"success_status_code\": \"<integer>\",\n      \"template_variables\": {}\n    }\n  },\n  \"_embedded\": {\n    \"document_status_enum\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"documents\": [\n      {\n        \"_actions\": {\n          \"upload_document\": \"<uri>\",\n          \"upload_metadata\": \"<uri>\"\n        },\n        \"agreement_id\": \"<uuid>\",\n        \"error\": \"<string>\",\n        \"error_code\": \"<integer>\",\n        \"id\": \"<uuid>\",\n        \"sequence\": \"<integer>\",\n        \"status\": \"FAILED\"\n      },\n      {\n        \"_actions\": {\n          \"upload_document\": \"<uri>\",\n          \"upload_metadata\": \"<uri>\"\n        },\n        \"agreement_id\": \"<uuid>\",\n        \"error\": \"<string>\",\n        \"error_code\": \"<integer>\",\n        \"id\": \"<uuid>\",\n        \"sequence\": \"<integer>\",\n        \"status\": \"NOT_STARTED\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": \"<uri>\"\n  },\n  \"constraints\": {\n    \"allowed_formats\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"max_documents_per_job\": \"<integer>\",\n    \"max_size_mb\": \"<integer>\",\n    \"timeout_seconds\": \"<integer>\"\n  },\n  \"external_job_id\": \"<uuid>\",\n  \"message\": \"<string>\",\n  \"ttl_period\": \"<string>\"\n}",
                             "cookie": []
                         },
                         {
-                            "id": "54f5af6f-3de2-4f99-8643-94027db021aa",
+                            "id": "e8a0e4ea-b07d-4071-9dc8-817538868904",
                             "name": "Bad Request - The request was invalid or malformed",
                             "originalRequest": {
                                 "url": {
@@ -1012,7 +1016,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"IQoDNrvzhQGIqQYaXQUI0\",\n    \"uQOTA2DXcuXuOwIfQb-pP\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
+                                    "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"e9lvBXfDboMhCXYh-u_pO\",\n    \"oNWhlM6KomzvXRqQziU36\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1033,7 +1037,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "0c05b868-d7be-4821-9497-15c8c51a78f0",
+                            "id": "bfaf9ef1-7974-4ed8-ab4c-edea279de97e",
                             "name": "Unauthorized - Authentication is required",
                             "originalRequest": {
                                 "url": {
@@ -1071,7 +1075,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"IQoDNrvzhQGIqQYaXQUI0\",\n    \"uQOTA2DXcuXuOwIfQb-pP\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
+                                    "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"e9lvBXfDboMhCXYh-u_pO\",\n    \"oNWhlM6KomzvXRqQziU36\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1092,7 +1096,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "3a47f5b2-e191-4dc1-999b-a2a03d2e6b66",
+                            "id": "f4eaafbb-095f-4bbe-8191-5ac64944722e",
                             "name": "Forbidden - The user is not authorized to perform this operation",
                             "originalRequest": {
                                 "url": {
@@ -1130,7 +1134,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"IQoDNrvzhQGIqQYaXQUI0\",\n    \"uQOTA2DXcuXuOwIfQb-pP\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
+                                    "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"e9lvBXfDboMhCXYh-u_pO\",\n    \"oNWhlM6KomzvXRqQziU36\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1151,7 +1155,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "d4089829-c0cf-4c3d-9da9-b23f926edfd6",
+                            "id": "f69da2e1-4722-4131-bf7f-8108afa6a9e7",
                             "name": "Too Many Requests - User has too many incomplete jobs",
                             "originalRequest": {
                                 "url": {
@@ -1189,7 +1193,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"IQoDNrvzhQGIqQYaXQUI0\",\n    \"uQOTA2DXcuXuOwIfQb-pP\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
+                                    "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"e9lvBXfDboMhCXYh-u_pO\",\n    \"oNWhlM6KomzvXRqQziU36\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1210,7 +1214,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "1952aa9d-031b-4b8f-914f-c4d0fc29e1f5",
+                            "id": "227e42ed-224a-4667-9939-b4bb3ca7b998",
                             "name": "Internal Server Error - An unexpected error occurred",
                             "originalRequest": {
                                 "url": {
@@ -1248,7 +1252,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"IQoDNrvzhQGIqQYaXQUI0\",\n    \"uQOTA2DXcuXuOwIfQb-pP\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
+                                    "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"e9lvBXfDboMhCXYh-u_pO\",\n    \"oNWhlM6KomzvXRqQziU36\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1275,7 +1279,7 @@
                     }
                 },
                 {
-                    "id": "f1151b58-98b8-441e-8367-bdac17630fa4",
+                    "id": "90349b34-70fd-4d06-be51-3ee9ae3c9c28",
                     "name": "Get bulk job status",
                     "request": {
                         "name": "Get bulk job status",
@@ -1330,7 +1334,7 @@
                     },
                     "response": [
                         {
-                            "id": "1dd3cff9-369d-49ee-aa7a-c033470381c6",
+                            "id": "69b901ec-8802-489f-8720-02778c8fc00d",
                             "name": "The bulk job status and details",
                             "originalRequest": {
                                 "url": {
@@ -1373,11 +1377,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"status\": \"IN_PROGRESS\",\n  \"status_enum\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"modified_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\",\n  \"metadata\": {\n    \"request_id\": \"<uuid>\",\n    \"response_duration\": \"<integer>\",\n    \"response_timestamp\": \"<dateTime>\"\n  },\n  \"_action_templates\": {\n    \"upload_document\": {\n      \"constraints\": {\n        \"allowed_formats\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_documents_per_job\": \"<integer>\",\n        \"max_size_mb\": \"<integer>\",\n        \"timeout_seconds\": \"<integer>\"\n      },\n      \"description\": \"<string>\",\n      \"error_status_codes\": {},\n      \"headers\": {},\n      \"method\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"success_status_code\": \"<integer>\",\n      \"template_variables\": {}\n    },\n    \"upload_metadata\": {\n      \"constraints\": {\n        \"allowed_formats\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_documents_per_job\": \"<integer>\",\n        \"max_size_mb\": \"<integer>\",\n        \"timeout_seconds\": \"<integer>\"\n      },\n      \"description\": \"<string>\",\n      \"error_status_codes\": {},\n      \"headers\": {},\n      \"method\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"success_status_code\": \"<integer>\",\n      \"template_variables\": {}\n    }\n  },\n  \"_embedded\": {\n    \"document_status_enum\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"documents\": [\n      {\n        \"_actions\": {\n          \"upload_document\": \"<uri>\",\n          \"upload_metadata\": \"<uri>\"\n        },\n        \"agreement_id\": \"<uuid>\",\n        \"error\": \"<string>\",\n        \"error_code\": \"<integer>\",\n        \"id\": \"<uuid>\",\n        \"sequence\": \"<integer>\",\n        \"status\": \"IN_PROGRESS\"\n      },\n      {\n        \"_actions\": {\n          \"upload_document\": \"<uri>\",\n          \"upload_metadata\": \"<uri>\"\n        },\n        \"agreement_id\": \"<uuid>\",\n        \"error\": \"<string>\",\n        \"error_code\": \"<integer>\",\n        \"id\": \"<uuid>\",\n        \"sequence\": \"<integer>\",\n        \"status\": \"IN_PROGRESS\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": \"<uri>\"\n  },\n  \"constraints\": {\n    \"allowed_formats\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"max_documents_per_job\": \"<integer>\",\n    \"max_size_mb\": \"<integer>\",\n    \"timeout_seconds\": \"<integer>\"\n  },\n  \"external_job_id\": \"<uuid>\",\n  \"message\": \"<string>\",\n  \"ttl_period\": \"<string>\"\n}",
+                            "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"status\": \"FAILED\",\n  \"status_enum\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"modified_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\",\n  \"metadata\": {\n    \"request_id\": \"<uuid>\",\n    \"response_duration\": \"<integer>\",\n    \"response_timestamp\": \"<dateTime>\"\n  },\n  \"_action_templates\": {\n    \"upload_document\": {\n      \"constraints\": {\n        \"allowed_formats\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_documents_per_job\": \"<integer>\",\n        \"max_size_mb\": \"<integer>\",\n        \"timeout_seconds\": \"<integer>\"\n      },\n      \"description\": \"<string>\",\n      \"error_status_codes\": {},\n      \"headers\": {},\n      \"method\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"success_status_code\": \"<integer>\",\n      \"template_variables\": {}\n    },\n    \"upload_metadata\": {\n      \"constraints\": {\n        \"allowed_formats\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_documents_per_job\": \"<integer>\",\n        \"max_size_mb\": \"<integer>\",\n        \"timeout_seconds\": \"<integer>\"\n      },\n      \"description\": \"<string>\",\n      \"error_status_codes\": {},\n      \"headers\": {},\n      \"method\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"success_status_code\": \"<integer>\",\n      \"template_variables\": {}\n    }\n  },\n  \"_embedded\": {\n    \"document_status_enum\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"documents\": [\n      {\n        \"_actions\": {\n          \"upload_document\": \"<uri>\",\n          \"upload_metadata\": \"<uri>\"\n        },\n        \"agreement_id\": \"<uuid>\",\n        \"error\": \"<string>\",\n        \"error_code\": \"<integer>\",\n        \"id\": \"<uuid>\",\n        \"sequence\": \"<integer>\",\n        \"status\": \"FAILED\"\n      },\n      {\n        \"_actions\": {\n          \"upload_document\": \"<uri>\",\n          \"upload_metadata\": \"<uri>\"\n        },\n        \"agreement_id\": \"<uuid>\",\n        \"error\": \"<string>\",\n        \"error_code\": \"<integer>\",\n        \"id\": \"<uuid>\",\n        \"sequence\": \"<integer>\",\n        \"status\": \"NOT_STARTED\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": \"<uri>\"\n  },\n  \"constraints\": {\n    \"allowed_formats\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"max_documents_per_job\": \"<integer>\",\n    \"max_size_mb\": \"<integer>\",\n    \"timeout_seconds\": \"<integer>\"\n  },\n  \"external_job_id\": \"<uuid>\",\n  \"message\": \"<string>\",\n  \"ttl_period\": \"<string>\"\n}",
                             "cookie": []
                         },
                         {
-                            "id": "3893bf4e-094b-4d32-ba61-3cb43f6abd55",
+                            "id": "e9a28dcb-cb8d-488e-a9aa-a4bde0c34116",
                             "name": "Unauthorized - Authentication is required",
                             "originalRequest": {
                                 "url": {
@@ -1424,7 +1428,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "596767d7-b777-4a9e-8f4e-b2fe48ada983",
+                            "id": "1b009f91-ecb8-4652-b5b4-2ad693a4a082",
                             "name": "Forbidden - The user is not authorized to perform this operation",
                             "originalRequest": {
                                 "url": {
@@ -1471,7 +1475,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "69d1e693-101f-4e1b-9adf-e53b25589196",
+                            "id": "1bb2a0f7-5b0a-4f55-8fa3-f7e7b54f7314",
                             "name": "Not Found - The requested resource was not found",
                             "originalRequest": {
                                 "url": {
@@ -1518,7 +1522,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "72d82580-09c8-4bec-8b49-c16921d4a2d0",
+                            "id": "544e975f-e961-4597-ace7-f4ea0a66b324",
                             "name": "Internal Server Error - An unexpected error occurred",
                             "originalRequest": {
                                 "url": {
@@ -1571,7 +1575,7 @@
                     }
                 },
                 {
-                    "id": "7e24d12e-067e-495f-953b-79d10b1c5457",
+                    "id": "143bac86-5094-4f3d-be73-b508e5fc9303",
                     "name": "Mark bulk job upload as complete",
                     "request": {
                         "name": "Mark bulk job upload as complete",
@@ -1628,7 +1632,7 @@
                     },
                     "response": [
                         {
-                            "id": "698d35ea-01f0-4315-b0d7-a5f0226f263b",
+                            "id": "075f2f08-7992-40bf-b019-0db566951226",
                             "name": "The updated bulk job",
                             "originalRequest": {
                                 "url": {
@@ -1673,11 +1677,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"status\": \"IN_PROGRESS\",\n  \"status_enum\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"modified_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\",\n  \"metadata\": {\n    \"request_id\": \"<uuid>\",\n    \"response_duration\": \"<integer>\",\n    \"response_timestamp\": \"<dateTime>\"\n  },\n  \"_action_templates\": {\n    \"upload_document\": {\n      \"constraints\": {\n        \"allowed_formats\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_documents_per_job\": \"<integer>\",\n        \"max_size_mb\": \"<integer>\",\n        \"timeout_seconds\": \"<integer>\"\n      },\n      \"description\": \"<string>\",\n      \"error_status_codes\": {},\n      \"headers\": {},\n      \"method\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"success_status_code\": \"<integer>\",\n      \"template_variables\": {}\n    },\n    \"upload_metadata\": {\n      \"constraints\": {\n        \"allowed_formats\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_documents_per_job\": \"<integer>\",\n        \"max_size_mb\": \"<integer>\",\n        \"timeout_seconds\": \"<integer>\"\n      },\n      \"description\": \"<string>\",\n      \"error_status_codes\": {},\n      \"headers\": {},\n      \"method\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"success_status_code\": \"<integer>\",\n      \"template_variables\": {}\n    }\n  },\n  \"_embedded\": {\n    \"document_status_enum\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"documents\": [\n      {\n        \"_actions\": {\n          \"upload_document\": \"<uri>\",\n          \"upload_metadata\": \"<uri>\"\n        },\n        \"agreement_id\": \"<uuid>\",\n        \"error\": \"<string>\",\n        \"error_code\": \"<integer>\",\n        \"id\": \"<uuid>\",\n        \"sequence\": \"<integer>\",\n        \"status\": \"IN_PROGRESS\"\n      },\n      {\n        \"_actions\": {\n          \"upload_document\": \"<uri>\",\n          \"upload_metadata\": \"<uri>\"\n        },\n        \"agreement_id\": \"<uuid>\",\n        \"error\": \"<string>\",\n        \"error_code\": \"<integer>\",\n        \"id\": \"<uuid>\",\n        \"sequence\": \"<integer>\",\n        \"status\": \"IN_PROGRESS\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": \"<uri>\"\n  },\n  \"constraints\": {\n    \"allowed_formats\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"max_documents_per_job\": \"<integer>\",\n    \"max_size_mb\": \"<integer>\",\n    \"timeout_seconds\": \"<integer>\"\n  },\n  \"external_job_id\": \"<uuid>\",\n  \"message\": \"<string>\",\n  \"ttl_period\": \"<string>\"\n}",
+                            "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"status\": \"FAILED\",\n  \"status_enum\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"modified_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\",\n  \"metadata\": {\n    \"request_id\": \"<uuid>\",\n    \"response_duration\": \"<integer>\",\n    \"response_timestamp\": \"<dateTime>\"\n  },\n  \"_action_templates\": {\n    \"upload_document\": {\n      \"constraints\": {\n        \"allowed_formats\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_documents_per_job\": \"<integer>\",\n        \"max_size_mb\": \"<integer>\",\n        \"timeout_seconds\": \"<integer>\"\n      },\n      \"description\": \"<string>\",\n      \"error_status_codes\": {},\n      \"headers\": {},\n      \"method\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"success_status_code\": \"<integer>\",\n      \"template_variables\": {}\n    },\n    \"upload_metadata\": {\n      \"constraints\": {\n        \"allowed_formats\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_documents_per_job\": \"<integer>\",\n        \"max_size_mb\": \"<integer>\",\n        \"timeout_seconds\": \"<integer>\"\n      },\n      \"description\": \"<string>\",\n      \"error_status_codes\": {},\n      \"headers\": {},\n      \"method\": \"<string>\",\n      \"required\": \"<boolean>\",\n      \"success_status_code\": \"<integer>\",\n      \"template_variables\": {}\n    }\n  },\n  \"_embedded\": {\n    \"document_status_enum\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"documents\": [\n      {\n        \"_actions\": {\n          \"upload_document\": \"<uri>\",\n          \"upload_metadata\": \"<uri>\"\n        },\n        \"agreement_id\": \"<uuid>\",\n        \"error\": \"<string>\",\n        \"error_code\": \"<integer>\",\n        \"id\": \"<uuid>\",\n        \"sequence\": \"<integer>\",\n        \"status\": \"FAILED\"\n      },\n      {\n        \"_actions\": {\n          \"upload_document\": \"<uri>\",\n          \"upload_metadata\": \"<uri>\"\n        },\n        \"agreement_id\": \"<uuid>\",\n        \"error\": \"<string>\",\n        \"error_code\": \"<integer>\",\n        \"id\": \"<uuid>\",\n        \"sequence\": \"<integer>\",\n        \"status\": \"NOT_STARTED\"\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": \"<uri>\"\n  },\n  \"constraints\": {\n    \"allowed_formats\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"max_documents_per_job\": \"<integer>\",\n    \"max_size_mb\": \"<integer>\",\n    \"timeout_seconds\": \"<integer>\"\n  },\n  \"external_job_id\": \"<uuid>\",\n  \"message\": \"<string>\",\n  \"ttl_period\": \"<string>\"\n}",
                             "cookie": []
                         },
                         {
-                            "id": "ef3f8e5b-fb87-4954-9928-3efcc592cdbc",
+                            "id": "54398693-e907-40c8-b1d3-67fae9ba05ad",
                             "name": "Bad Request - The request was invalid or malformed",
                             "originalRequest": {
                                 "url": {
@@ -1726,7 +1730,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "c95dba0f-5329-4614-8e1b-2d585da07388",
+                            "id": "811f2926-d5f7-49c2-9b79-fd9873f6a11a",
                             "name": "Unauthorized - Authentication is required",
                             "originalRequest": {
                                 "url": {
@@ -1775,7 +1779,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "3d51d521-42ad-4d41-82ca-93a79f9f46b5",
+                            "id": "2a7fc1a1-aaf1-4dd2-b262-d38632ae1989",
                             "name": "Forbidden - The user is not authorized to perform this operation",
                             "originalRequest": {
                                 "url": {
@@ -1824,7 +1828,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "17571560-28bf-4781-a15c-1d16d6e8f122",
+                            "id": "7cf6e690-10fa-40cf-939f-367343183e9e",
                             "name": "Not Found - The requested resource was not found",
                             "originalRequest": {
                                 "url": {
@@ -1873,7 +1877,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "8e1c3e10-b938-40d8-ba4b-0ee334a23ca4",
+                            "id": "81f9baf6-d44c-41cf-a6c7-1bfecaf18c84",
                             "name": "Internal Server Error - An unexpected error occurred",
                             "originalRequest": {
                                 "url": {
@@ -1931,7 +1935,7 @@
             "event": []
         },
         {
-            "id": "52fa451a-0e84-4f2c-9637-604422336249",
+            "id": "15da70aa-498f-457b-bfde-0a3aab3732f4",
             "name": "Agreements",
             "description": {
                 "content": "",
@@ -1939,7 +1943,7 @@
             },
             "item": [
                 {
-                    "id": "c4085a23-5974-46a2-bd51-58d0eddb1d9f",
+                    "id": "df0a1f58-36a2-4b1d-a69d-a870de5a3ca6",
                     "name": "Retrieve a list of agreements",
                     "request": {
                         "name": "Retrieve a list of agreements",
@@ -2172,7 +2176,7 @@
                     },
                     "response": [
                         {
-                            "id": "39847efb-410a-40b1-a4bc-95f733b6309a",
+                            "id": "000af908-93f7-4b23-9871-2c5825011288",
                             "name": "A collection of agreements.",
                             "originalRequest": {
                                 "url": {
@@ -2403,11 +2407,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"_links\": {\n    \"first\": {\n      \"href\": \"<uri>\"\n    },\n    \"next\": {\n      \"href\": \"<uri>\"\n    },\n    \"self\": {\n      \"href\": \"<uri>\"\n    }\n  },\n  \"data\": [\n    {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"_links\": {\n        \"document\": {\n          \"href\": \"<uri>\"\n        }\n      },\n      \"additional_custom_clm_data\": {\n        \"ullamco_b91\": \"<string>\"\n      },\n      \"additional_custom_esign_data\": {\n        \"ut_041\": \"<string>\",\n        \"tempor_d1f\": \"<string>\"\n      },\n      \"additional_user_defined_data\": {\n        \"proident_01a\": \"<string>\",\n        \"aliqua_2\": \"<string>\",\n        \"ullamco_a\": \"<string>\"\n      },\n      \"category\": \"<string>\",\n      \"custom_provisions\": {\n        \"veniam_d\": \"<string>\",\n        \"ea_6\": \"<string>\"\n      },\n      \"document_id\": \"<string>\",\n      \"file_name\": \"<string>\",\n      \"languages\": [\n        \"pdnjfvcr\",\n        \"shhxxvba-Tf\"\n      ],\n      \"linked_data\": [\n        {\n          \"application_name\": \"<string>\",\n          \"object_name\": \"<string>\",\n          \"record_id\": \"<string>\"\n        },\n        {\n          \"application_name\": \"<string>\",\n          \"object_name\": \"<string>\",\n          \"record_id\": \"<string>\"\n        }\n      ],\n      \"metadata\": {\n        \"created_at\": \"<dateTime>\",\n        \"created_by\": \"<string>\",\n        \"modified_at\": \"<dateTime>\",\n        \"modified_by\": \"<string>\",\n        \"request_id\": \"<uuid>\",\n        \"response_duration_ms\": \"<integer>\",\n        \"response_timestamp\": \"<dateTime>\"\n      },\n      \"parties\": [\n        {\n          \"id\": \"<string>\",\n          \"name_in_agreement\": \"<string>\",\n          \"preferred_name\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name_in_agreement\": \"<string>\",\n          \"preferred_name\": \"<string>\"\n        }\n      ],\n      \"provisions\": {\n        \"effective_date\": \"6690-76-63T02:96:10.665300385\",\n        \"execution_date\": \"9982-42-23T46:88:16Z\",\n        \"expiration_date\": \"8075-08-80T43:16:36Z\",\n        \"term_length\": \"P37232303619M254478W7445D\",\n        \"assignment_change_of_control\": \"<string>\",\n        \"assignment_termination_rights\": \"<string>\",\n        \"assignment_type\": \"<string>\",\n        \"confidentiality_obligation_period\": \"P-32WT-501494.658205113M-79458321843.9S\",\n        \"governing_law\": \"<string>\",\n        \"jurisdiction\": \"<string>\",\n        \"nda_type\": \"<string>\",\n        \"annual_agreement_value\": \"<double>\",\n        \"annual_agreement_value_currency_code\": \"IRR\",\n        \"total_agreement_value\": \"<double>\",\n        \"total_agreement_value_currency_code\": \"XAF\",\n        \"payment_terms_due_date\": \"OTHER\",\n        \"can_charge_late_payment_fees\": \"<boolean>\",\n        \"late_payment_fee_percent\": \"<double>\",\n        \"liability_cap_currency_code\": \"XAG\",\n        \"liability_cap_duration\": \"P-34839M-9576984831WT42363863590.866374S\",\n        \"liability_cap_fixed_amount\": \"<double>\",\n        \"liability_cap_multiplier\": \"<double>\",\n        \"price_cap_percent_increase\": \"<float>\",\n        \"auto_renewal_term_length\": \"P642Y8436907031M-42083WT682413H91872.138333M-3750827.076696S\",\n        \"renewal_additional_info\": \"<string>\",\n        \"renewal_extension_period\": \"P90947642Y3876M1W-591066.027772DT222943764.52510992974M\",\n        \"renewal_notice_date\": \"1964-13-93T20:97:20\",\n        \"renewal_notice_period\": \"P19032Y\",\n        \"renewal_process_owner\": \"<string>\",\n        \"renewal_type\": \"<string>\",\n        \"termination_period_for_cause\": \"P-60328Y2092032M46857497943DT5S\",\n        \"termination_period_for_convenience\": \"P-0812Y9M-19811838708WT-528849H\"\n      },\n      \"related_agreement_documents\": {\n        \"parent_agreement_document_id\": \"00000000-0000-0000-0000-000000000000\"\n      },\n      \"review_completed_at\": \"<dateTime>\",\n      \"review_status\": \"<string>\",\n      \"source_account_id\": \"<string>\",\n      \"source_id\": \"<string>\",\n      \"source_name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"_links\": {\n        \"document\": {\n          \"href\": \"<uri>\"\n        }\n      },\n      \"additional_custom_clm_data\": {\n        \"commodoe8e\": \"<string>\"\n      },\n      \"additional_custom_esign_data\": {\n        \"in_e_8\": \"<string>\",\n        \"ipsum_6e9\": \"<string>\",\n        \"Duis_22\": \"<string>\",\n        \"Duis3\": \"<string>\"\n      },\n      \"additional_user_defined_data\": {\n        \"quie\": \"<string>\",\n        \"in__48\": \"<string>\"\n      },\n      \"category\": \"<string>\",\n      \"custom_provisions\": {\n        \"ad__\": \"<string>\",\n        \"deserunt_131\": \"<string>\"\n      },\n      \"document_id\": \"<string>\",\n      \"file_name\": \"<string>\",\n      \"languages\": [\n        \"tcoq\",\n        \"arsk-Cqqu-837\"\n      ],\n      \"linked_data\": [\n        {\n          \"application_name\": \"<string>\",\n          \"object_name\": \"<string>\",\n          \"record_id\": \"<string>\"\n        },\n        {\n          \"application_name\": \"<string>\",\n          \"object_name\": \"<string>\",\n          \"record_id\": \"<string>\"\n        }\n      ],\n      \"metadata\": {\n        \"created_at\": \"<dateTime>\",\n        \"created_by\": \"<string>\",\n        \"modified_at\": \"<dateTime>\",\n        \"modified_by\": \"<string>\",\n        \"request_id\": \"<uuid>\",\n        \"response_duration_ms\": \"<integer>\",\n        \"response_timestamp\": \"<dateTime>\"\n      },\n      \"parties\": [\n        {\n          \"id\": \"<string>\",\n          \"name_in_agreement\": \"<string>\",\n          \"preferred_name\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name_in_agreement\": \"<string>\",\n          \"preferred_name\": \"<string>\"\n        }\n      ],\n      \"provisions\": {\n        \"effective_date\": \"3361-69-49T97:06:89.25502995982Z\",\n        \"execution_date\": \"4764-75-16T84:90:35.727131986\",\n        \"expiration_date\": \"6257-02-03T70:07:38.87958080459Z\",\n        \"term_length\": \"P-6295459306Y-0374971641M\",\n        \"assignment_change_of_control\": \"<string>\",\n        \"assignment_termination_rights\": \"<string>\",\n        \"assignment_type\": \"<string>\",\n        \"confidentiality_obligation_period\": \"P54739M\",\n        \"governing_law\": \"<string>\",\n        \"jurisdiction\": \"<string>\",\n        \"nda_type\": \"<string>\",\n        \"annual_agreement_value\": \"<double>\",\n        \"annual_agreement_value_currency_code\": \"IDR\",\n        \"total_agreement_value\": \"<double>\",\n        \"total_agreement_value_currency_code\": \"XOF\",\n        \"payment_terms_due_date\": \"OTHER\",\n        \"can_charge_late_payment_fees\": \"<boolean>\",\n        \"late_payment_fee_percent\": \"<double>\",\n        \"liability_cap_currency_code\": \"GTQ\",\n        \"liability_cap_duration\": \"P48023M87.80348078844D\",\n        \"liability_cap_fixed_amount\": \"<double>\",\n        \"liability_cap_multiplier\": \"<double>\",\n        \"price_cap_percent_increase\": \"<float>\",\n        \"auto_renewal_term_length\": \"P-75632467M-58596.7206603DT-098493H-11201M-187444560.837S\",\n        \"renewal_additional_info\": \"<string>\",\n        \"renewal_extension_period\": \"P3914714282DT0565248M2283790.9801668S\",\n        \"renewal_notice_date\": \"3189-57-00T05:61:84.08336-6091\",\n        \"renewal_notice_period\": \"P-83658Y\",\n        \"renewal_process_owner\": \"<string>\",\n        \"renewal_type\": \"<string>\",\n        \"termination_period_for_cause\": \"P118539.67335881WT-7006646680.6723828S\",\n        \"termination_period_for_convenience\": \"P700M-95589817.06W-672713.730D\"\n      },\n      \"related_agreement_documents\": {\n        \"parent_agreement_document_id\": \"00000000-0000-0000-0000-000000000000\"\n      },\n      \"review_completed_at\": \"<dateTime>\",\n      \"review_status\": \"<string>\",\n      \"source_account_id\": \"<string>\",\n      \"source_id\": \"<string>\",\n      \"source_name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"response_metadata\": {\n    \"response_timestamp\": \"<dateTime>\",\n    \"response_duration_ms\": \"<integer>\",\n    \"request_id\": \"<uuid>\",\n    \"page_limit\": 25\n  }\n}",
+                            "body": "{\n  \"_links\": {\n    \"first\": {\n      \"href\": \"<uri>\"\n    },\n    \"next\": {\n      \"href\": \"<uri>\"\n    },\n    \"self\": {\n      \"href\": \"<uri>\"\n    }\n  },\n  \"data\": [\n    {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"_links\": {\n        \"document\": {\n          \"href\": \"<uri>\"\n        }\n      },\n      \"additional_custom_clm_data\": {\n        \"deserunt_d\": \"<string>\",\n        \"ex_ae\": \"<string>\"\n      },\n      \"additional_custom_esign_data\": {\n        \"labored\": \"<string>\",\n        \"irure0\": \"<string>\",\n        \"occaecat_ce\": \"<string>\"\n      },\n      \"additional_user_defined_data\": {\n        \"quis5_\": \"<string>\"\n      },\n      \"category\": \"<string>\",\n      \"custom_provisions\": {\n        \"commodo_1c\": \"<string>\"\n      },\n      \"document_id\": \"<string>\",\n      \"file_name\": \"<string>\",\n      \"languages\": [\n        \"dvdwvj-TkMY\",\n        \"wmbfjuan-inhu-519\"\n      ],\n      \"linked_data\": [\n        {\n          \"application_name\": \"<string>\",\n          \"object_name\": \"<string>\",\n          \"record_id\": \"<string>\"\n        },\n        {\n          \"application_name\": \"<string>\",\n          \"object_name\": \"<string>\",\n          \"record_id\": \"<string>\"\n        }\n      ],\n      \"metadata\": {\n        \"created_at\": \"<dateTime>\",\n        \"created_by\": \"<string>\",\n        \"modified_at\": \"<dateTime>\",\n        \"modified_by\": \"<string>\",\n        \"request_id\": \"<uuid>\",\n        \"response_duration_ms\": \"<integer>\",\n        \"response_timestamp\": \"<dateTime>\"\n      },\n      \"parties\": [\n        {\n          \"id\": \"<string>\",\n          \"name_in_agreement\": \"<string>\",\n          \"preferred_name\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name_in_agreement\": \"<string>\",\n          \"preferred_name\": \"<string>\"\n        }\n      ],\n      \"provisions\": {\n        \"effective_date\": \"7062-85-37T42:15:51.894204\",\n        \"execution_date\": \"8074-23-63T51:64:00\",\n        \"expiration_date\": \"0030-56-55T20:75:18.53767784242\",\n        \"term_length\": \"P55455481693M-79D\",\n        \"assignment_change_of_control\": \"<string>\",\n        \"assignment_termination_rights\": \"<string>\",\n        \"assignment_type\": \"<string>\",\n        \"confidentiality_obligation_period\": \"P-24W-954.4147D\",\n        \"governing_law\": \"<string>\",\n        \"jurisdiction\": \"<string>\",\n        \"nda_type\": \"<string>\",\n        \"annual_agreement_value\": \"<double>\",\n        \"annual_agreement_value_currency_code\": \"AMD\",\n        \"total_agreement_value\": \"<double>\",\n        \"total_agreement_value_currency_code\": \"LBP\",\n        \"payment_terms_due_date\": \"OTHER\",\n        \"can_charge_late_payment_fees\": \"<boolean>\",\n        \"late_payment_fee_percent\": \"<double>\",\n        \"liability_cap_currency_code\": \"CNY\",\n        \"liability_cap_duration\": \"P-33Y9061.543D\",\n        \"liability_cap_fixed_amount\": \"<double>\",\n        \"liability_cap_multiplier\": \"<double>\",\n        \"price_cap_percent_increase\": \"<float>\",\n        \"auto_renewal_term_length\": \"P-999242526Y35285614469M-5983833687.7750233WT-96415.540524M\",\n        \"renewal_additional_info\": \"<string>\",\n        \"renewal_extension_period\": \"P03718720D\",\n        \"renewal_notice_date\": \"3663-52-30T21:46:90.93897697705-7318\",\n        \"renewal_notice_period\": \"P7356128148WT-587914334H\",\n        \"renewal_process_owner\": \"<string>\",\n        \"renewal_type\": \"<string>\",\n        \"termination_period_for_cause\": \"P232533403Y04.80344W\",\n        \"termination_period_for_convenience\": \"P-3Y3M2864349938W-2D\"\n      },\n      \"related_agreement_documents\": {\n        \"parent_agreement_document_id\": \"00000000-0000-0000-0000-000000000000\"\n      },\n      \"review_completed_at\": \"<dateTime>\",\n      \"review_status\": \"<string>\",\n      \"source_account_id\": \"<string>\",\n      \"source_id\": \"<string>\",\n      \"source_name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"id\": \"00000000-0000-0000-0000-000000000000\",\n      \"_links\": {\n        \"document\": {\n          \"href\": \"<uri>\"\n        }\n      },\n      \"additional_custom_clm_data\": {\n        \"ine4e\": \"<string>\"\n      },\n      \"additional_custom_esign_data\": {\n        \"exercitation__a6\": \"<string>\",\n        \"occaecatc23\": \"<string>\",\n        \"veniam_5fe\": \"<string>\"\n      },\n      \"additional_user_defined_data\": {\n        \"deseruntf7\": \"<string>\"\n      },\n      \"category\": \"<string>\",\n      \"custom_provisions\": {\n        \"dolor_7\": \"<string>\",\n        \"ullamco_cef\": \"<string>\",\n        \"reprehenderit_89b\": \"<string>\"\n      },\n      \"document_id\": \"<string>\",\n      \"file_name\": \"<string>\",\n      \"languages\": [\n        \"ht-XEmX\",\n        \"lhfvhxc\"\n      ],\n      \"linked_data\": [\n        {\n          \"application_name\": \"<string>\",\n          \"object_name\": \"<string>\",\n          \"record_id\": \"<string>\"\n        },\n        {\n          \"application_name\": \"<string>\",\n          \"object_name\": \"<string>\",\n          \"record_id\": \"<string>\"\n        }\n      ],\n      \"metadata\": {\n        \"created_at\": \"<dateTime>\",\n        \"created_by\": \"<string>\",\n        \"modified_at\": \"<dateTime>\",\n        \"modified_by\": \"<string>\",\n        \"request_id\": \"<uuid>\",\n        \"response_duration_ms\": \"<integer>\",\n        \"response_timestamp\": \"<dateTime>\"\n      },\n      \"parties\": [\n        {\n          \"id\": \"<string>\",\n          \"name_in_agreement\": \"<string>\",\n          \"preferred_name\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name_in_agreement\": \"<string>\",\n          \"preferred_name\": \"<string>\"\n        }\n      ],\n      \"provisions\": {\n        \"effective_date\": \"6536-68-00T04:36:56\",\n        \"execution_date\": \"0008-55-57T60:28:99.5196\",\n        \"expiration_date\": \"5743-84-22T58:50:89.9791\",\n        \"term_length\": \"P-9M-580557701W\",\n        \"assignment_change_of_control\": \"<string>\",\n        \"assignment_termination_rights\": \"<string>\",\n        \"assignment_type\": \"<string>\",\n        \"confidentiality_obligation_period\": \"P0Y-8231882M02092849365.666W3408302.435562D\",\n        \"governing_law\": \"<string>\",\n        \"jurisdiction\": \"<string>\",\n        \"nda_type\": \"<string>\",\n        \"annual_agreement_value\": \"<double>\",\n        \"annual_agreement_value_currency_code\": \"NGN\",\n        \"total_agreement_value\": \"<double>\",\n        \"total_agreement_value_currency_code\": \"TMT\",\n        \"payment_terms_due_date\": \"OTHER\",\n        \"can_charge_late_payment_fees\": \"<boolean>\",\n        \"late_payment_fee_percent\": \"<double>\",\n        \"liability_cap_currency_code\": \"FJD\",\n        \"liability_cap_duration\": \"PPPP\",\n        \"liability_cap_fixed_amount\": \"<double>\",\n        \"liability_cap_multiplier\": \"<double>\",\n        \"price_cap_percent_increase\": \"<float>\",\n        \"auto_renewal_term_length\": \"P-3Y-979M-545788733.5W-989265504D\",\n        \"renewal_additional_info\": \"<string>\",\n        \"renewal_extension_period\": \"P-6787511832Y-53430M6DT64632872.249581582H\",\n        \"renewal_notice_date\": \"4168-81-49T86:57:85.32619521386-88:60\",\n        \"renewal_notice_period\": \"PPPP\",\n        \"renewal_process_owner\": \"<string>\",\n        \"renewal_type\": \"<string>\",\n        \"termination_period_for_cause\": \"P434338811M595W\",\n        \"termination_period_for_convenience\": \"P5002834Y\"\n      },\n      \"related_agreement_documents\": {\n        \"parent_agreement_document_id\": \"00000000-0000-0000-0000-000000000000\"\n      },\n      \"review_completed_at\": \"<dateTime>\",\n      \"review_status\": \"<string>\",\n      \"source_account_id\": \"<string>\",\n      \"source_id\": \"<string>\",\n      \"source_name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"title\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"response_metadata\": {\n    \"response_timestamp\": \"<dateTime>\",\n    \"response_duration_ms\": \"<integer>\",\n    \"request_id\": \"<uuid>\",\n    \"page_limit\": 25\n  }\n}",
                             "cookie": []
                         },
                         {
-                            "id": "89a1413a-c492-4e27-b206-6e2bdf105e0d",
+                            "id": "5d329159-06a2-4231-a78f-f24281fd6252",
                             "name": "Bad Request - The request could not be understood or was missing required parameters.",
                             "originalRequest": {
                                 "url": {
@@ -2642,7 +2646,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "e1bad233-a3d1-4e75-9616-7f450fdefe14",
+                            "id": "5669db78-44d8-4db8-8290-32e784a13329",
                             "name": "Unauthorized - Authentication is required and has failed or not been provided.",
                             "originalRequest": {
                                 "url": {
@@ -2877,7 +2881,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "8aa270b6-2557-456e-b6b9-3ec501448f60",
+                            "id": "d41dc863-fc46-41ef-be1e-cca1ace14bbd",
                             "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
                             "originalRequest": {
                                 "url": {
@@ -3112,7 +3116,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "8e41cc73-c94b-4265-8f9b-ab6d87672f54",
+                            "id": "5b62faf8-fb82-465a-b604-6b8c01a1f777",
                             "name": "Not Found - The requested resource could not be found.",
                             "originalRequest": {
                                 "url": {
@@ -3347,7 +3351,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "92d41a3a-aa50-40ad-8648-027c0afb7b06",
+                            "id": "44b90084-fefd-438f-b214-d6e36e992de6",
                             "name": "Internal Server Error",
                             "originalRequest": {
                                 "url": {
@@ -3588,7 +3592,7 @@
                     }
                 },
                 {
-                    "id": "b4cdc1af-c681-4106-a82f-4be63e381a7b",
+                    "id": "124e2746-9961-41bc-a687-fb1fc4c7e78f",
                     "name": "Retrieve detailed information about a specific agreement",
                     "request": {
                         "name": "Retrieve detailed information about a specific agreement",
@@ -3642,7 +3646,7 @@
                     },
                     "response": [
                         {
-                            "id": "96878cfc-f322-4bfe-9cb8-a9339cba6c5e",
+                            "id": "0c968d07-cd19-4e2b-be3a-0827b712d16a",
                             "name": "A JSON object containing details of the requested agreement document.",
                             "originalRequest": {
                                 "url": {
@@ -3684,11 +3688,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"id\": \"00000000-0000-0000-0000-000000000000\",\n  \"_links\": {\n    \"document\": {\n      \"href\": \"<uri>\"\n    }\n  },\n  \"additional_custom_clm_data\": {\n    \"ex_7_d\": \"<string>\",\n    \"veniam_3\": \"<string>\",\n    \"proident149\": \"<string>\"\n  },\n  \"additional_custom_esign_data\": {\n    \"deserunt_7ae\": \"<string>\",\n    \"ipsum7\": \"<string>\"\n  },\n  \"additional_user_defined_data\": {\n    \"labore_37\": \"<string>\",\n    \"aliqua_ef\": \"<string>\"\n  },\n  \"category\": \"<string>\",\n  \"custom_provisions\": {\n    \"culpa4\": \"<string>\"\n  },\n  \"document_id\": \"<string>\",\n  \"file_name\": \"<string>\",\n  \"languages\": [\n    \"hdbg\",\n    \"gyl-wIAC-gc\"\n  ],\n  \"linked_data\": [\n    {\n      \"application_name\": \"<string>\",\n      \"object_name\": \"<string>\",\n      \"record_id\": \"<string>\"\n    },\n    {\n      \"application_name\": \"<string>\",\n      \"object_name\": \"<string>\",\n      \"record_id\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"created_at\": \"<dateTime>\",\n    \"created_by\": \"<string>\",\n    \"modified_at\": \"<dateTime>\",\n    \"modified_by\": \"<string>\",\n    \"request_id\": \"<uuid>\",\n    \"response_duration_ms\": \"<integer>\",\n    \"response_timestamp\": \"<dateTime>\"\n  },\n  \"parties\": [\n    {\n      \"id\": \"<string>\",\n      \"name_in_agreement\": \"<string>\",\n      \"preferred_name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name_in_agreement\": \"<string>\",\n      \"preferred_name\": \"<string>\"\n    }\n  ],\n  \"provisions\": {\n    \"effective_date\": \"6965-79-18T94:51:05Z\",\n    \"execution_date\": \"7008-25-12T67:47:30-6728\",\n    \"expiration_date\": \"6987-05-71T39:07:90.1030995201\",\n    \"term_length\": \"P-31323WT-3144386475M\",\n    \"assignment_change_of_control\": \"<string>\",\n    \"assignment_termination_rights\": \"<string>\",\n    \"assignment_type\": \"<string>\",\n    \"confidentiality_obligation_period\": \"P-2476M9.566996WT59459H\",\n    \"governing_law\": \"<string>\",\n    \"jurisdiction\": \"<string>\",\n    \"nda_type\": \"<string>\",\n    \"annual_agreement_value\": \"<double>\",\n    \"annual_agreement_value_currency_code\": \"TRY\",\n    \"total_agreement_value\": \"<double>\",\n    \"total_agreement_value_currency_code\": \"ZMW\",\n    \"payment_terms_due_date\": \"OTHER\",\n    \"can_charge_late_payment_fees\": \"<boolean>\",\n    \"late_payment_fee_percent\": \"<double>\",\n    \"liability_cap_currency_code\": \"MUR\",\n    \"liability_cap_duration\": \"P-3716421223M40681158W031972171.0D\",\n    \"liability_cap_fixed_amount\": \"<double>\",\n    \"liability_cap_multiplier\": \"<double>\",\n    \"price_cap_percent_increase\": \"<float>\",\n    \"auto_renewal_term_length\": \"P8M-23952482084.0633693D\",\n    \"renewal_additional_info\": \"<string>\",\n    \"renewal_extension_period\": \"P93285107Y-1132751550MT-324104.50400H\",\n    \"renewal_notice_date\": \"3227-38-69T83:30:17.1908\",\n    \"renewal_notice_period\": \"P-2Y5.9595505DT968264H-10582455345.5700899M\",\n    \"renewal_process_owner\": \"<string>\",\n    \"renewal_type\": \"<string>\",\n    \"termination_period_for_cause\": \"P91459Y6713087941WT-43702H\",\n    \"termination_period_for_convenience\": \"P1Y9858201466MT-7064789015M\"\n  },\n  \"related_agreement_documents\": {\n    \"parent_agreement_document_id\": \"00000000-0000-0000-0000-000000000000\"\n  },\n  \"review_completed_at\": \"<dateTime>\",\n  \"review_status\": \"<string>\",\n  \"source_account_id\": \"<string>\",\n  \"source_id\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"summary\": \"<string>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                            "body": "{\n  \"id\": \"00000000-0000-0000-0000-000000000000\",\n  \"_links\": {\n    \"document\": {\n      \"href\": \"<uri>\"\n    }\n  },\n  \"additional_custom_clm_data\": {\n    \"eu00\": \"<string>\",\n    \"reprehenderit_6\": \"<string>\",\n    \"ut_69b\": \"<string>\",\n    \"ut0\": \"<string>\"\n  },\n  \"additional_custom_esign_data\": {\n    \"exercitation_1\": \"<string>\",\n    \"do_b25\": \"<string>\"\n  },\n  \"additional_user_defined_data\": {\n    \"inb_9\": \"<string>\",\n    \"nisic\": \"<string>\"\n  },\n  \"category\": \"<string>\",\n  \"custom_provisions\": {\n    \"labore_32c\": \"<string>\"\n  },\n  \"document_id\": \"<string>\",\n  \"file_name\": \"<string>\",\n  \"languages\": [\n    \"pweffxpw-GUFW\",\n    \"ltojtj-VBPr-829\"\n  ],\n  \"linked_data\": [\n    {\n      \"application_name\": \"<string>\",\n      \"object_name\": \"<string>\",\n      \"record_id\": \"<string>\"\n    },\n    {\n      \"application_name\": \"<string>\",\n      \"object_name\": \"<string>\",\n      \"record_id\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"created_at\": \"<dateTime>\",\n    \"created_by\": \"<string>\",\n    \"modified_at\": \"<dateTime>\",\n    \"modified_by\": \"<string>\",\n    \"request_id\": \"<uuid>\",\n    \"response_duration_ms\": \"<integer>\",\n    \"response_timestamp\": \"<dateTime>\"\n  },\n  \"parties\": [\n    {\n      \"id\": \"<string>\",\n      \"name_in_agreement\": \"<string>\",\n      \"preferred_name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name_in_agreement\": \"<string>\",\n      \"preferred_name\": \"<string>\"\n    }\n  ],\n  \"provisions\": {\n    \"effective_date\": \"9352-40-22T33:16:92.49-5451\",\n    \"execution_date\": \"3447-37-54T68:53:21.4\",\n    \"expiration_date\": \"9893-71-63T32:86:16.380573893Z\",\n    \"term_length\": \"P-516126522M2509.63W\",\n    \"assignment_change_of_control\": \"<string>\",\n    \"assignment_termination_rights\": \"<string>\",\n    \"assignment_type\": \"<string>\",\n    \"confidentiality_obligation_period\": \"P93876061416M-9653271.236883304D\",\n    \"governing_law\": \"<string>\",\n    \"jurisdiction\": \"<string>\",\n    \"nda_type\": \"<string>\",\n    \"annual_agreement_value\": \"<double>\",\n    \"annual_agreement_value_currency_code\": \"BAM\",\n    \"total_agreement_value\": \"<double>\",\n    \"total_agreement_value_currency_code\": \"GIP\",\n    \"payment_terms_due_date\": \"OTHER\",\n    \"can_charge_late_payment_fees\": \"<boolean>\",\n    \"late_payment_fee_percent\": \"<double>\",\n    \"liability_cap_currency_code\": \"CLP\",\n    \"liability_cap_duration\": \"P06676M-60440W\",\n    \"liability_cap_fixed_amount\": \"<double>\",\n    \"liability_cap_multiplier\": \"<double>\",\n    \"price_cap_percent_increase\": \"<float>\",\n    \"auto_renewal_term_length\": \"P7528Y-07284856M5263955.037271571W00837768917.7326123416DT-7198.3424782M\",\n    \"renewal_additional_info\": \"<string>\",\n    \"renewal_extension_period\": \"P-8Y59035582614M024099WT-8008227944S\",\n    \"renewal_notice_date\": \"7701-24-08T39:00:26.271520003\",\n    \"renewal_notice_period\": \"P74046167Y-0096456.8293839DT-095991.9245S\",\n    \"renewal_process_owner\": \"<string>\",\n    \"renewal_type\": \"<string>\",\n    \"termination_period_for_cause\": \"P-78458640892Y4209544M-1405237.75343DT4649859188S\",\n    \"termination_period_for_convenience\": \"P-310803Y-61.988652D\"\n  },\n  \"related_agreement_documents\": {\n    \"parent_agreement_document_id\": \"00000000-0000-0000-0000-000000000000\"\n  },\n  \"review_completed_at\": \"<dateTime>\",\n  \"review_status\": \"<string>\",\n  \"source_account_id\": \"<string>\",\n  \"source_id\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"summary\": \"<string>\",\n  \"title\": \"<string>\",\n  \"type\": \"<string>\"\n}",
                             "cookie": []
                         },
                         {
-                            "id": "5ead7c3c-9720-4b59-bf9b-30204f159da0",
+                            "id": "8f53ba12-73c0-4a26-a59d-ec5743dcd51b",
                             "name": "Bad Request - The request could not be understood or was missing required parameters.",
                             "originalRequest": {
                                 "url": {
@@ -3734,7 +3738,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "e0cf1b32-555f-48a0-8cca-7cee3bd91056",
+                            "id": "4d7a22c9-0ebe-4f24-a3ec-c157f2f2c1f6",
                             "name": "Unauthorized - Authentication is required and has failed or not been provided.",
                             "originalRequest": {
                                 "url": {
@@ -3780,7 +3784,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "e656703c-202c-4f60-9984-b27dda37ffa8",
+                            "id": "8c67f414-8a9b-44e3-9cfc-3f4165e84f73",
                             "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
                             "originalRequest": {
                                 "url": {
@@ -3826,7 +3830,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "5d9475fa-4bdf-46eb-82e3-97e7f531410c",
+                            "id": "58b35530-863c-4372-9da9-18fafc0a9f9d",
                             "name": "Not Found - The requested resource could not be found.",
                             "originalRequest": {
                                 "url": {
@@ -3872,7 +3876,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "9621ca31-4a88-412c-9ff9-0b2d01f062f7",
+                            "id": "f572e874-f39b-412d-919b-8320546ae969",
                             "name": "Internal Server Error",
                             "originalRequest": {
                                 "url": {
@@ -3924,7 +3928,7 @@
                     }
                 },
                 {
-                    "id": "be0f96cc-a013-4111-8ec6-8f168a32f59c",
+                    "id": "8e087488-cfca-4155-8f17-1f88a73e08e7",
                     "name": "Delete a specific agreement",
                     "request": {
                         "name": "Delete a specific agreement",
@@ -3978,7 +3982,7 @@
                     },
                     "response": [
                         {
-                            "id": "7d921b26-9e15-4ed9-8852-f32a78b889c1",
+                            "id": "d8f2003a-f4fe-4564-aa99-686c69b731e6",
                             "name": "The agreement has been successfully deleted from the account.",
                             "originalRequest": {
                                 "url": {
@@ -4014,7 +4018,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "0c2a3fe3-c8aa-4dd4-b7f1-7a943f4936c2",
+                            "id": "05542fe1-9746-41cb-8e38-12040e771a37",
                             "name": "Bad Request - The request could not be understood or was missing required parameters.",
                             "originalRequest": {
                                 "url": {
@@ -4060,7 +4064,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "eb4837f1-c198-4b88-8218-24c27b3ebc79",
+                            "id": "594fe8ba-ff55-48e7-a7a0-bac0ee129087",
                             "name": "Unauthorized - Authentication is required and has failed or not been provided.",
                             "originalRequest": {
                                 "url": {
@@ -4106,7 +4110,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "ce37f01c-5016-4ba8-b17d-9000c7d094e0",
+                            "id": "e20d4e38-201a-44a9-a8da-5bf317ad8129",
                             "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
                             "originalRequest": {
                                 "url": {
@@ -4152,7 +4156,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "36c92f04-ecef-4b73-8548-ed5893cbb5e3",
+                            "id": "0bdeabd1-4251-47f9-8906-c5c4302d7d84",
                             "name": "Not Found - The requested resource could not be found.",
                             "originalRequest": {
                                 "url": {
@@ -4198,7 +4202,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "8cf70bf7-6291-46cd-9834-c6503a362e8a",
+                            "id": "7a116b6a-a57c-4173-a968-7f1446692684",
                             "name": "Internal Server Error",
                             "originalRequest": {
                                 "url": {
