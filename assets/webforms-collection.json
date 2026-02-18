@@ -1,10 +1,10 @@
 {
     "_": {
-        "postman_id": "1a0874b3-225a-426a-9c63-a443a14c99db"
+        "postman_id": "ec502fd1-5aad-49ec-b970-bf6bb0da362e"
     },
     "item": [
         {
-            "id": "edd59b2b-b7b9-4923-9126-f44de05e485d",
+            "id": "8de6562a-7bd5-4dc1-afa9-8b97aba9d32f",
             "name": "🔐 Quick Auth Setup → Then Run APIs",
             "description": {
                 "content": "This folder contains a curated set of requests for rapid Docusign integration. By configuring authentication at the folder level, you can execute all contained requests without manual per request setup. Successful execution of the authentication flows within this folder will populate the **Environment and Collection variables** ``{{​access_token}}`` and ``{{​refresh_token}}``.\n\nOnce these values are saved to your active environment, they will be globally available for all requests in this folder.\n\nEvery request in this folder is configured with auth type as **inherit auth from the parent**. To ensure seamless execution, the folder itself is set to the **Bearer Token** authorization type, using ``{{​access_token}}`` as the value.\n\n**Note**: When viewing the Folder's **Authorization** tab, ensure the **Token** field contains only the variable ``{{​access_token}}``. Do not include the word \"Bearer\" in the text box, as Postman automatically generates the correct ``Authorization: Bearer [token]`` header.\n\n## **Choose your Authentication Type**\n\nDocusign uses OAuth 2.0 to secure your API requests. Using OAuth, your app requests access and performs actions, such as requesting a signature, on behalf of one of your users.\n\nDocusign provides four scenarios for implementing OAuth:\n\n- [<b>Authenticate with the JWT Grant</b>](https://developers.docusign.com/platform/auth/jwt-get-token/)\n- [<b>Authenticate with the Confidential Authorization Code Grant</b>](https://developers.docusign.com/platform/auth/confidential-authcode-get-token/)\n- [<b>Authenticate with Public Authorization Code Grant</b>](https://developers.docusign.com/platform/auth/public-authcode-get-token/)\n- [<b>Authenticate with Implicit Code Grant</b>](https://developers.docusign.com/platform/auth/implicit/)\n\n| Flow | When to use | Human present? | Client secret? |\n|------|-------------|---------------|----------------|\n| **JWT (Service Integration)** | Server/daemon jobs acting on behalf of a user after one-time consent has been granted. | No (after consent) | No (requires privateKey) |\n| **Confidential Authorization Code Grant** | Server-side applications that can securely store a secret. Supports refresh_token. | Yes (initial sign-in) | Yes |\n| **Public Authorization Code Grant (PKCE)** | SPA, Mobile, or Desktop apps that cannot securely store a secret. | Yes (initial sign-in) | No (uses PKCE flow) |\n\n## Prerequisites\n\nBefore obtaining the access token, ensure the following environment or collection variables are configured in Postman.\n\n| Variable | Example Value | Description |\n|----------|---------------|-------------|\n| ``{{​authServer}}`` | Demo: https://account-d.docusign.com <br> Production: https://account.docusign.com | Authentication base URL. |\n| ``{{​redirectUri}}`` | http://localhost:8080/ | A redirect URI (callback URI) where Docusign sends users after authentication. |\n| ``{{​scope}}`` | signature extended | Permissions requested (e.g., signature, impersonation for JWT). See: https://developers.docusign.com/platform/auth/reference/scopes/ |\n| ``{{​integrationKey}}`` | Example: f8db556a-xxxx-4f30-xxxx-648ea46axxxx | Integration key identifying your app. Create one: https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key |\n| ``{{​clientSecret}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | Secret key for confidential integrations: https://developers.docusign.com/platform/configure-app/#secret-key |\n| ``{{​publicIntegrationKey}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | Public integration key used for PKCE flows. |\n| ``{{​userId}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | User GUID. Find it here: https://developers.docusign.com/platform/configure-app/#user-id |\n| ``{{​privateKey}}`` | -----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY----- | RSA private key for JWT flow: https://developers.docusign.com/platform/configure-app/#rsa-key-pair |\n\n## Steps to get token\n\n1. JWT (Service Integration)\n    \n    1. Open the **01 - JWT / Service Integration** folder.\n        \n    2. Execute the GET request of **01-1 – Construct Consent URL**.\n        \n    3. Open the returned **authorizeUrl** in a browser.\n        \n    4. Sign in and grant consent (must include **impersonation**).\n        \n    5. After consent is granted, you can close the browser.\n        \n    6. Run **01-2 - JWT Token (exchange)**\n        \n2. Confidential Auth Code\n    \n    1. Open the **02 – Authorization Code Grant (Confidential Client)** folder.\n        \n    2. Execute the GET request of **02-1 – Construct Authorization URL**.\n        \n    3. Open the returned **authorizeUrl** in a browser tab.\n        \n    4. Sign in and grant consent.\n        \n    5. Copy the **?code=** value from the URL and set it as ``{{​authCodeNoPkce}}``.\n        \n    6. Run **02-2 – Exchange Authorization Code for Tokens**.\n        \n3. Public Auth Code (PKCE)\n    \n    1. Open the **03 – Authorization Code Grant with PKCE (Public Client)** folder**.**\n        \n    2. Execute the GET request of **03-1 – Construct Authorization URL with PKCE**.\n        \n    3. Open the returned **authorizeUrl** in a browser tab.\n        \n    4. Sign in and grant consent.\n        \n    5. Copy the **?code=** value from the URL and set it as ``{{​authCodePkce}}``.\n        \n    6. Ensure the Origin parameter added in Apps and Keys page is set in headers of  **03-2 – Exchange Authorization Code for Tokens (PKCE)** and CORS is activated with all the HTTP operations. For further information, refer [Set the CORS configuration of your app.](https://developers.docusign.com/platform/configure-app/#cors-configuration)\n        \n    7. Run **03-2 – Exchange Authorization Code for Tokens (PKCE)**.\n        \n4. Execute 05 – User Info to verify your user details and base URI.\n    \n\n## Notes\n\n- If the access token has expired, execute 04 – Refresh Access Token using the refresh token. Default expiration is 8 hours (`expires_in` is in seconds).\n    \n- Moving to Production: Switch ``{{​authServer}}`` to [https://account.docusign.com](https://account.docusign.com) and re-consent. The base URI can be accessed by executing 05 – User Info.",
@@ -12,7 +12,7 @@
             },
             "item": [
                 {
-                    "id": "cc126a0c-5720-4102-becc-9d8ba51f0db7",
+                    "id": "f922fd4b-6740-4474-88c5-767f1263d465",
                     "name": "01 - JWT / Service Integration",
                     "description": {
                         "content": "This request demonstrates authentication using JSON Web Tokens (JWT) Grant for accessing APIs without user interaction.\n\n1. Before making the first call, an administrator or the target user must grant consent to your **Integration Key** (Client ID) to allow specific scopes.To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/).\n    \n2. Your server constructs and digitally signs a **JWT** using your **private key** and the user's ID.\n    \n3. The signed JWT is exchanged with the authorization server for a short-lived access token. This access token is then used in subsequent API calls.\n    \n\nThis workflow is ideal for background processes, scheduled tasks, and integrations that require impersonating a user without constant user interaction.\n\n**Variables**\n\nFor context around what JWT Grant authentication is, when you should use it, and its advantages and disadvantages, see [JSON Web Token (JWT) Grant](https://developers.docusign.com/platform/auth/jwt/).\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). | — |\n| ``{{​userId}}`` | ✅ | Find your [User ID](https://developers.docusign.com/platform/configure-app/#user-id) in the Apps and Keys page. | — |\n| ``{{​privateKey}}`` | ✅ | The **PEM formatted Private Key** used for RS256 signing the JWT. | — |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use https://account.docusign.com for Production). | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``webforms_read webforms_instance_read webforms_instance_write signature`` |\n| ``{{​USE_CUSTOM_ASSERTION}}`` | Optional | `true` to use your own ``{{​jwt_assertion}}`` | `false` |",
@@ -20,11 +20,11 @@
                     },
                     "item": [
                         {
-                            "id": "23f9db09-1be7-4ba4-b6bd-6a503c611f9d",
-                            "name": "03-1 - Construct Authorization URL with PKCE",
+                            "id": "256d1b7e-9925-4679-8cbe-2f471754d863",
+                            "name": "01-1 - Construct Consent URL (JWT)",
                             "request": {
                                 "description": {
-                                    "content": "This request generates the authorization URL required to start the OAuth 2.0 flow.\n\n## Get the Authorization Code\n\n1. Execute the GET request of _03-1 - Construct Authorization URL with PKCE_.\n    \n2. Open the returned _authorizeUrl_ and open in a browser tab.\n    \n3. Sign in, allow access and grant consent.\n    \n4. The browser will redirect to your redirectUri.\n    \n5. Copy the _code_ value from the resulting URL query string.\n    \n\nPaste the copied _code_ into a new or existing Environment or Collection Variable named ``{{​authCodePkce}}``.",
+                                    "content": "## **Grant Consent for JWT (Impersonation)**\n\n1. Execute this helper request.\n    \n2. Open the returned authorizeUrl in a browser.\n    \n3. Sign in and grant consent (must include `impersonation`).\n    \n4. After consent is granted, you can close the browser.\n    \n5. Run **01-2 - JWT Token (exchange)**.",
                                     "type": "text/plain"
                                 },
                                 "url": {
@@ -42,7 +42,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "22783dcb-b192-438c-ad9b-c0f4d98b5218",
+                                        "id": "328ee128-af09-4885-b111-2210f07097a3",
                                         "type": "text/javascript",
                                         "packages": {},
                                         "exec": [
@@ -74,7 +74,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "9779c697-f166-4c33-8f30-69c26d93670e",
+                                        "id": "892c0ba0-c32a-46a3-80a0-b8720f9c1977",
                                         "type": "text/javascript",
                                         "packages": {},
                                         "exec": [
@@ -91,11 +91,11 @@
                             ]
                         },
                         {
-                            "id": "5207f937-37ee-44d5-9d9e-003f53756ae9",
-                            "name": "04 - Refresh Access Token",
+                            "id": "3a42f04f-2a67-4978-816a-e356279bf75f",
+                            "name": "01-2 - JWT Token (exchange)",
                             "request": {
                                 "description": {
-                                    "content": "This request uses the long-lived refresh token to obtain a new access token, ensuring continuous API access without user re-authentication.\n\n1. Verify that the ``{{​refresh_token}}`` variable is populated from the previous \"Exchange Code for Tokens\" request.\n    \n2. Execute this request.\n    \n3. The response will contain a brand new _access_token_.\n    \n4. The test script should automatically extract and overwrite the old value of the ``{{​access_token}}`` variable with the new token.",
+                                    "content": "Exchanges the signed JWT (``{{​jwt_assertion}}``) for an access token.\n\n**Two ways to supply the JWT assertion**\n1) **Auto-mint (default):** Set ``{{​integrationKey}}``, ``{{​userId}}``, ``{{​authServer}}``, and ``{{​privateKey}}``. The script mints a JWT and sets ``{{​jwt_assertion}}`` for you.\n2) **Custom assertion:** Set ``{{​USE_CUSTOM_ASSERTION}}`` to `true` **and** provide ``{{​jwt_assertion}}`` yourself (PEM not needed).\n\n**Output:** ``{{​access_token}}``. (JWT does **not** return a refresh token.)",
                                     "type": "text/plain"
                                 },
                                 "url": {
@@ -139,7 +139,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "b45d132d-53f3-418b-a822-39dd5789a065",
+                                        "id": "f0287661-b445-47c3-af32-f84ce702b318",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.environment.unset('jwt_error');",
@@ -170,7 +170,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "5d54e403-2036-4bf1-a268-26394da67935",
+                                        "id": "a5168dd9-d0d0-40dc-8d62-3fceaeb3f07b",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const err  = pm.environment.get('jwt_error');",
@@ -193,7 +193,7 @@
                     "event": []
                 },
                 {
-                    "id": "f06aa044-1d7f-4fbd-9007-fe9a1b51ba76",
+                    "id": "f060ff22-b6e4-495f-97d8-08c5f78fd0d9",
                     "name": " 02 - Authorization Code Grant (Confidential Client)",
                     "description": {
                         "content": "This folder implements the **Authorization Code Grant** flow. This process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nAuthorization Code Grant is a type of OAuth 2.0 flow used to obtain an access token. [Confidential Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#confidential-authorization-code-grant), which should be used by apps that can secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). |  |\n| ``{{​clientSecret}}`` | ✅ | The secret key identifies your integration app through a unique key. [Create a Secret Key](https://developers.docusign.com/platform/configure-app/#secret-key). |  |\n| ``{{​​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``webforms_read webforms_instance_read webforms_instance_write signature`` |\n| ``{{​authCodeNoPkce}}`` | ✅ (Only on exchange) | Paste the `?code` here (env or collection var) |  |",
@@ -201,11 +201,11 @@
                     },
                     "item": [
                         {
-                            "id": "23f9db09-1be7-4ba4-b6bd-6a503c611f9d",
-                            "name": "03-1 - Construct Authorization URL with PKCE",
+                            "id": "c8052495-6da6-4052-b53c-cca383a599e0",
+                            "name": "02-1 - Construct Authorization URL",
                             "request": {
                                 "description": {
-                                    "content": "This request generates the authorization URL required to start the OAuth 2.0 flow.\n\n## Get the Authorization Code\n\n1. Execute the GET request of _03-1 - Construct Authorization URL with PKCE_.\n    \n2. Open the returned _authorizeUrl_ and open in a browser tab.\n    \n3. Sign in, allow access and grant consent.\n    \n4. The browser will redirect to your redirectUri.\n    \n5. Copy the _code_ value from the resulting URL query string.\n    \n\nPaste the copied _code_ into a new or existing Environment or Collection Variable named ``{{​authCodePkce}}``.",
+                                    "content": "## **Get the Authorization Code**\n\n1. Execute the GET request of 02-1 - Construct Authorization URL.\n    \n2. Open the returned authorizeUrl and open in a browser tab.\n    \n3. Sign in, allow access and grant consent.\n    \n4. The browser will redirect to your redirectUri.\n    \n5. Copy the code value from the resulting URL query string.\n    \n6. Paste the copied code into a new or existing Environment or Collection Variable named ``{{​authCodeNoPkce}}``.",
                                     "type": "text/plain"
                                 },
                                 "url": {
@@ -223,7 +223,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "9fc0e82a-f7c5-4d1c-a488-9196ae7ea631",
+                                        "id": "9637668f-8dba-4142-bc19-fc693f3908a1",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const u = utils;",
@@ -253,7 +253,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "9eaa30ea-8514-4a92-9e63-034519914dd4",
+                                        "id": "84b53a95-c4a1-4137-bebe-6742f07d7da4",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -269,11 +269,11 @@
                             ]
                         },
                         {
-                            "id": "5207f937-37ee-44d5-9d9e-003f53756ae9",
-                            "name": "04 - Refresh Access Token",
+                            "id": "d8f3e0c5-6b17-411a-8e42-1c447e96d5bb",
+                            "name": "02-2 - Exchange Authorization Code for Tokens",
                             "request": {
                                 "description": {
-                                    "content": "This request uses the long-lived refresh token to obtain a new access token, ensuring continuous API access without user re-authentication.\n\n1. Verify that the ``{{​refresh_token}}`` variable is populated from the previous \"Exchange Code for Tokens\" request.\n    \n2. Execute this request.\n    \n3. The response will contain a brand new _access_token_.\n    \n4. The test script should automatically extract and overwrite the old value of the ``{{​access_token}}`` variable with the new token.",
+                                    "content": "## **Exchanging Code for Tokens**\n\nThis request exchanges the temporary Authorization Code for usable access and refresh tokens.\n\n1. Verify that your environment or collection variables for ``{{​integrationKey}}``, ``{{​clientSecret}}``, and ``{{​authCodeNoPkce}}`` are all populated with the correct values.\n    \n2. Execute this request.\n    \n3. Check the response body: The response will contain the `access_token` and `refresh_token`.\n    \n4. The Pre-request or test script automatically extracts the access_token and refresh_token and saves them as environment variables. This lets you use the Bearer Token authentication instead of manual UI logins for later API calls.",
                                     "type": "text/plain"
                                 },
                                 "url": {
@@ -325,7 +325,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "c08eb51d-a547-476e-a8eb-1cdc63fd5656",
+                                        "id": "3a4c3d68-6832-46fc-a53a-5f23dd3005ec",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -340,7 +340,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "a93760f7-0d5a-4437-b5fa-170cbc307d23",
+                                        "id": "eb551db2-0b68-4625-b9cf-3f8a515955c9",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -355,7 +355,7 @@
                     "event": []
                 },
                 {
-                    "id": "fcc52e33-da18-41f2-9a48-72da10ab51ea",
+                    "id": "87f2e300-d1f5-4dfb-8c47-e419a14d58fb",
                     "name": "03 - Authorization Code Grant with PKCE (Public Client)",
                     "description": {
                         "content": "This folder implements the **Public Authorization Code Grant (with PKCE)** flow, which is the required OAuth 2.0 standard for public applications like Single Page Applications (SPAs) and mobile apps.\n\nThis process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nPublic Authorization Code Grant (with PKCE) is a type of OAuth 2.0 flow used to obtain an access token. [Public Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#public-authorization-code-grant), which does not require that your app secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​publicIntegrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). If absent, it falls back to ``{{​integrationKey}}``. |  |\n| ``{{​integrationKey}}`` | Fallback | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). |  |\n| ``{{​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``webforms_read webforms_instance_read webforms_instance_write signature`` |",
@@ -363,7 +363,7 @@
                     },
                     "item": [
                         {
-                            "id": "23f9db09-1be7-4ba4-b6bd-6a503c611f9d",
+                            "id": "53a10602-9ea4-4d0e-a4a5-4fd6c4057b8d",
                             "name": "03-1 - Construct Authorization URL with PKCE",
                             "request": {
                                 "description": {
@@ -389,7 +389,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "b81b0208-15ad-45fd-bfc2-93946e872498",
+                                        "id": "2d3caf89-3f0b-462e-bf4e-0be5ca3aee68",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const u = utils;",
@@ -418,7 +418,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "2d323b43-4866-4b3a-8990-22b6637f55be",
+                                        "id": "3bac8ec0-daf3-4242-8a65-358d030a4b6f",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -434,11 +434,11 @@
                             ]
                         },
                         {
-                            "id": "5207f937-37ee-44d5-9d9e-003f53756ae9",
-                            "name": "04 - Refresh Access Token",
+                            "id": "328af810-f586-4480-a7ac-2e7175203cc8",
+                            "name": "03-2 - Exchange Authorization Code for Tokens (PKCE)",
                             "request": {
                                 "description": {
-                                    "content": "This request uses the long-lived refresh token to obtain a new access token, ensuring continuous API access without user re-authentication.\n\n1. Verify that the ``{{​refresh_token}}`` variable is populated from the previous \"Exchange Code for Tokens\" request.\n    \n2. Execute this request.\n    \n3. The response will contain a brand new _access_token_.\n    \n4. The test script should automatically extract and overwrite the old value of the ``{{​access_token}}`` variable with the new token.",
+                                    "content": "## Exchanging Code for Tokens\n\nThis request exchanges the temporary Authorization Code using PKCE for usable access and refresh tokens.\n\n1. Verify that your environment or collection variables for ``{{​integrationKey}}``, and ``{{​authCodeWithPkce}}`` and the automatically generated ``{{​code_verifier}}`` are all populated with the correct values.\n    \n2. Ensure the Origin parameter added in Apps and Keys page is set in headers of  _03-2 - Exchange Authorization Code for Tokens (PKCE)_ and CORS is activated with all the HTTP operations. For further information, refer [Set the CORS configuration of your app.](https://developers.docusign.com/platform/configure-app/#cors-configuration)\n    \n3. Execute this request.\n    \n4. Check the response body: The response will contain the _access_token_ and _refresh_token_.\n    \n5. The Pre-request or test script should automatically extract and set the ``{{​access_token}}`` and ``{{​refresh_token}}`` variables for use in subsequent API calls.",
                                     "type": "text/plain"
                                 },
                                 "url": {
@@ -494,7 +494,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "f3402809-6f70-45e6-a330-ed27375e76b9",
+                                        "id": "9c1ba33c-6bff-46aa-98c8-bdf36f06ec93",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -514,7 +514,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "f67c01d4-3960-48ef-9fc9-be98cd039a74",
+                                        "id": "eb5c5bb1-a41b-4b95-8f08-0dd2192834e2",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -529,7 +529,7 @@
                     "event": []
                 },
                 {
-                    "id": "5207f937-37ee-44d5-9d9e-003f53756ae9",
+                    "id": "59f0d048-d468-4a53-ba44-c0c6ec88d29e",
                     "name": "04 - Refresh Access Token",
                     "request": {
                         "description": {
@@ -592,7 +592,7 @@
                         {
                             "listen": "test",
                             "script": {
-                                "id": "88617823-fe08-4562-82c1-85b22e9caeba",
+                                "id": "32e0e055-5c9a-4629-934a-74491fd1b27b",
                                 "type": "text/javascript",
                                 "exec": [
                                     "pm.test('Token refreshed', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -607,7 +607,7 @@
                     ]
                 },
                 {
-                    "id": "1c03dc4f-0891-419e-a3e7-960499ecd1e5",
+                    "id": "89824a50-db3b-48c4-afa4-9ae8e97dd3fa",
                     "name": "05 - User Info",
                     "request": {
                         "description": {
@@ -632,7 +632,7 @@
                         {
                             "listen": "test",
                             "script": {
-                                "id": "8016812b-c941-4c28-bafc-82786148b2e7",
+                                "id": "02003bcc-06f6-4b64-90c5-5fa5e030ac14",
                                 "type": "text/javascript",
                                 "packages": {},
                                 "exec": [
@@ -655,7 +655,7 @@
                 {
                     "listen": "prerequest",
                     "script": {
-                        "id": "85e73bfc-8129-4203-bb17-4bf5b4294822",
+                        "id": "cac3c547-5353-4055-b0e5-70098a19670a",
                         "type": "text/javascript",
                         "packages": {
                             "npm:jsrsasign@11.1.0": {
@@ -854,7 +854,7 @@
             ]
         },
         {
-            "id": "c1755f14-7ca3-49ca-8db1-443091a6e91f",
+            "id": "cc09920f-6840-42e4-b9ec-19af7760e0f6",
             "name": "Instances",
             "description": {
                 "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nMethods to create and retrieve instances of a web form. Each instance is secure and unique to a user session.",
@@ -862,12 +862,12 @@
             },
             "item": [
                 {
-                    "id": "82e92798-053f-4d9a-8802-99245f5cb2bc",
+                    "id": "65820524-5f4c-4137-bcd7-7c8d414143cb",
                     "name": "Lists the instances of a given web form configuration.",
                     "request": {
                         "name": "Lists the instances of a given web form configuration.",
                         "description": {
-                            "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nRetrieves all the instances of a given web form configuration.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `webforms_instance_read`.",
+                            "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nRetrieves all the instances of a given web form configuration.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `signature`, `webforms_instance_read`.",
                             "type": "text/plain"
                         },
                         "url": {
@@ -927,7 +927,7 @@
                     },
                     "response": [
                         {
-                            "id": "7b60d506-dded-49bc-91e4-8058d78a5fae",
+                            "id": "de34fb38-7cb5-4e52-8da9-5482a60d6f91",
                             "name": "List of all Web Form Instances with associated metadata.",
                             "originalRequest": {
                                 "url": {
@@ -980,12 +980,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"formUrl\": \"<string>\",\n      \"instanceToken\": \"<string>\",\n      \"tokenExpirationDateTime\": \"<dateTime>\",\n      \"formId\": \"<uuid>\",\n      \"accountId\": \"<uuid>\",\n      \"clientUserId\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"EXPIRED\",\n      \"envelopes\": [\n        {\n          \"id\": \"<uuid>\"\n        },\n        {\n          \"id\": \"<uuid>\"\n        }\n      ],\n      \"instanceMetadata\": {\n        \"expirationDateTime\": \"<dateTime>\",\n        \"createdBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"createdDateTime\": \"<dateTime>\",\n        \"lastModifiedDateTime\": \"<dateTime>\",\n        \"lastModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        }\n      },\n      \"formValues\": {\n        \"aliqua_59d\": {},\n        \"amet_\": {}\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"formUrl\": \"<string>\",\n      \"instanceToken\": \"<string>\",\n      \"tokenExpirationDateTime\": \"<dateTime>\",\n      \"formId\": \"<uuid>\",\n      \"accountId\": \"<uuid>\",\n      \"clientUserId\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": \"INITIATED\",\n      \"envelopes\": [\n        {\n          \"id\": \"<uuid>\"\n        },\n        {\n          \"id\": \"<uuid>\"\n        }\n      ],\n      \"instanceMetadata\": {\n        \"expirationDateTime\": \"<dateTime>\",\n        \"createdBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"createdDateTime\": \"<dateTime>\",\n        \"lastModifiedDateTime\": \"<dateTime>\",\n        \"lastModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        }\n      },\n      \"formValues\": {\n        \"est_8\": {},\n        \"pariatur2\": {},\n        \"sed9\": {}\n      }\n    }\n  ]\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"accountId\": \"<uuid>\",\n      \"brandId\": \"<uuid>\",\n      \"clientUserId\": \"<string>\",\n      \"envelopes\": [\n        {\n          \"id\": \"<uuid>\"\n        },\n        {\n          \"id\": \"<uuid>\"\n        }\n      ],\n      \"formId\": \"<uuid>\",\n      \"formUrl\": \"<string>\",\n      \"formValues\": {\n        \"aute5e\": {},\n        \"magna_40e\": {}\n      },\n      \"instanceMetadata\": {\n        \"expirationDateTime\": \"<dateTime>\",\n        \"createdBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"createdDateTime\": \"<dateTime>\",\n        \"instanceSource\": \"API_REMOTE\",\n        \"lastModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastModifiedDateTime\": \"<dateTime>\",\n        \"submittedDateTime\": \"<dateTime>\"\n      },\n      \"instanceToken\": \"<string>\",\n      \"recipients\": [\n        {\n          \"recipientViewId\": \"<uuid>\",\n          \"instanceRecipientStatus\": \"IN_PROGRESS\"\n        },\n        {\n          \"recipientViewId\": \"<uuid>\",\n          \"instanceRecipientStatus\": \"INITIATED\"\n        }\n      ],\n      \"status\": \"EXPIRED\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"tokenExpirationDateTime\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"accountId\": \"<uuid>\",\n      \"brandId\": \"<uuid>\",\n      \"clientUserId\": \"<string>\",\n      \"envelopes\": [\n        {\n          \"id\": \"<uuid>\"\n        },\n        {\n          \"id\": \"<uuid>\"\n        }\n      ],\n      \"formId\": \"<uuid>\",\n      \"formUrl\": \"<string>\",\n      \"formValues\": {\n        \"dolor_0_d\": {},\n        \"velitc\": {},\n        \"in_3\": {}\n      },\n      \"instanceMetadata\": {\n        \"expirationDateTime\": \"<dateTime>\",\n        \"createdBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"createdDateTime\": \"<dateTime>\",\n        \"instanceSource\": \"API_REMOTE\",\n        \"lastModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastModifiedDateTime\": \"<dateTime>\",\n        \"submittedDateTime\": \"<dateTime>\"\n      },\n      \"instanceToken\": \"<string>\",\n      \"recipients\": [\n        {\n          \"recipientViewId\": \"<uuid>\",\n          \"instanceRecipientStatus\": \"SUBMITTED\"\n        },\n        {\n          \"recipientViewId\": \"<uuid>\",\n          \"instanceRecipientStatus\": \"IN_PROGRESS\"\n        }\n      ],\n      \"status\": \"FAILED\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"tokenExpirationDateTime\": \"<dateTime>\"\n    }\n  ]\n}",
+                            "cookie": []
                         },
                         {
-                            "id": "a347bd3f-aede-4b33-ba1e-063a768cec78",
+                            "id": "8d07b309-0e1f-47b1-9af9-2bbd60195817",
                             "name": "The authentication information is either missing or invalid",
                             "originalRequest": {
                                 "url": {
@@ -1039,11 +1038,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "f91cc2e1-0d53-4b2f-829a-5708018da300",
+                            "id": "a7f4e41c-54b7-43be-ae14-2fac06d800eb",
                             "name": "The requestor is not authorized",
                             "originalRequest": {
                                 "url": {
@@ -1097,11 +1095,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "d01af005-1e9f-452e-abcc-5b601e7ecb47",
+                            "id": "0771feb2-d948-4075-974f-712fb7ee3813",
                             "name": "The requested resource is not found",
                             "originalRequest": {
                                 "url": {
@@ -1155,11 +1152,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "c9c1de9f-8b28-4a06-96ff-91ab30b16424",
+                            "id": "29acb6cb-80ef-45b7-9b29-82b586579cfc",
                             "name": "The service encountered an unexpected condition that prevented it from fulfilling the request",
                             "originalRequest": {
                                 "url": {
@@ -1213,11 +1209,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "7c261f4e-d05f-4f40-97c6-507335dfb9cc",
+                            "id": "20beaae1-0162-46b7-b3b3-d573c580e3cb",
                             "name": "Service is temporarily unavailable",
                             "originalRequest": {
                                 "url": {
@@ -1271,8 +1266,7 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         }
                     ],
                     "event": [],
@@ -1281,12 +1275,12 @@
                     }
                 },
                 {
-                    "id": "f3592e29-ba1f-49e3-8a7c-8891ddb3b80e",
+                    "id": "6c51217b-fa95-432a-b691-41d325dac97a",
                     "name": "Gets a web form instance.",
                     "request": {
                         "name": "Gets a web form instance.",
                         "description": {
-                            "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nCreates an instance of a web form.\n\nThis endpoint returns a `formUrl` and `instanceToken` that you combine to obtain a secure URL. Use this URL to render the web form instance in your application.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `webforms_instance_write`.\n\n\n### Related topics\n\n- [How to create and embed a web form instance](/docs/web-forms-api/how-to/create-embed-web-form-instance/)",
+                            "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nCreates an instance of a web form.\n\nThis endpoint returns a `formUrl` and `instanceToken` that you combine to obtain a secure URL. Use this URL to render the web form instance in your application.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `signature`, `webforms_instance_write`.\n\n\n### Related topics\n\n- [How to create and embed a web form instance](/docs/web-forms-api/how-to/create-embed-web-form-instance/)",
                             "type": "text/plain"
                         },
                         "url": {
@@ -1338,7 +1332,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"assertionId\": \"<string>\",\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"X509Certificate\",\n  \"brandId\": \"<uuid>\",\n  \"expirationOffset\": \"<long>\",\n  \"formValues\": {\n    \"culpa_87\": {},\n    \"Loremc\": {}\n  },\n  \"recipients\": [\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    },\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    }\n  ],\n  \"returnUrl\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"sendOption\": \"now\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                            "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"assertionId\": \"<string>\",\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"None\",\n  \"brandId\": \"<uuid>\",\n  \"expirationOffset\": \"<long>\",\n  \"formValues\": {\n    \"voluptate5e9\": {},\n    \"none95\": {},\n    \"laborum_56\": {},\n    \"et_dae\": {}\n  },\n  \"recipients\": [\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    },\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    }\n  ],\n  \"returnUrl\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"sendOption\": \"now\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -1349,7 +1343,7 @@
                     },
                     "response": [
                         {
-                            "id": "531049a3-a8b8-4757-8758-47cd70700fee",
+                            "id": "a6c70dda-8d9e-4a52-8826-ea31e74dbd17",
                             "name": "Web Form Instance with metadata",
                             "originalRequest": {
                                 "url": {
@@ -1388,7 +1382,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"assertionId\": \"<string>\",\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"None\",\n  \"brandId\": \"<uuid>\",\n  \"expirationOffset\": \"<long>\",\n  \"formValues\": {\n    \"voluptate5e9\": {},\n    \"none95\": {},\n    \"laborum_56\": {},\n    \"et_dae\": {}\n  },\n  \"recipients\": [\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    },\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    }\n  ],\n  \"returnUrl\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"sendOption\": \"now\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1405,12 +1399,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"id\": \"<uuid>\",\n  \"formUrl\": \"<string>\",\n  \"instanceToken\": \"<string>\",\n  \"tokenExpirationDateTime\": \"<dateTime>\",\n  \"formId\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"clientUserId\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"SUBMITTED\",\n  \"envelopes\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"instanceMetadata\": {\n    \"expirationDateTime\": \"<dateTime>\",\n    \"createdBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"createdDateTime\": \"<dateTime>\",\n    \"lastModifiedDateTime\": \"<dateTime>\",\n    \"lastModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    }\n  },\n  \"formValues\": {\n    \"dolor_9\": {},\n    \"labore_a\": {}\n  }\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"brandId\": \"<uuid>\",\n  \"clientUserId\": \"<string>\",\n  \"envelopes\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"formId\": \"<uuid>\",\n  \"formUrl\": \"<string>\",\n  \"formValues\": {\n    \"nostrud14\": {},\n    \"dolor_36\": {},\n    \"qui08\": {}\n  },\n  \"instanceMetadata\": {\n    \"expirationDateTime\": \"<dateTime>\",\n    \"createdBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"createdDateTime\": \"<dateTime>\",\n    \"instanceSource\": \"WORKFLOW\",\n    \"lastModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastModifiedDateTime\": \"<dateTime>\",\n    \"submittedDateTime\": \"<dateTime>\"\n  },\n  \"instanceToken\": \"<string>\",\n  \"recipients\": [\n    {\n      \"recipientViewId\": \"<uuid>\",\n      \"instanceRecipientStatus\": \"INITIATED\"\n    },\n    {\n      \"recipientViewId\": \"<uuid>\",\n      \"instanceRecipientStatus\": \"SUBMITTED\"\n    }\n  ],\n  \"status\": \"IN_PROGRESS\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tokenExpirationDateTime\": \"<dateTime>\"\n}",
+                            "cookie": []
                         },
                         {
-                            "id": "2dbd80e8-56d5-439f-8100-32ddc2ddd572",
+                            "id": "33ba12d9-adee-4209-842e-fee7afadaef7",
                             "name": "The form instance cannot be created, possibly due to validation failure.",
                             "originalRequest": {
                                 "url": {
@@ -1449,7 +1442,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"assertionId\": \"<string>\",\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"None\",\n  \"brandId\": \"<uuid>\",\n  \"expirationOffset\": \"<long>\",\n  \"formValues\": {\n    \"voluptate5e9\": {},\n    \"none95\": {},\n    \"laborum_56\": {},\n    \"et_dae\": {}\n  },\n  \"recipients\": [\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    },\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    }\n  ],\n  \"returnUrl\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"sendOption\": \"now\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1467,11 +1460,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "b96463ca-2f03-4b9f-92f2-6168abbf3039",
+                            "id": "42eb977a-71cc-452a-afc6-8644144b82bf",
                             "name": "The authentication information is either missing or invalid",
                             "originalRequest": {
                                 "url": {
@@ -1510,7 +1502,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"assertionId\": \"<string>\",\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"None\",\n  \"brandId\": \"<uuid>\",\n  \"expirationOffset\": \"<long>\",\n  \"formValues\": {\n    \"voluptate5e9\": {},\n    \"none95\": {},\n    \"laborum_56\": {},\n    \"et_dae\": {}\n  },\n  \"recipients\": [\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    },\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    }\n  ],\n  \"returnUrl\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"sendOption\": \"now\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1528,11 +1520,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "ba1bf984-f5b1-4b1c-ac4d-77b7d8b10fc5",
+                            "id": "b66b5c20-a4b9-4602-81ae-9da78e13aa07",
                             "name": "The requestor is not authorized",
                             "originalRequest": {
                                 "url": {
@@ -1571,7 +1562,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"assertionId\": \"<string>\",\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"None\",\n  \"brandId\": \"<uuid>\",\n  \"expirationOffset\": \"<long>\",\n  \"formValues\": {\n    \"voluptate5e9\": {},\n    \"none95\": {},\n    \"laborum_56\": {},\n    \"et_dae\": {}\n  },\n  \"recipients\": [\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    },\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    }\n  ],\n  \"returnUrl\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"sendOption\": \"now\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1589,11 +1580,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "36f6cabe-ea1d-494f-81ba-133ac33e86ee",
+                            "id": "24cdf5f4-66a5-4088-8f47-698e8d31de5a",
                             "name": "The requested resource is not found",
                             "originalRequest": {
                                 "url": {
@@ -1632,7 +1622,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"assertionId\": \"<string>\",\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"None\",\n  \"brandId\": \"<uuid>\",\n  \"expirationOffset\": \"<long>\",\n  \"formValues\": {\n    \"voluptate5e9\": {},\n    \"none95\": {},\n    \"laborum_56\": {},\n    \"et_dae\": {}\n  },\n  \"recipients\": [\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    },\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    }\n  ],\n  \"returnUrl\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"sendOption\": \"now\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1650,11 +1640,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "26a5f86e-7f75-4c68-98e3-c1d733c2ff54",
+                            "id": "32cf3613-f6fc-47a2-92ff-c464b9e1c71d",
                             "name": "The service encountered an unexpected condition that prevented it from fulfilling the request",
                             "originalRequest": {
                                 "url": {
@@ -1693,7 +1682,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"assertionId\": \"<string>\",\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"None\",\n  \"brandId\": \"<uuid>\",\n  \"expirationOffset\": \"<long>\",\n  \"formValues\": {\n    \"voluptate5e9\": {},\n    \"none95\": {},\n    \"laborum_56\": {},\n    \"et_dae\": {}\n  },\n  \"recipients\": [\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    },\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    }\n  ],\n  \"returnUrl\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"sendOption\": \"now\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1711,11 +1700,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "86681846-5033-439d-bb2e-d7794bd84acb",
+                            "id": "dd148395-1764-436b-907b-bdbcfb143b47",
                             "name": "service is temporarily unavailable",
                             "originalRequest": {
                                 "url": {
@@ -1754,7 +1742,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"formValues\": {\n    \"sint_b\": {},\n    \"dolored\": {},\n    \"ullamco_0\": {},\n    \"est2\": {}\n  },\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"PaperDocuments\",\n  \"assertionId\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"returnUrl\": \"<string>\",\n  \"expirationOffset\": \"<long>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                    "raw": "{\n  \"clientUserId\": \"<string>\",\n  \"assertionId\": \"<string>\",\n  \"authenticationInstant\": \"<string>\",\n  \"authenticationMethod\": \"None\",\n  \"brandId\": \"<uuid>\",\n  \"expirationOffset\": \"<long>\",\n  \"formValues\": {\n    \"voluptate5e9\": {},\n    \"none95\": {},\n    \"laborum_56\": {},\n    \"et_dae\": {}\n  },\n  \"recipients\": [\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    },\n    {\n      \"roleName\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": {\n        \"countryCode\": \"<string>\",\n        \"nationalNumber\": \"<string>\"\n      }\n    }\n  ],\n  \"returnUrl\": \"<string>\",\n  \"securityDomain\": \"<string>\",\n  \"sendOption\": \"now\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1772,8 +1760,7 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         }
                     ],
                     "event": [],
@@ -1782,12 +1769,12 @@
                     }
                 },
                 {
-                    "id": "85897929-f48e-47ee-8a59-77aa17d0137d",
+                    "id": "d73322a1-1e3b-4ee3-9598-aa5be6b4729f",
                     "name": "Creates a secure web form instance.",
                     "request": {
                         "name": "Creates a secure web form instance.",
                         "description": {
-                            "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nGets an instance of a web form specified by the configuration and instance IDs. To get all instances associated with a given configuration, use the [listInstances endpoint](/docs/web-forms-api/reference/webforms/instances/listinstances/).\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `webforms_instance_read`.",
+                            "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nGets an instance of a web form specified by the configuration and instance IDs. To get all instances associated with a given configuration, use the [listInstances endpoint](/docs/web-forms-api/reference/webforms/instances/listinstances/).\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `signature`, `webforms_instance_read`.",
                             "type": "text/plain"
                         },
                         "url": {
@@ -1848,7 +1835,7 @@
                     },
                     "response": [
                         {
-                            "id": "7d2ff432-5dd5-4c18-af76-473e414bbcc3",
+                            "id": "13a840f7-f984-43f9-85b4-3ff903693314",
                             "name": "Web Form Instance with metadata",
                             "originalRequest": {
                                 "url": {
@@ -1892,12 +1879,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"id\": \"<uuid>\",\n  \"formUrl\": \"<string>\",\n  \"instanceToken\": \"<string>\",\n  \"tokenExpirationDateTime\": \"<dateTime>\",\n  \"formId\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"clientUserId\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"SUBMITTED\",\n  \"envelopes\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"instanceMetadata\": {\n    \"expirationDateTime\": \"<dateTime>\",\n    \"createdBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"createdDateTime\": \"<dateTime>\",\n    \"lastModifiedDateTime\": \"<dateTime>\",\n    \"lastModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    }\n  },\n  \"formValues\": {\n    \"dolor_9\": {},\n    \"labore_a\": {}\n  }\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"brandId\": \"<uuid>\",\n  \"clientUserId\": \"<string>\",\n  \"envelopes\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"formId\": \"<uuid>\",\n  \"formUrl\": \"<string>\",\n  \"formValues\": {\n    \"nostrud14\": {},\n    \"dolor_36\": {},\n    \"qui08\": {}\n  },\n  \"instanceMetadata\": {\n    \"expirationDateTime\": \"<dateTime>\",\n    \"createdBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"createdDateTime\": \"<dateTime>\",\n    \"instanceSource\": \"WORKFLOW\",\n    \"lastModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastModifiedDateTime\": \"<dateTime>\",\n    \"submittedDateTime\": \"<dateTime>\"\n  },\n  \"instanceToken\": \"<string>\",\n  \"recipients\": [\n    {\n      \"recipientViewId\": \"<uuid>\",\n      \"instanceRecipientStatus\": \"INITIATED\"\n    },\n    {\n      \"recipientViewId\": \"<uuid>\",\n      \"instanceRecipientStatus\": \"SUBMITTED\"\n    }\n  ],\n  \"status\": \"IN_PROGRESS\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tokenExpirationDateTime\": \"<dateTime>\"\n}",
+                            "cookie": []
                         },
                         {
-                            "id": "e75a23c0-ca29-4de3-8f2a-ad3e1becd279",
+                            "id": "bbd21795-77e3-4bed-b441-a914bc2da231",
                             "name": "The authentication information is either missing or invalid",
                             "originalRequest": {
                                 "url": {
@@ -1942,11 +1928,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "2f4ecbd3-22bf-41d6-aa2a-14b034a623f8",
+                            "id": "a7205e35-6b03-4f09-93bd-9964024a1bab",
                             "name": "The requestor is not authorized",
                             "originalRequest": {
                                 "url": {
@@ -1991,11 +1976,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "014a1648-e675-4f20-9ed2-aa303bae1061",
+                            "id": "c7da77f3-61eb-416d-904f-c3069d18346c",
                             "name": "The requested resource is not found",
                             "originalRequest": {
                                 "url": {
@@ -2040,11 +2024,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "06e06fd0-2cd7-467c-aa2d-0faf6567ce50",
+                            "id": "ecb82a56-b254-4ecd-8b89-5fff7b6c6209",
                             "name": "The service encountered an unexpected condition that prevented it from fulfilling the request",
                             "originalRequest": {
                                 "url": {
@@ -2089,11 +2072,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "630eb731-4bf6-4335-b408-065715965baa",
+                            "id": "34f47691-6e3c-4cb1-9cc0-2a0026c2ce38",
                             "name": "service is temporarily unavailable",
                             "originalRequest": {
                                 "url": {
@@ -2138,8 +2120,7 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         }
                     ],
                     "event": [],
@@ -2148,12 +2129,12 @@
                     }
                 },
                 {
-                    "id": "a27c575a-e3d7-42b8-a7f0-ac8c902b9c0c",
+                    "id": "996d1204-b563-438f-ab21-cd12c5f31bb0",
                     "name": "Refreshes the instance token.",
                     "request": {
                         "name": "Refreshes the instance token.",
                         "description": {
-                            "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nGenerates a new instance token for an existing web form instance. Tokens expire after five minutes.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `webforms_instance_write`.",
+                            "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nGenerates a new instance token for an existing web form instance. Tokens expire after five minutes.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `signature`, `webforms_instance_write`.",
                             "type": "text/plain"
                         },
                         "url": {
@@ -2215,7 +2196,7 @@
                     },
                     "response": [
                         {
-                            "id": "33314f99-9589-4bbc-a70d-ba444326cdf5",
+                            "id": "84bad0e5-b74e-425b-b48b-5446cc0fdba4",
                             "name": "Web Form Instance with new instance token and metadata",
                             "originalRequest": {
                                 "url": {
@@ -2260,12 +2241,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"id\": \"<uuid>\",\n  \"formUrl\": \"<string>\",\n  \"instanceToken\": \"<string>\",\n  \"tokenExpirationDateTime\": \"<dateTime>\",\n  \"formId\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"clientUserId\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": \"SUBMITTED\",\n  \"envelopes\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"instanceMetadata\": {\n    \"expirationDateTime\": \"<dateTime>\",\n    \"createdBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"createdDateTime\": \"<dateTime>\",\n    \"lastModifiedDateTime\": \"<dateTime>\",\n    \"lastModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    }\n  },\n  \"formValues\": {\n    \"dolor_9\": {},\n    \"labore_a\": {}\n  }\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"brandId\": \"<uuid>\",\n  \"clientUserId\": \"<string>\",\n  \"envelopes\": [\n    {\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"formId\": \"<uuid>\",\n  \"formUrl\": \"<string>\",\n  \"formValues\": {\n    \"nostrud14\": {},\n    \"dolor_36\": {},\n    \"qui08\": {}\n  },\n  \"instanceMetadata\": {\n    \"expirationDateTime\": \"<dateTime>\",\n    \"createdBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"createdDateTime\": \"<dateTime>\",\n    \"instanceSource\": \"WORKFLOW\",\n    \"lastModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastModifiedDateTime\": \"<dateTime>\",\n    \"submittedDateTime\": \"<dateTime>\"\n  },\n  \"instanceToken\": \"<string>\",\n  \"recipients\": [\n    {\n      \"recipientViewId\": \"<uuid>\",\n      \"instanceRecipientStatus\": \"INITIATED\"\n    },\n    {\n      \"recipientViewId\": \"<uuid>\",\n      \"instanceRecipientStatus\": \"SUBMITTED\"\n    }\n  ],\n  \"status\": \"IN_PROGRESS\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tokenExpirationDateTime\": \"<dateTime>\"\n}",
+                            "cookie": []
                         },
                         {
-                            "id": "7a71b826-5011-4e2f-ad1e-c01d0ac653e9",
+                            "id": "226ea80d-c57d-4323-b85d-3ea3ccd35a22",
                             "name": "The instance token cannot be created, possibly because the validation failed.",
                             "originalRequest": {
                                 "url": {
@@ -2311,11 +2291,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "0cead7d7-1994-45fe-8b54-94ceb71e7f28",
+                            "id": "9e4e93e7-44d1-4736-97fc-f0c053c41fbf",
                             "name": "The authentication information is either missing or invalid",
                             "originalRequest": {
                                 "url": {
@@ -2361,11 +2340,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "646e9a33-49b5-47b7-8d76-c152e48e5867",
+                            "id": "38390cc7-b228-40a7-b84a-ca80a9fb0770",
                             "name": "The requestor is not authorized",
                             "originalRequest": {
                                 "url": {
@@ -2411,11 +2389,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "1bd04ba5-8441-487b-9dcf-13aea7f46a6b",
+                            "id": "1057da1c-2182-4a55-85ef-89c581fb4730",
                             "name": "The requested resource is not found",
                             "originalRequest": {
                                 "url": {
@@ -2461,11 +2438,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "8d7618ec-6c51-4fb9-9d37-e8c3140528da",
+                            "id": "d62777f4-3409-436a-a861-504bb6921dcc",
                             "name": "The service encountered an unexpected condition that prevented it from fulfilling the request",
                             "originalRequest": {
                                 "url": {
@@ -2511,11 +2487,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "9be34d43-94aa-446d-ae17-57dfa1f3c835",
+                            "id": "721e1a39-341b-4e5e-8f41-292186df1b30",
                             "name": "service is temporarily unavailable",
                             "originalRequest": {
                                 "url": {
@@ -2561,8 +2536,7 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         }
                     ],
                     "event": [],
@@ -2574,7 +2548,7 @@
             "event": []
         },
         {
-            "id": "62aca3e1-4e1e-4831-a952-7ca984d7a741",
+            "id": "168a9ffc-450b-426a-b5b8-171930741ca6",
             "name": "Configurations",
             "description": {
                 "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nA web form configuration is a definition that you can use to create many instances. To create a web form configuration, use the [Web Forms Builder](https://support.docusign.com/s/document-item?language=en_US&bundleId=gmi1660583110357&topicId=gpc1660591510274.html). These methods enable you to get data about one or multiple web form configurations.",
@@ -2582,12 +2556,12 @@
             },
             "item": [
                 {
-                    "id": "64b3a088-135c-4ee7-9b5f-fe6ddb37313b",
+                    "id": "4720f25d-8939-4b30-8f80-281211629560",
                     "name": "Returns a list of web form configurations.",
                     "request": {
                         "name": "Returns a list of web form configurations.",
                         "description": {
-                            "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nThis method returns a list of web form configurations for a given account. Use the query parameters to sort and filter the response.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `webforms_read`.",
+                            "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nThis method returns a list of web form configurations for a given account. Use the query parameters to sort and filter the response.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `signature`, `webforms_read`.",
                             "type": "text/plain"
                         },
                         "url": {
@@ -2689,7 +2663,7 @@
                     },
                     "response": [
                         {
-                            "id": "b5ce94d5-b5e9-49e3-a60c-912ccfc51471",
+                            "id": "cbd5a66e-c33f-462b-abc6-3e9965f01563",
                             "name": "A list of forms assigned to the account",
                             "originalRequest": {
                                 "url": {
@@ -2794,12 +2768,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"accountId\": \"<uuid>\",\n      \"isPublished\": \"<boolean>\",\n      \"isEnabled\": \"<boolean>\",\n      \"isUploaded\": \"<boolean>\",\n      \"hasDraftChanges\": \"<boolean>\",\n      \"formState\": \"active\",\n      \"formProperties\": {\n        \"name\": \"<string>\",\n        \"isPrivateAccess\": \"<boolean>\"\n      },\n      \"formMetadata\": {\n        \"source\": \"templates\",\n        \"type\": \"standalone\",\n        \"sourceFormId\": \"<uuid>\",\n        \"owner\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"sender\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"formContentModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"formPropertiesModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastPublishedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastEnabledBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastDisabledBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"archivedDateTime\": \"<dateTime>\",\n        \"createdDateTime\": \"<dateTime>\",\n        \"lastModifiedDateTime\": \"<dateTime>\",\n        \"formContentModifiedDateTime\": \"<dateTime>\",\n        \"formPropertiesModifiedDateTime\": \"<dateTime>\",\n        \"lastPublishedDateTime\": \"<dateTime>\",\n        \"lastEnabledDateTime\": \"<dateTime>\",\n        \"lastDisabledDateTime\": \"<dateTime>\",\n        \"lastSenderConsentDateTime\": \"<dateTime>\",\n        \"publishedSlug\": \"<string>\",\n        \"publishedComponentNames\": {\n          \"consequat_\": \"Number\",\n          \"reprehenderit84\": \"Number\",\n          \"deseruntdf\": \"TextBox\"\n        }\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"accountId\": \"<uuid>\",\n      \"isPublished\": \"<boolean>\",\n      \"isEnabled\": \"<boolean>\",\n      \"isUploaded\": \"<boolean>\",\n      \"hasDraftChanges\": \"<boolean>\",\n      \"formState\": \"active\",\n      \"formProperties\": {\n        \"name\": \"<string>\",\n        \"isPrivateAccess\": \"<boolean>\"\n      },\n      \"formMetadata\": {\n        \"source\": \"templates\",\n        \"type\": \"hasEsignTemplate\",\n        \"sourceFormId\": \"<uuid>\",\n        \"owner\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"sender\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"formContentModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"formPropertiesModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastPublishedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastEnabledBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastDisabledBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"archivedDateTime\": \"<dateTime>\",\n        \"createdDateTime\": \"<dateTime>\",\n        \"lastModifiedDateTime\": \"<dateTime>\",\n        \"formContentModifiedDateTime\": \"<dateTime>\",\n        \"formPropertiesModifiedDateTime\": \"<dateTime>\",\n        \"lastPublishedDateTime\": \"<dateTime>\",\n        \"lastEnabledDateTime\": \"<dateTime>\",\n        \"lastDisabledDateTime\": \"<dateTime>\",\n        \"lastSenderConsentDateTime\": \"<dateTime>\",\n        \"publishedSlug\": \"<string>\",\n        \"publishedComponentNames\": {\n          \"est4_\": \"Number\"\n        }\n      }\n    }\n  ],\n  \"resultSetSize\": \"<number>\",\n  \"totalSetSize\": \"<number>\",\n  \"startPosition\": \"<number>\",\n  \"endPosition\": \"<number>\",\n  \"nextUrl\": \"<string>\",\n  \"previousUrl\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "body": "{\n  \"endPosition\": \"<number>\",\n  \"items\": [\n    {\n      \"accountId\": \"<uuid>\",\n      \"formMetadata\": {\n        \"archivedDateTime\": \"<dateTime>\",\n        \"createdDateTime\": \"<dateTime>\",\n        \"formContentModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"formContentModifiedDateTime\": \"<dateTime>\",\n        \"formPropertiesModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"formPropertiesModifiedDateTime\": \"<dateTime>\",\n        \"lastDisabledBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastDisabledDateTime\": \"<dateTime>\",\n        \"lastEnabledBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastEnabledDateTime\": \"<dateTime>\",\n        \"lastModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastModifiedDateTime\": \"<dateTime>\",\n        \"lastPublishedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastPublishedDateTime\": \"<dateTime>\",\n        \"lastSenderConsentDateTime\": \"<dateTime>\",\n        \"owner\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"publishedComponentNames\": {\n          \"tempor6\": \"CheckboxGroup\"\n        },\n        \"publishedSlug\": \"<string>\",\n        \"sender\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"source\": \"blank\",\n        \"sourceFormId\": \"<uuid>\",\n        \"type\": \"standalone\"\n      },\n      \"formProperties\": {\n        \"allowSending\": \"<boolean>\",\n        \"isPrivateAccess\": \"<boolean>\",\n        \"name\": \"<string>\"\n      },\n      \"formState\": \"active\",\n      \"hasDraftChanges\": \"<boolean>\",\n      \"id\": \"<uuid>\",\n      \"isEnabled\": \"<boolean>\",\n      \"isPublished\": \"<boolean>\",\n      \"isUploaded\": \"<boolean>\"\n    },\n    {\n      \"accountId\": \"<uuid>\",\n      \"formMetadata\": {\n        \"archivedDateTime\": \"<dateTime>\",\n        \"createdDateTime\": \"<dateTime>\",\n        \"formContentModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"formContentModifiedDateTime\": \"<dateTime>\",\n        \"formPropertiesModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"formPropertiesModifiedDateTime\": \"<dateTime>\",\n        \"lastDisabledBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastDisabledDateTime\": \"<dateTime>\",\n        \"lastEnabledBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastEnabledDateTime\": \"<dateTime>\",\n        \"lastModifiedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastModifiedDateTime\": \"<dateTime>\",\n        \"lastPublishedBy\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"lastPublishedDateTime\": \"<dateTime>\",\n        \"lastSenderConsentDateTime\": \"<dateTime>\",\n        \"owner\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"publishedComponentNames\": {\n          \"mollit3\": \"Number\",\n          \"ad_15\": \"Number\",\n          \"mollit_2\": \"Date\",\n          \"velit_391\": \"Number\",\n          \"occaecat9d\": \"Number\"\n        },\n        \"publishedSlug\": \"<string>\",\n        \"sender\": {\n          \"userId\": \"<uuid>\",\n          \"userName\": \"<string>\"\n        },\n        \"source\": \"form\",\n        \"sourceFormId\": \"<uuid>\",\n        \"type\": \"hasEsignTemplate\"\n      },\n      \"formProperties\": {\n        \"allowSending\": \"<boolean>\",\n        \"isPrivateAccess\": \"<boolean>\",\n        \"name\": \"<string>\"\n      },\n      \"formState\": \"draft\",\n      \"hasDraftChanges\": \"<boolean>\",\n      \"id\": \"<uuid>\",\n      \"isEnabled\": \"<boolean>\",\n      \"isPublished\": \"<boolean>\",\n      \"isUploaded\": \"<boolean>\"\n    }\n  ],\n  \"nextUrl\": \"<string>\",\n  \"previousUrl\": \"<string>\",\n  \"resultSetSize\": \"<number>\",\n  \"startPosition\": \"<number>\",\n  \"totalSetSize\": \"<number>\"\n}",
+                            "cookie": []
                         },
                         {
-                            "id": "f7e8d259-bc71-4aee-91a3-4a814c21d6c7",
+                            "id": "eecdf1e0-629a-4f83-b98b-309e48d2c30b",
                             "name": "The authentication information is either missing or invalid",
                             "originalRequest": {
                                 "url": {
@@ -2905,11 +2878,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "affa34f7-a6f8-492c-90cf-495277fa43d4",
+                            "id": "a87e50ba-10b6-4f0c-949b-c5f9850dfc6f",
                             "name": "The requestor is not authorized",
                             "originalRequest": {
                                 "url": {
@@ -3015,11 +2987,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "6fe7e456-7f96-4692-8b7a-253dedc2e373",
+                            "id": "7e59c840-b2aa-4106-8744-d56c88039d65",
                             "name": "The requested resource was not found",
                             "originalRequest": {
                                 "url": {
@@ -3125,11 +3096,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "0a42370b-90a9-4768-90b0-86c9dc69d388",
+                            "id": "9a5b0ac8-3106-4353-91a2-e544b7e891b4",
                             "name": "Internal server error",
                             "originalRequest": {
                                 "url": {
@@ -3235,8 +3205,7 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         }
                     ],
                     "event": [],
@@ -3245,12 +3214,12 @@
                     }
                 },
                 {
-                    "id": "4c098f54-2d5f-4f87-8842-343bcb99ca10",
+                    "id": "285e714b-897c-44c5-801d-e9f265b4b3b3",
                     "name": "Retrieves a web form configuration.",
                     "request": {
                         "name": "Retrieves a web form configuration.",
                         "description": {
-                            "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nRetrieves a web form configuration.\n\nIf you make changes to an active form configuration, the unchanged active version will also be maintained. The two versions will have the same `formId` but different `formState` values. Use the `state` query parameter to indicate which version to return.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `webforms_read`.",
+                            "content": "<ds-inlinemessage>The Web Forms API is available in all developer accounts, but only in certain production account plans. Contact \n[Docusign Support](https://support.docusign.com/s/?language=en_US) or your account manager to find out whether the Web Forms API is available for your production account plan.</ds-inlinemessage>\n\nRetrieves a web form configuration.\n\nIf you make changes to an active form configuration, the unchanged active version will also be maintained. The two versions will have the same `formId` but different `formState` values. Use the `state` query parameter to indicate which version to return.\n\n[Required authentication scopes](/docs/web-forms-api/plan-integration/authentication/): `signature`, `webforms_read`.",
                             "type": "text/plain"
                         },
                         "url": {
@@ -3309,7 +3278,7 @@
                     },
                     "response": [
                         {
-                            "id": "f2b1f120-a79a-492f-b195-01a7cc4c3176",
+                            "id": "10e746ee-3d30-460b-87fe-bfb4c46c9fb6",
                             "name": "Web Form that represents a single active version with metadata",
                             "originalRequest": {
                                 "url": {
@@ -3361,12 +3330,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"id\": \"<uuid>\",\n  \"accountId\": \"<uuid>\",\n  \"isPublished\": \"<boolean>\",\n  \"isEnabled\": \"<boolean>\",\n  \"isUploaded\": \"<boolean>\",\n  \"hasDraftChanges\": \"<boolean>\",\n  \"formState\": \"active\",\n  \"formProperties\": {\n    \"name\": \"<string>\",\n    \"isPrivateAccess\": \"<boolean>\"\n  },\n  \"formMetadata\": {\n    \"source\": \"blank\",\n    \"type\": \"standalone\",\n    \"sourceFormId\": \"<uuid>\",\n    \"owner\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"sender\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"formContentModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"formPropertiesModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastPublishedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastEnabledBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastDisabledBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"archivedDateTime\": \"<dateTime>\",\n    \"createdDateTime\": \"<dateTime>\",\n    \"lastModifiedDateTime\": \"<dateTime>\",\n    \"formContentModifiedDateTime\": \"<dateTime>\",\n    \"formPropertiesModifiedDateTime\": \"<dateTime>\",\n    \"lastPublishedDateTime\": \"<dateTime>\",\n    \"lastEnabledDateTime\": \"<dateTime>\",\n    \"lastDisabledDateTime\": \"<dateTime>\",\n    \"lastSenderConsentDateTime\": \"<dateTime>\",\n    \"publishedSlug\": \"<string>\",\n    \"publishedComponentNames\": {\n      \"enim_b\": \"RadioButtonGroup\"\n    }\n  },\n  \"versionId\": \"<integer>\",\n  \"formContent\": {\n    \"components\": {\n      \"magna_fc_\": {\n        \"componentKey\": \"<string>\",\n        \"componentType\": \"<string>\",\n        \"componentName\": \"<string>\"\n      },\n      \"Ut_ac6\": {\n        \"componentKey\": \"<string>\",\n        \"componentType\": \"<string>\",\n        \"componentName\": \"<string>\"\n      }\n    },\n    \"isStandalone\": \"<boolean>\",\n    \"brandId\": \"<uuid>\",\n    \"templates\": [\n      {\n        \"originalTemplateId\": \"<uuid>\",\n        \"clonedTemplateId\": \"<uuid>\",\n        \"importedDateTime\": \"<dateTime>\",\n        \"recipientIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"originalTemplateId\": \"<uuid>\",\n        \"clonedTemplateId\": \"<uuid>\",\n        \"importedDateTime\": \"<dateTime>\",\n        \"recipientIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  }\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "body": "{\n  \"accountId\": \"<uuid>\",\n  \"formMetadata\": {\n    \"archivedDateTime\": \"<dateTime>\",\n    \"createdDateTime\": \"<dateTime>\",\n    \"formContentModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"formContentModifiedDateTime\": \"<dateTime>\",\n    \"formPropertiesModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"formPropertiesModifiedDateTime\": \"<dateTime>\",\n    \"lastDisabledBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastDisabledDateTime\": \"<dateTime>\",\n    \"lastEnabledBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastEnabledDateTime\": \"<dateTime>\",\n    \"lastModifiedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastModifiedDateTime\": \"<dateTime>\",\n    \"lastPublishedBy\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"lastPublishedDateTime\": \"<dateTime>\",\n    \"lastSenderConsentDateTime\": \"<dateTime>\",\n    \"owner\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"publishedComponentNames\": {\n      \"minim_1a_\": \"RadioButtonGroup\",\n      \"ut_7d\": \"Select\",\n      \"incididunt080\": \"RadioButtonGroup\"\n    },\n    \"publishedSlug\": \"<string>\",\n    \"sender\": {\n      \"userId\": \"<uuid>\",\n      \"userName\": \"<string>\"\n    },\n    \"source\": \"blank\",\n    \"sourceFormId\": \"<uuid>\",\n    \"type\": \"standalone\"\n  },\n  \"formProperties\": {\n    \"allowSending\": \"<boolean>\",\n    \"isPrivateAccess\": \"<boolean>\",\n    \"name\": \"<string>\"\n  },\n  \"formState\": \"active\",\n  \"hasDraftChanges\": \"<boolean>\",\n  \"id\": \"<uuid>\",\n  \"isEnabled\": \"<boolean>\",\n  \"isPublished\": \"<boolean>\",\n  \"isUploaded\": \"<boolean>\",\n  \"versionId\": \"<integer>\",\n  \"formContent\": {\n    \"brandId\": \"<uuid>\",\n    \"components\": {\n      \"voluptate__\": {\n        \"componentKey\": \"<string>\",\n        \"componentType\": \"<string>\",\n        \"componentName\": \"<string>\"\n      },\n      \"commodoa5\": {\n        \"componentKey\": \"<string>\",\n        \"componentType\": \"<string>\",\n        \"componentName\": \"<string>\"\n      }\n    },\n    \"isStandalone\": \"<boolean>\",\n    \"templates\": [\n      {\n        \"clonedTemplateId\": \"<uuid>\",\n        \"importedDateTime\": \"<dateTime>\",\n        \"originalTemplateId\": \"<uuid>\",\n        \"recipientIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"clonedTemplateId\": \"<uuid>\",\n        \"importedDateTime\": \"<dateTime>\",\n        \"originalTemplateId\": \"<uuid>\",\n        \"recipientIds\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  }\n}",
+                            "cookie": []
                         },
                         {
-                            "id": "07920e33-ab3c-43ea-8965-9970edc28196",
+                            "id": "7b334ca5-83d6-440d-adba-fad4e2a10452",
                             "name": "The authentication information is either missing or invalid",
                             "originalRequest": {
                                 "url": {
@@ -3419,11 +3387,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "c20fc518-ccf2-4f9e-a582-4e124663d0d5",
+                            "id": "0ffbccbe-d645-4aaf-932e-2e58af9c6eea",
                             "name": "The requested resource was not found",
                             "originalRequest": {
                                 "url": {
@@ -3476,11 +3443,10 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         },
                         {
-                            "id": "0843a96f-01a7-44dc-80fe-e90721153a1e",
+                            "id": "79c1b235-5af4-424b-a45a-43bb348a1734",
                             "name": "Internal server error",
                             "originalRequest": {
                                 "url": {
@@ -3533,8 +3499,7 @@
                                 }
                             ],
                             "body": "{\n  \"errorCode\": \"<string>\",\n  \"message\": \"<string>\"\n}",
-                            "cookie": [],
-                            "_postman_previewlanguage": "json"
+                            "cookie": []
                         }
                     ],
                     "event": [],
@@ -3645,9 +3610,12 @@
         }
     ],
     "info": {
-        "_postman_id": "af23c314-08a6-4517-a4da-1be3b92b0634",
+        "_postman_id": "ec502fd1-5aad-49ec-b970-bf6bb0da362e",
         "name": "Web Forms API version 1.1",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-        "description": "The Web Forms API facilitates generating semantic HTML forms around everyday contracts.\n"
+        "description": {
+            "content": "The Web Forms API facilitates generating semantic HTML forms around everyday contracts.\n\n\nContact Support:\n Name: DocuSign Developer Center\n Email: devcenter@docusign.com",
+            "type": "text/plain"
+        }
     }
 }
