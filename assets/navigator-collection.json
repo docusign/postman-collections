@@ -1,10 +1,10 @@
 {
     "_": {
-        "postman_id": "d8ff96a9-03d1-48c4-8e78-3fa88377738f"
+        "postman_id": "075606ba-17a8-49ec-99bc-1016c5c81cfc"
     },
     "item": [
         {
-            "id": "b850effb-dc4c-4dfe-bd9a-2480cc7aa88d",
+            "id": "272022b9-f27e-4243-8999-448fb9a38f08",
             "name": "🔐 Quick Auth Setup → Then Run APIs",
             "description": {
                 "content": "This folder contains a curated set of requests for rapid Docusign integration. By configuring authentication at the folder level, you can execute all contained requests without manual per request setup. Successful execution of the authentication flows within this folder will populate the **Environment and Collection variables** ``{{​access_token}}`` and ``{{​refresh_token}}``.\n\nOnce these values are saved to your active environment, they will be globally available for all requests in this folder.\n\nEvery request in this folder is configured with auth type as **inherit auth from the parent**. To ensure seamless execution, the folder itself is set to the **Bearer Token** authorization type, using ``{{​access_token}}`` as the value.\n\n**Note**: When viewing the Folder's **Authorization** tab, ensure the **Token** field contains only the variable ``{{​access_token}}``. Do not include the word \"Bearer\" in the text box, as Postman automatically generates the correct ``Authorization: Bearer [token]`` header.\n\n## **Choose your Authentication Type**\n\nDocusign uses OAuth 2.0 to secure your API requests. Using OAuth, your app requests access and performs actions, such as requesting a signature, on behalf of one of your users.\n\nDocusign provides four scenarios for implementing OAuth:\n\n- [<b>Authenticate with the JWT Grant</b>](https://developers.docusign.com/platform/auth/jwt-get-token/)\n- [<b>Authenticate with the Confidential Authorization Code Grant</b>](https://developers.docusign.com/platform/auth/confidential-authcode-get-token/)\n- [<b>Authenticate with Public Authorization Code Grant</b>](https://developers.docusign.com/platform/auth/public-authcode-get-token/)\n- [<b>Authenticate with Implicit Code Grant</b>](https://developers.docusign.com/platform/auth/implicit/)\n\n| Flow | When to use | Human present? | Client secret? |\n|------|-------------|---------------|----------------|\n| **JWT (Service Integration)** | Server/daemon jobs acting on behalf of a user after one-time consent has been granted. | No (after consent) | No (requires privateKey) |\n| **Confidential Authorization Code Grant** | Server-side applications that can securely store a secret. Supports refresh_token. | Yes (initial sign-in) | Yes |\n| **Public Authorization Code Grant (PKCE)** | SPA, Mobile, or Desktop apps that cannot securely store a secret. | Yes (initial sign-in) | No (uses PKCE flow) |\n\n## Prerequisites\n\nBefore obtaining the access token, ensure the following environment or collection variables are configured in Postman.\n\n| Variable | Example Value | Description |\n|----------|---------------|-------------|\n| ``{{​authServer}}`` | Demo: https://account-d.docusign.com <br> Production: https://account.docusign.com | Authentication base URL. |\n| ``{{​redirectUri}}`` | http://localhost:8080/ | A redirect URI (callback URI) where Docusign sends users after authentication. |\n| ``{{​scope}}`` | signature extended | Permissions requested (e.g., signature, impersonation for JWT). See: https://developers.docusign.com/platform/auth/reference/scopes/ |\n| ``{{​integrationKey}}`` | Example: f8db556a-xxxx-4f30-xxxx-648ea46axxxx | Integration key identifying your app. Create one: https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key |\n| ``{{​clientSecret}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | Secret key for confidential integrations: https://developers.docusign.com/platform/configure-app/#secret-key |\n| ``{{​publicIntegrationKey}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | Public integration key used for PKCE flows. |\n| ``{{​userId}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | User GUID. Find it here: https://developers.docusign.com/platform/configure-app/#user-id |\n| ``{{​privateKey}}`` | -----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY----- | RSA private key for JWT flow: https://developers.docusign.com/platform/configure-app/#rsa-key-pair |\n\n## Steps to get token\n\n1. JWT (Service Integration)\n    \n    1. Open the **01 - JWT / Service Integration** folder.\n        \n    2. Execute the GET request of **01-1 – Construct Consent URL**.\n        \n    3. Open the returned **authorizeUrl** in a browser.\n        \n    4. Sign in and grant consent (must include **impersonation**).\n        \n    5. After consent is granted, you can close the browser.\n        \n    6. Run **01-2 - JWT Token (exchange)**\n        \n2. Confidential Auth Code\n    \n    1. Open the **02 – Authorization Code Grant (Confidential Client)** folder.\n        \n    2. Execute the GET request of **02-1 – Construct Authorization URL**.\n        \n    3. Open the returned **authorizeUrl** in a browser tab.\n        \n    4. Sign in and grant consent.\n        \n    5. Copy the **?code=** value from the URL and set it as ``{{​authCodeNoPkce}}``.\n        \n    6. Run **02-2 – Exchange Authorization Code for Tokens**.\n        \n3. Public Auth Code (PKCE)\n    \n    1. Open the **03 – Authorization Code Grant with PKCE (Public Client)** folder**.**\n        \n    2. Execute the GET request of **03-1 – Construct Authorization URL with PKCE**.\n        \n    3. Open the returned **authorizeUrl** in a browser tab.\n        \n    4. Sign in and grant consent.\n        \n    5. Copy the **?code=** value from the URL and set it as ``{{​authCodePkce}}``.\n        \n    6. Ensure the Origin parameter added in Apps and Keys page is set in headers of  **03-2 – Exchange Authorization Code for Tokens (PKCE)** and CORS is activated with all the HTTP operations. For further information, refer [Set the CORS configuration of your app.](https://developers.docusign.com/platform/configure-app/#cors-configuration)\n        \n    7. Run **03-2 – Exchange Authorization Code for Tokens (PKCE)**.\n        \n4. Execute 05 – User Info to verify your user details and base URI.\n    \n\n## Notes\n\n- If the access token has expired, execute 04 – Refresh Access Token using the refresh token. Default expiration is 8 hours (`expires_in` is in seconds).\n    \n- Moving to Production: Switch ``{{​authServer}}`` to [https://account.docusign.com](https://account.docusign.com) and re-consent. The base URI can be accessed by executing 05 – User Info.",
@@ -12,19 +12,19 @@
             },
             "item": [
                 {
-                    "id": "8655e0e7-e92c-4443-acbc-e215a24ae115",
+                    "id": "ae76e678-b4a4-4dbb-9f5b-9e6004da5e53",
                     "name": "01 - JWT / Service Integration",
                     "description": {
-                        "content": "This request demonstrates authentication using JSON Web Tokens (JWT) Grant for accessing APIs without user interaction.\n\n1. Before making the first call, an administrator or the target user must grant consent to your **Integration Key** (Client ID) to allow specific scopes.To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/).\n    \n2. Your server constructs and digitally signs a **JWT** using your **private key** and the user's ID.\n    \n3. The signed JWT is exchanged with the authorization server for a short-lived access token. This access token is then used in subsequent API calls.\n    \n\nThis workflow is ideal for background processes, scheduled tasks, and integrations that require impersonating a user without constant user interaction.\n\n**Variables**\n\nFor context around what JWT Grant authentication is, when you should use it, and its advantages and disadvantages, see [JSON Web Token (JWT) Grant](https://developers.docusign.com/platform/auth/jwt/).\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). | — |\n| ``{{​userId}}`` | ✅ | Find your [User ID](https://developers.docusign.com/platform/configure-app/#user-id) in the Apps and Keys page. | — |\n| ``{{​privateKey}}`` | ✅ | The **PEM formatted Private Key** used for RS256 signing the JWT. | — |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use https://account.docusign.com for Production). | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | `organization_read organization_write group_read user_read user_write account_read domain_read` |\n| ``{{​USE_CUSTOM_ASSERTION}}`` | Optional | `true` to use your own ``{{​jwt_assertion}}`` | `false` |",
+                        "content": "This request demonstrates authentication using JSON Web Tokens (JWT) Grant for accessing APIs without user interaction.\n\n1. Before making the first call, an administrator or the target user must grant consent to your **Integration Key** (Client ID) to allow specific scopes.To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/).\n    \n2. Your server constructs and digitally signs a **JWT** using your **private key** and the user's ID.\n    \n3. The signed JWT is exchanged with the authorization server for a short-lived access token. This access token is then used in subsequent API calls.\n    \n\nThis workflow is ideal for background processes, scheduled tasks, and integrations that require impersonating a user without constant user interaction.\n\n**Variables**\n\nFor context around what JWT Grant authentication is, when you should use it, and its advantages and disadvantages, see [JSON Web Token (JWT) Grant](https://developers.docusign.com/platform/auth/jwt/).\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). | — |\n| ``{{​userId}}`` | ✅ | Find your [User ID](https://developers.docusign.com/platform/configure-app/#user-id) in the Apps and Keys page. | — |\n| ``{{​privateKey}}`` | ✅ | The **PEM formatted Private Key** used for RS256 signing the JWT. | — |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use https://account.docusign.com for Production). | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``adm_store_unified_repo_read adm_store_unified_repo_write models_read document_uploader_read document_uploader_write public_dms_document_read`` |\n| ``{{​USE_CUSTOM_ASSERTION}}`` | Optional | `true` to use your own ``{{​jwt_assertion}}`` | `false` |",
                         "type": "text/plain"
                     },
                     "item": [
                         {
-                            "id": "0c591747-4614-4c6f-a3f1-92ae66387469",
-                            "name": "01-1 - Construct Consent URL (JWT)",
+                            "id": "2b1718eb-e5c6-4c52-bc54-bdeb74cc6ffb",
+                            "name": "03-1 - Construct Authorization URL with PKCE",
                             "request": {
                                 "description": {
-                                    "content": "## **Grant Consent for JWT (Impersonation)**\n\n1. Execute this helper request.\n    \n2. Open the returned authorizeUrl in a browser.\n    \n3. Sign in and grant consent (must include `impersonation`).\n    \n4. After consent is granted, you can close the browser.\n    \n5. Run **01-2 - JWT Token (exchange)**.",
+                                    "content": "This request generates the authorization URL required to start the OAuth 2.0 flow.\n\n## Get the Authorization Code\n\n1. Execute the GET request of _03-1 - Construct Authorization URL with PKCE_.\n    \n2. Open the returned _authorizeUrl_ and open in a browser tab.\n    \n3. Sign in, allow access and grant consent.\n    \n4. The browser will redirect to your redirectUri.\n    \n5. Copy the _code_ value from the resulting URL query string.\n    \n\nPaste the copied _code_ into a new or existing Environment or Collection Variable named ``{{​authCodePkce}}``.",
                                     "type": "text/plain"
                                 },
                                 "url": {
@@ -42,7 +42,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "23b206b8-4031-470b-be39-126390fffcea",
+                                        "id": "4449d8d8-d94c-4d60-aa77-250adeb03b22",
                                         "type": "text/javascript",
                                         "packages": {},
                                         "exec": [
@@ -74,7 +74,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "fa4febe7-f952-4d14-ab98-f0b318f0d3ee",
+                                        "id": "191fa618-4f20-4ab5-a747-d1a59f08b3da",
                                         "type": "text/javascript",
                                         "packages": {},
                                         "exec": [
@@ -91,11 +91,11 @@
                             ]
                         },
                         {
-                            "id": "2724db9a-e556-4868-af33-0b7f98f13977",
-                            "name": "01-2 - JWT Token (exchange)",
+                            "id": "1421407c-a2a4-4cc6-9a80-d84d9cb76006",
+                            "name": "04 - Refresh Access Token",
                             "request": {
                                 "description": {
-                                    "content": "Exchanges the signed JWT (``{{​jwt_assertion}}``) for an access token.\n\n**Two ways to supply the JWT assertion**\n1) **Auto-mint (default):** Set ``{{​integrationKey}}``, ``{{​userId}}``, ``{{​authServer}}``, and ``{{​privateKey}}``. The script mints a JWT and sets ``{{​jwt_assertion}}`` for you.\n2) **Custom assertion:** Set ``{{​USE_CUSTOM_ASSERTION}}`` to `true` **and** provide ``{{​jwt_assertion}}`` yourself (PEM not needed).\n\n**Output:** ``{{​access_token}}``. (JWT does **not** return a refresh token.)",
+                                    "content": "This request uses the long-lived refresh token to obtain a new access token, ensuring continuous API access without user re-authentication.\n\n1. Verify that the ``{{​refresh_token}}`` variable is populated from the previous \"Exchange Code for Tokens\" request.\n    \n2. Execute this request.\n    \n3. The response will contain a brand new _access_token_.\n    \n4. The test script should automatically extract and overwrite the old value of the ``{{​access_token}}`` variable with the new token.",
                                     "type": "text/plain"
                                 },
                                 "url": {
@@ -139,7 +139,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "b9ce0030-ce9c-4358-8666-e84eba60184b",
+                                        "id": "18737fff-5f76-41cb-b64f-572709626c08",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.environment.unset('jwt_error');",
@@ -170,7 +170,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "36cb1747-f405-4462-a72e-20f9a5ea53ed",
+                                        "id": "a0bb634d-2d12-47a9-9a1a-a44250565eed",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const err  = pm.environment.get('jwt_error');",
@@ -193,19 +193,19 @@
                     "event": []
                 },
                 {
-                    "id": "4f49bd6e-220d-435f-a74f-9264741d6c75",
+                    "id": "530d6248-0206-423c-94ec-62ceab2cc415",
                     "name": " 02 - Authorization Code Grant (Confidential Client)",
                     "description": {
-                        "content": "This folder implements the **Authorization Code Grant** flow. This process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nAuthorization Code Grant is a type of OAuth 2.0 flow used to obtain an access token. [Confidential Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#confidential-authorization-code-grant), which should be used by apps that can secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). |  |\n| ``{{​clientSecret}}`` | ✅ | The secret key identifies your integration app through a unique key. [Create a Secret Key](https://developers.docusign.com/platform/configure-app/#secret-key). |  |\n| ``{{​​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``adm_store_unified_repo_read models_read document_uploader_read document_uploader_write`` |\n| ``{{​authCodeNoPkce}}`` | ✅ (Only on exchange) | Paste the `?code` here (env or collection var) |  |",
+                        "content": "This folder implements the **Authorization Code Grant** flow. This process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nAuthorization Code Grant is a type of OAuth 2.0 flow used to obtain an access token. [Confidential Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#confidential-authorization-code-grant), which should be used by apps that can secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). |  |\n| ``{{​clientSecret}}`` | ✅ | The secret key identifies your integration app through a unique key. [Create a Secret Key](https://developers.docusign.com/platform/configure-app/#secret-key). |  |\n| ``{{​​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``adm_store_unified_repo_read adm_store_unified_repo_write models_read document_uploader_read document_uploader_write public_dms_document_read`` |\n| ``{{​authCodeNoPkce}}`` | ✅ (Only on exchange) | Paste the `?code` here (env or collection var) |  |",
                         "type": "text/plain"
                     },
                     "item": [
                         {
-                            "id": "e95b5cdb-a0db-47d8-8d1f-fb321f03d689",
-                            "name": "02-1 - Construct Authorization URL",
+                            "id": "2b1718eb-e5c6-4c52-bc54-bdeb74cc6ffb",
+                            "name": "03-1 - Construct Authorization URL with PKCE",
                             "request": {
                                 "description": {
-                                    "content": "## **Get the Authorization Code**\n\n1. Execute the GET request of 02-1 - Construct Authorization URL.\n    \n2. Open the returned authorizeUrl and open in a browser tab.\n    \n3. Sign in, allow access and grant consent.\n    \n4. The browser will redirect to your redirectUri.\n    \n5. Copy the code value from the resulting URL query string.\n    \n6. Paste the copied code into a new or existing Environment or Collection Variable named ``{{​authCodeNoPkce}}``.",
+                                    "content": "This request generates the authorization URL required to start the OAuth 2.0 flow.\n\n## Get the Authorization Code\n\n1. Execute the GET request of _03-1 - Construct Authorization URL with PKCE_.\n    \n2. Open the returned _authorizeUrl_ and open in a browser tab.\n    \n3. Sign in, allow access and grant consent.\n    \n4. The browser will redirect to your redirectUri.\n    \n5. Copy the _code_ value from the resulting URL query string.\n    \n\nPaste the copied _code_ into a new or existing Environment or Collection Variable named ``{{​authCodePkce}}``.",
                                     "type": "text/plain"
                                 },
                                 "url": {
@@ -223,7 +223,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "de57bce6-1ff7-4b6d-8c51-09a19d2649e0",
+                                        "id": "ad7eb7c9-03ec-4ce1-a94a-ac7c97404088",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const u = utils;",
@@ -253,7 +253,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "99706298-a631-426e-9947-98769b2214e5",
+                                        "id": "4f211d6d-c0ad-47e8-be60-d0736d126470",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -269,11 +269,11 @@
                             ]
                         },
                         {
-                            "id": "8b65bec3-b47c-48d8-bfcc-406927cf87bc",
-                            "name": "02-2 - Exchange Authorization Code for Tokens",
+                            "id": "1421407c-a2a4-4cc6-9a80-d84d9cb76006",
+                            "name": "04 - Refresh Access Token",
                             "request": {
                                 "description": {
-                                    "content": "## **Exchanging Code for Tokens**\n\nThis request exchanges the temporary Authorization Code for usable access and refresh tokens.\n\n1. Verify that your environment or collection variables for ``{{​integrationKey}}``, ``{{​clientSecret}}``, and ``{{​authCodeNoPkce}}`` are all populated with the correct values.\n    \n2. Execute this request.\n    \n3. Check the response body: The response will contain the `access_token` and `refresh_token`.\n    \n4. The Pre-request or test script automatically extracts the access_token and refresh_token and saves them as environment variables. This lets you use the Bearer Token authentication instead of manual UI logins for later API calls.",
+                                    "content": "This request uses the long-lived refresh token to obtain a new access token, ensuring continuous API access without user re-authentication.\n\n1. Verify that the ``{{​refresh_token}}`` variable is populated from the previous \"Exchange Code for Tokens\" request.\n    \n2. Execute this request.\n    \n3. The response will contain a brand new _access_token_.\n    \n4. The test script should automatically extract and overwrite the old value of the ``{{​access_token}}`` variable with the new token.",
                                     "type": "text/plain"
                                 },
                                 "url": {
@@ -325,7 +325,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "e0dfe13b-8107-418b-b508-22d9e3199e5f",
+                                        "id": "67ef9bc8-7f27-4969-af9a-18a2d0aee305",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -340,7 +340,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "7f19c781-b9b0-4283-be0a-ce173e04cce6",
+                                        "id": "1fdf4ed0-6d42-466f-9579-a59125bb2057",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -355,10 +355,10 @@
                     "event": []
                 },
                 {
-                    "id": "6d5b52bc-95b2-4556-9301-7cb017570861",
+                    "id": "e63ccd3b-f277-456c-be17-71a033b3e178",
                     "name": "03 - Authorization Code Grant with PKCE (Public Client)",
                     "description": {
-                        "content": "This folder implements the **Public Authorization Code Grant (with PKCE)** flow, which is the required OAuth 2.0 standard for public applications like Single Page Applications (SPAs) and mobile apps.\n\nThis process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nPublic Authorization Code Grant (with PKCE) is a type of OAuth 2.0 flow used to obtain an access token. [Public Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#public-authorization-code-grant), which does not require that your app secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​publicIntegrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). If absent, it falls back to ``{{​integrationKey}}``. |  |\n| ``{{​integrationKey}}`` | Fallback | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). |  |\n| ``{{​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``adm_store_unified_repo_read models_read document_uploader_read document_uploader_write`` |",
+                        "content": "This folder implements the **Public Authorization Code Grant (with PKCE)** flow, which is the required OAuth 2.0 standard for public applications like Single Page Applications (SPAs) and mobile apps.\n\nThis process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nPublic Authorization Code Grant (with PKCE) is a type of OAuth 2.0 flow used to obtain an access token. [Public Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#public-authorization-code-grant), which does not require that your app secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​publicIntegrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). If absent, it falls back to ``{{​integrationKey}}``. |  |\n| ``{{​integrationKey}}`` | Fallback | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). |  |\n| ``{{​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``adm_store_unified_repo_read adm_store_unified_repo_write models_read document_uploader_read document_uploader_write public_dms_document_read`` |",
                         "type": "text/plain"
                     },
                     "item": [
@@ -389,7 +389,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "02e8daf6-7ea8-474a-9f2e-49c84fa23e5f",
+                                        "id": "54e89a87-7ca5-4db1-9eb0-c98e212c6857",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const u = utils;",
@@ -418,7 +418,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "0c79f206-e792-4265-9b81-8feb9d369a1b",
+                                        "id": "d0b7fbf9-fb5f-4b4f-aa6c-70ceddbba996",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -434,11 +434,11 @@
                             ]
                         },
                         {
-                            "id": "3b25ac10-dff8-422f-b042-987fb5d1783a",
-                            "name": "03-2 - Exchange Authorization Code for Tokens (PKCE)",
+                            "id": "1421407c-a2a4-4cc6-9a80-d84d9cb76006",
+                            "name": "04 - Refresh Access Token",
                             "request": {
                                 "description": {
-                                    "content": "## Exchanging Code for Tokens\n\nThis request exchanges the temporary Authorization Code using PKCE for usable access and refresh tokens.\n\n1. Verify that your environment or collection variables for ``{{​integrationKey}}``, and ``{{​authCodeWithPkce}}`` and the automatically generated ``{{​code_verifier}}`` are all populated with the correct values.\n    \n2. Ensure the Origin parameter added in Apps and Keys page is set in headers of  _03-2 - Exchange Authorization Code for Tokens (PKCE)_ and CORS is activated with all the HTTP operations. For further information, refer [Set the CORS configuration of your app.](https://developers.docusign.com/platform/configure-app/#cors-configuration)\n    \n3. Execute this request.\n    \n4. Check the response body: The response will contain the _access_token_ and _refresh_token_.\n    \n5. The Pre-request or test script should automatically extract and set the ``{{​access_token}}`` and ``{{​refresh_token}}`` variables for use in subsequent API calls.",
+                                    "content": "This request uses the long-lived refresh token to obtain a new access token, ensuring continuous API access without user re-authentication.\n\n1. Verify that the ``{{​refresh_token}}`` variable is populated from the previous \"Exchange Code for Tokens\" request.\n    \n2. Execute this request.\n    \n3. The response will contain a brand new _access_token_.\n    \n4. The test script should automatically extract and overwrite the old value of the ``{{​access_token}}`` variable with the new token.",
                                     "type": "text/plain"
                                 },
                                 "url": {
@@ -494,7 +494,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "10f16cb5-f35b-453d-ba71-51c97182aa21",
+                                        "id": "480f0c06-d770-45b1-b4c3-cfb9138891e8",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -514,7 +514,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "f6f2804f-e806-4e09-ae4e-080e6755717b",
+                                        "id": "b915959c-cf1d-4e40-a424-005a0342591e",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -592,7 +592,7 @@
                         {
                             "listen": "test",
                             "script": {
-                                "id": "b22706f0-2310-4259-aaaa-646730b88787",
+                                "id": "2b53f9f5-baaa-4b60-a0df-bb35daf6f531",
                                 "type": "text/javascript",
                                 "exec": [
                                     "pm.test('Token refreshed', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -632,7 +632,7 @@
                         {
                             "listen": "test",
                             "script": {
-                                "id": "3b21ddfe-9662-480c-90af-f5e1719c4c28",
+                                "id": "f14b1495-6e97-4b90-a2c2-b4b07591bd80",
                                 "type": "text/javascript",
                                 "packages": {},
                                 "exec": [
@@ -655,7 +655,7 @@
                 {
                     "listen": "prerequest",
                     "script": {
-                        "id": "2937d4c1-2801-45ed-b619-89ab7a37ffa4",
+                        "id": "34db857f-664b-48e9-a5a8-75a56fc0ce20",
                         "type": "text/javascript",
                         "packages": {
                             "npm:jsrsasign@11.1.0": {
@@ -703,9 +703,9 @@
                             "    return isPlaceholder(v) ? v : encodeURIComponent(v);",
                             "  }",
                             "",
-                            "  /** getScope(pm): returns scope string (defaults to 'adm_store_unified_repo_read models_read document_uploader_read document_uploader_write') */",
+                            "  /** getScope(pm): returns scope string (defaults to 'adm_store_unified_repo_read adm_store_unified_repo_write models_read document_uploader_read document_uploader_write public_dms_document_read') */",
                             "  function getScope(pm_){",
-                            "    return getVar(pm_, 'scope', 'adm_store_unified_repo_read models_read document_uploader_read document_uploader_write');",
+                            "    return getVar(pm_, 'scope', 'adm_store_unified_repo_read adm_store_unified_repo_write models_read document_uploader_read document_uploader_write public_dms_document_read');",
                             "  }",
                             "",
                             "  /** deriveBaseHost(url): strips scheme or uses URL.host */",
@@ -796,7 +796,7 @@
                             "    const aud = deriveBaseHost(authServer);",
                             "    const now = Math.floor(Date.now()/1000);",
                             "    const head = { typ: 'JWT', alg: 'RS256' };",
-                            "    const body = { iss: integrationKey, sub: userId, aud, iat: now, exp: now + expSeconds, scope: scope || 'adm_store_unified_repo_read models_read document_uploader_read document_uploader_write' };",
+                            "    const body = { iss: integrationKey, sub: userId, aud, iat: now, exp: now + expSeconds, scope: scope || 'adm_store_unified_repo_read adm_store_unified_repo_write models_read document_uploader_read document_uploader_write public_dms_document_read' };",
                             "    const keyObj = KEYUTIL.getKey(privateKeyPem);",
                             "    return KJUR.jws.JWS.sign('RS256', JSON.stringify(head), JSON.stringify(body), keyObj);",
                             "  }",
@@ -854,7 +854,7 @@
             ]
         },
         {
-            "id": "2be21b2d-4afd-4f03-8247-fa6f7a3ec378",
+            "id": "c278a164-98bd-4678-b22c-7e3afe9dc535",
             "name": "BulkJob",
             "description": {
                 "content": "",
@@ -908,7 +908,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"e9lvBXfDboMhCXYh-u_pO\",\n    \"oNWhlM6KomzvXRqQziU36\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
+                            "raw": "{\n  \"expected_number_of_docs\": \"<integer>\",\n  \"agreement_set_ids\": [\n    \"-Ds0-Q8Nmd43djtJXK1jT\",\n    \"nrLnpfoNbILXoY9-ChU6p\"\n  ],\n  \"job_name\": \"<string>\",\n  \"language\": \"<string>\"\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -1935,7 +1935,7 @@
             "event": []
         },
         {
-            "id": "15da70aa-498f-457b-bfde-0a3aab3732f4",
+            "id": "c3b2377d-5116-42f1-9c77-b76f8908e660",
             "name": "Agreements",
             "description": {
                 "content": "",
@@ -4321,7 +4321,7 @@
         },
         {
             "type": "any",
-            "value": "adm_store_unified_repo_read models_read document_uploader_read document_uploader_write",
+            "value": "adm_store_unified_repo_read adm_store_unified_repo_write models_read document_uploader_read document_uploader_write public_dms_document_read",
             "key": "scope"
         },
         {
