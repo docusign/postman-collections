@@ -1,10 +1,10 @@
 {
     "_": {
-        "postman_id": "9761ce1c-5f9a-4bbe-ad84-8c77032ebe78"
+        "postman_id": "d18d3c6b-ae2e-4a8d-bbfe-241731b7e618"
     },
     "item": [
         {
-            "id": "ea1a5f0b-1231-4901-acf4-3276490fda82",
+            "id": "dd16895b-f262-4fd0-bd2f-059fd1ac11ee",
             "name": "🔐 Quick Auth Setup → Then Run APIs",
             "description": {
                 "content": "This folder contains a curated set of requests for rapid Docusign integration. By configuring authentication at the folder level, you can execute all contained requests without manual per request setup. Successful execution of the authentication flows within this folder will populate the **Environment and Collection variables** ``{{​access_token}}`` and ``{{​refresh_token}}``.\n\nOnce these values are saved to your active environment, they will be globally available for all requests in this folder.\n\nEvery request in this folder is configured with auth type as **inherit auth from the parent**. To ensure seamless execution, the folder itself is set to the **Bearer Token** authorization type, using ``{{​access_token}}`` as the value.\n\n**Note**: When viewing the Folder's **Authorization** tab, ensure the **Token** field contains only the variable ``{{​access_token}}``. Do not include the word \"Bearer\" in the text box, as Postman automatically generates the correct ``Authorization: Bearer [token]`` header.\n\n## **Choose your Authentication Type**\n\nDocusign uses OAuth 2.0 to secure your API requests. Using OAuth, your app requests access and performs actions, such as requesting a signature, on behalf of one of your users.\n\nDocusign provides four scenarios for implementing OAuth:\n\n- [<b>Authenticate with the JWT Grant</b>](https://developers.docusign.com/platform/auth/jwt-get-token/)\n- [<b>Authenticate with the Confidential Authorization Code Grant</b>](https://developers.docusign.com/platform/auth/confidential-authcode-get-token/)\n- [<b>Authenticate with Public Authorization Code Grant</b>](https://developers.docusign.com/platform/auth/public-authcode-get-token/)\n- [<b>Authenticate with Implicit Code Grant</b>](https://developers.docusign.com/platform/auth/implicit/)\n\n| Flow | When to use | Human present? | Client secret? |\n|------|-------------|---------------|----------------|\n| **JWT (Service Integration)** | Server/daemon jobs acting on behalf of a user after one-time consent has been granted. | No (after consent) | No (requires privateKey) |\n| **Confidential Authorization Code Grant** | Server-side applications that can securely store a secret. Supports refresh_token. | Yes (initial sign-in) | Yes |\n| **Public Authorization Code Grant (PKCE)** | SPA, Mobile, or Desktop apps that cannot securely store a secret. | Yes (initial sign-in) | No (uses PKCE flow) |\n\n## Prerequisites\n\nBefore obtaining the access token, ensure the following environment or collection variables are configured in Postman.\n\n| Variable | Example Value | Description |\n|----------|---------------|-------------|\n| ``{{​authServer}}`` | Demo: https://account-d.docusign.com <br> Production: https://account.docusign.com | Authentication base URL. |\n| ``{{​redirectUri}}`` | http://localhost:8080/ | A redirect URI (callback URI) where Docusign sends users after authentication. |\n| ``{{​origin}}`` | https://localhost:3000 | Origin URL for PKCE CORS requests. Must match an allowed origin in your Docusign [CORS configuration](https://developers.docusign.com/platform/configure-app/#cors-configuration). |\n| ``{{​scope}}`` | signature extended | Permissions requested (e.g., signature, impersonation for JWT). See: https://developers.docusign.com/platform/auth/reference/scopes/ |\n| ``{{​integrationKey}}`` | Example: f8db556a-xxxx-4f30-xxxx-648ea46axxxx | Integration key identifying your app (falls back to ``{{​IKey}}``). Create one: https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key |\n| ``{{​clientSecret}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | Secret key for confidential integrations (falls back to ``{{​ISec}}``): https://developers.docusign.com/platform/configure-app/#secret-key |\n| ``{{​publicIntegrationKey}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | Public integration key used for PKCE flows. Falls back to ``{{​integrationKey}}``/``{{​IKey}}``. |\n| ``{{​userId}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | User GUID. Find it here: https://developers.docusign.com/platform/configure-app/#user-id |\n| ``{{​privateKey}}`` | -----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY----- | RSA private key for JWT flow: https://developers.docusign.com/platform/configure-app/#rsa-key-pair |\n\n## Steps to get token\n\n1. JWT (Service Integration)\n    \n    1. Open the **01 - JWT / Service Integration** folder.\n        \n    2. Execute the GET request of **01-1 – Construct Consent URL**.\n        \n    3. Open the returned **authorizeUrl** in a browser.\n        \n    4. Sign in and grant consent (must include **impersonation**).\n        \n    5. After consent is granted, you can close the browser.\n        \n    6. Run **01-2 - JWT Token (exchange)**\n        \n2. Confidential Auth Code\n    \n    1. Open the **02 – Authorization Code Grant (Confidential Client)** folder.\n        \n    2. Execute the GET request of **02-1 – Construct Authorization URL**.\n        \n    3. Open the returned **authorizeUrl** in a browser tab.\n        \n    4. Sign in and grant consent.\n        \n    5. Copy the **?code=** value from the URL and set it as ``{{​authCodeNoPkce}}``.\n        \n    6. Run **02-2 – Exchange Authorization Code for Tokens**.\n        \n3. Public Auth Code (PKCE)\n    \n    1. Open the **03 – Authorization Code Grant with PKCE (Public Client)** folder**.**\n        \n    2. Execute the GET request of **03-1 – Construct Authorization URL with PKCE**.\n        \n    3. Open the returned **authorizeUrl** in a browser tab.\n        \n    4. Sign in and grant consent.\n        \n    5. Copy the **?code=** value from the URL and set it as ``{{​authCodePkce}}``.\n        \n    6. Ensure the Origin parameter added in Apps and Keys page is set in headers of  **03-2 – Exchange Authorization Code for Tokens (PKCE)** and CORS is activated with all the HTTP operations. For further information, refer [Set the CORS configuration of your app.](https://developers.docusign.com/platform/configure-app/#cors-configuration)\n        \n    7. Run **03-2 – Exchange Authorization Code for Tokens (PKCE)**.\n        \n4. Execute 05 – User Info to verify your user details and base URI.\n    \n\n## Notes\n\n- If the access token has expired, execute 04 – Refresh Access Token using the refresh token. Default expiration is 8 hours (`expires_in` is in seconds).\n    \n- Moving to Production: Switch ``{{​authServer}}`` to [https://account.docusign.com](https://account.docusign.com) and re-consent. The base URI can be accessed by executing 05 – User Info.",
@@ -12,7 +12,7 @@
             },
             "item": [
                 {
-                    "id": "d974ba88-b16d-4762-84d4-958433c0c592",
+                    "id": "608effb5-77a1-4de5-8499-1365f7915391",
                     "name": "01 - JWT / Service Integration",
                     "description": {
                         "content": "This request demonstrates authentication using JSON Web Tokens (JWT) Grant for accessing APIs without user interaction.\n\n1. Before making the first call, an administrator or the target user must grant consent to your **Integration Key** (Client ID) to allow specific scopes.To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/).\n    \n2. Your server constructs and digitally signs a **JWT** using your **private key** and the user's ID.\n    \n3. The signed JWT is exchanged with the authorization server for a short-lived access token. This access token is then used in subsequent API calls.\n    \n\nThis workflow is ideal for background processes, scheduled tasks, and integrations that require impersonating a user without constant user interaction.\n\n**Variables**\n\nFor context around what JWT Grant authentication is, when you should use it, and its advantages and disadvantages, see [JSON Web Token (JWT) Grant](https://developers.docusign.com/platform/auth/jwt/).\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). Falls back to ``{{​IKey}}``. | — |\n| ``{{​userId}}`` | ✅ | Find your [User ID](https://developers.docusign.com/platform/configure-app/#user-id) in the Apps and Keys page. | — |\n| ``{{​privateKey}}`` | ✅ | The **PEM formatted Private Key** used for RS256 signing the JWT. | — |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use https://account.docusign.com for Production). | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``organization_read organization_write group_read user_read user_write account_read domain_read`` |\n| ``{{​USE_CUSTOM_ASSERTION}}`` | Optional | `true` to use your own ``{{​jwt_assertion}}`` | `false` |",
@@ -20,7 +20,7 @@
                     },
                     "item": [
                         {
-                            "id": "ee72165b-4fda-4be1-8b2b-e3b38ad63b63",
+                            "id": "ff9576db-4303-435b-afc2-9446aafc7b77",
                             "name": "01-1 - Construct Consent URL (JWT)",
                             "request": {
                                 "description": {
@@ -42,7 +42,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "298299aa-9363-41f5-bdfe-2419ac711781",
+                                        "id": "3a2f2bce-8c6b-4f2c-939a-304c302d3779",
                                         "type": "text/javascript",
                                         "packages": {},
                                         "exec": [
@@ -74,7 +74,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "47ca334e-b30b-48f8-b55a-a063eae092d5",
+                                        "id": "569d0d1d-7aae-475c-af7b-79c5e131d58c",
                                         "type": "text/javascript",
                                         "packages": {},
                                         "exec": [
@@ -91,7 +91,7 @@
                             ]
                         },
                         {
-                            "id": "2a994019-aa74-4e53-aef7-dc915cde8083",
+                            "id": "527601d9-4fa7-442a-83be-902a3300b422",
                             "name": "01-2 - JWT Token (exchange)",
                             "request": {
                                 "description": {
@@ -139,7 +139,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "d1b87391-98eb-45d6-8d7f-3b0fb0ec08a5",
+                                        "id": "5faba3b9-ab0e-4fbf-9b76-6149acc231fe",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.environment.unset('jwt_error');",
@@ -170,7 +170,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "37add0d7-6660-4897-8053-20da37963d03",
+                                        "id": "675ca625-e7ac-4f10-b0cf-fa0178b18029",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const err  = pm.environment.get('jwt_error');",
@@ -193,7 +193,7 @@
                     "event": []
                 },
                 {
-                    "id": "10b6fa1f-6a1d-4487-94d1-5014a9730746",
+                    "id": "51e4904d-d2bb-4caa-a76d-4e9076dbebc8",
                     "name": " 02 - Authorization Code Grant (Confidential Client)",
                     "description": {
                         "content": "This folder implements the **Authorization Code Grant** flow. This process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nAuthorization Code Grant is a type of OAuth 2.0 flow used to obtain an access token. [Confidential Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#confidential-authorization-code-grant), which should be used by apps that can secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). Falls back to ``{{​IKey}}``. |  |\n| ``{{​clientSecret}}`` | ✅ | The secret key identifies your integration app through a unique key. [Create a Secret Key](https://developers.docusign.com/platform/configure-app/#secret-key). Falls back to ``{{​ISec}}``. |  |\n| ``{{​​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``organization_read organization_write group_read user_read user_write account_read domain_read`` |\n| ``{{​authCodeNoPkce}}`` | ✅ (Only on exchange) | Paste the `?code` here (env or collection var) |  |",
@@ -201,7 +201,7 @@
                     },
                     "item": [
                         {
-                            "id": "37e19f46-270d-4e15-afa1-fa4a8ebebf4d",
+                            "id": "b46351c9-d311-46b0-ae96-cbf80589e4a1",
                             "name": "02-1 - Construct Authorization URL",
                             "request": {
                                 "description": {
@@ -223,7 +223,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "f3f42278-867a-41c4-abaf-7a84eb532a38",
+                                        "id": "5f193685-a56e-447c-9e73-bd3649f845a0",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const u = utils;",
@@ -253,7 +253,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "057abf36-0638-4c98-9e73-79e9f25ec233",
+                                        "id": "b9c7f5b0-a2b3-46f1-94a5-40a2e44d5358",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -269,7 +269,7 @@
                             ]
                         },
                         {
-                            "id": "845bc9cf-86a8-4622-a285-ae36e1dfa498",
+                            "id": "0bc8587f-d9a5-417b-96a2-56e12bac3dff",
                             "name": "02-2 - Exchange Authorization Code for Tokens",
                             "request": {
                                 "description": {
@@ -325,7 +325,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "e77b61e2-93ad-49ff-9089-33ab6e7cece0",
+                                        "id": "59975ac4-dfa4-4552-b29f-b3b883c11351",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -343,7 +343,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "bcce211b-afcd-4ddf-bb7b-fefd8a502f81",
+                                        "id": "16b871eb-20b3-49a8-86ce-50739f5fa6db",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -358,7 +358,7 @@
                     "event": []
                 },
                 {
-                    "id": "13581ff2-165b-4c19-aa64-5446762f244c",
+                    "id": "ee27efe1-192d-4321-b642-43e49c209b69",
                     "name": "03 - Authorization Code Grant with PKCE (Public Client)",
                     "description": {
                         "content": "This folder implements the **Public Authorization Code Grant (with PKCE)** flow, which is the required OAuth 2.0 standard for public applications like Single Page Applications (SPAs) and mobile apps.\n\nThis process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nPublic Authorization Code Grant (with PKCE) is a type of OAuth 2.0 flow used to obtain an access token. [Public Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#public-authorization-code-grant), which does not require that your app secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​publicIntegrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). If absent, it falls back to ``{{​integrationKey}}``. |  |\n| ``{{​integrationKey}}`` | Fallback | An integration key identifies your integration and links to its configuration values. Falls back to ``{{​IKey}}``. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). |  |\n| ``{{​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​origin}}`` | ✅ (Only on exchange) | The Origin URL registered in your Docusign App CORS configuration. Must match an allowed origin in Apps and Keys. See [Set the CORS configuration of your app.](https://developers.docusign.com/platform/configure-app/#cors-configuration) |  |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``organization_read organization_write group_read user_read user_write account_read domain_read`` |",
@@ -366,7 +366,7 @@
                     },
                     "item": [
                         {
-                            "id": "d60560d8-32f6-4014-9554-51db7cfc8ada",
+                            "id": "651474c2-68a3-4a44-9707-ef53780dc2ec",
                             "name": "03-1 - Construct Authorization URL with PKCE",
                             "request": {
                                 "description": {
@@ -392,7 +392,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "2b6582fc-316d-4364-a4ce-0a3d7220728d",
+                                        "id": "7ac31262-3f44-47b7-b6ce-43a493ad03dc",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const u = utils;",
@@ -422,7 +422,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "6b1b3d19-cc6f-4f5c-b6e8-bc37da08c7b9",
+                                        "id": "8b00d7bf-9210-4c4b-8f67-e50cdf6d61e5",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -438,7 +438,7 @@
                             ]
                         },
                         {
-                            "id": "ae95c491-77f4-435d-ba84-f0bfb7b79767",
+                            "id": "ab8699bc-41d8-42ba-8aa1-ef4ffc568608",
                             "name": "03-2 - Exchange Authorization Code for Tokens (PKCE)",
                             "request": {
                                 "description": {
@@ -498,7 +498,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "06b8f031-26ee-42bd-b8a1-98dc50baaff8",
+                                        "id": "28d2bf1b-d67f-428d-8f64-66f98461904e",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -522,7 +522,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "54f32f28-712f-43b6-a723-d950591fa52e",
+                                        "id": "09b72a58-8e97-4cc9-912f-becf07af5ebe",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -537,7 +537,7 @@
                     "event": []
                 },
                 {
-                    "id": "68a0dec5-34de-4117-be17-d85ef4aa8e4c",
+                    "id": "c845a7e1-df50-4176-88be-67190818214f",
                     "name": "04 - Refresh Access Token",
                     "request": {
                         "description": {
@@ -600,7 +600,7 @@
                         {
                             "listen": "prerequest",
                             "script": {
-                                "id": "d0954b04-a78e-4511-a507-4f7e2b5d270c",
+                                "id": "55fd46cf-5b2f-4d43-9cd8-01cf24924cbe",
                                 "type": "text/javascript",
                                 "exec": [
                                     "// Resolve IKey/ISec fallback for body/auth templates",
@@ -612,7 +612,7 @@
                         {
                             "listen": "test",
                             "script": {
-                                "id": "dade9b54-3658-4642-b47b-9b4727288804",
+                                "id": "b296b936-7baa-4038-a4fe-11fd343309cd",
                                 "type": "text/javascript",
                                 "exec": [
                                     "pm.test('Token refreshed', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -627,7 +627,7 @@
                     ]
                 },
                 {
-                    "id": "2caaa272-9692-4eb7-bccd-26dd24035b39",
+                    "id": "89164098-c461-4e70-b15e-0703cbcc7447",
                     "name": "05 - User Info",
                     "request": {
                         "description": {
@@ -652,7 +652,7 @@
                         {
                             "listen": "test",
                             "script": {
-                                "id": "1c048407-55f6-4be6-8aeb-845493e4577c",
+                                "id": "6a9917c0-f073-4304-8ba2-3f87cab7044a",
                                 "type": "text/javascript",
                                 "packages": {},
                                 "exec": [
@@ -675,7 +675,7 @@
                 {
                     "listen": "prerequest",
                     "script": {
-                        "id": "5ede7eca-e793-4db8-988f-595ba96a3d98",
+                        "id": "761586fc-06dc-43db-9b9c-fe17a7953b1f",
                         "type": "text/javascript",
                         "packages": {
                             "npm:jsrsasign@11.1.0": {
@@ -879,7 +879,7 @@
             ]
         },
         {
-            "id": "cafbfbda-920c-48ff-ab6c-1c56daabc1db",
+            "id": "ec82e219-ce31-44a6-a89b-061abe8537f0",
             "name": "IdentityProviders",
             "description": {
                 "content": "Methods to get a list of identity providers.",
@@ -978,7 +978,7 @@
             "event": []
         },
         {
-            "id": "c49e3c4a-20c1-4499-9de4-f56940d7190d",
+            "id": "5c3e253e-89df-4100-9377-7e0f528a04df",
             "name": "ReservedDomains",
             "description": {
                 "content": "Methods to get a list of reserved domains.",
@@ -1077,7 +1077,7 @@
             "event": []
         },
         {
-            "id": "81f54938-e655-49ac-987a-7fabb6d31b9a",
+            "id": "865a6eb3-ad58-49fc-ace2-1d802cab1eb4",
             "name": "Users",
             "description": {
                 "content": "Methods to manage users in an account.",
@@ -1502,7 +1502,7 @@
             "event": []
         },
         {
-            "id": "d696dc07-88e3-4c31-b10a-369113574b2e",
+            "id": "57322033-1bdb-4453-8d25-05c28b37331e",
             "name": "eSignUserManagement",
             "description": {
                 "content": "Methods to manage eSignature users in an account.",
@@ -2648,7 +2648,7 @@
             "event": []
         },
         {
-            "id": "98c9ecc6-3032-48d0-a452-b94da2828ff3",
+            "id": "679523a4-4143-4851-9df2-a877e81fae37",
             "name": "MultiProductUserManagement",
             "description": {
                 "content": "Methods to manage multi-product users in an account.",
@@ -4687,7 +4687,7 @@
             "event": []
         },
         {
-            "id": "1b7df127-5c5f-4336-a0ae-9a07cc81415b",
+            "id": "26e507eb-b33b-4914-bd5f-bad005ed1b73",
             "name": "UserExport",
             "description": {
                 "content": "Methods for exporting a user list.",
@@ -5105,7 +5105,7 @@
             "event": []
         },
         {
-            "id": "7be01382-3a5e-44c6-8a2e-25830d4395ee",
+            "id": "032eeb98-2c00-44d5-add4-27d008c613cd",
             "name": "AccountSettingsExport",
             "description": {
                 "content": "Methods and objects to get account information.",
@@ -5523,7 +5523,7 @@
             "event": []
         },
         {
-            "id": "3ebd5e0c-cb95-4367-94e3-4dfadc30e742",
+            "id": "a3050ac0-bfbf-47f8-814f-44e17193d4ce",
             "name": "UserImport",
             "description": {
                 "content": "Methods to import users.\n\nTo ensure your CSV is properly formatted, use the\n[Sample Bulk Add CSV file](https://admin.docusign.com/static-resources/organization-user-import.csv)\n as a template.\n\nYou can add up to 2,000 users to an account and include up to 50 accounts per import. The maximum number of users per import is 8,000.",
@@ -6393,7 +6393,7 @@
             "event": []
         },
         {
-            "id": "eeff4d46-cb0a-457e-a04b-3b648fcb8230",
+            "id": "7dc97657-1d7b-44fa-b985-5c4ab6354992",
             "name": "Organization",
             "description": {
                 "content": "Methods for working with organizations.",
@@ -6499,7 +6499,7 @@
             "event": []
         },
         {
-            "id": "b6a75ff2-05d8-4989-93a0-bf2c307fb932",
+            "id": "35d61092-b635-4569-af15-241304e12e6c",
             "name": "AccountSettingsImport",
             "description": {
                 "content": "Methods and objects to update account settings.",
@@ -6923,7 +6923,7 @@
             "event": []
         },
         {
-            "id": "817f8b92-ec1e-4669-be8a-1232da5b3d42",
+            "id": "da6b8029-3117-4e55-a0e4-e6f8157d6d5b",
             "name": "SingleAccountUserImport",
             "description": {
                 "content": "Methods to import users.",
@@ -7208,7 +7208,7 @@
             "event": []
         },
         {
-            "id": "80783c4f-a97f-438b-8033-641253e59977",
+            "id": "4f7094f9-4a03-4ee9-aede-2d8b08b90498",
             "name": "DataDeletion",
             "description": {
                 "content": "Methods to delete user data. After a user is closed, an account or organization administrator can use these methods to delete the user's account data.\n\n### Next steps\n* Learn [how to delete user data from an account as an account administrator](/docs/admin-api/how-to/account-admin-delete-user-data/).\n* Learn [how to delete user data from multiple accounts as an organization administrator](/docs/admin-api/how-to/org-admin-delete-user-data/).",
@@ -7453,7 +7453,7 @@
             "event": []
         },
         {
-            "id": "dc7947b6-8f0c-436c-97ff-1d4518b0e59d",
+            "id": "4e890f7a-47fb-4e7f-b5c1-0f66fc0aa5da",
             "name": "AccountCloning",
             "description": {
                 "content": "Methods to clone accounts.",
@@ -7617,7 +7617,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"sourceAccount\": {\n    \"id\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"admin\": {\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"ko\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  },\n  \"cloneProcessingFailureDetails\": {}\n}",
+                            "raw": "{\n  \"sourceAccount\": {\n    \"id\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"admin\": {\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"zh_cn\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  },\n  \"cloneProcessingFailureDetails\": {}\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -7949,7 +7949,7 @@
             "event": []
         },
         {
-            "id": "104a9742-d70d-455e-9dbf-48fdd697dcad",
+            "id": "af72b3db-888c-43c1-a2d7-f1385bd39049",
             "name": "AccountCreation",
             "description": {
                 "content": "Methods to create accounts.",
@@ -8091,7 +8091,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"subscriptionDetails\": {\n    \"id\": \"<string>\",\n    \"modules\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"planId\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"address\": {\n      \"country\": \"<string>\",\n      \"fax\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"region\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_address_2\": \"<string>\"\n    },\n    \"admin\": {\n      \"address\": {\n        \"country\": \"<string>\",\n        \"fax\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\"\n      },\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"None\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  }\n}",
+                            "raw": "{\n  \"subscriptionDetails\": {\n    \"id\": \"<string>\",\n    \"modules\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"planId\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"address\": {\n      \"country\": \"<string>\",\n      \"fax\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"region\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_address_2\": \"<string>\"\n    },\n    \"admin\": {\n      \"address\": {\n        \"country\": \"<string>\",\n        \"fax\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\"\n      },\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"fr\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  }\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -8421,7 +8421,7 @@
             "event": []
         },
         {
-            "id": "3f02ed5f-5ea4-4471-825b-512a30e68b83",
+            "id": "c9dadfe7-fb4b-4b1b-9796-6af354465978",
             "name": "Connect",
             "description": {
                 "content": "",
@@ -8429,7 +8429,7 @@
             },
             "item": [
                 {
-                    "id": "de48ae36-8177-40af-9fbf-8d2483f61503",
+                    "id": "2ba346cb-1a0f-4497-bc16-30799743e040",
                     "name": "Returns the definitions of each an Organization-Level Connect configuration for an organization.",
                     "request": {
                         "name": "Returns the definitions of each an Organization-Level Connect configuration for an organization.",
@@ -8516,7 +8516,7 @@
                     },
                     "response": [
                         {
-                            "id": "c7346d8d-d8bb-47e6-95f6-a4f147016e8a",
+                            "id": "c83c5e1f-234f-4b65-a60f-ca8d03506f0c",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -8605,7 +8605,7 @@
                     }
                 },
                 {
-                    "id": "b89c0eaf-ad3d-4fe3-8e4e-b0c73c68f010",
+                    "id": "bb935a22-ce57-423f-b7d0-87e771a07f51",
                     "name": "Adds a Connect configuration for an organization",
                     "request": {
                         "name": "Adds a Connect configuration for an organization",
@@ -8659,7 +8659,7 @@
                     },
                     "response": [
                         {
-                            "id": "9c2443d4-bbb0-441f-a211-d0f4faa42193",
+                            "id": "b39136d0-bb99-445f-a777-a03656f69372",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -8715,7 +8715,7 @@
                     }
                 },
                 {
-                    "id": "942cd10e-399b-4481-9121-2567062045f3",
+                    "id": "39578bbb-a9aa-4d87-8c18-82eecd0e156e",
                     "name": "Returns an Organization-Level Connect configuration",
                     "request": {
                         "name": "Returns an Organization-Level Connect configuration",
@@ -8765,7 +8765,7 @@
                     },
                     "response": [
                         {
-                            "id": "00964215-6468-4840-9c59-3b067275b498",
+                            "id": "932a412f-f67d-44d9-88f1-03dfae39b2d7",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -8809,7 +8809,7 @@
                     }
                 },
                 {
-                    "id": "3962dfe9-b6a2-49be-8bb2-948a782b2635",
+                    "id": "0f0b21ed-7bc4-4492-8112-5cdb3287fab4",
                     "name": "Deletes information about an Organization-Level Connect configuration",
                     "request": {
                         "name": "Deletes information about an Organization-Level Connect configuration",
@@ -8859,7 +8859,7 @@
                     },
                     "response": [
                         {
-                            "id": "2d8d13c3-19ff-4cea-89b0-48b1ef50c124",
+                            "id": "72516c7c-65a7-4b3e-bc23-1fecff52bd6e",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -8903,7 +8903,7 @@
                     }
                 },
                 {
-                    "id": "19bb9d2c-9bfe-45ec-a680-d23507626cfd",
+                    "id": "e429c6ce-5bef-44e8-9831-3d1dee00ba40",
                     "name": "Updates an Organization-Level Connect configuration.",
                     "request": {
                         "name": "Updates an Organization-Level Connect configuration.",
@@ -8966,7 +8966,7 @@
                     },
                     "response": [
                         {
-                            "id": "2b671cca-6b05-4385-a715-5785687df7b1",
+                            "id": "7332f532-8fbc-4e5e-8f73-1e469a869ea3",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -9023,7 +9023,7 @@
                     }
                 },
                 {
-                    "id": "9b2cd137-df01-40a5-b3eb-be33717d3090",
+                    "id": "a628ae4d-8f24-4876-bc28-05639e2ededf",
                     "name": "Deletes an Organization-Level Connect OAuth configuration",
                     "request": {
                         "name": "Deletes an Organization-Level Connect OAuth configuration",
@@ -9065,7 +9065,7 @@
                     },
                     "response": [
                         {
-                            "id": "daab6319-9f48-483a-a2f1-ee0127aaffb1",
+                            "id": "401d22f3-0c5a-4fa1-aedc-8c60f2e38738",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -9109,7 +9109,7 @@
                     }
                 },
                 {
-                    "id": "56c960ba-f85e-4972-bcaf-552f233ea341",
+                    "id": "362362dc-3f71-4118-a592-e82c38f9b5f4",
                     "name": "Returns information about an Organization-Level Connect OAuth configuration",
                     "request": {
                         "name": "Returns information about an Organization-Level Connect OAuth configuration",
@@ -9151,7 +9151,7 @@
                     },
                     "response": [
                         {
-                            "id": "53e8b034-649d-4f30-903a-33c01836e631",
+                            "id": "22d27fbe-650a-4eee-a3ad-3fca7f060fb2",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -9195,7 +9195,7 @@
                     }
                 },
                 {
-                    "id": "39b9d23e-42a1-4829-adb5-7b57de5ca728",
+                    "id": "cf568438-f513-4082-9f5d-05a56bf03cbd",
                     "name": "Creates a new OAuth for Docusign Connect configuration for an organization.",
                     "request": {
                         "name": "Creates a new OAuth for Docusign Connect configuration for an organization.",
@@ -9239,7 +9239,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"et_c\": \"<string>\",\n    \"deserunt_f\": \"<string>\",\n    \"mollit2d1\": \"<string>\",\n    \"non65\": \"<string>\",\n    \"magnab7\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
+                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"dolor_9c\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -9250,7 +9250,7 @@
                     },
                     "response": [
                         {
-                            "id": "9fce9897-75c2-4f40-bdf0-8d5f9faf6f5d",
+                            "id": "c19c7452-6f04-4dca-8da9-abf1238b5cc1",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -9280,7 +9280,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"et_c\": \"<string>\",\n    \"deserunt_f\": \"<string>\",\n    \"mollit2d1\": \"<string>\",\n    \"non65\": \"<string>\",\n    \"magnab7\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
+                                    "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"dolor_9c\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -9297,7 +9297,7 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"et_c\": \"<string>\",\n    \"deserunt_f\": \"<string>\",\n    \"mollit2d1\": \"<string>\",\n    \"non65\": \"<string>\",\n    \"magnab7\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
+                            "body": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"dolor_9c\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
                             "cookie": []
                         }
                     ],
@@ -9307,7 +9307,7 @@
                     }
                 },
                 {
-                    "id": "7117eb12-6272-4566-8762-fad760e4a7bb",
+                    "id": "ebcd35db-8fc0-4dd9-b28b-ea9ee32d84a9",
                     "name": "Updates information about an Organization-Level Connect OAuth configuration",
                     "request": {
                         "name": "Updates information about an Organization-Level Connect OAuth configuration",
@@ -9351,7 +9351,7 @@
                         "method": "PUT",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"et_c\": \"<string>\",\n    \"deserunt_f\": \"<string>\",\n    \"mollit2d1\": \"<string>\",\n    \"non65\": \"<string>\",\n    \"magnab7\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
+                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"dolor_9c\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -9362,7 +9362,7 @@
                     },
                     "response": [
                         {
-                            "id": "1785b99c-d235-4f3b-8f1c-b9a0164c6af3",
+                            "id": "a0750873-931f-4049-b739-5639eb09eb42",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -9392,7 +9392,7 @@
                                 "method": "PUT",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"et_c\": \"<string>\",\n    \"deserunt_f\": \"<string>\",\n    \"mollit2d1\": \"<string>\",\n    \"non65\": \"<string>\",\n    \"magnab7\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
+                                    "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"dolor_9c\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -9409,7 +9409,7 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"et_c\": \"<string>\",\n    \"deserunt_f\": \"<string>\",\n    \"mollit2d1\": \"<string>\",\n    \"non65\": \"<string>\",\n    \"magnab7\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
+                            "body": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"dolor_9c\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
                             "cookie": []
                         }
                     ],
@@ -9419,7 +9419,7 @@
                     }
                 },
                 {
-                    "id": "a010de5a-f97e-4cd1-b04b-0efea187a60e",
+                    "id": "5e8e9db7-39c9-41d7-b8d9-438c0eb86f27",
                     "name": "Returns a list of the HMAC secrets for an organization.",
                     "request": {
                         "name": "Returns a list of the HMAC secrets for an organization.",
@@ -9461,7 +9461,7 @@
                     },
                     "response": [
                         {
-                            "id": "8e6fd0bc-e938-4ee5-9479-495256f2f764",
+                            "id": "2014004f-acab-4d90-9850-0715453b0810",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -9505,7 +9505,7 @@
                     }
                 },
                 {
-                    "id": "72653439-6143-4d22-9b01-47f34338a09b",
+                    "id": "0f5367d7-61c7-4c70-bb06-9f8e60223b83",
                     "name": "Creates a new Connect HMAC secret for an organization.",
                     "request": {
                         "name": "Creates a new Connect HMAC secret for an organization.",
@@ -9547,7 +9547,7 @@
                     },
                     "response": [
                         {
-                            "id": "d28a29d1-75b3-4fa2-ad7a-3621532a0293",
+                            "id": "ddd05041-2b46-4c6e-8a9a-60addcb18643",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -9591,7 +9591,7 @@
                     }
                 },
                 {
-                    "id": "ec3713e0-467c-4c03-90a9-e5ba1e2dddd0",
+                    "id": "9cb56a1f-6263-4a6a-8e94-524b4cf9da33",
                     "name": "Deletes the existing HMAC secret for an Organization-Level Connect configuration.",
                     "request": {
                         "name": "Deletes the existing HMAC secret for an Organization-Level Connect configuration.",
@@ -9642,7 +9642,7 @@
                     },
                     "response": [
                         {
-                            "id": "7d09d51c-949c-4070-a2e1-b0e4d744f3b6",
+                            "id": "06ac1c87-4c8f-4ce1-ba65-18bed76adaf5",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
