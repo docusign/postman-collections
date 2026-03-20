@@ -1,6 +1,6 @@
 {
     "_": {
-        "postman_id": "d18d3c6b-ae2e-4a8d-bbfe-241731b7e618"
+        "postman_id": "730c0e95-e7d9-412d-bd87-c0b8c8dde121"
     },
     "item": [
         {
@@ -42,7 +42,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "3a2f2bce-8c6b-4f2c-939a-304c302d3779",
+                                        "id": "e8a72d82-1d15-4613-9c2f-c0f6a0940c30",
                                         "type": "text/javascript",
                                         "packages": {},
                                         "exec": [
@@ -74,7 +74,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "569d0d1d-7aae-475c-af7b-79c5e131d58c",
+                                        "id": "50e66726-9a37-41bc-8bcc-03411cbf2c6d",
                                         "type": "text/javascript",
                                         "packages": {},
                                         "exec": [
@@ -139,7 +139,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "5faba3b9-ab0e-4fbf-9b76-6149acc231fe",
+                                        "id": "bd0fbb93-b2d4-4092-849c-b9e23e216263",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.environment.unset('jwt_error');",
@@ -170,7 +170,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "675ca625-e7ac-4f10-b0cf-fa0178b18029",
+                                        "id": "0a62aca3-c833-4f62-985e-8e69274985a9",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const err  = pm.environment.get('jwt_error');",
@@ -223,7 +223,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "5f193685-a56e-447c-9e73-bd3649f845a0",
+                                        "id": "cb4a55c2-f4f0-4c0b-9778-d9b1c28566f6",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const u = utils;",
@@ -253,7 +253,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "b9c7f5b0-a2b3-46f1-94a5-40a2e44d5358",
+                                        "id": "5a41ecf7-14f0-411b-b212-36f34e4d9b5b",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -325,7 +325,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "59975ac4-dfa4-4552-b29f-b3b883c11351",
+                                        "id": "7fb58e41-b80b-4f9c-86eb-80658227d2fc",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -343,7 +343,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "16b871eb-20b3-49a8-86ce-50739f5fa6db",
+                                        "id": "b6782f19-3cf1-4446-99ea-6c2ee97e3792",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -392,7 +392,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "7ac31262-3f44-47b7-b6ce-43a493ad03dc",
+                                        "id": "3523c9ae-4e97-4b60-9126-183311358db8",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const u = utils;",
@@ -422,7 +422,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "8b00d7bf-9210-4c4b-8f67-e50cdf6d61e5",
+                                        "id": "3cd51900-86ba-4015-9505-f8e0e1adc23c",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -498,7 +498,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "28d2bf1b-d67f-428d-8f64-66f98461904e",
+                                        "id": "e14dd70b-e551-426e-b302-6b2883ccedc0",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -522,7 +522,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "09b72a58-8e97-4cc9-912f-becf07af5ebe",
+                                        "id": "3b712579-3949-452d-a1c6-f3a83696e38d",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -600,7 +600,7 @@
                         {
                             "listen": "prerequest",
                             "script": {
-                                "id": "55fd46cf-5b2f-4d43-9cd8-01cf24924cbe",
+                                "id": "ed2328b7-ce12-45f0-aa19-1ca65e50097f",
                                 "type": "text/javascript",
                                 "exec": [
                                     "// Resolve IKey/ISec fallback for body/auth templates",
@@ -612,7 +612,7 @@
                         {
                             "listen": "test",
                             "script": {
-                                "id": "b296b936-7baa-4038-a4fe-11fd343309cd",
+                                "id": "8a24dbd5-c511-46b7-9c87-833e22dbf0cf",
                                 "type": "text/javascript",
                                 "exec": [
                                     "pm.test('Token refreshed', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -652,7 +652,7 @@
                         {
                             "listen": "test",
                             "script": {
-                                "id": "6a9917c0-f073-4304-8ba2-3f87cab7044a",
+                                "id": "2a840553-bd5d-4c06-896b-c1e5ad0a78da",
                                 "type": "text/javascript",
                                 "packages": {},
                                 "exec": [
@@ -675,7 +675,7 @@
                 {
                     "listen": "prerequest",
                     "script": {
-                        "id": "761586fc-06dc-43db-9b9c-fe17a7953b1f",
+                        "id": "14a63880-1f6c-4657-a903-daa0a39d275c",
                         "type": "text/javascript",
                         "packages": {
                             "npm:jsrsasign@11.1.0": {
@@ -919,7 +919,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -929,9 +931,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "e4c5ceef-13f2-4069-9779-ced095c58ee3",
                             "name": "OK",
                             "originalRequest": {
@@ -1018,7 +1017,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -1028,9 +1029,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "a278e270-8178-4f2f-8d5e-c4ca3281bd36",
                             "name": "OK",
                             "originalRequest": {
@@ -1118,12 +1116,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -1142,9 +1144,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "8ab54c42-de88-48f6-8b03-aab37a30009f",
                             "name": "OK",
                             "originalRequest": {
@@ -1343,7 +1342,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -1353,9 +1354,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "79d4630d-7072-40c8-86a9-6634966d4292",
                             "name": "OK",
                             "originalRequest": {
@@ -1552,7 +1550,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -1562,9 +1562,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "235647b9-a078-4e9c-b74e-b20079fb1a75",
                             "name": "OK",
                             "originalRequest": {
@@ -1680,7 +1677,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -1690,9 +1689,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "9702ee01-aa67-4e79-8d36-91b941761b32",
                             "name": "OK",
                             "originalRequest": {
@@ -1809,12 +1805,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -1822,7 +1822,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"users\": [\n    {\n      \"id\": \"<uuid>\",\n      \"site_id\": \"<integer>\",\n      \"default_account_id\": \"<uuid>\",\n      \"device_verification_enabled\": \"<boolean>\",\n      \"email\": \"<string>\",\n      \"federated_status\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"force_password_change\": \"<boolean>\",\n      \"language_culture\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"memberships\": [\n        {\n          \"account_id\": \"<uuid>\",\n          \"access_code\": \"<string>\",\n          \"company_name\": \"<string>\",\n          \"groups\": [\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ],\n          \"job_title\": \"<string>\",\n          \"license_type\": \"<string>\",\n          \"permission_profile\": {\n            \"id\": \"<long>\",\n            \"name\": \"<string>\"\n          },\n          \"send_activation\": \"<boolean>\"\n        },\n        {\n          \"account_id\": \"<uuid>\",\n          \"access_code\": \"<string>\",\n          \"company_name\": \"<string>\",\n          \"groups\": [\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ],\n          \"job_title\": \"<string>\",\n          \"license_type\": \"<string>\",\n          \"permission_profile\": {\n            \"id\": \"<long>\",\n            \"name\": \"<string>\"\n          },\n          \"send_activation\": \"<boolean>\"\n        }\n      ],\n      \"selected_languages\": \"<string>\",\n      \"user_name\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"site_id\": \"<integer>\",\n      \"default_account_id\": \"<uuid>\",\n      \"device_verification_enabled\": \"<boolean>\",\n      \"email\": \"<string>\",\n      \"federated_status\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"force_password_change\": \"<boolean>\",\n      \"language_culture\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"memberships\": [\n        {\n          \"account_id\": \"<uuid>\",\n          \"access_code\": \"<string>\",\n          \"company_name\": \"<string>\",\n          \"groups\": [\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ],\n          \"job_title\": \"<string>\",\n          \"license_type\": \"<string>\",\n          \"permission_profile\": {\n            \"id\": \"<long>\",\n            \"name\": \"<string>\"\n          },\n          \"send_activation\": \"<boolean>\"\n        },\n        {\n          \"account_id\": \"<uuid>\",\n          \"access_code\": \"<string>\",\n          \"company_name\": \"<string>\",\n          \"groups\": [\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ],\n          \"job_title\": \"<string>\",\n          \"license_type\": \"<string>\",\n          \"permission_profile\": {\n            \"id\": \"<long>\",\n            \"name\": \"<string>\"\n          },\n          \"send_activation\": \"<boolean>\"\n        }\n      ],\n      \"selected_languages\": \"<string>\",\n      \"user_name\": \"<string>\"\n    }\n  ]\n}",
+                            "raw": "{\n  \"auto_activate_memberships_on_reactivation\": \"<boolean>\",\n  \"users\": [\n    {\n      \"id\": \"<uuid>\",\n      \"site_id\": \"<integer>\",\n      \"default_account_id\": \"<uuid>\",\n      \"device_verification_enabled\": \"<boolean>\",\n      \"email\": \"<string>\",\n      \"federated_status\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"force_password_change\": \"<boolean>\",\n      \"language_culture\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"memberships\": [\n        {\n          \"account_id\": \"<uuid>\",\n          \"access_code\": \"<string>\",\n          \"company_name\": \"<string>\",\n          \"groups\": [\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ],\n          \"job_title\": \"<string>\",\n          \"license_type\": \"<string>\",\n          \"permission_profile\": {\n            \"id\": \"<long>\",\n            \"name\": \"<string>\"\n          },\n          \"send_activation\": \"<boolean>\"\n        },\n        {\n          \"account_id\": \"<uuid>\",\n          \"access_code\": \"<string>\",\n          \"company_name\": \"<string>\",\n          \"groups\": [\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ],\n          \"job_title\": \"<string>\",\n          \"license_type\": \"<string>\",\n          \"permission_profile\": {\n            \"id\": \"<long>\",\n            \"name\": \"<string>\"\n          },\n          \"send_activation\": \"<boolean>\"\n        }\n      ],\n      \"selected_languages\": \"<string>\",\n      \"user_name\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"site_id\": \"<integer>\",\n      \"default_account_id\": \"<uuid>\",\n      \"device_verification_enabled\": \"<boolean>\",\n      \"email\": \"<string>\",\n      \"federated_status\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"force_password_change\": \"<boolean>\",\n      \"language_culture\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"memberships\": [\n        {\n          \"account_id\": \"<uuid>\",\n          \"access_code\": \"<string>\",\n          \"company_name\": \"<string>\",\n          \"groups\": [\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ],\n          \"job_title\": \"<string>\",\n          \"license_type\": \"<string>\",\n          \"permission_profile\": {\n            \"id\": \"<long>\",\n            \"name\": \"<string>\"\n          },\n          \"send_activation\": \"<boolean>\"\n        },\n        {\n          \"account_id\": \"<uuid>\",\n          \"access_code\": \"<string>\",\n          \"company_name\": \"<string>\",\n          \"groups\": [\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"id\": \"<long>\",\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ],\n          \"job_title\": \"<string>\",\n          \"license_type\": \"<string>\",\n          \"permission_profile\": {\n            \"id\": \"<long>\",\n            \"name\": \"<string>\"\n          },\n          \"send_activation\": \"<boolean>\"\n        }\n      ],\n      \"selected_languages\": \"<string>\",\n      \"user_name\": \"<string>\"\n    }\n  ]\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -1833,9 +1833,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "464885ec-cea6-4110-a4be-42794babc251",
                             "name": "OK",
                             "originalRequest": {
@@ -1935,12 +1932,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -1959,9 +1960,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "da163c97-4cb0-449d-a40d-3c51ecdd51b5",
                             "name": "OK",
                             "originalRequest": {
@@ -2052,12 +2050,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -2076,9 +2078,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "d9dc2805-8f5a-40e2-9cc3-8813f06c545a",
                             "name": "OK",
                             "originalRequest": {
@@ -2186,12 +2185,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -2210,9 +2213,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "dcda6abc-43ff-452a-9df0-57c785d0e406",
                             "name": "OK",
                             "originalRequest": {
@@ -2324,7 +2324,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -2334,9 +2336,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "1d970289-3ea0-4f02-8b80-011204546886",
                             "name": "OK",
                             "originalRequest": {
@@ -2433,12 +2432,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -2457,9 +2460,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "9eabfa4d-2074-477a-98e9-2c51be1988c4",
                             "name": "OK",
                             "originalRequest": {
@@ -2560,12 +2560,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -2584,9 +2588,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "7ff06ce0-b7a4-44d3-940f-dc7038cf7cf3",
                             "name": "OK",
                             "originalRequest": {
@@ -2717,7 +2718,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -2727,9 +2730,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "d04548ff-7bbe-4224-b8ee-94e1b531b634",
                             "name": "OK",
                             "originalRequest": {
@@ -2836,12 +2836,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -2860,9 +2864,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "681b86c0-ac62-4515-96ee-0c3a9a4f0f0c",
                             "name": "OK",
                             "originalRequest": {
@@ -2972,7 +2973,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -2982,9 +2985,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "fd7f0980-2744-4bf7-bd7f-2c060535e99a",
                             "name": "OK",
                             "originalRequest": {
@@ -3085,9 +3085,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "text"
-                            },
                             "id": "741bd60b-3d5c-436b-ade6-8a649edd0ce0",
                             "name": "No Content",
                             "originalRequest": {
@@ -3193,7 +3190,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -3203,9 +3202,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "4202f85f-12dc-4d2f-8671-c5ef578bec13",
                             "name": "OK",
                             "originalRequest": {
@@ -3324,12 +3320,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -3348,9 +3348,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "24f0ba5b-34eb-4ac9-878e-e04715c2338c",
                             "name": "OK",
                             "originalRequest": {
@@ -3463,12 +3460,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -3487,9 +3488,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "2a9c0bd4-b9d3-4916-bbfe-b6bb584f5efa",
                             "name": "OK",
                             "originalRequest": {
@@ -3593,7 +3591,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -3603,9 +3603,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "58e8a5d7-bdb9-4daf-8444-1896523aae7e",
                             "name": "OK",
                             "originalRequest": {
@@ -3705,7 +3702,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -3715,9 +3714,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "02c00bf7-9c5d-47fd-b7ce-0d4bd727ee85",
                             "name": "OK",
                             "originalRequest": {
@@ -3819,12 +3815,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -3843,9 +3843,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "833acc9f-383f-42a2-888f-9400f0754b77",
                             "name": "OK",
                             "originalRequest": {
@@ -3949,12 +3946,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -3973,9 +3974,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "dfc8d219-38d6-4bb3-9b08-4eb9d8160d6e",
                             "name": "OK",
                             "originalRequest": {
@@ -4095,7 +4093,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -4105,9 +4105,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "1a6e6340-ba14-4a34-85df-de67b3a9d8f9",
                             "name": "OK",
                             "originalRequest": {
@@ -4232,7 +4229,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -4242,9 +4241,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "d0f9cd04-15ca-489c-abf8-c77e3ccbac9b",
                             "name": "OK",
                             "originalRequest": {
@@ -4343,12 +4339,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -4367,9 +4367,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "1f86f425-0a47-4e4f-a13e-88dad2c6d50d",
                             "name": "OK",
                             "originalRequest": {
@@ -4483,7 +4480,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -4493,9 +4492,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "254c69a1-b1af-45f3-8a11-94630c6e1120",
                             "name": "OK",
                             "originalRequest": {
@@ -4597,12 +4593,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -4621,9 +4621,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "084961f5-62dc-4631-9a2d-cf8ccef37357",
                             "name": "OK",
                             "originalRequest": {
@@ -4728,7 +4725,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -4738,9 +4737,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "685427b7-bdf9-4c58-af0b-9e6a3e5fc8b9",
                             "name": "OK",
                             "originalRequest": {
@@ -4818,12 +4814,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -4842,9 +4842,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "f9d92136-bbca-416c-8f4f-04e44594eafe",
                             "name": "OK",
                             "originalRequest": {
@@ -4944,7 +4941,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -4954,9 +4953,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "4e01a4bf-50d5-4dd7-a2a2-eda5a2d37799",
                             "name": "OK",
                             "originalRequest": {
@@ -5044,7 +5040,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -5054,9 +5052,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "6135baa5-1f1d-4c19-be47-293b8c5b87ae",
                             "name": "OK",
                             "originalRequest": {
@@ -5146,7 +5141,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -5156,9 +5153,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "f2be4b69-cec2-4d10-9484-4c293a41991d",
                             "name": "OK",
                             "originalRequest": {
@@ -5236,12 +5230,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -5260,9 +5258,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "3084c857-fc59-4f22-b0e3-1f62c9a40215",
                             "name": "OK",
                             "originalRequest": {
@@ -5362,7 +5357,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -5372,9 +5369,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "ed494e20-0200-4132-8e0a-03ae4b90b82c",
                             "name": "OK",
                             "originalRequest": {
@@ -5462,7 +5456,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -5472,9 +5468,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "21d5069b-5cee-4f91-b5b4-0262f13b1d45",
                             "name": "OK",
                             "originalRequest": {
@@ -5565,12 +5558,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "multipart/form-data"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -5592,9 +5589,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "c490807d-7fbf-43b0-b0f4-02f0a6e3b0b1",
                             "name": "OK",
                             "originalRequest": {
@@ -5690,12 +5684,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "multipart/form-data"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -5717,9 +5715,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "d4390fd8-4183-4384-a7d2-083956e0e4dc",
                             "name": "OK",
                             "originalRequest": {
@@ -5815,12 +5810,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "multipart/form-data"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -5842,9 +5841,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "e74ffb53-62dd-4114-80f0-83ab4258f45b",
                             "name": "OK",
                             "originalRequest": {
@@ -5940,7 +5936,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -5950,9 +5948,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "332191a7-e134-46a7-8eeb-657ac6afacc9",
                             "name": "OK",
                             "originalRequest": {
@@ -6031,7 +6026,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -6041,9 +6038,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "b22fe5fb-adfd-4e73-86c7-89c25eef81d8",
                             "name": "OK",
                             "originalRequest": {
@@ -6130,7 +6124,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -6140,9 +6136,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "cc0f6e23-d1c4-4c1b-8113-9b64fddd9cd8",
                             "name": "OK",
                             "originalRequest": {
@@ -6230,7 +6223,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -6240,9 +6235,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "0bde8bde-b003-4c11-90b4-1b5656c24705",
                             "name": "OK",
                             "originalRequest": {
@@ -6331,7 +6323,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "text/csv"
                             }
@@ -6341,9 +6335,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "text"
-                            },
                             "id": "72e9151f-e366-4b4e-abae-8259429d8f3b",
                             "name": "OK",
                             "originalRequest": {
@@ -6432,7 +6423,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -6442,9 +6435,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "15a66100-9557-446c-8dcb-effa707e8f85",
                             "name": "OK",
                             "originalRequest": {
@@ -6540,7 +6530,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -6550,9 +6542,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "4c1eb085-2875-45d4-b308-447854b63300",
                             "name": "OK",
                             "originalRequest": {
@@ -6630,12 +6619,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "multipart/form-data"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -6657,9 +6650,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "1b91e123-4f4b-4208-bb3d-e176e6bb0e90",
                             "name": "OK",
                             "originalRequest": {
@@ -6762,7 +6752,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -6772,9 +6764,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "11624694-03a6-4ea0-a72d-486308e07097",
                             "name": "OK",
                             "originalRequest": {
@@ -6862,7 +6851,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -6872,9 +6863,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "8c656077-dc94-4109-bf1e-aec396284280",
                             "name": "OK",
                             "originalRequest": {
@@ -6975,12 +6963,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "multipart/form-data"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -7002,9 +6994,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "71f6cdbc-02a3-4a66-a73c-8a67c5b6c657",
                             "name": "OK",
                             "originalRequest": {
@@ -7112,12 +7101,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "multipart/form-data"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -7139,9 +7132,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "22159bc5-15ec-48b9-a75a-7b214236a267",
                             "name": "OK",
                             "originalRequest": {
@@ -7249,12 +7239,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -7273,9 +7267,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "6e556cfa-16fb-4b2f-a9be-84bc1b9295fa",
                             "name": "OK",
                             "originalRequest": {
@@ -7366,12 +7357,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -7390,9 +7385,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "cf52a3e8-118e-4cfb-9735-0bab9344d7e5",
                             "name": "OK",
                             "originalRequest": {
@@ -7504,7 +7496,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -7514,9 +7508,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "3bdbb6ab-1843-4ee1-b43e-61898d568409",
                             "name": "OK",
                             "originalRequest": {
@@ -7604,12 +7595,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -7617,7 +7612,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"sourceAccount\": {\n    \"id\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"admin\": {\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"zh_cn\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  },\n  \"cloneProcessingFailureDetails\": {}\n}",
+                            "raw": "{\n  \"sourceAccount\": {\n    \"id\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"admin\": {\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"nl\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  },\n  \"cloneProcessingFailureDetails\": {}\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -7628,9 +7623,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "1f234c6e-e5a3-4278-97cf-94f13f4fc9eb",
                             "name": "OK",
                             "originalRequest": {
@@ -7740,7 +7732,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -7750,9 +7744,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "bbed32fe-9932-411d-8302-afcd5ae68bea",
                             "name": "OK",
                             "originalRequest": {
@@ -7877,7 +7868,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -7887,9 +7880,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "36941d15-3abf-46c2-973e-9dd3a5c55afc",
                             "name": "OK",
                             "originalRequest": {
@@ -7989,7 +7979,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -7999,9 +7991,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "2bf0e1e4-1fb4-4ffa-be3f-a253fc66966b",
                             "name": "OK",
                             "originalRequest": {
@@ -8078,12 +8067,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -8091,7 +8084,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"subscriptionDetails\": {\n    \"id\": \"<string>\",\n    \"modules\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"planId\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"address\": {\n      \"country\": \"<string>\",\n      \"fax\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"region\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_address_2\": \"<string>\"\n    },\n    \"admin\": {\n      \"address\": {\n        \"country\": \"<string>\",\n        \"fax\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\"\n      },\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"fr\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  }\n}",
+                            "raw": "{\n  \"subscriptionDetails\": {\n    \"id\": \"<string>\",\n    \"modules\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"planId\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"address\": {\n      \"country\": \"<string>\",\n      \"fax\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"region\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_address_2\": \"<string>\"\n    },\n    \"admin\": {\n      \"address\": {\n        \"country\": \"<string>\",\n        \"fax\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\"\n      },\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"it\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  }\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -8102,9 +8095,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "148db4ef-e71b-4586-9cef-ddaa4679563e",
                             "name": "OK",
                             "originalRequest": {
@@ -8213,7 +8203,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -8223,9 +8215,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "aab928f4-ea53-4ba9-a9e2-ced30946bfc6",
                             "name": "OK",
                             "originalRequest": {
@@ -8349,7 +8338,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -8359,9 +8350,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "ef0c38bf-80ce-4828-93ec-d12e07ef50ea",
                             "name": "OK",
                             "originalRequest": {
@@ -8507,6 +8495,7 @@
                         },
                         "header": [
                             {
+                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -8637,10 +8626,12 @@
                         },
                         "header": [
                             {
+                                "description": {},
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
+                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -8756,6 +8747,7 @@
                         },
                         "header": [
                             {
+                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -8850,6 +8842,7 @@
                         },
                         "header": [
                             {
+                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -8944,10 +8937,12 @@
                         },
                         "header": [
                             {
+                                "description": {},
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
+                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9056,6 +9051,7 @@
                         },
                         "header": [
                             {
+                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9142,6 +9138,7 @@
                         },
                         "header": [
                             {
+                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9228,10 +9225,12 @@
                         },
                         "header": [
                             {
+                                "description": {},
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
+                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9239,7 +9238,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"dolor_9c\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
+                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"sed7\": \"<string>\",\n    \"consequat_9\": \"<string>\",\n    \"nisi_586\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -9340,10 +9339,12 @@
                         },
                         "header": [
                             {
+                                "description": {},
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
+                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9351,7 +9352,7 @@
                         "method": "PUT",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"dolor_9c\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
+                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"sed7\": \"<string>\",\n    \"consequat_9\": \"<string>\",\n    \"nisi_586\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -9452,6 +9453,7 @@
                         },
                         "header": [
                             {
+                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9538,6 +9540,7 @@
                         },
                         "header": [
                             {
+                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9633,6 +9636,7 @@
                         },
                         "header": [
                             {
+                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
