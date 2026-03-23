@@ -3,17 +3,24 @@ name: Sync eSign-v2.1 Postman Collection
 on:
   push:
     branches:
-      - master  # Change this to the branch you want to trigger the action
+      - master
     paths:
       - 'assets/esign-v2.1-collection.json'
-  
+
   workflow_dispatch:  # Enables manual trigger from GitHub UI
 
 jobs:
   sync-postman-collection:
     uses: ./.github/workflows/sync-postman-collection.yml
     with:
+      # Target Postman collection UID for eSign collection sync.
       collection-uid: ${{ vars.ESIGN_COLLECTION_UID }}
+
+      # Path to the eSign collection JSON in the repo.
       collection-path: './assets/esign-v2.1-collection.json'
+
+      # Enable id stripping only for eSign for now, since this collection was
+      # observed to fail Postman API updates when nested `id` fields are present.
+      strip-item-ids: true
     secrets:
       POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}

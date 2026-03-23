@@ -5,53 +5,103 @@ on:
   workflow_call:
     inputs:
       collection-uid:
-        description: 'The UID of the Postman collection to update'
+        description: 'UID of the Postman collection to update'
         required: true
         type: string
+
       collection-path:
-        description: 'The path to the Postman collection JSON file in the repository'
+        description: 'Path to the Postman collection JSON file in the repository'
         required: true
         type: string
+
+      strip-item-ids:
+        description: 'If true, removes all `id` fields from the collection JSON before uploading'
+        required: false
+        type: boolean
+        default: false
+
     secrets:
       POSTMAN_API_KEY:
-        description: 'API key for authenticating with Postman'
+        description: 'API key for authenticating with Postman API'
         required: true
+
 jobs:
   update-postman:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
 
-      - name: Update Postman Collection
+    steps:
+      # Step 1:
+      # Check out the repository so the workflow can read the collection JSON file.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2:
+      # Prepare the collection payload and upload it to Postman.
+      - name: Prepare and update Postman Collection
         env:
           POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
           COLLECTION_UID: ${{ inputs.collection-uid }}
           GITHUB_COLLECTION_PATH: ${{ inputs.collection-path }}
+          STRIP_ITEM_IDS: ${{ inputs.strip-item-ids }}
         run: |
-         
-          # Read the file content and wrap it inside a collection object
-          WRAPPED_CONTENT=$(jq -n --slurpfile data "$GITHUB_COLLECTION_PATH" '{"collection": $data[0]}')
-          
-          # Write the wrapped content to a temporary file
-          echo "$WRAPPED_CONTENT" > wrapped_collection.json
-          
-          # Make API request and capture response & HTTP status
-          HTTP_RESPONSE=$(curl --silent --write-out "HTTPSTATUS:%{http_code}" --location --request PUT \
-              "https://api.getpostman.com/collections/$COLLECTION_UID" \
-              --header "x-api-key: $POSTMAN_API_KEY" \
-              --header "Content-Type: application/json" \
-              --data-binary @wrapped_collection.json)
+          set -euo pipefail
 
-          # Extract body and status code
+          # Input collection file from the repository.
+          INPUT_JSON="$GITHUB_COLLECTION_PATH"
+
+          # Intermediate file that will be uploaded after any required transformation.
+          PREPARED_JSON="prepared_collection.json"
+
+          # Final payload file in the format expected by Postman API:
+          # {
+          #   "collection": { ...actual collection json... }
+          # }
+          WRAPPED_JSON="wrapped_collection.json"
+
+          # Step 2a:
+          # Some collections (currently eSign) fail on Postman API update if nested `id`
+          # fields are present. To keep the shared workflow reusable, this behavior is
+          # controlled through the `strip-item-ids` input and enabled only where needed.
+          if [ "$STRIP_ITEM_IDS" = "true" ]; then
+            echo "Stripping all id fields from collection JSON before upload..."
+
+            # Remove every `id` field from all nested objects in the collection JSON.
+            # This keeps the structure intact while avoiding Postman API failures seen
+            # with certain collections during update.
+            jq 'walk(if type == "object" then del(.id) else . end)' \
+              "$INPUT_JSON" > "$PREPARED_JSON"
+          else
+            echo "Keeping collection JSON unchanged..."
+            cp "$INPUT_JSON" "$PREPARED_JSON"
+          fi
+
+          # Step 2b:
+          # Wrap the collection JSON inside a top-level `collection` object because
+          # Postman API expects the request body in this format for collection updates.
+          jq -n --slurpfile data "$PREPARED_JSON" \
+            '{"collection": $data[0]}' > "$WRAPPED_JSON"
+
+          # Step 2c:
+          # Send the PUT request to update the target Postman collection.
+          # We also capture both the response body and HTTP status for debugging.
+          HTTP_RESPONSE=$(curl --silent --write-out "HTTPSTATUS:%{http_code}" \
+            --location --request PUT \
+            "https://api.getpostman.com/collections/$COLLECTION_UID" \
+            --header "x-api-key: $POSTMAN_API_KEY" \
+            --header "Content-Type: application/json" \
+            --data-binary @"$WRAPPED_JSON")
+
+          # Step 2d:
+          # Split the combined curl output into response body and HTTP status code.
           HTTP_BODY=$(echo "$HTTP_RESPONSE" | sed -e 's/HTTPSTATUS\:.*//g')
           HTTP_STATUS=$(echo "$HTTP_RESPONSE" | tr -d '\n' | sed -e 's/.*HTTPSTATUS://')
 
-          # Output the response body and status code
+          # Print response details to make failures easier to debug in Actions logs.
           echo "API Response: $HTTP_BODY"
           echo "HTTP Status Code: $HTTP_STATUS"
 
-          # Fail the job if the API request was not successful (HTTP 200-299 are success codes)
+          # Step 2e:
+          # Fail the job if Postman API did not return a success status code.
           if [[ "$HTTP_STATUS" -lt 200 || "$HTTP_STATUS" -ge 300 ]]; then
             echo "❌ API request failed with status code $HTTP_STATUS"
             exit 1
