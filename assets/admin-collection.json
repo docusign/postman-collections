@@ -7612,7 +7612,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"sourceAccount\": {\n    \"id\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"admin\": {\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"ko\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  },\n  \"cloneProcessingFailureDetails\": {}\n}",
+                            "raw": "{\n  \"sourceAccount\": {\n    \"id\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"admin\": {\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"ru\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  },\n  \"cloneProcessingFailureDetails\": {}\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -8084,7 +8084,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"subscriptionDetails\": {\n    \"id\": \"<string>\",\n    \"modules\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"planId\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"address\": {\n      \"country\": \"<string>\",\n      \"fax\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"region\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_address_2\": \"<string>\"\n    },\n    \"admin\": {\n      \"address\": {\n        \"country\": \"<string>\",\n        \"fax\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\"\n      },\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"pt\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  }\n}",
+                            "raw": "{\n  \"subscriptionDetails\": {\n    \"id\": \"<string>\",\n    \"modules\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"planId\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"address\": {\n      \"country\": \"<string>\",\n      \"fax\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"region\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_address_2\": \"<string>\"\n    },\n    \"admin\": {\n      \"address\": {\n        \"country\": \"<string>\",\n        \"fax\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\"\n      },\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"ja\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  }\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -8495,7 +8495,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -8626,12 +8628,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -8747,7 +8753,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -8842,7 +8850,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -8937,12 +8947,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9051,7 +9065,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9138,7 +9154,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9225,12 +9243,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9238,7 +9260,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"occaecat372\": \"<string>\",\n    \"do_cd\": \"<string>\",\n    \"Lorem0\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
+                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"officiac\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -9339,12 +9361,16 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Content-Type",
                                 "value": "application/json"
                             },
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9352,7 +9378,7 @@
                         "method": "PUT",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"occaecat372\": \"<string>\",\n    \"do_cd\": \"<string>\",\n    \"Lorem0\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
+                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"officiac\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -9453,7 +9479,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9540,7 +9568,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -9636,7 +9666,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
