@@ -1,0 +1,19 @@
+name: Sync Navigator Postman Collection
+
+on:
+  push:
+    branches:
+      - master  # Change this to the branch you want to trigger the action
+    paths:
+      - 'assets/navigator-collection.json'
+  
+  workflow_dispatch:  # Enables manual trigger from GitHub UI
+
+jobs:
+  sync-postman-collection:
+    uses: ./.github/workflows/sync-postman-collection.yml
+    with:
+      collection-uid: ${{ vars.NAVIGATOR_COLLECTION_UID }}
+      collection-path: './assets/navigator-collection.json'
+    secrets:
+      POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}

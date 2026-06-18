@@ -1,0 +1,1097 @@
+{
+    "item": [
+        {
+            "name": "WorkflowTrigger",
+            "description": "",
+            "item": []
+        },
+        {
+            "name": "WorkflowInstanceManagement",
+            "description": "",
+            "item": []
+        },
+        {
+            "name": "WorkflowManagement",
+            "description": "",
+            "item": []
+        },
+        {
+            "name": "Workflows",
+            "description": "",
+            "item": [
+                {
+                    "id": "709655ee-9af3-4e02-8f09-45f04b08dfb3",
+                    "name": "Retrieve a list of available Maestro workflows",
+                    "request": {
+                        "name": "Retrieve a list of available Maestro workflows ",
+                        "description": {
+                            "content": "This operation retrieves a list of all available Maestro workflows. It returns basic information \nabout each workflow, including its unique identifier (`id`), name, description, and the input \nschema required to trigger the workflow.\n\nThe response provides key details that help users identify which workflows are available \nand understand the input requirements for triggering each one. Each workflow entry also includes \nmetadata, such as when it was created, last modified, and by whom.\n\nThis operation is useful for obtaining an overview of all workflows within the system, helping \nusers and systems know what workflows are defined, what inputs they require, and how they can \nbe triggered.\n\n### Use Cases:\n- Listing all available workflows in a system for manual or automated workflow initiation.\n- Reviewing the input requirements for a workflow before triggering it programmatically.\n- Gathering basic metadata about workflows for auditing, logging, or reporting purposes.\n\n### Key Features:\n- **Comprehensive Workflow Overview**: Provides a full list of workflows, giving visibility \n  into all the automated processes available within the Maestro platform.\n- **Input Schema Information**: Each workflow includes its trigger input schema, showing \n  what data must be provided when triggering the workflow.\n- **Metadata for Tracking**: Useful metadata like creation time, last modification date, \n  and user details are included to support tracking and auditing workflows.\n- **Future-Proof**: The operation is designed to be expandable as more workflows are added \n  or the platform grows, ensuring scalability in the workflow management process.\n",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "path": [
+                                "workflows"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "method": "GET",
+                        "body": {},
+                        "auth": null
+                    },
+                    "response": [
+                        {
+                            "id": "d6931c13-8812-4d4e-9e61-7db447669ade",
+                            "name": "A list of workflows has been successfully returned.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"data\": {\n    \"workflows\": [\n      {\n        \"id\": \"00000000-0000-0000-0000-000000000000\",\n        \"name\": \"<string>\",\n        \"account_id\": \"00000000-0000-0000-0000-000000000000\",\n        \"status\": \"<string>\",\n        \"metadata\": {\n          \"created_at\": \"<dateTime>\",\n          \"created_by\": \"<string>\",\n          \"modified_at\": \"<dateTime>\",\n          \"modified_by\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"00000000-0000-0000-0000-000000000000\",\n        \"name\": \"<string>\",\n        \"account_id\": \"00000000-0000-0000-0000-000000000000\",\n        \"status\": \"<string>\",\n        \"metadata\": {\n          \"created_at\": \"<dateTime>\",\n          \"created_by\": \"<string>\",\n          \"modified_at\": \"<dateTime>\",\n          \"modified_by\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"response_metadata\": {\n    \"response_timestamp\": \"<dateTime>\",\n    \"response_duration_ms\": \"<integer>\",\n    \"request_id\": \"<uuid>\"\n  }\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "8d2c171e-bc03-4fb6-8287-02e3937f25a4",
+                            "name": "Bad Request - The request could not be understood or was missing required parameters.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "425618b0-3b17-48bc-b0aa-3781f4932135",
+                            "name": "Unauthorized - Authentication is required and has failed or not been provided.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Unauthorized",
+                            "code": 401,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "cd1550e7-23ed-4535-a756-9ee6d3fdb4a7",
+                            "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Forbidden",
+                            "code": 403,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "dd5ee8c2-70c4-4b39-9be3-892665671bf4",
+                            "name": "Not Found - The requested resource could not be found.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "9f98eaf1-c950-47ff-b4a9-71c58e764ab2",
+                            "name": "Internal Server Error",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Internal Server Error",
+                            "code": 500,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        }
+                    ],
+                    "event": [],
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    }
+                },
+                {
+                    "id": "7c2a2435-203a-4b76-8779-4963a2ac68e6",
+                    "name": "Retrieve trigger requirements for a specific Maestro workflow",
+                    "request": {
+                        "name": "Retrieve trigger requirements for a specific Maestro workflow",
+                        "description": {
+                            "content": "This operation retrieves the configuration and input requirements necessary to trigger a specific \nMaestro workflow. It provides detailed information about the `trigger_event_type`, such as HTTP \nor other supported types, and specifies the required input schema, including field names, data types, \nand any default values. \n\nThis information is essential for understanding the data and parameters required to initiate the \nworkflow. It enables developers to prepare the necessary inputs and configuration before triggering \nthe workflow instance, ensuring seamless execution and compliance with workflow requirements.\n\n### Use Cases:\n- Identifying the required input fields and their data types to successfully trigger the workflow.\n- Reviewing the trigger configuration for validation and compliance with expected input.\n- Preparing and validating data in advance of triggering the workflow, minimizing runtime errors.\n\n### Key Features:\n- **Detailed Trigger Input Requirements**: Provides an exhaustive schema of required fields, \n  their data types, and optional default values for easy reference and data validation.\n- **Trigger Event Type Information**: Specifies the type of event required to initiate the workflow \n  (e.g., HTTP), helping developers configure their systems to invoke the workflow appropriately.\n- **Configurable for Custom Triggers**: Suitable for custom configurations, enabling flexibility \n  in how workflows can be triggered according to system needs.\n",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "path": [
+                                "workflows",
+                                ":workflowId",
+                                "trigger-requirements"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": [
+                                {
+                                    "type": "any",
+                                    "value": "00000000-0000-0000-0000-000000000000",
+                                    "key": "workflowId",
+                                    "disabled": false,
+                                    "description": {
+                                        "content": "(Required) ",
+                                        "type": "text/plain"
+                                    }
+                                }
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "method": "GET",
+                        "body": {},
+                        "auth": null
+                    },
+                    "response": [
+                        {
+                            "id": "72b2fe97-a6e7-4244-9392-9a459f03d59f",
+                            "name": "Describes the requirements for triggering a workflow",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows",
+                                        ":workflowId",
+                                        "trigger-requirements"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"trigger_id\": \"00000000-0000-0000-0000-000000000000\",\n  \"trigger_event_type\": \"<string>\",\n  \"trigger_http_config\": {\n    \"method\": \"PATCH\",\n    \"url\": \"<uri>\"\n  },\n  \"trigger_input_schema\": [\n    {\n      \"field_name\": \"<string>\",\n      \"field_data_type\": {},\n      \"default_value\": \"<string>\"\n    },\n    {\n      \"field_name\": \"<string>\",\n      \"field_data_type\": {},\n      \"default_value\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"created_at\": \"<dateTime>\",\n    \"created_by\": \"<string>\",\n    \"modified_at\": \"<dateTime>\",\n    \"modified_by\": \"<string>\"\n  },\n  \"response_timestamp\": \"<dateTime>\",\n  \"response_duration_ms\": \"<integer>\",\n  \"request_id\": \"<uuid>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "06fbffde-a47a-4258-aff5-39b5d9c77f7e",
+                            "name": "Bad Request - The request could not be understood or was missing required parameters.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows",
+                                        ":workflowId",
+                                        "trigger-requirements"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "c48718c8-5117-4b76-b88e-80a590a758dc",
+                            "name": "Unauthorized - Authentication is required and has failed or not been provided.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows",
+                                        ":workflowId",
+                                        "trigger-requirements"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Unauthorized",
+                            "code": 401,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "f56b1822-6e6c-42ef-80d7-945e63205f59",
+                            "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows",
+                                        ":workflowId",
+                                        "trigger-requirements"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Forbidden",
+                            "code": 403,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "383bdf7c-fc1f-4b36-bb55-bc1965ac5bd8",
+                            "name": "Not Found - The requested resource could not be found.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows",
+                                        ":workflowId",
+                                        "trigger-requirements"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "8b503c7d-9a3b-4f6e-bfb1-8cec73aaf79d",
+                            "name": "Internal Server Error",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows",
+                                        ":workflowId",
+                                        "trigger-requirements"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Internal Server Error",
+                            "code": 500,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        }
+                    ],
+                    "event": [],
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    }
+                },
+                {
+                    "id": "1f335420-3e7c-4506-b67c-4e582bd99706",
+                    "name": "Trigger a new instance of a Maestro workflow",
+                    "request": {
+                        "name": "Trigger a new instance of a Maestro workflow",
+                        "description": {
+                            "content": "This operation triggers a new instance of a specified Maestro workflow. When invoked, \nthe workflow is started based on the provided input data, and the workflow instance \nbegins executing according to its defined logic and configuration.\n\nThe request requires an `instance_name` and any input data necessary to start the workflow, \nas described by the workflow's `trigger_input_schema`. The `instance_name` is a user-defined \nlabel for tracking the workflow run, while the input data fields should match the schema defined \nin the workflow.\n\nThe operation is event-driven and typically triggered by an external HTTP event or system call, \nallowing for the automatic execution of complex processes that span multiple systems or components.\n\nUpon successful execution, the response returns the unique identifier (`id`) for the newly \ncreated workflow instance, along with a URL (`workflow_instance_url`) that can be used to \ninteract with or track the running instance.\n\n### Use Cases:\n- Automating user registration workflows where input fields like `name` and `email` are provided.\n- Processing financial transactions where details such as `amount` and `currency` are required.\n- Sending notifications based on user interactions in other systems.\n\n### Key Features:\n- **Automated Execution**: Once triggered, the workflow runs until a step requires manual intervention.\n- **Input-Driven**: Workflow execution is based on the provided input data, which is validated \n  against the workflow's input schema.\n- **Real-Time Triggering**: Designed to be invoked as part of an event-driven architecture, \n  allowing for workflows to respond to external events.\n- **Tracking and Interaction**: The response includes a URL that allows users to check the status \n  of the workflow instance or take further actions while it runs.\n",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "path": [
+                                "workflows",
+                                ":workflowId",
+                                "actions",
+                                "trigger"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": [
+                                {
+                                    "type": "any",
+                                    "value": "00000000-0000-0000-0000-000000000000",
+                                    "key": "workflowId",
+                                    "disabled": false,
+                                    "description": {
+                                        "content": "(Required) ",
+                                        "type": "text/plain"
+                                    }
+                                }
+                            ]
+                        },
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application/json"
+                            }
+                        ],
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"consequatd1_\": \"<string>\",\n    \"laboris_db\": \"<string>\",\n    \"ea_628\": \"<string>\",\n    \"aliquip_9\": \"<string>\",\n    \"voluptate594\": \"<string>\"\n  }\n}",
+                            "options": {
+                                "raw": {
+                                    "headerFamily": "json",
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "auth": null
+                    },
+                    "response": [
+                        {
+                            "id": "7cb0215f-3455-49f5-8020-2d42864b463a",
+                            "name": "Indicates a trigger has successfully launched a workflow instance",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows",
+                                        ":workflowId",
+                                        "actions",
+                                        "trigger"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"consequatd1_\": \"<string>\",\n    \"laboris_db\": \"<string>\",\n    \"ea_628\": \"<string>\",\n    \"aliquip_9\": \"<string>\",\n    \"voluptate594\": \"<string>\"\n  }\n}",
+                                    "options": {
+                                        "raw": {
+                                            "headerFamily": "json",
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "status": "Created",
+                            "code": 201,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"instance_id\": \"00000000-0000-0000-0000-000000000000\",\n  \"instance_url\": \"<string>\",\n  \"response_timestamp\": \"<dateTime>\",\n  \"response_duration_ms\": \"<integer>\",\n  \"request_id\": \"<uuid>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "72e77300-e472-4c3f-8fa5-0b524db01322",
+                            "name": "Bad Request - The request could not be understood or was missing required parameters.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows",
+                                        ":workflowId",
+                                        "actions",
+                                        "trigger"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"consequatd1_\": \"<string>\",\n    \"laboris_db\": \"<string>\",\n    \"ea_628\": \"<string>\",\n    \"aliquip_9\": \"<string>\",\n    \"voluptate594\": \"<string>\"\n  }\n}",
+                                    "options": {
+                                        "raw": {
+                                            "headerFamily": "json",
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "3741fa94-e8e9-4149-9b72-902f8f0fc600",
+                            "name": "Unauthorized - Authentication is required and has failed or not been provided.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows",
+                                        ":workflowId",
+                                        "actions",
+                                        "trigger"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"consequatd1_\": \"<string>\",\n    \"laboris_db\": \"<string>\",\n    \"ea_628\": \"<string>\",\n    \"aliquip_9\": \"<string>\",\n    \"voluptate594\": \"<string>\"\n  }\n}",
+                                    "options": {
+                                        "raw": {
+                                            "headerFamily": "json",
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "status": "Unauthorized",
+                            "code": 401,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "67a28085-2e7f-4493-af05-b54f62fce2ca",
+                            "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows",
+                                        ":workflowId",
+                                        "actions",
+                                        "trigger"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"consequatd1_\": \"<string>\",\n    \"laboris_db\": \"<string>\",\n    \"ea_628\": \"<string>\",\n    \"aliquip_9\": \"<string>\",\n    \"voluptate594\": \"<string>\"\n  }\n}",
+                                    "options": {
+                                        "raw": {
+                                            "headerFamily": "json",
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "status": "Forbidden",
+                            "code": 403,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "0d57f3e8-15e8-4295-aea0-aeb109723033",
+                            "name": "Not Found - The requested resource could not be found.",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows",
+                                        ":workflowId",
+                                        "actions",
+                                        "trigger"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"consequatd1_\": \"<string>\",\n    \"laboris_db\": \"<string>\",\n    \"ea_628\": \"<string>\",\n    \"aliquip_9\": \"<string>\",\n    \"voluptate594\": \"<string>\"\n  }\n}",
+                                    "options": {
+                                        "raw": {
+                                            "headerFamily": "json",
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "db16c6b9-8813-400b-80b4-dd4fdcc75d53",
+                            "name": "Internal Server Error",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "workflows",
+                                        ":workflowId",
+                                        "actions",
+                                        "trigger"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                },
+                                "header": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                    },
+                                    {
+                                        "description": {
+                                            "content": "Added as a part of security scheme: oauth2",
+                                            "type": "text/plain"
+                                        },
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                    }
+                                ],
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"consequatd1_\": \"<string>\",\n    \"laboris_db\": \"<string>\",\n    \"ea_628\": \"<string>\",\n    \"aliquip_9\": \"<string>\",\n    \"voluptate594\": \"<string>\"\n  }\n}",
+                                    "options": {
+                                        "raw": {
+                                            "headerFamily": "json",
+                                            "language": "json"
+                                        }
+                                    }
+                                }
+                            },
+                            "status": "Internal Server Error",
+                            "code": 500,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"error\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        }
+                    ],
+                    "event": [],
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    }
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "oauth2",
+        "oauth2": [
+            {
+                "type": "any",
+                "value": "adm_store_unified_repo_read aow_manage signature",
+                "key": "scope"
+            },
+            {
+                "type": "any",
+                "value": "https://account-d.docusign.com/oauth/token",
+                "key": "accessTokenUrl"
+            },
+            {
+                "type": "any",
+                "value": "https://account-d.docusign.com/oauth/auth",
+                "key": "authUrl"
+            },
+            {
+                "type": "any",
+                "value": "authorization_code",
+                "key": "grant_type"
+            }
+        ]
+    },
+    "event": [],
+    "variable": [
+        {
+            "key": "accountId",
+            "value": "00000000-0000-0000-0000-000000000000"
+        },
+        {
+            "key": "baseUrl",
+            "value": "https://api.docusign.com/v1/accounts/{{accountId}}"
+        }
+    ],
+    "info": {
+        "_postman_id": "d1d2e268-771b-4e1d-a425-65fa585ae802",
+        "name": "Maestro API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": "Maestro authors and executes experiences that allow non-coders the ability to define Simple Business Process without having to write code and to deploy them seamlessly without having to have development expertise"
+    }
+}
