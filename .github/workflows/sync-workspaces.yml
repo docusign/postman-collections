@@ -11,7 +11,7 @@ on:
 
 jobs:
   sync-postman-collection:
-    uses: ./.github/workflows/sync-postman-collections.yml
+    uses: ./.github/workflows/sync-postman-collection.yml
     with:
       collection-uid: ${{ vars.WORKSPACES_COLLECTION_UID }}
       collection-path: './assets/workspaces-collection.json'
