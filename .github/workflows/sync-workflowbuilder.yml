@@ -1,11 +1,11 @@
-name: Sync Maestro Postman Collection
+name: Sync Workflow Builder Postman Collection
 
 on:
   push:
     branches:
       - master  # Change this to the branch you want to trigger the action
     paths:
-      - 'assets/maestro-collection.json'
+      - 'assets/workflowbuilder-collection.json'
   
   workflow_dispatch:  # Enables manual trigger from GitHub UI
 
@@ -13,7 +13,7 @@ jobs:
   sync-postman-collection:
     uses: ./.github/workflows/sync-postman-collection.yml
     with:
-      collection-uid: ${{ vars.MAESTRO_COLLECTION_UID }}
-      collection-path: './assets/maestro-collection.json'
+      collection-uid: ${{ vars.WORKFLOW_BUILDER_COLLECTION_UID }}
+      collection-path: './assets/workflowbuilder-collection.json'
     secrets:
       POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
