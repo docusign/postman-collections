@@ -888,12 +888,12 @@
             "item": [
                 {
                     "id": "0c01ee6a-2408-4ad2-8a72-04e7f7fc2f76",
-                    "name": "Returns the list of identity providers for the organization.",
+                    "name": "Returns the list of identity providers for an organization.",
                     "request": {
                         "name": "Returns the list of identity providers for an organization.",
                         "description": {
-                            "content": "Required scopes: identity_provider_read",
-                            "type": "text/markdown"
+                            "content": "Returns the list of identity providers for an organization.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `identity_provider_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -990,8 +990,8 @@
                     "request": {
                         "name": "Returns the list of reserved domains for the organization.",
                         "description": {
-                            "content": "Required scopes: domain_read",
-                            "type": "text/markdown"
+                            "content": "Returns the list of reserved domains for the organization.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `domain_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -1088,8 +1088,8 @@
                     "request": {
                         "name": "Updates a user's email address.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Updates a user's email address.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -1202,12 +1202,12 @@
                 },
                 {
                     "id": "5b895655-75c7-4836-92d1-7816914eb367",
-                    "name": "Returns information about the users in the organization",
+                    "name": "Returns information about the users in an organization.",
                     "request": {
                         "name": "Returns information about the users in an organization.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Returns information about the users in an organization.\n\nYou must include at least one of the following query parameters in the request:\n\n- `account_id`: The ID of an account associated with the organization.\n- `organization_reserved_domain_id`: The ID of one of the organization's reserved domains.\n- `email`: An email address associated with the users that you want to return.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -1513,8 +1513,8 @@
                     "request": {
                         "name": "Returns the list of permission profiles in an account.",
                         "description": {
-                            "content": "Required scopes: permission_read",
-                            "type": "text/markdown"
+                            "content": "Returns the list of permission profiles in an account.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `permission_read`.\n\n\n### Related topics\n\n- [How to create a new active eSignature user](/docs/admin-api/how-to/create-active-user/)\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -1612,8 +1612,8 @@
                     "request": {
                         "name": "Returns the list of groups in an account.",
                         "description": {
-                            "content": "Required scopes: group_read",
-                            "type": "text/markdown"
+                            "content": "Returns the list of groups in an account.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `group_read`.\n\n\n\n### Related topics\n\n- [How to create a new active eSignature user](/docs/admin-api/how-to/create-active-user/)",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -1763,12 +1763,12 @@
                 },
                 {
                     "id": "f7c6b50a-7ffa-4695-9c22-dfede9a068c6",
-                    "name": "Updates a user.",
+                    "name": "Updates a user's information.",
                     "request": {
                         "name": "Updates a user's information.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Updates a user's information.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -1895,8 +1895,8 @@
                     "request": {
                         "name": "Closes a user's memberships.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Closes a user's memberships.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n\nThis method requires user authentication. It will fail with an [application access token](/docs/admin-api/admin101/application-auth/).",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -2019,12 +2019,12 @@
                 },
                 {
                     "id": "d266760d-cc80-4ab7-8d94-4fcf27d7feb0",
-                    "name": "Creates a new user",
+                    "name": "Creates a new eSignature user.",
                     "request": {
                         "name": "Creates a new eSignature user.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Creates a new eSignature user and automatically activates the user's account.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n\n### Related topics\n\n- [How to create a new active eSignature user](/docs/admin-api/how-to/create-active-user/)\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -2135,12 +2135,12 @@
                 },
                 {
                     "id": "02c8eb30-44fc-421a-a596-df4e9adc170c",
-                    "name": "Activates user memberships",
+                    "name": "Activates user memberships.",
                     "request": {
                         "name": "Activates user memberships.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Activates user memberships.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -2273,12 +2273,12 @@
                 },
                 {
                     "id": "34bdae3c-7dad-4c83-b637-2e1291100806",
-                    "name": "Returns user information.",
+                    "name": "Returns historical information about users with a specific email address.\n",
                     "request": {
                         "name": "Returns historical information about users with a specific email address.\n",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Returns historical information about users with a specific email address.\n**Note:** The `email` query parameter is _required_.\n\n\nTo get a list of users in an organization,\nuse [Users: getUsers](/docs/admin-api/reference/usermanagement/users/getusers/)\ninstead.\n\nFor example, the following request gets information about\naccounts that use `max@example.net` as an email address:\n\n\n```json\nGET /Management/v2/organizations/96e994fa-xxxx-xxxx-xxxx-c5fe9d1ccd10/users/profile?email=max@example.net\n\n{\n  \"users\": [\n    {\n      \"id\": \"6b67a1ee-xxxx-xxxx-xxxx-385763624163\",\n      \"site_id\": 1,\n      \"site_name\": \"Monadnock\",\n      \"user_name\": \"Max Example\",\n      \"first_name\": \"Max\",\n      \"last_name\": \"Example\",\n      \"user_status\": \"active\",\n      \"default_account_id\": \"f636f297-xxxx-xxxx-xxxx-8e7a14715950\",\n      \"default_account_name\": \"BizCo\",\n      \"is_organization_admin\": false,\n      \"created_on\": \"2019-04-01T22:11:56.457\",\n      \"memberships\": [\n        {\n          \"email\": \"max@example.net\",\n          \"account_id\": \"624e3e00-xxxx-xxxx-xxxx-43918c520dab\",\n          \"external_account_id\": \"17xxxxx1\",\n          \"account_name\": \"LoanCo\",\n          \"is_external_account\": false,\n          \"status\": \"active\",\n          \"permission_profile\": { },\n          \"created_on\": \"2019-04-01T22:11:56.457\",\n          \"groups\": [ ],\n          \"is_admin\": false\n        },\n        {\n          \"email\": \"max@example.net\",\n          \"account_id\": \"f636f297-xxxx-xxxx-xxxx-8e7a14715950\",\n          \"external_account_id\": \"25xxxxx0\",\n          \"account_name\": \"BizCo\",\n          \"is_external_account\": true,\n          \"status\": \"active\",\n          \"permission_profile\": { },\n          \"created_on\": \"2021-07-07T15:10:51.96\",\n          \"groups\": [ ],\n          \"is_admin\": false\n        },\n        {\n          \"email\": \"max@example.net\",\n          \"account_id\": \"6aed3a52-xxxx-xxxx-xxxx-e89988167cfd\",\n          \"external_account_id\": \"11xxxxx1\",\n          \"account_name\": \"SleepCo\",\n          \"is_external_account\": true,\n          \"status\": \"closed\",\n          \"permission_profile\": { },\n          \"created_on\": \"2021-07-11T12:40:44.26\",\n          \"groups\": [],\n          \"is_admin\": true,\n          \"closed_on\": \"2021-07-13T08:40:51.8\"\n        }\n      ],\n      \"identities\": [],\n      \"device_verification_enabled\": false\n    }\n  ]\n}\n```\n\nThe response includes up to the first 20 users modified in the last 10 days.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.\n\n\n\n### Related topics\n\n- [How to Audit Users](/docs/admin-api/how-to/audit-users/)\n\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -2391,12 +2391,12 @@
                 },
                 {
                     "id": "9d4188ed-c230-4535-adb0-c1d9757b981d",
-                    "name": "Deletes user identities.",
+                    "name": "Delete user identities for a specified identity provider.",
                     "request": {
                         "name": "Delete user identities for a specified identity provider.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Deletes all user identities linked to a specified identity provider.\n\nThe `id` request body property specifies the identity provider. To get the ID, call [getUserProfiles](/docs/admin-api/reference/usermanagement/esignusermanagement/getuserprofiles/) and copy the `provider_id` value you want to use.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -2523,8 +2523,8 @@
                     "request": {
                         "name": "Adds users to an account.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Adds users to an account.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n\n\n\n### Related topics\n\n- [How to create a new active eSignature user](/docs/admin-api/how-to/create-active-user/)\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -2658,12 +2658,12 @@
             "item": [
                 {
                     "id": "523610d2-2774-41fe-8648-2992caa076e6",
-                    "name": "Get list of DSGroups",
+                    "name": "Returns a list of DSGroups.",
                     "request": {
                         "name": "Returns a list of DSGroups.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Returns a list of DSGroups.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.\n\n\n### Related topics\n\n- [How to create a new active user for CLM and eSignature](/docs/admin-api/how-to/create-active-clm-esign-user/)",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -2795,12 +2795,12 @@
                 },
                 {
                     "id": "73e83ede-b896-444d-8e43-dadc4fc5a4b3",
-                    "name": "Add a new DSGroup",
+                    "name": "Creates a new DSGroup.",
                     "request": {
                         "name": "Creates a new DSGroup.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Creates a new DSGroup.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -2923,12 +2923,12 @@
                 },
                 {
                     "id": "00be6c28-ce9f-4706-a034-fc4f65b29bd7",
-                    "name": "Get list of DSGroup",
+                    "name": "Returns details about a single DSGroup.",
                     "request": {
                         "name": "Returns details about a single DSGroup.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Returns details about a single DSGroup.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -3032,12 +3032,12 @@
                 },
                 {
                     "id": "ef9b82c0-a4ee-4917-8964-deb3152a6616",
-                    "name": "Delete a DSGroup",
+                    "name": "Deletes a DSGroup.",
                     "request": {
                         "name": "Deletes a DSGroup.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Deletes a DSGroup.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -3120,12 +3120,12 @@
                 },
                 {
                     "id": "fdff0094-197d-4cf0-82c0-f56561fad43a",
-                    "name": "Get list of users in a DSGroup",
+                    "name": "Gets a list of users in a DSGroup.",
                     "request": {
                         "name": "Gets a list of users in a DSGroup.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Gets a list of users in a DSGroup.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -3269,12 +3269,12 @@
                 },
                 {
                     "id": "7249d416-aefc-42a3-ae87-f8b8a29b5fc0",
-                    "name": "Add list of users to a DSGroup",
+                    "name": "Adds a list of users to a DSGroup.",
                     "request": {
                         "name": "Adds a list of users to a DSGroup.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Adds a list of users to a DSGroup.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -3409,12 +3409,12 @@
                 },
                 {
                     "id": "291bef47-e70f-49d3-9f46-659bb7d144bc",
-                    "name": "Remove users from a DSGroup",
+                    "name": "Removes a list of users from a DSGroup.",
                     "request": {
                         "name": "Removes a list of users from a DSGroup.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Removes a list of users from a DSGroup. In the request body, you can specify users by ID or email address. If both parameters are included, the email address parameter will be ignored.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -3549,12 +3549,12 @@
                 },
                 {
                     "id": "21670eeb-7e68-4e24-bf61-c94ee48af377",
-                    "name": "Get products associated with the account and the available permission profiles",
+                    "name": "Gets products associated with the account and the available permission profiles.",
                     "request": {
                         "name": "Gets products associated with the account and the available permission profiles.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Gets products associated with the account and the available permission profiles.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.\n\n\n### Related topics\n\n- [How to create a new active user for CLM and eSignature](/docs/admin-api/how-to/create-active-clm-esign-user/)",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -3650,12 +3650,12 @@
                 },
                 {
                     "id": "f145dcc1-361a-42c7-8b96-49007d0b7b27",
-                    "name": "Retrieve list of user's permission profiles for each account's product",
+                    "name": "Retrieves a user's product permission profiles by user ID.",
                     "request": {
                         "name": "Retrieves a user's product permission profiles by user ID.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Retrieves a list of a user's permission profiles for each account's product. The user is specified by the ID provided in the `userId` path parameter.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -3763,12 +3763,12 @@
                 },
                 {
                     "id": "966045bc-05ca-4015-b9f5-61d81b65a501",
-                    "name": "Assign user to permission profiles for one or more products",
+                    "name": "Assigns permission profiles for a user by user ID.",
                     "request": {
                         "name": "Assigns permission profiles for a user by user ID.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Sets permission profiles for one or more products for a given user. The user is specified by the `userId` path parameter.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -3905,12 +3905,12 @@
                 },
                 {
                     "id": "6a04a8df-91a4-4c6f-82d6-fc12b4d3e5c8",
-                    "name": "Creates and updates a multi-product user",
+                    "name": "Creates or updates a multi-product user.",
                     "request": {
                         "name": "Creates or updates a multi-product user.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "This API endpoint enables you to either add a new user or update the details of an existing user within a specified organization and account.\n\n* **Add a user**: A new user is created when the provided email does not match an existing user in the given organizationId and accountId.\n* **Update a user**: An existing user is updated when the email matches a user already associated with the given organizationId and accountId.\n\n**Notes:**\n\nDuplicate emails are not allowed within the same organizationId and accountId. If multiple users with the same email exist, the request will fail with a `409 conflict` error.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n\n### Next steps\n* Explore [an example that demonstrates how to construct the request body and call the endpoint](/docs/admin-api/how-to/create-active-clm-esign-user/).\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -4033,12 +4033,12 @@
                 },
                 {
                     "id": "5af9dd1a-a22c-44b0-8b6c-dce46f09822d",
-                    "name": "Returns DS user profile information.",
+                    "name": "Retrieves the DS profile for a user specified by email address.",
                     "request": {
                         "name": "Retrieves the DS profile for a user specified by email address.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Gets information about a user specified by the `email` query parameter.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -4169,12 +4169,12 @@
                 },
                 {
                     "id": "a08e20fc-fdc6-4d39-9247-12da03a78853",
-                    "name": "Returns user information using the userId for lookup.",
+                    "name": "Retrieves the DS profile for a user specified by ID.",
                     "request": {
                         "name": "Retrieves the DS profile for a user specified by ID.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Gets information about a user specified by the `userId` query parameter.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.\n\n\n### Related topics\n\n- [How to retrieve the user's Docusign profile using an email address](/docs/admin-api/how-to/retrieve-docusign-profile-using-email/)\n- [How to retrieve the user's Docusign profile using a User ID](/docs/admin-api/how-to/retrieve-docusign-profile-using-userid/)",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -4297,12 +4297,12 @@
                 },
                 {
                     "id": "8568c150-175a-4762-98b7-8cbdabb46edf",
-                    "name": "Remove user from permission profiles for one or more products",
+                    "name": "Revokes a user's access to one or more products.",
                     "request": {
                         "name": "Revokes a user's access to one or more products.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Revokes a specified user's access to one or more products.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n\n\n### Related topics\n\n- [How to delete user data from an account as an account admin](/docs/admin-api/how-to/account-admin-delete-user-data/)",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -4427,12 +4427,12 @@
                 },
                 {
                     "id": "bfc965b2-3cc5-4bbc-a689-68bad7f0a42a",
-                    "name": "Remove user from permission profiles for one or more products",
+                    "name": "Retrieves a user's product permission profiles by email address.",
                     "request": {
                         "name": "Retrieves a user's product permission profiles by email address.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Retrieves a list of a user's permission profiles for each account's product. The user is specified by the email address provided in the `email` query parameter.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -4550,12 +4550,12 @@
                 },
                 {
                     "id": "e50af85a-6a84-4481-81ac-7a8c48986c27",
-                    "name": "Assign user to permission profiles for one or more products",
+                    "name": "Assigns permission profiles for a user by email address.",
                     "request": {
                         "name": "Assigns permission profiles for a user by email address.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Sets permission profiles for one or more products for a given user. The user is specified by the `email` property in the request body.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n\n\n### Related topics\n\n- [How to update user product permission profiles using an email address](/docs/admin-api/how-to/update-user-product-permission-profiles-using-email/)\n- [How to delete user product permission profiles using an email address](/docs/admin-api/how-to/delete-user-product-permission-profiles-using-email/)",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -4693,12 +4693,12 @@
             "item": [
                 {
                     "id": "d5b71573-6b77-46fd-b796-63c107d3caf3",
-                    "name": "Returns a list of existing User List Exports (requests and completed exports) and their details/metadata",
+                    "name": "Returns a list of pending and completed export requests.",
                     "request": {
                         "name": "Returns a list of pending and completed export requests.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Returns a list of pending and completed export requests.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -4782,12 +4782,12 @@
                 },
                 {
                     "id": "b72412dd-da45-4f41-aaab-90282de321ba",
-                    "name": "Creates a new User List Export request.",
+                    "name": "Creates a user list export request.",
                     "request": {
                         "name": "Creates a user list export request.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Create a user list export request.\n\nThis method initiates a user list export request. You specify the type of export request as JSON in the body of method, like this:\n\n``` json\n{\n\t\"type\": \"organization_memberships_export\"\n}\n```\n\nThe export request type is one of three values:\n\n| Value                                      | Description                                                                                             |\n| :----------------------------------------- | :------------------------------------------------------------------------------------------------------ |\n| `organization_memberships_export`          | Every user in every account in the organization. Users in multiple accounts will appear more than once. |\n| `organization_domain_users_export`         | All users of the reserved domains.                                                                      |\n| `organization_external_memberships_export` | Users whose email address domain is *not* linked to the organization.                                   |\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.\n\n### Next steps\n* See [how this endpoint is used to bulk export user data](/docs/admin-api/how-to/bulk-export-users/).",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -4900,12 +4900,12 @@
                 },
                 {
                     "id": "9aff4c60-c434-4b24-b5c1-5b407fce566a",
-                    "name": "Returns the details/metadata for a single User List Export request",
+                    "name": "Returns the results for single user list export request.",
                     "request": {
                         "name": "Returns the results for single user list export request.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Returns the results for single user list export request.\n\nGiven an export ID, this method returns the results of a single user list export request.\nTo get a list of all the export requests, use `getUserListExports`.\n\nNote that the `metadata_url` property of the response from `createUserListExport` is a read-to-use HTTP GET request to get the status.\n\nThe results are available through a URL that\nyou can access through the `results` property of the response.\nFor example, to get the URL of the first result you might use\n`results[0].url`\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.\n\n### Next steps\n* See [how this endpoint is used to bulk export user data](/docs/admin-api/how-to/bulk-export-users/).",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -4999,12 +4999,12 @@
                 },
                 {
                     "id": "a3d1801b-0777-47c0-a584-1a1bc7450fdd",
-                    "name": "Deletes a single User List Export request",
+                    "name": "Deletes a single user list export request.",
                     "request": {
                         "name": "Deletes a single user list export request.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Deletes a single user list export request.\nUse this method to delete pending or completed user export requests.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.\n\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -5109,12 +5109,12 @@
             "item": [
                 {
                     "id": "c0c82b8b-fa00-4e24-b03a-6f626fcafc74",
-                    "name": "Returns the details/metadata for Account Setting Export requests",
+                    "name": "Returns a list of pending and completed account settings export request.",
                     "request": {
                         "name": "Returns a list of pending and completed account settings export request.",
                         "description": {
-                            "content": "Required scopes: account_read",
-                            "type": "text/markdown"
+                            "content": "Returns a list of pending and completed account settings export requests.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `account_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -5198,12 +5198,12 @@
                 },
                 {
                     "id": "46d64dcd-3092-4930-a3ff-53d8c2774f5d",
-                    "name": "Creates a  new Account Setting Export request.",
+                    "name": "Creates a  new account settings export request.",
                     "request": {
                         "name": "Creates a  new account settings export request.",
                         "description": {
-                            "content": "Required scopes: account_read",
-                            "type": "text/markdown"
+                            "content": "Creates a new account settings export request.\n\nTo learn more about exporting account settings,\nsee [Account Settings Export][guide-export]\nin the Docusign Admin Guide.\n\nYou can export settings for up to 40 accounts at a time.\n\nSpecify the accounts whose settings you are requesting as JSON in the body of the request, like this:\n\n``` json\n{\n  \"accounts\":\t[\n  \t{ \"account_id\": \"9ca037f4-xxxx-xxxx-xxxx-212e57d4f22e\"},\n  \t{ \"account_id\": \"624e3e00-xxxx-xxxx-xxxx-43918c520dab\"}\n\n  ]\n}\n```\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `account_write`.\n\n### Related topics\n\n- [Account Settings import][guide-import] guide\n- [Account Settings Export][guide-export] guide\n\n\n[guide-import]: https://support.docusign.com/s/document-item?bundleId=rrf1583359212854&topicId=nwl1583359167434.html\n[guide-export]: https://support.docusign.com/s/document-item?bundleId=rrf1583359212854&topicId=kfj1583359164049.html",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -5316,12 +5316,12 @@
                 },
                 {
                     "id": "9644a26a-8051-4723-a741-18e9b0bc1b44",
-                    "name": "Returns the details/metadata for a single Account Setting Export request",
+                    "name": "Returns the results for a single account settings export request.",
                     "request": {
                         "name": "Returns the results for a single account settings export request.",
                         "description": {
-                            "content": "Required scopes: account_read",
-                            "type": "text/markdown"
+                            "content": "Returns the results for a single account settings export request.\n\nGiven an export ID, this method returns the results of an account settings export request.\nTo get a list of all the export requests, use `getAccountSettingsExports`.\n\nThe results are available through a URL that\nyou can access through the `results` property of the response.\nFor example, to get the URL of first result you might use\n`results[0].url`\n\nThe settings export is formatted like this:\n\n``` json\n{\n  \"accounts\": [\n    {\n      \"account_id\": \"9ca037f4-xxxx-xxxx-xxxx-212e57d4f22e\",\n      \"name\": \"The Happy Company\",\n      . . .\n    },\n    {\n      \"account_id\": \"624e3e00-xxxx-xxxx-xxxx-43918c520dab\",\n      \"name\": \"LoanCo\",\n      . . .\n    }\n  ],\n  \"settings\": [\n    . . .\n    {\n      \"category\": \"Signing\",\n      \"name\": \"SignerCanSignOnMobile\",\n      \"account_values\": [\n        {\n          \"account_id\": \"9ca037f4-xxxx-xxxx-xxxx-212e57d4f22e\",\n          \"value\": \"true\",\n          \"rights\": \"editable\"\n        },\n        {\n          \"account_id\": \"624e3e00-xxxx-xxxx-xxxx-43918c520dab\",\n          \"value\": \"true\",\n          \"rights\": \"editable\"\n        }\n      ]\n    },\n    . . .\n  ]\n}\n\n```\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `account_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -5415,12 +5415,12 @@
                 },
                 {
                     "id": "d2fb27ac-cc9c-4e92-b459-1d081d1504e2",
-                    "name": "Deletes a single Account Settings Export request",
+                    "name": "Deletes a single account settings export request.",
                     "request": {
                         "name": "Deletes a single account settings export request.",
                         "description": {
-                            "content": "Required scopes: account_read",
-                            "type": "text/markdown"
+                            "content": "Deletes a single account settings export request.\nAny data associated with the request is also deleted.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `account_read`.\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -5525,12 +5525,12 @@
             "item": [
                 {
                     "id": "ad6ab554-f564-424b-bdef-d17ccdcc9f91",
-                    "name": "Import request for adding users to accounts within the organization.",
+                    "name": "Creates a request to import new users into an account.",
                     "request": {
                         "name": "Creates a request to import new users into an account.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Creates a request to import new users.\n\nYour CSV import file is made up of a header row with the column headers and a row of user or account data for each user you want to add to an account. Only new users can be imported. Any changes to existing users will be ignored. To make changes to existing users, use [UserImport:updateBulkUserImports](/docs/admin-api/reference/bulkoperations/userimport/updatebulkuserimports/).\n\nTo ensure your CSV file is properly formatted, follow the requirements in the Support article [Build a CSV to Bulk Add Users](https://support.docusign.com/s/document-item?bundleId=rrf1583359212854&topicId=wec1593211169952.html). You can download an example file from the Add Users dialogue in the Admin UI.\n\nYou can add up to 2,000 users to an account and include up to 50 accounts per import. The maximum number of users per import is 8,000.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n\n### Next steps\n* See an [example of adding users via bulk import in your chosen programming language](/docs/admin-api/how-to/add-users-bulk-import/).\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -5651,12 +5651,12 @@
                 },
                 {
                     "id": "d68c76f8-85af-4d9b-96af-463d3a61dcca",
-                    "name": "Import request for updating users to accounts within the organization.",
+                    "name": "Bulk updates information for existing users.",
                     "request": {
                         "name": "Bulk updates information for existing users.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Bulk updates information for existing users.\n\nYour CSV import file is made up of a header row with the column headers and a row of user or account data for each user you want to add to an account. \n\n\n**Update limit:** You can update up to 2,000 users on an account and include up to 50 accounts per import. The maximum number of updated users per import is 8,000.\n\nThis method requires the following HTTP headers:\n\n| Header | Value |\n| :--- |  :--- |\n| Content-Type | `text/csv` |\n| Content-Disposition |  `filename=filename.csv` |\n\n\n\nTo ensure your CSV is properly formatted, use the\n[Sample Bulk Update CSV file](https://admin.docusign.com/static-resources/organization-user-update-import.csv)\n as a template. The following table describes the columns.\n\nNote that the columns for bulk adding users and bulk update users are slightly different.\nThe update CSV file requires an `APIUserName` column, and does not have an `AutoActivate` column.\n\n\n\n| Column              | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                         |\n| :------------------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| AccountID           | yes      | The 32-character API account ID of the user's account in your organization. You can find this value in the API and Keys section of the Admin area of the account.                                                                                                                                                                                                                                                             |\n| AccountName         |          | The name of the user's account in your organization. The account name must match the account ID provided.                                                                                                                                                                                                                                                                                                           |\n| FirstName           | yes      | The user's first name.                                                                                                                                                                                                                                                                                                                                                                                              |\n| LastName            | yes      | The user's last name.                                                                                                                                                                                                                                                                                                                                                                                               |\n| UserEmail           | yes      | The user's complete email address.                                                                                                                                                                                                                                                                                                                                                                                  |\n| PermissionSet       | yes      | The user's permission set. The PermissionSet value must match an existing permission set for the account. This value is not case sensitive.                                                                                                                                                                                                                                                                         |\n| UserTitle           |          | The user's job title.                                                                                                                                                                                                                                                                                                                                                                                               |\n| CompanyName         |          | The user's company name.                                                                                                                                                                                                                                                                                                                                                                                            |\n| Group               |          | The user's assigned groups. The Group values must match existing Group names for the account. Additional Group columns can be added to the file to add users to more than one group. You do not need to add users to the Everyone group, since all new users are automatically added to that group.                                                                                                                 |\n| AddressLine1        |          | The user's address, first line.                                                                                                                                                                                                                                                                                                                                                                                     |\n| AddressLine2        |          | The user's address, second line.                                                                                                                                                                                                                                                                                                                                                                                    |\n| City                |          | The user's city name.                                                                                                                                                                                                                                                                                                                                                                                               |\n| StateRegionProvince |          | The user's regional location.                                                                                                                                                                                                                                                                                                                                                                                       |\n| PostalCode          |          | The user's postal code.                                                                                                                                                                                                                                                                                                                                                                                             |\n| Phone               |          | The user's phone number.                                                                                                                                                                                                                                                                                                                                                                                            |\n| Language            |          | The user's display language for their Docusign account. Must be one of: <ul><li>Chinese Simplified: <code>zh_CN</code></li><li>Chinese Traditional: <code>zh_TW</code></li><li>Dutch: <code>nl</code></li><li>English: <code>en</code></li><li>French: <code>fr</code></li><li>German: <code>de</code></li><li>Italian: <code>it</code></li><li>Japanese: <code>ja</code></li><li>Korean: <code>ko</code></li><li>Portuguese: <code>pt</code></li><li>Portuguese Brazil: <code>pt_BR</code></li><li>Russian: <code>ru</code></li><li>Spanish: <code>es</code></li></ul>                                                                                                                                                                                                                                                                                                                                                            |\n| LoginPolicy         |          | The user's login policy. Valid values include the following: <ul> <li>Column left blank = The user is created with no policy assigned.</li> <li>FedAuthRequired = The user must log in with an Identity Provider.</li> <li>FedAuthBypass = The user may log in with an Identity Provider or their Docusign username and password.</li> </ul> For more information on login policies, see [Setting User Login Policy](https://support.docusign.com/s/document-item?bundleId=rrf1583359212854&topicId=zah1583359147774.html). |\n| AutoActivate        |          | For domain users, new users can be activated automatically for domain accounts using SSO by setting the value to **true.** The user is activated automatically once the import is complete. Memberships activated in this way do not receive an activation email.                                                                                                                                                   |\n\n\n\n## Updating user email addresses\n\nChanging a user's email address should be done carefully. The user's email address is used to log in to Docusign and receive documents to sign from others.\nOnce changed, existing documents that were sent or received:\n\n- Will still appear in the user's documents list.\n- Notifications about these documents will be sent to the new email address. If someone sends a new document to the old email address:\n- Docusign will send a notification to the old address.\n- It will not appear in the documents list of the account.\n\nThis change of email address will be applied to all of the user's account memberships.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -5777,12 +5777,12 @@
                 },
                 {
                     "id": "fa2eb8eb-9913-47da-b8b3-6c4eb47245db",
-                    "name": "Closes the Bulk User Import request",
+                    "name": "Creates a request to close the accounts of existing users.",
                     "request": {
                         "name": "Creates a request to close the accounts of existing users.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Creates a request to close the accounts of existing users.\n\nGiven a CSV list of users, close their accounts.\n\nYour CSV import file is made up of a header row with the column headers and a row of user or account data for each user whose account you want to close.\n\nTo ensure your CSV is properly formatted, use the\n[Sample Bulk Update CSV file](https://admin.docusign.com/static-resources/organization-user-update-import.csv)\n as a template. The following table describes the columns.\n\n\n\n\n| Column              | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                         |\n| :------------------ | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |\n| AccountID           | yes      | The 32-character API account ID of the user's account in your organization. You can find this value in the API and Keys section of the Admin area of the account.                                                                                                                                                                                                                                                             |\n| AccountName         |          | The name of the user's account in your organization. The account name must match the account ID provided.                                                                                                                                                                                                                                                                                                           |\n| FirstName           | yes      | The user's first name.                                                                                                                                                                                                                                                                                                                                                                                              |\n| LastName            | yes      | The user's last name.                                                                                                                                                                                                                                                                                                                                                                                               |\n| UserEmail           | yes      | The user's complete email address.                                                                                                                                                                                                                                                                                                                                                                                  |\n| PermissionSet       | yes      | The user's permission set. The PermissionSet value must match an existing permission set for the account. This value is not case sensitive.                                                                                                                                                                                                                                                                         |\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -5903,12 +5903,12 @@
                 },
                 {
                     "id": "9599df6c-0db8-4f29-bcf4-7eb58b59f706",
-                    "name": "Closes memberships which are not in an account which is part of the organization, but which do have email addresses which are @ a verified reserved web domain which belongs to the organization",
+                    "name": "Closes external memberships.",
                     "request": {
                         "name": "Closes external memberships.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Closes external memberships.\n\nExternal memberships are users who have an email address at a verified domain but do not belong to the organization.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -5994,12 +5994,12 @@
                 },
                 {
                     "id": "407627a1-135d-45ec-82b0-fc70624bdd86",
-                    "name": "Returns the details/metadata for Bulk User Import requests in the organization",
+                    "name": "Gets a list of all of the user import requests.",
                     "request": {
                         "name": "Gets a list of all of the user import requests.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Gets a list of all of the user import requests.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -6083,12 +6083,12 @@
                 },
                 {
                     "id": "24941e89-2bd4-4ddb-9db2-2c2657cb7b17",
-                    "name": "Returns the details/metadata for a User Import request",
+                    "name": "Returns the details of a single user import request.",
                     "request": {
                         "name": "Returns the details of a single user import request.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Returns the details of a single user import request.\n\nUse this method to check the status of the request by looking at the `status` property of the response.\nOnce the status becomes `completed` (or fails), use this method to get the details.\n\nTo get a list of all of the user import requests, use `getBulkUserImportRequests`.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -6182,12 +6182,12 @@
                 },
                 {
                     "id": "d6b05db0-9100-4390-98f0-28c132e816dd",
-                    "name": "Deletes a User Import request",
+                    "name": "Deletes a specific user import request.",
                     "request": {
                         "name": "Deletes a specific user import request.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Deletes a specific import request and its results.\n\nTo delete a user, see [closeBulkUserImportRequest](/docs/admin-api/reference/bulkoperations/userimport/closebulkuserimportrequest/).\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -6281,12 +6281,12 @@
                 },
                 {
                     "id": "2dbaf5bb-8f9a-4cb7-a5fc-9b5f31e34d6a",
-                    "name": "Returns a text/csv file with user details for a User Import request",
+                    "name": "Given the ID of a user import request,\nreturn the CSV file that was imported.",
                     "request": {
                         "name": "Given the ID of a user import request,\nreturn the CSV file that was imported.",
                         "description": {
-                            "content": "Required scopes: user_read",
-                            "type": "text/markdown"
+                            "content": "Returns the contents of the CSV file\nassociated with a user import request.\n\nThe results have an additional column,\n`ProcessingResults`,\nthat describes the results of importing that row.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_read`.\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -6498,12 +6498,12 @@
             "item": [
                 {
                     "id": "3a82a42b-f2de-4723-9b9a-ce1b9ba2e9c5",
-                    "name": "Returns the details/metadata for Bulk Account Settings Import requests in the organization",
+                    "name": "Returns the details and metadata for Bulk Account Settings Import requests in the organization.",
                     "request": {
                         "name": "Returns the details and metadata for Bulk Account Settings Import requests in the organization.",
                         "description": {
-                            "content": "Required scopes: account_read",
-                            "type": "text/markdown"
+                            "content": "Returns the details and metadata for Bulk Account Settings Import requests in the organization.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `account_read`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -6591,8 +6591,8 @@
                     "request": {
                         "name": "Creates a new account settings import request.",
                         "description": {
-                            "content": "Required scopes: account_write",
-                            "type": "text/markdown"
+                            "content": "Creates a new account settings import request.\n\nThe request for this method consists of\nthe contents of a CSV\nfile.\n\nYou can export your current settings as a CSV file with\n[AccountSettingsExport: createAccountSettingsExport](/docs/admin-api/reference/bulkoperations/accountsettingsexport/createaccountsettingsexport/)\nand use it as the basis\nof the changes you want to import.\n\n\nTo learn more about the format\nof a settings CSV file, see\n[Preparing a CSV for account settings import][guide-import]\nin the Docusign Admin Guide.\n\nYou can import settings for up to 40 accounts at a time.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `account_write`.\n\n### Related topics\n\n- [Account Settings import][guide-import] guide\n- [Account Settings Export][guide-export] guide\n\n[guide-import]: https://support.docusign.com/s/document-item?bundleId=rrf1583359212854&topicId=nwl1583359167434.html\n[guide-export]: https://support.docusign.com/s/document-item?bundleId=rrf1583359212854&topicId=kfj1583359164049.html\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -6711,12 +6711,12 @@
                 },
                 {
                     "id": "19cd97d5-3508-47b3-9d5f-95bdf13c3b96",
-                    "name": "Returns the details/metadata for a Bulk Account Settings Import request",
+                    "name": "Returns the details/metadata for a Bulk Account Settings Import request.",
                     "request": {
                         "name": "Returns the details/metadata for a Bulk Account Settings Import request.",
                         "description": {
-                            "content": "Required scopes: account_read",
-                            "type": "text/markdown"
+                            "content": "Returns the details/metadata for a Bulk Account Settings Import request.\n\nGiven an import ID, this method returns the results of an account settings import request.\nTo get a list of all the import requests, use `getAccountSettingsImports`.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `account_read`.\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -6810,12 +6810,12 @@
                 },
                 {
                     "id": "f778a54d-f8a7-4c00-967b-0e1b9fc30a40",
-                    "name": "Deletes a Bulk Account Settings Import request",
+                    "name": "Deletes a Bulk Account Settings Import request.",
                     "request": {
                         "name": "Deletes a Bulk Account Settings Import request.",
                         "description": {
-                            "content": "Required scopes: account_write",
-                            "type": "text/markdown"
+                            "content": "Deletes a single account settings import request.\nAny data associated with the request is also deleted.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `account_write`.",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -6920,12 +6920,12 @@
             "item": [
                 {
                     "id": "c92aebd8-5b57-42a9-99dc-ebf36172f5dc",
-                    "name": "Import request for adding user to a single account within the organization. Allows upload of user information without requiring an AccountId column",
+                    "name": "Import request for adding a user to a single account within the organization.",
                     "request": {
                         "name": "Import request for adding a user to a single account within the organization.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Import request for adding a user to a single account within the organization.\nThis method lets you upload user information without requiring an AccountId column.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -7058,12 +7058,12 @@
                 },
                 {
                     "id": "1c942220-b1fb-43ae-b963-24f7ba20a861",
-                    "name": "Import request for updating users for a single account within the organization. Allows upload of user information without requiring an AccountId column",
+                    "name": "Import request for updating users for a single account\nwithin the organization.",
                     "request": {
                         "name": "Import request for updating users for a single account\nwithin the organization.",
                         "description": {
-                            "content": "Required scopes: user_write",
-                            "type": "text/markdown"
+                            "content": "Import request for updating users for a single account\nwithin the organization.\n\nThis method lets you upload user information without requiring an `AccountId` column.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_write`.\n\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -7207,12 +7207,12 @@
             "item": [
                 {
                     "id": "efbbadb0-eb65-40e3-a4be-2d6d262b0ec7",
-                    "name": "Redacts membership data for users with memberships in an account.",
+                    "name": "Deletes membership data for a user on an account.",
                     "request": {
                         "name": "Deletes membership data for a user on an account.",
                         "description": {
-                            "content": "Required scopes: user_data_redact",
-                            "type": "text/markdown"
+                            "content": "Deletes the data for a single account membership for a specified user.\n\nTo call this endpoint: \n* You must be an administrator (or delegated administrator) of the specified account.\n* The user must have been closed for at least 24 hours.\n\n**Note:** After a user's data is deleted for every account to which they belong, their user-level data will automatically be deleted.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_data_redact`.\n\n### Related topics\n\n- [How to delete user data from an account as an account admin](/docs/admin-api/how-to/account-admin-delete-user-data/)\n",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -7325,12 +7325,12 @@
                 },
                 {
                     "id": "ccc53a3f-efad-4ca5-9985-b42d8215593e",
-                    "name": "Redacts membership and user data for users in an organization.",
+                    "name": "Deletes data for one or more of a user's account memberships.",
                     "request": {
                         "name": "Deletes data for one or more of a user's account memberships.",
                         "description": {
-                            "content": "Required scopes: user_data_redact",
-                            "type": "text/markdown"
+                            "content": "Deletes data for one or more of a user's account memberships.\n\nTo call this endpoint: \n* You must be an organization administrator (or delegated administrator) with permission to manage the specified accounts or the user's email domain.\n* The user must have been closed for at least 24 hours.\n\n**Note:** After a user's data is deleted for every account to which they belong, their user-level data will automatically be deleted.\n\n[Required authentication scopes](/docs/admin-api/admin101/auth/): `user_data_redact`.\n\n### Related topics\n\n- [How to delete user data from one or more accounts as an organization admin](/docs/admin-api/how-to/org-admin-delete-user-data/)",
+                            "type": "text/plain"
                         },
                         "url": {
                             "path": [
@@ -7612,7 +7612,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"sourceAccount\": {\n    \"id\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"admin\": {\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"ru\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  },\n  \"cloneProcessingFailureDetails\": {}\n}",
+                            "raw": "{\n  \"sourceAccount\": {\n    \"id\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"admin\": {\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"es\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  },\n  \"cloneProcessingFailureDetails\": {}\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -8084,7 +8084,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"subscriptionDetails\": {\n    \"id\": \"<string>\",\n    \"modules\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"planId\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"address\": {\n      \"country\": \"<string>\",\n      \"fax\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"region\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_address_2\": \"<string>\"\n    },\n    \"admin\": {\n      \"address\": {\n        \"country\": \"<string>\",\n        \"fax\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\"\n      },\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"ja\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  }\n}",
+                            "raw": "{\n  \"subscriptionDetails\": {\n    \"id\": \"<string>\",\n    \"modules\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"planId\": \"<uuid>\"\n  },\n  \"targetAccount\": {\n    \"address\": {\n      \"country\": \"<string>\",\n      \"fax\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"region\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_address_2\": \"<string>\"\n    },\n    \"admin\": {\n      \"address\": {\n        \"country\": \"<string>\",\n        \"fax\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\"\n      },\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locale\": \"ru\"\n    },\n    \"countryCode\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"region\": \"<string>\",\n    \"site\": \"<string>\"\n  }\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -9260,7 +9260,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"officiac\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
+                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"cupidatatfa\": \"<string>\",\n    \"et4\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -9378,7 +9378,7 @@
                         "method": "PUT",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"officiac\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
+                            "raw": "{\n  \"authorizationServerUrl\": \"<uri>\",\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\",\n  \"customParameter\": {\n    \"cupidatatfa\": \"<string>\",\n    \"et4\": \"<string>\"\n  },\n  \"scope\": \"<string>\"\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
