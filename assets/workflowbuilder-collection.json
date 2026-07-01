@@ -1,10 +1,10 @@
 {
     "_": {
-        "postman_id": "a1564b8b-1119-4034-acc7-41f8fce55dca"
+        "postman_id": "805cdc3d-da8e-4850-b088-1aa5b6ba6579"
     },
     "item": [
         {
-            "id": "420d0adb-e94a-47f8-aeee-b579c8e51064",
+            "id": "fbafaefc-4911-4c17-acf8-73be6b94c3f2",
             "name": "🔐 Quick Auth Setup → Then Run APIs",
             "description": {
                 "content": "This folder contains a curated set of requests for rapid Docusign integration. By configuring authentication at the folder level, you can execute all contained requests without manual per request setup. Successful execution of the authentication flows within this folder will populate the **Environment and Collection variables** ``{{​access_token}}`` and ``{{​refresh_token}}``.\n\nOnce these values are saved to your active environment, they will be globally available for all requests in this folder.\n\nEvery request in this folder is configured with auth type as **inherit auth from the parent**. To ensure seamless execution, the folder itself is set to the **Bearer Token** authorization type, using ``{{​access_token}}`` as the value.\n\n**Note**: When viewing the Folder's **Authorization** tab, ensure the **Token** field contains only the variable ``{{​access_token}}``. Do not include the word \"Bearer\" in the text box, as Postman automatically generates the correct ``Authorization: Bearer [token]`` header.\n\n## **Choose your Authentication Type**\n\nDocusign uses OAuth 2.0 to secure your API requests. Using OAuth, your app requests access and performs actions, such as requesting a signature, on behalf of one of your users.\n\nDocusign provides four scenarios for implementing OAuth:\n\n- [<b>Authenticate with the JWT Grant</b>](https://developers.docusign.com/platform/auth/jwt-get-token/)\n- [<b>Authenticate with the Confidential Authorization Code Grant</b>](https://developers.docusign.com/platform/auth/confidential-authcode-get-token/)\n- [<b>Authenticate with Public Authorization Code Grant</b>](https://developers.docusign.com/platform/auth/public-authcode-get-token/)\n- [<b>Authenticate with Implicit Code Grant</b>](https://developers.docusign.com/platform/auth/implicit/)\n\n| Flow | When to use | Human present? | Client secret? |\n|------|-------------|---------------|----------------|\n| **JWT (Service Integration)** | Server/daemon jobs acting on behalf of a user after one-time consent has been granted. | No (after consent) | No (requires privateKey) |\n| **Confidential Authorization Code Grant** | Server-side applications that can securely store a secret. Supports refresh_token. | Yes (initial sign-in) | Yes |\n| **Public Authorization Code Grant (PKCE)** | SPA, Mobile, or Desktop apps that cannot securely store a secret. | Yes (initial sign-in) | No (uses PKCE flow) |\n\n## Prerequisites\n\nBefore obtaining the access token, ensure the following environment or collection variables are configured in Postman.\n\n| Variable | Example Value | Description |\n|----------|---------------|-------------|\n| ``{{​authServer}}`` | Demo: https://account-d.docusign.com <br> Production: https://account.docusign.com | Authentication base URL. |\n| ``{{​redirectUri}}`` | http://localhost:8080/ | A redirect URI (callback URI) where Docusign sends users after authentication. |\n| ``{{​origin}}`` | https://localhost:3000 | Origin URL for PKCE CORS requests. Must match an allowed origin in your Docusign [CORS configuration](https://developers.docusign.com/platform/configure-app/#cors-configuration). |\n| ``{{​scope}}`` | signature extended | Permissions requested (e.g., signature, impersonation for JWT). See: https://developers.docusign.com/platform/auth/reference/scopes/ |\n| ``{{​integrationKey}}`` | Example: f8db556a-xxxx-4f30-xxxx-648ea46axxxx | Integration key identifying your app (falls back to ``{{​IKey}}``). Create one: https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key |\n| ``{{​clientSecret}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | Secret key for confidential integrations (falls back to ``{{​ISec}}``): https://developers.docusign.com/platform/configure-app/#secret-key |\n| ``{{​publicIntegrationKey}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | Public integration key used for PKCE flows. Falls back to ``{{​integrationKey}}``/``{{​IKey}}``. |\n| ``{{​userId}}`` | Example: f2db256a-xxxx-4f30-xxxx-64a2346axxxx | User GUID. Find it here: https://developers.docusign.com/platform/configure-app/#user-id |\n| ``{{​privateKey}}`` | -----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY----- | RSA private key for JWT flow: https://developers.docusign.com/platform/configure-app/#rsa-key-pair |\n\n## Steps to get token\n\n1. JWT (Service Integration)\n    \n    1. Open the **01 - JWT / Service Integration** folder.\n        \n    2. Execute the GET request of **01-1 – Construct Consent URL**.\n        \n    3. Open the returned **authorizeUrl** in a browser.\n        \n    4. Sign in and grant consent (must include **impersonation**).\n        \n    5. After consent is granted, you can close the browser.\n        \n    6. Run **01-2 - JWT Token (exchange)**\n        \n2. Confidential Auth Code\n    \n    1. Open the **02 – Authorization Code Grant (Confidential Client)** folder.\n        \n    2. Execute the GET request of **02-1 – Construct Authorization URL**.\n        \n    3. Open the returned **authorizeUrl** in a browser tab.\n        \n    4. Sign in and grant consent.\n        \n    5. Copy the **?code=** value from the URL and set it as ``{{​authCodeNoPkce}}``.\n        \n    6. Run **02-2 – Exchange Authorization Code for Tokens**.\n        \n3. Public Auth Code (PKCE)\n    \n    1. Open the **03 – Authorization Code Grant with PKCE (Public Client)** folder**.**\n        \n    2. Execute the GET request of **03-1 – Construct Authorization URL with PKCE**.\n        \n    3. Open the returned **authorizeUrl** in a browser tab.\n        \n    4. Sign in and grant consent.\n        \n    5. Copy the **?code=** value from the URL and set it as ``{{​authCodePkce}}``.\n        \n    6. Ensure the Origin parameter added in Apps and Keys page is set in headers of  **03-2 – Exchange Authorization Code for Tokens (PKCE)** and CORS is activated with all the HTTP operations. For further information, refer [Set the CORS configuration of your app.](https://developers.docusign.com/platform/configure-app/#cors-configuration)\n        \n    7. Run **03-2 – Exchange Authorization Code for Tokens (PKCE)**.\n        \n4. Execute 05 – User Info to verify your user details and base URI.\n    \n\n## Notes\n\n- If the access token has expired, execute 04 – Refresh Access Token using the refresh token. Default expiration is 8 hours (`expires_in` is in seconds).\n    \n- Moving to Production: Switch ``{{​authServer}}`` to [https://account.docusign.com](https://account.docusign.com) and re-consent. The base URI can be accessed by executing 05 – User Info.",
@@ -12,7 +12,7 @@
             },
             "item": [
                 {
-                    "id": "47741b43-5a9c-4638-81db-ea84f7ab1636",
+                    "id": "3542310a-cd17-4cd1-8a29-ada87f366665",
                     "name": "01 - JWT / Service Integration",
                     "description": {
                         "content": "This request demonstrates authentication using JSON Web Tokens (JWT) Grant for accessing APIs without user interaction.\n\n1. Before making the first call, an administrator or the target user must grant consent to your **Integration Key** (Client ID) to allow specific scopes.To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/).\n    \n2. Your server constructs and digitally signs a **JWT** using your **private key** and the user's ID.\n    \n3. The signed JWT is exchanged with the authorization server for a short-lived access token. This access token is then used in subsequent API calls.\n    \n\nThis workflow is ideal for background processes, scheduled tasks, and integrations that require impersonating a user without constant user interaction.\n\n**Variables**\n\nFor context around what JWT Grant authentication is, when you should use it, and its advantages and disadvantages, see [JSON Web Token (JWT) Grant](https://developers.docusign.com/platform/auth/jwt/).\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). Falls back to ``{{​IKey}}``. | — |\n| ``{{​userId}}`` | ✅ | Find your [User ID](https://developers.docusign.com/platform/configure-app/#user-id) in the Apps and Keys page. | — |\n| ``{{​privateKey}}`` | ✅ | The **PEM formatted Private Key** used for RS256 signing the JWT. | — |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use https://account.docusign.com for Production). | `https://account-d.docusign.com` |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``adm_store_unified_repo_read adm_store_unified_repo_write models_read document_uploader_read document_uploader_write public_dms_document_read`` |\n| ``{{​USE_CUSTOM_ASSERTION}}`` | Optional | `true` to use your own ``{{​jwt_assertion}}`` | `false` |",
@@ -20,7 +20,7 @@
                     },
                     "item": [
                         {
-                            "id": "1ae81be5-ffca-4c49-9ce1-86f83472ae3a",
+                            "id": "a0617e57-d427-4643-a91d-5cff94224553",
                             "name": "01-1 - Construct Consent URL (JWT)",
                             "request": {
                                 "description": {
@@ -42,7 +42,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "9ce052ee-4be4-4c89-94df-8446b332f183",
+                                        "id": "96a80ead-7304-4ef6-93e7-0ff44cf74d06",
                                         "type": "text/javascript",
                                         "packages": {},
                                         "exec": [
@@ -74,7 +74,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "43e659e6-9c3a-4f48-9ccc-964c7f31963e",
+                                        "id": "f2fc76ca-c26b-484b-a54a-03a543c0ba03",
                                         "type": "text/javascript",
                                         "packages": {},
                                         "exec": [
@@ -91,7 +91,7 @@
                             ]
                         },
                         {
-                            "id": "044388a0-2114-4e43-917c-6fd9d0bb6863",
+                            "id": "98b638f4-82e4-4579-8a1f-ee3220ea3644",
                             "name": "01-2 - JWT Token (exchange)",
                             "request": {
                                 "description": {
@@ -139,7 +139,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "431e86c8-d84a-4748-8ab2-51d985c44b18",
+                                        "id": "dbef9333-af71-4e52-a96b-496092c99085",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.environment.unset('jwt_error');",
@@ -170,7 +170,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "b1274934-6985-4059-95fe-4fc50105d6c5",
+                                        "id": "da2f5b23-6f36-43df-b8e6-a83c4e965df4",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const err  = pm.environment.get('jwt_error');",
@@ -193,7 +193,7 @@
                     "event": []
                 },
                 {
-                    "id": "3e1bdbc5-164d-4313-852c-08fa870642f3",
+                    "id": "f8788d8e-bfe4-4c4a-a6f0-3f188825974b",
                     "name": " 02 - Authorization Code Grant (Confidential Client)",
                     "description": {
                         "content": "This folder implements the **Authorization Code Grant** flow. This process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nAuthorization Code Grant is a type of OAuth 2.0 flow used to obtain an access token. [Confidential Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#confidential-authorization-code-grant), which should be used by apps that can secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​integrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). Falls back to ``{{​IKey}}``. |  |\n| ``{{​clientSecret}}`` | ✅ | The secret key identifies your integration app through a unique key. [Create a Secret Key](https://developers.docusign.com/platform/configure-app/#secret-key). Falls back to ``{{​ISec}}``. |  |\n| ``{{​​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``adm_store_unified_repo_read adm_store_unified_repo_write models_read document_uploader_read document_uploader_write public_dms_document_read`` |\n| ``{{​authCodeNoPkce}}`` | ✅ (Only on exchange) | Paste the `?code` here (env or collection var) |  |",
@@ -201,7 +201,7 @@
                     },
                     "item": [
                         {
-                            "id": "f29b7991-bea2-4dd7-91aa-9eb864d85bb1",
+                            "id": "f03e7ec9-5b3e-453c-8b57-9d10808375b6",
                             "name": "02-1 - Construct Authorization URL",
                             "request": {
                                 "description": {
@@ -223,7 +223,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "db38c03d-3f09-4246-b395-9d994c29b5fc",
+                                        "id": "35d6f4b5-3696-48a9-87ea-38369f7c3ecf",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const u = utils;",
@@ -253,7 +253,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "3c423f0b-5234-4d5a-9bce-840678539d5c",
+                                        "id": "2747a7dc-a9a9-431b-b890-c3078942439b",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -269,7 +269,7 @@
                             ]
                         },
                         {
-                            "id": "af0f34e6-8fee-49f0-bc63-fb5a01e54fff",
+                            "id": "1e8e6058-8859-4a65-8f6f-ebd272ded10e",
                             "name": "02-2 - Exchange Authorization Code for Tokens",
                             "request": {
                                 "description": {
@@ -325,7 +325,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "69e1580b-bbf8-4aed-8382-1712c9771d97",
+                                        "id": "49fdd68d-89a7-4e93-925a-1a30dc2bc345",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -343,7 +343,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "fd3e302e-b59b-4a2f-b8d6-93e5e8bf6915",
+                                        "id": "03919e6f-b2b4-4201-aa11-b461cdfe4364",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -358,7 +358,7 @@
                     "event": []
                 },
                 {
-                    "id": "4d82961d-bca4-4919-b1dc-94922d01eede",
+                    "id": "8ba8134a-8515-4481-b3ca-1c20c05cea23",
                     "name": "03 - Authorization Code Grant with PKCE (Public Client)",
                     "description": {
                         "content": "This folder implements the **Public Authorization Code Grant (with PKCE)** flow, which is the required OAuth 2.0 standard for public applications like Single Page Applications (SPAs) and mobile apps.\n\nThis process requires the user to be present initially to grant authorization through a browser-based login and consent screen.\n\nUpon successful consent, the system receives an authorization code which is exchanged for both a short-lived access token and a long-lived refresh token.\n\nThe key benefit of this approach is the ability to use the refresh token to continually request new access tokens in the background, thereby maintaining long-lived user sessions and enabling your server to execute automated tasks without repeated user interaction.\n\n**Variables**\n\nPublic Authorization Code Grant (with PKCE) is a type of OAuth 2.0 flow used to obtain an access token. [Public Authorization Code Grant](https://developers.docusign.com/platform/auth/authcode/#public-authorization-code-grant), which does not require that your app secure a secret key.\n\n| Variable | Required | Notes | Default |\n| --- | --- | --- | --- |\n| ``{{​publicIntegrationKey}}`` | ✅ | An integration key identifies your integration and links to its configuration values. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). If absent, it falls back to ``{{​integrationKey}}``. |  |\n| ``{{​integrationKey}}`` | Fallback | An integration key identifies your integration and links to its configuration values. Falls back to ``{{​IKey}}``. [Create an integration key](https://developers.docusign.com/platform/configure-app/#how-to-get-an-integration-key). |  |\n| ``{{​redirectUri}}`` | ✅ | The URI is registered on your Docusign Integration Key (API Key). You can choose your application’s redirect uri. |  |\n| ``{{​authServer}}`` | ✅ | Authentication base URL (use [https://account.docusign.com](https://account.docusign.com) for Production). | `https://account-d.docusign.com` |\n| ``{{​origin}}`` | ✅ (Only on exchange) | The Origin URL registered in your Docusign App CORS configuration. Must match an allowed origin in Apps and Keys. See [Set the CORS configuration of your app.](https://developers.docusign.com/platform/configure-app/#cors-configuration) |  |\n| ``{{​scope}}`` | Optional | Permissions requested (e.g., signature, impersonation for JWT).To see the full list of all supported scopes, see [Authentication scopes](https://developers.docusign.com/platform/auth/reference/scopes/). | ``adm_store_unified_repo_read adm_store_unified_repo_write models_read document_uploader_read document_uploader_write public_dms_document_read`` |",
@@ -366,7 +366,7 @@
                     },
                     "item": [
                         {
-                            "id": "6e161aaf-25e2-4fef-a123-30d94a1f908f",
+                            "id": "38b6ae41-8516-4922-bc52-66113cd18a79",
                             "name": "03-1 - Construct Authorization URL with PKCE",
                             "request": {
                                 "description": {
@@ -392,7 +392,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "3125bc6c-c3ef-49f7-b8da-46ddb01344d3",
+                                        "id": "c99ed39b-37f4-4316-b7fa-1d7280d13b56",
                                         "type": "text/javascript",
                                         "exec": [
                                             "const u = utils;",
@@ -422,7 +422,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "63ad805c-1c2a-4fe8-9c19-ef94fa34ab36",
+                                        "id": "56bf8921-611d-472b-bd05-5340e7efbf1b",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -438,7 +438,7 @@
                             ]
                         },
                         {
-                            "id": "a4abfa68-9283-4fcd-86c7-43883ad9af81",
+                            "id": "8d3ebc2d-dc9e-43db-8b61-bd8e1a00175b",
                             "name": "03-2 - Exchange Authorization Code for Tokens (PKCE)",
                             "request": {
                                 "description": {
@@ -498,7 +498,7 @@
                                 {
                                     "listen": "prerequest",
                                     "script": {
-                                        "id": "a8a86b5b-7c22-497b-8810-806a0cf31221",
+                                        "id": "970125b1-fc62-4bd2-9ce0-824fe6ef79d0",
                                         "type": "text/javascript",
                                         "exec": [
                                             "try {",
@@ -522,7 +522,7 @@
                                 {
                                     "listen": "test",
                                     "script": {
-                                        "id": "dc552fda-c28b-4bb6-9371-ec4cda6c2587",
+                                        "id": "daea470b-296a-4b43-9436-5d13594a0287",
                                         "type": "text/javascript",
                                         "exec": [
                                             "pm.test('Access token returned', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -537,7 +537,7 @@
                     "event": []
                 },
                 {
-                    "id": "8df43575-b130-4cf5-ac31-f85086380532",
+                    "id": "02143b44-6b15-4b77-871b-78ef728f6b4d",
                     "name": "04 - Refresh Access Token",
                     "request": {
                         "description": {
@@ -600,7 +600,7 @@
                         {
                             "listen": "prerequest",
                             "script": {
-                                "id": "0461485a-8c67-4399-9fdb-d6785fc14d02",
+                                "id": "5bc2edac-0fac-41c7-aa19-395dbb84b53b",
                                 "type": "text/javascript",
                                 "exec": [
                                     "// Resolve IKey/ISec fallback for body/auth templates",
@@ -612,7 +612,7 @@
                         {
                             "listen": "test",
                             "script": {
-                                "id": "d918525c-fc0d-4000-8974-82561657a872",
+                                "id": "ccaed9c6-bee7-48c5-8f72-86d99bf1e6ec",
                                 "type": "text/javascript",
                                 "exec": [
                                     "pm.test('Token refreshed', () => { pm.expect(pm.response.code).to.equal(200); pm.expect(pm.response.json()).to.have.property('access_token'); });",
@@ -627,7 +627,7 @@
                     ]
                 },
                 {
-                    "id": "f8de1a93-f234-4fb6-a83e-434224f2e85d",
+                    "id": "6ea09a9d-213d-4ffe-a495-99e9aee5f9ed",
                     "name": "05 - User Info",
                     "request": {
                         "description": {
@@ -652,7 +652,7 @@
                         {
                             "listen": "test",
                             "script": {
-                                "id": "4cba4068-d779-4f00-bb74-afa29ce8be2d",
+                                "id": "1710f926-a42f-4830-9d17-b3be79b4ce4b",
                                 "type": "text/javascript",
                                 "packages": {},
                                 "exec": [
@@ -675,7 +675,7 @@
                 {
                     "listen": "prerequest",
                     "script": {
-                        "id": "1b4dcece-735d-4550-bde2-ac6a76669a5d",
+                        "id": "4a249ca8-557b-414d-bcae-e40dd3739649",
                         "type": "text/javascript",
                         "packages": {
                             "npm:jsrsasign@11.1.0": {
@@ -879,7 +879,7 @@
             ]
         },
         {
-            "id": "2c2bafae-0199-4f0c-8c6e-2fa6aa7465b0",
+            "id": "a55891a7-eb21-400f-8791-1ca9e69577e4",
             "name": "Workflows",
             "description": {
                 "content": "",
@@ -887,7 +887,7 @@
             },
             "item": [
                 {
-                    "id": "fe99c05d-5282-41a8-a20e-d1fe57057985",
+                    "id": "0ab1ee0c-4edc-472b-b6b6-5ce30b5cfb22",
                     "name": "Retrieve a list of available Workflow Builder workflows",
                     "request": {
                         "name": "Retrieve a list of available Workflow Builder workflows",
@@ -913,7 +913,7 @@
                                         "type": "text/plain"
                                     },
                                     "key": "status",
-                                    "value": "archiving"
+                                    "value": "archived"
                                 }
                             ],
                             "variable": [
@@ -938,7 +938,7 @@
                     },
                     "response": [
                         {
-                            "id": "febc6961-efdc-4a12-b313-69a7a9bd9aeb",
+                            "id": "0d873973-5e3a-45b5-bd27-c27f6e1f0a2c",
                             "name": "A list of workflows has been successfully returned.",
                             "originalRequest": {
                                 "url": {
@@ -959,7 +959,7 @@
                                                 "type": "text/plain"
                                             },
                                             "key": "status",
-                                            "value": "archiving"
+                                            "value": "archived"
                                         }
                                     ],
                                     "variable": []
@@ -993,7 +993,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "bd981c43-fe79-4555-aaf1-572208d6d553",
+                            "id": "847840a8-79c8-4181-ad3c-2de7c88ca0dc",
                             "name": "Bad Request - The request could not be understood or was missing required parameters.",
                             "originalRequest": {
                                 "url": {
@@ -1014,7 +1014,7 @@
                                                 "type": "text/plain"
                                             },
                                             "key": "status",
-                                            "value": "archiving"
+                                            "value": "archived"
                                         }
                                     ],
                                     "variable": []
@@ -1048,7 +1048,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "18de929b-2d6b-41bf-b0a8-98152305060f",
+                            "id": "095ced0d-1f70-4e47-a024-9b0afb526c7c",
                             "name": "Unauthorized - Authentication is required and has failed or not been provided.",
                             "originalRequest": {
                                 "url": {
@@ -1069,7 +1069,7 @@
                                                 "type": "text/plain"
                                             },
                                             "key": "status",
-                                            "value": "archiving"
+                                            "value": "archived"
                                         }
                                     ],
                                     "variable": []
@@ -1103,7 +1103,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "cc051ccd-e133-461e-a11c-014e17e44149",
+                            "id": "e359e45b-8f41-428e-be0a-0fd5a8c10a27",
                             "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
                             "originalRequest": {
                                 "url": {
@@ -1124,7 +1124,7 @@
                                                 "type": "text/plain"
                                             },
                                             "key": "status",
-                                            "value": "archiving"
+                                            "value": "archived"
                                         }
                                     ],
                                     "variable": []
@@ -1158,7 +1158,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "88f3c95d-8295-4c90-a1e3-dc8ec220f854",
+                            "id": "5b787709-1965-4966-a828-820893b87dba",
                             "name": "Not Found - The requested resource could not be found.",
                             "originalRequest": {
                                 "url": {
@@ -1179,7 +1179,7 @@
                                                 "type": "text/plain"
                                             },
                                             "key": "status",
-                                            "value": "archiving"
+                                            "value": "archived"
                                         }
                                     ],
                                     "variable": []
@@ -1213,7 +1213,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "eec4390a-6581-41a0-9086-684472ac4834",
+                            "id": "1941abf1-7b1c-46ed-a476-4d11b1288faf",
                             "name": "Internal Server Error",
                             "originalRequest": {
                                 "url": {
@@ -1234,7 +1234,7 @@
                                                 "type": "text/plain"
                                             },
                                             "key": "status",
-                                            "value": "archiving"
+                                            "value": "archived"
                                         }
                                     ],
                                     "variable": []
@@ -1274,7 +1274,7 @@
                     }
                 },
                 {
-                    "id": "0af7ff2f-704b-4b1d-b196-f7da7cdc17a2",
+                    "id": "1f878cbc-bb24-482d-b283-fbe6dd1153f3",
                     "name": "Retrieve trigger requirements for a specific Workflow Builder workflow",
                     "request": {
                         "name": "Retrieve trigger requirements for a specific Workflow Builder workflow",
@@ -1325,7 +1325,7 @@
                     },
                     "response": [
                         {
-                            "id": "794ea4c2-4854-453f-80de-adb1f815ad4c",
+                            "id": "ecd4fa4d-38c1-4b00-b0ad-cfdd662bcbbe",
                             "name": "Describes the requirements for triggering a workflow",
                             "originalRequest": {
                                 "url": {
@@ -1368,11 +1368,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"trigger_id\": \"00000000-0000-0000-0000-000000000000\",\n  \"trigger_event_type\": \"HTTP\",\n  \"trigger_http_config\": {\n    \"method\": \"POST\",\n    \"url\": \"<uri>\"\n  },\n  \"trigger_input_schema\": [\n    {\n      \"field_name\": \"<string>\",\n      \"field_data_type\": \"<string>\",\n      \"default_value\": \"<string>\"\n    },\n    {\n      \"field_name\": \"<string>\",\n      \"field_data_type\": \"<string>\",\n      \"default_value\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"created_at\": \"<dateTime>\",\n    \"created_by\": \"<string>\",\n    \"modified_at\": \"<dateTime>\",\n    \"modified_by\": \"<string>\"\n  },\n  \"response_timestamp\": \"<dateTime>\",\n  \"response_duration_ms\": \"<integer>\",\n  \"request_id\": \"<uuid>\"\n}",
+                            "body": "{\n  \"trigger_id\": \"00000000-0000-0000-0000-000000000000\",\n  \"trigger_event_type\": \"HTTP\",\n  \"trigger_http_config\": {\n    \"method\": \"PATCH\",\n    \"url\": \"<uri>\"\n  },\n  \"trigger_input_schema\": [\n    {\n      \"field_name\": \"<string>\",\n      \"field_data_type\": \"<string>\",\n      \"default_value\": \"<string>\"\n    },\n    {\n      \"field_name\": \"<string>\",\n      \"field_data_type\": \"<string>\",\n      \"default_value\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"created_at\": \"<dateTime>\",\n    \"created_by\": \"<string>\",\n    \"modified_at\": \"<dateTime>\",\n    \"modified_by\": \"<string>\"\n  },\n  \"response_timestamp\": \"<dateTime>\",\n  \"response_duration_ms\": \"<integer>\",\n  \"request_id\": \"<uuid>\"\n}",
                             "cookie": []
                         },
                         {
-                            "id": "95cb6d8b-db33-4e26-a5fd-a06f266ae894",
+                            "id": "1faed46d-3724-4e5e-a9ab-d3cc7327e42b",
                             "name": "Bad Request - The request could not be understood or was missing required parameters.",
                             "originalRequest": {
                                 "url": {
@@ -1419,7 +1419,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "1c19da1e-e875-42f5-9649-80ca0870ce08",
+                            "id": "a395d409-a68d-41a2-aa4a-260a25a864db",
                             "name": "Unauthorized - Authentication is required and has failed or not been provided.",
                             "originalRequest": {
                                 "url": {
@@ -1466,7 +1466,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "ce6f023e-2e9b-4672-ae79-2efce1d3ff2b",
+                            "id": "c493f85c-ad86-49d5-9a70-eafb1e9facfe",
                             "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
                             "originalRequest": {
                                 "url": {
@@ -1513,7 +1513,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "b09aa3e7-adbc-4457-a91c-7cdbc81031e6",
+                            "id": "923bb589-4561-4725-83ef-bd2c44012df2",
                             "name": "Not Found - The requested resource could not be found.",
                             "originalRequest": {
                                 "url": {
@@ -1560,7 +1560,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "193c8169-c152-428c-aaaf-6fd47c3be915",
+                            "id": "6df35f73-d4e5-49c8-a816-3d7145abfc5b",
                             "name": "Internal Server Error",
                             "originalRequest": {
                                 "url": {
@@ -1613,7 +1613,7 @@
                     }
                 },
                 {
-                    "id": "cc24178a-a98b-4223-9787-ee14721db3fd",
+                    "id": "3c04e0eb-fe63-4192-8475-fd2984fc75fc",
                     "name": "Trigger a new instance of a Workflow Builder workflow",
                     "request": {
                         "name": "Trigger a new instance of a Workflow Builder workflow",
@@ -1667,7 +1667,7 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"ea_2f\": \"<string>\",\n    \"sunt__d\": \"<string>\",\n    \"laborume\": \"<string>\"\n  }\n}",
+                            "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"dolor8\": \"<string>\",\n    \"mollit_5f\": \"<string>\"\n  }\n}",
                             "options": {
                                 "raw": {
                                     "headerFamily": "json",
@@ -1678,7 +1678,7 @@
                     },
                     "response": [
                         {
-                            "id": "d35ef45b-718a-44f7-99aa-3ae8c5cdee98",
+                            "id": "e038b96e-3e95-4754-85aa-d78c0ac58a86",
                             "name": "Indicates a trigger has successfully launched a workflow instance",
                             "originalRequest": {
                                 "url": {
@@ -1718,7 +1718,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"ea_2f\": \"<string>\",\n    \"sunt__d\": \"<string>\",\n    \"laborume\": \"<string>\"\n  }\n}",
+                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"dolor8\": \"<string>\",\n    \"mollit_5f\": \"<string>\"\n  }\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1739,7 +1739,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "42f0a9e9-d77e-481f-b76c-37036b1a3c4b",
+                            "id": "35e67860-1497-4f93-8d56-733dc40892c3",
                             "name": "Bad Request - The request could not be understood or was missing required parameters.",
                             "originalRequest": {
                                 "url": {
@@ -1779,7 +1779,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"ea_2f\": \"<string>\",\n    \"sunt__d\": \"<string>\",\n    \"laborume\": \"<string>\"\n  }\n}",
+                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"dolor8\": \"<string>\",\n    \"mollit_5f\": \"<string>\"\n  }\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1800,7 +1800,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "327f03fd-264d-42c0-9147-9d60d9bd1da9",
+                            "id": "f53e387b-9360-4fad-b702-a547ad4488a1",
                             "name": "Unauthorized - Authentication is required and has failed or not been provided.",
                             "originalRequest": {
                                 "url": {
@@ -1840,7 +1840,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"ea_2f\": \"<string>\",\n    \"sunt__d\": \"<string>\",\n    \"laborume\": \"<string>\"\n  }\n}",
+                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"dolor8\": \"<string>\",\n    \"mollit_5f\": \"<string>\"\n  }\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1861,7 +1861,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "73925794-6b36-4273-bc40-ff0423fa5a76",
+                            "id": "65984284-7651-4495-8c9d-52bb7118f6d8",
                             "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
                             "originalRequest": {
                                 "url": {
@@ -1901,7 +1901,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"ea_2f\": \"<string>\",\n    \"sunt__d\": \"<string>\",\n    \"laborume\": \"<string>\"\n  }\n}",
+                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"dolor8\": \"<string>\",\n    \"mollit_5f\": \"<string>\"\n  }\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1922,7 +1922,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "ea105f85-6ce5-48e5-a98a-ee5535d7e87b",
+                            "id": "aa6fcca4-3530-4485-8946-2303ffde86ff",
                             "name": "Not Found - The requested resource could not be found.",
                             "originalRequest": {
                                 "url": {
@@ -1962,7 +1962,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"ea_2f\": \"<string>\",\n    \"sunt__d\": \"<string>\",\n    \"laborume\": \"<string>\"\n  }\n}",
+                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"dolor8\": \"<string>\",\n    \"mollit_5f\": \"<string>\"\n  }\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -1983,7 +1983,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "4ceccf44-8cf4-44b2-bed7-e07af52c5cee",
+                            "id": "3e2eefe2-c4c3-412c-918b-f2d43483c64a",
                             "name": "Internal Server Error",
                             "originalRequest": {
                                 "url": {
@@ -2023,7 +2023,7 @@
                                 "method": "POST",
                                 "body": {
                                     "mode": "raw",
-                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"ea_2f\": \"<string>\",\n    \"sunt__d\": \"<string>\",\n    \"laborume\": \"<string>\"\n  }\n}",
+                                    "raw": "{\n  \"instance_name\": \"<string>\",\n  \"trigger_inputs\": {\n    \"dolor8\": \"<string>\",\n    \"mollit_5f\": \"<string>\"\n  }\n}",
                                     "options": {
                                         "raw": {
                                             "headerFamily": "json",
@@ -2050,7 +2050,7 @@
                     }
                 },
                 {
-                    "id": "a6ebb68e-83d9-4236-bd3a-cc94267925e3",
+                    "id": "a5bf7fb1-7fff-4569-b501-6e1eadb70e10",
                     "name": "Pause an Active Workflow",
                     "request": {
                         "name": "Pause an Active Workflow",
@@ -2102,7 +2102,7 @@
                     },
                     "response": [
                         {
-                            "id": "17020ec5-1ae8-45c8-a0ed-57419de97878",
+                            "id": "f83495ca-896d-4f4d-8019-71aaf75e12c9",
                             "name": "Indicates that a workflow has been successfully paused. New instances of this workflow will not be created.\nExisting workflow instances will be unaffected.\n",
                             "originalRequest": {
                                 "url": {
@@ -2150,7 +2150,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "a2103ee2-8a16-4428-9532-ef435e77b6e6",
+                            "id": "14bfe092-8521-44c2-ad0c-47c2c9b3b976",
                             "name": "Bad Request - The request could not be understood or was missing required parameters.",
                             "originalRequest": {
                                 "url": {
@@ -2198,7 +2198,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "aaf56cc6-6519-46b5-bab6-62443064181e",
+                            "id": "a4637934-ec10-4f7c-94d7-06ceca312e56",
                             "name": "Unauthorized - Authentication is required and has failed or not been provided.",
                             "originalRequest": {
                                 "url": {
@@ -2246,7 +2246,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "39d626a1-0eed-421b-b074-1bdc3e6f859b",
+                            "id": "54a6d297-6128-463e-a435-92e27cff7599",
                             "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
                             "originalRequest": {
                                 "url": {
@@ -2294,7 +2294,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "81e1000d-843c-45e6-8b8a-0437901b39ff",
+                            "id": "6909c2d0-9485-4c1c-9682-6c7fa8cb57fe",
                             "name": "Not Found - The requested resource could not be found.",
                             "originalRequest": {
                                 "url": {
@@ -2342,7 +2342,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "60160d8c-9bec-41a6-b040-290c24a31ef4",
+                            "id": "dfb45df3-3a3c-411a-92b2-7a678e2170ae",
                             "name": "Conflict - The request conflicts with the current state of the resource.",
                             "originalRequest": {
                                 "url": {
@@ -2390,7 +2390,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "65282caa-d838-4185-8558-551b52bff0be",
+                            "id": "7a076a94-c6b9-4b81-98c0-8ee1579f352a",
                             "name": "Internal Server Error",
                             "originalRequest": {
                                 "url": {
@@ -2444,7 +2444,7 @@
                     }
                 },
                 {
-                    "id": "ed4bc40a-46ee-4d99-827c-70b977b82e76",
+                    "id": "9fe3b5b5-7994-47e3-8dbd-25a8e6d4aa08",
                     "name": "Resume a Paused Workflow",
                     "request": {
                         "name": "Resume a Paused Workflow",
@@ -2496,7 +2496,7 @@
                     },
                     "response": [
                         {
-                            "id": "c23545fd-5c76-4036-b028-1743dcc276b2",
+                            "id": "1be1860f-d4f5-4eea-b1ee-baf2a34029c9",
                             "name": "Indicates that the ability to create new workflow instances from this workflow has been resumed.\nExisting workflow instances will be unaffected.\n",
                             "originalRequest": {
                                 "url": {
@@ -2544,7 +2544,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "25ad5795-1ec6-4e15-a1f2-05d3610bde36",
+                            "id": "4d051f35-aec0-4426-a828-da6a54619523",
                             "name": "Bad Request - The request could not be understood or was missing required parameters.",
                             "originalRequest": {
                                 "url": {
@@ -2592,7 +2592,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "6718756d-4149-4f89-898d-b6898c8ddd11",
+                            "id": "5220bf47-0321-4573-9eea-413eac732fb0",
                             "name": "Unauthorized - Authentication is required and has failed or not been provided.",
                             "originalRequest": {
                                 "url": {
@@ -2640,7 +2640,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "9214125f-1802-4cbb-b649-61beb454c079",
+                            "id": "cfb1b67b-6768-4177-b5fc-ecf9bbeffc29",
                             "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
                             "originalRequest": {
                                 "url": {
@@ -2688,7 +2688,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "51b465d1-4fa6-4516-8c51-0938495b62f0",
+                            "id": "3fd0ba93-4e7c-4fc7-b9b7-d65def01cd1b",
                             "name": "Not Found - The requested resource could not be found.",
                             "originalRequest": {
                                 "url": {
@@ -2736,7 +2736,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "0dee7418-7d8e-4b75-ac91-dbc6480a52fb",
+                            "id": "92e67729-2c29-4fab-970a-40a7d25bddf0",
                             "name": "Conflict - The request conflicts with the current state of the resource.",
                             "originalRequest": {
                                 "url": {
@@ -2784,7 +2784,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "17d0845f-7e57-4427-aecc-a19dd4ddffb3",
+                            "id": "d491e587-2cbc-4d98-a953-5e5c5f0b55d1",
                             "name": "Internal Server Error",
                             "originalRequest": {
                                 "url": {
@@ -2841,7 +2841,7 @@
             "event": []
         },
         {
-            "id": "c7d93d40-cbb2-4de1-a3cc-31222729a4bd",
+            "id": "c055feee-1bf6-481d-9290-021ec2c734a5",
             "name": "WorkflowInstanceManagement",
             "description": {
                 "content": "",
@@ -2849,7 +2849,7 @@
             },
             "item": [
                 {
-                    "id": "accf817c-bbb4-4050-a0d1-b263795d26ea",
+                    "id": "fa468af1-45e8-41cb-ae19-8c37fdfe6044",
                     "name": "Retrieve All Workflow Instances",
                     "request": {
                         "name": "Retrieve All Workflow Instances",
@@ -2900,7 +2900,7 @@
                     },
                     "response": [
                         {
-                            "id": "f6705590-1598-4b06-aaa8-1d42c89599ac",
+                            "id": "373cae3e-4df6-4f31-addb-fe9ea8e32af9",
                             "name": "Successful response containing a list of workflow instances",
                             "originalRequest": {
                                 "url": {
@@ -2943,7 +2943,7 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"workflow_status\": \"<string>\",\n      \"template_id\": \"<uuid>\",\n      \"account_id\": \"<uuid>\",\n      \"started_at\": \"<dateTime>\",\n      \"started_by\": \"<uuid>\",\n      \"started_by_name\": \"<string>\",\n      \"started_by_role\": \"<string>\",\n      \"ended_at\": \"<dateTime>\",\n      \"expires_at\": \"<dateTime>\",\n      \"last_modified_at\": \"<dateTime>\",\n      \"canceled_at\": \"<dateTime>\",\n      \"canceled_by\": \"<string>\",\n      \"trigger_inputs\": {\n        \"do_d\": \"<string>\",\n        \"consequat_6\": \"<string>\"\n      },\n      \"total_steps\": \"<integer>\",\n      \"last_completed_step\": \"<integer>\",\n      \"last_completed_step_name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"metadata\": {\n        \"workflow_created_by\": \"<uuid>\",\n        \"workflow_version\": \"<string>\",\n        \"workflow_metadata_id\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"workflow_status\": \"<string>\",\n      \"template_id\": \"<uuid>\",\n      \"account_id\": \"<uuid>\",\n      \"started_at\": \"<dateTime>\",\n      \"started_by\": \"<uuid>\",\n      \"started_by_name\": \"<string>\",\n      \"started_by_role\": \"<string>\",\n      \"ended_at\": \"<dateTime>\",\n      \"expires_at\": \"<dateTime>\",\n      \"last_modified_at\": \"<dateTime>\",\n      \"canceled_at\": \"<dateTime>\",\n      \"canceled_by\": \"<string>\",\n      \"trigger_inputs\": {\n        \"incididunt_e_\": \"<string>\",\n        \"reprehenderit_5\": \"<string>\"\n      },\n      \"total_steps\": \"<integer>\",\n      \"last_completed_step\": \"<integer>\",\n      \"last_completed_step_name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"metadata\": {\n        \"workflow_created_by\": \"<uuid>\",\n        \"workflow_version\": \"<string>\",\n        \"workflow_metadata_id\": \"<string>\"\n      }\n    }\n  ],\n  \"response_metadata\": {\n    \"response_timestamp\": \"<dateTime>\",\n    \"response_duration_ms\": \"<integer>\",\n    \"request_id\": \"<uuid>\"\n  }\n}",
+                            "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"workflow_status\": \"<string>\",\n      \"template_id\": \"<uuid>\",\n      \"account_id\": \"<uuid>\",\n      \"started_at\": \"<dateTime>\",\n      \"started_by\": \"<uuid>\",\n      \"started_by_name\": \"<string>\",\n      \"started_by_role\": \"<string>\",\n      \"ended_at\": \"<dateTime>\",\n      \"expires_at\": \"<dateTime>\",\n      \"last_modified_at\": \"<dateTime>\",\n      \"canceled_at\": \"<dateTime>\",\n      \"canceled_by\": \"<string>\",\n      \"trigger_inputs\": {\n        \"cillum_79_\": \"<string>\"\n      },\n      \"total_steps\": \"<integer>\",\n      \"last_completed_step\": \"<integer>\",\n      \"last_completed_step_name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"metadata\": {\n        \"workflow_created_by\": \"<uuid>\",\n        \"workflow_version\": \"<string>\",\n        \"workflow_metadata_id\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"workflow_status\": \"<string>\",\n      \"template_id\": \"<uuid>\",\n      \"account_id\": \"<uuid>\",\n      \"started_at\": \"<dateTime>\",\n      \"started_by\": \"<uuid>\",\n      \"started_by_name\": \"<string>\",\n      \"started_by_role\": \"<string>\",\n      \"ended_at\": \"<dateTime>\",\n      \"expires_at\": \"<dateTime>\",\n      \"last_modified_at\": \"<dateTime>\",\n      \"canceled_at\": \"<dateTime>\",\n      \"canceled_by\": \"<string>\",\n      \"trigger_inputs\": {\n        \"occaecat_ac6\": \"<string>\",\n        \"culpab\": \"<string>\",\n        \"mollit_c3\": \"<string>\",\n        \"enim7ee\": \"<string>\"\n      },\n      \"total_steps\": \"<integer>\",\n      \"last_completed_step\": \"<integer>\",\n      \"last_completed_step_name\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"metadata\": {\n        \"workflow_created_by\": \"<uuid>\",\n        \"workflow_version\": \"<string>\",\n        \"workflow_metadata_id\": \"<string>\"\n      }\n    }\n  ],\n  \"response_metadata\": {\n    \"response_timestamp\": \"<dateTime>\",\n    \"response_duration_ms\": \"<integer>\",\n    \"request_id\": \"<uuid>\"\n  }\n}",
                             "cookie": []
                         }
                     ],
@@ -2953,7 +2953,7 @@
                     }
                 },
                 {
-                    "id": "52a2c5c3-0366-427c-abbc-b6514eafac95",
+                    "id": "8ea84274-553e-4954-92da-ff5cc4775b1c",
                     "name": "Retrieve a Workflow Instance",
                     "request": {
                         "name": "Retrieve a Workflow Instance",
@@ -3013,7 +3013,7 @@
                     },
                     "response": [
                         {
-                            "id": "094cd6ff-8a52-490f-b63b-aec195d9dec9",
+                            "id": "203efb65-f0ec-4231-b8dd-467b143bf1ca",
                             "name": "Successful response containing the workflow instance details",
                             "originalRequest": {
                                 "url": {
@@ -3057,11 +3057,11 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"workflow_status\": \"<string>\",\n  \"template_id\": \"<uuid>\",\n  \"account_id\": \"<uuid>\",\n  \"started_at\": \"<dateTime>\",\n  \"started_by\": \"<uuid>\",\n  \"started_by_name\": \"<string>\",\n  \"started_by_role\": \"<string>\",\n  \"ended_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\",\n  \"last_modified_at\": \"<dateTime>\",\n  \"canceled_at\": \"<dateTime>\",\n  \"canceled_by\": \"<string>\",\n  \"trigger_inputs\": {\n    \"ut7\": \"<string>\",\n    \"ameta4\": \"<string>\",\n    \"occaecat_2e4\": \"<string>\"\n  },\n  \"total_steps\": \"<integer>\",\n  \"last_completed_step\": \"<integer>\",\n  \"last_completed_step_name\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": {\n    \"workflow_created_by\": \"<uuid>\",\n    \"workflow_version\": \"<string>\",\n    \"workflow_metadata_id\": \"<string>\"\n  }\n}",
+                            "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"workflow_status\": \"<string>\",\n  \"template_id\": \"<uuid>\",\n  \"account_id\": \"<uuid>\",\n  \"started_at\": \"<dateTime>\",\n  \"started_by\": \"<uuid>\",\n  \"started_by_name\": \"<string>\",\n  \"started_by_role\": \"<string>\",\n  \"ended_at\": \"<dateTime>\",\n  \"expires_at\": \"<dateTime>\",\n  \"last_modified_at\": \"<dateTime>\",\n  \"canceled_at\": \"<dateTime>\",\n  \"canceled_by\": \"<string>\",\n  \"trigger_inputs\": {\n    \"cillum9\": \"<string>\"\n  },\n  \"total_steps\": \"<integer>\",\n  \"last_completed_step\": \"<integer>\",\n  \"last_completed_step_name\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"metadata\": {\n    \"workflow_created_by\": \"<uuid>\",\n    \"workflow_version\": \"<string>\",\n    \"workflow_metadata_id\": \"<string>\"\n  }\n}",
                             "cookie": []
                         },
                         {
-                            "id": "c9216fbb-849c-4dc8-a23d-4abd172b1d8e",
+                            "id": "289a64d6-4f38-4a11-af48-ec3dbd2e99cd",
                             "name": "Bad Request - The request could not be understood or was missing required parameters.",
                             "originalRequest": {
                                 "url": {
@@ -3109,7 +3109,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "ef51566f-ead7-4e59-941c-9d396a400599",
+                            "id": "da08c979-5581-4029-93ab-612809e7d4d9",
                             "name": "Unauthorized - Authentication is required and has failed or not been provided.",
                             "originalRequest": {
                                 "url": {
@@ -3157,7 +3157,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "db53000f-8d88-4872-ac0c-42e6efe26c3e",
+                            "id": "087ef625-91de-400b-bafd-f68acbf0f8c1",
                             "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
                             "originalRequest": {
                                 "url": {
@@ -3205,7 +3205,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "f932c0a0-eb09-4409-9423-5157cb4357a3",
+                            "id": "573a2838-c13c-48eb-875b-f1a2a1479a00",
                             "name": "Not Found - The requested resource could not be found.",
                             "originalRequest": {
                                 "url": {
@@ -3253,7 +3253,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "170186cb-7c89-49b5-a4a0-a54d1d20a5c1",
+                            "id": "ba6a3c40-ecfb-4b0f-a3dd-6aec4877afa9",
                             "name": "Internal Server Error",
                             "originalRequest": {
                                 "url": {
@@ -3307,7 +3307,7 @@
                     }
                 },
                 {
-                    "id": "4088a9f7-9da7-4328-996d-b3e370576cc8",
+                    "id": "ef6fba77-f54a-4f49-a007-6b86291d908c",
                     "name": "Cancel a Running Workflow Instance",
                     "request": {
                         "name": "Cancel a Running Workflow Instance",
@@ -3369,7 +3369,7 @@
                     },
                     "response": [
                         {
-                            "id": "134bd8e5-26ca-42c2-80ca-3bd488abdad4",
+                            "id": "67f591d7-a44d-470d-b5e0-48546b9acf66",
                             "name": "A message confirming the instance was canceled, including the instance and workflow IDs",
                             "originalRequest": {
                                 "url": {
@@ -3419,7 +3419,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "efeea966-e96c-499d-b3e3-853a189dd1b6",
+                            "id": "a35a6a47-a4f3-4e75-ae4b-6d27d0687e6f",
                             "name": "Bad Request - The request could not be understood or was missing required parameters.",
                             "originalRequest": {
                                 "url": {
@@ -3469,7 +3469,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "0fca0a55-6cf9-4ae4-9751-577c228e4d22",
+                            "id": "9a16bf60-dc2b-4f87-8897-2f4fc5cdcf63",
                             "name": "Unauthorized - Authentication is required and has failed or not been provided.",
                             "originalRequest": {
                                 "url": {
@@ -3519,7 +3519,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "903d8a14-5a14-4eb7-abe6-cbcfbbdf07f6",
+                            "id": "569fec77-7b9d-4f6e-8301-9a8009ff94a8",
                             "name": "Forbidden - The request was valid, but you do not have permission to perform the action.",
                             "originalRequest": {
                                 "url": {
@@ -3569,7 +3569,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "27c50360-2a22-4c03-81e4-783fd4482ecb",
+                            "id": "5d4e1cc4-0d8e-469a-ae91-96d7e331ab0a",
                             "name": "Not Found - The requested resource could not be found.",
                             "originalRequest": {
                                 "url": {
@@ -3619,7 +3619,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "7c525397-90a3-4cad-af45-1a51ae838122",
+                            "id": "6b68ce43-b7b1-4351-b437-2a301cf180d4",
                             "name": "Conflict - The request conflicts with the current state of the resource.",
                             "originalRequest": {
                                 "url": {
@@ -3669,7 +3669,7 @@
                             "cookie": []
                         },
                         {
-                            "id": "e819c68d-ce62-452a-bd27-901aafe5070a",
+                            "id": "a2a7d1c7-6fd6-4cba-a6f9-5c7603121f1b",
                             "name": "Internal Server Error",
                             "originalRequest": {
                                 "url": {
@@ -3837,7 +3837,7 @@
         }
     ],
     "info": {
-        "_postman_id": "a1564b8b-1119-4034-acc7-41f8fce55dca",
+        "_postman_id": "805cdc3d-da8e-4850-b088-1aa5b6ba6579",
         "name": "Workflow Builder API",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": {
