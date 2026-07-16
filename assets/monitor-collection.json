@@ -892,7 +892,7 @@
                     "request": {
                         "name": "Gets customer event data for an organization.",
                         "description": {
-                            "content": "Gets customer event data for the organization that owns the integration key.\n\nThe results for this endpoint are paginated by event timestamp. Use the `cursor` parameter to specify where the query begins in the dataset. Use the `limit` parameter to set the number of records returned.\n\n\n### Related topics\n\n- [How to get monitoring data](/docs/monitor-api/how-to/get-monitoring-data/)\n",
+                            "content": "Gets customer event data for the organization that owns the integration key.\n\nThe results for this endpoint are paginated by their event ingestion time, which can be up to five minutes after the event originally occurred. Use the `cursor` parameter to specify where the query begins in the dataset. Use the `limit` parameter to set the number of records returned.\n\nFor a detailed example of how to use `getStream` and retrieve monitoring data, see our guides [How to get monitoring data](/docs/monitor-api/how-to/get-monitoring-data/) and  [Tracking data and handling alerts](/docs/monitor-api/monitor101/tracking-data-handling-alerts/).\n\n**Note**: data is not guaranteed to be in the order of the timestamp of the events. It is returned in the order it was inserted into our database.\n\n### Related topics\n\n- [How to get monitoring data](/docs/monitor-api/how-to/get-monitoring-data/)\n- [Tracking data and handling alerts](/docs/monitor-api/monitor101/tracking-data-handling-alerts/)",
                             "type": "text/plain"
                         },
                         "url": {
@@ -910,7 +910,7 @@
                                 {
                                     "disabled": true,
                                     "description": {
-                                        "content": "Specifies a pointer into the dataset where your query will begin. You can either provide an ISO DateTime or a string cursor (from the `endCursor` value in the response). If no value is provided, the query begins from seven days ago.\n\nFor example, to fetch event data beginning from January 1, 2022, set this value to `2022-01-01T00:00:00Z`. The response will include data about events starting from that date in chronological order. The response also includes an `endCursor` property. To fetch the next page of event data, call this endpoint again with `cursor` set to the previous `endCursor` value.\n",
+                                        "content": "Specifies a pointer into the dataset where your query will begin. You can either provide an ISO DateTime or a string cursor (from the `endCursor` value in the response to the previous request). If no value is provided, the query begins from seven days ago.\n\nFor example, to fetch event data beginning from January 1, 2022, set this value to `2022-01-01T00:00:00Z`. The response will include data about events **ingested** starting from that date in chronological order. The response also includes an `endCursor` property. To fetch the next page of event data, call this endpoint again with `cursor` set to the previous `endCursor` value.\n\n**Note:** If a request returns no data, your integration should continue iterating through the dataset. See [Tracking data and handling alerts](/docs/monitor-api/monitor101/tracking-data-handling-alerts/) for more information.\n",
                                         "type": "text/plain"
                                     },
                                     "key": "cursor",
@@ -919,7 +919,7 @@
                                 {
                                     "disabled": true,
                                     "description": {
-                                        "content": "The maximum number of records to return. The default value is 1000.",
+                                        "content": "The maximum number of records to return. The default value is 1000. The maximum permitted value is 2000.\n\n**Note:** this is the maximum, but you may get fewer items based on your dataset and cursor position.",
                                         "type": "text/plain"
                                     },
                                     "key": "limit",
@@ -939,7 +939,9 @@
                         },
                         "header": [
                             {
-                                "description": {},
+                                "description": {
+                                    "type": "text/plain"
+                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -949,9 +951,6 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
                             "id": "b6ef387d-5f63-4890-9484-7edd4e9edfc7",
                             "name": "Success",
                             "originalRequest": {
