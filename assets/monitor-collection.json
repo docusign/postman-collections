@@ -882,7 +882,7 @@
             "id": "249b2992-1f80-4dd3-b96e-01490bdac3c6",
             "name": "DataSet",
             "description": {
-                "content": "The DataSet resource provides methods that allow you to fetch organization event data. The `dataSetName` path parameter must be set to `monitor`",
+                "content": "The DataSet resource provides methods that allow you to fetch organization event data. Set the `organizationId` collection variable to your Docusign organization ID. Use `https://api-d.docusign.com` for demo and `https://api.docusign.com` for production.",
                 "type": "text/plain"
             },
             "item": [
@@ -897,10 +897,9 @@
                         },
                         "url": {
                             "path": [
-                                "api",
-                                "v{{version}}",
-                                "datasets",
-                                "{{dataSetName}}",
+                                "v1",
+                                "organizations",
+                                "{{organizationId}}",
                                 "stream"
                             ],
                             "host": [
@@ -926,16 +925,7 @@
                                     "value": "1000"
                                 }
                             ],
-                            "variable": [
-                                {
-                                    "key": "dataSetName",
-                                    "description": {
-                                        "content": "(Required) Must be `monitor`.",
-                                        "type": "text/plain"
-                                    },
-                                    "disabled": false
-                                }
-                            ]
+                            "variable": []
                         },
                         "header": [
                             {
@@ -956,10 +946,9 @@
                             "originalRequest": {
                                 "url": {
                                     "path": [
-                                        "api",
-                                        "v{{version}}",
-                                        "datasets",
-                                        "{{dataSetName}}",
+                                        "v1",
+                                        "organizations",
+                                        "{{organizationId}}",
                                         "stream"
                                     ],
                                     "host": [
@@ -1079,13 +1068,13 @@
     "variable": [
         {
             "type": "any",
-            "value": "https://lens.docusign.net",
+            "value": "https://api-d.docusign.com",
             "key": "baseUrl"
         },
         {
             "type": "any",
-            "value": "2.0",
-            "key": "version"
+            "value": "",
+            "key": "organizationId"
         },
         {
             "type": "any",
