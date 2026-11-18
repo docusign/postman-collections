@@ -887,20 +887,19 @@
             },
             "item": [
                 {
-                    "id": "b1a71ab6-752d-4baf-aea5-d498d373ca89",
+                    "id": "8a2bef7e-1de6-4eb1-8971-51b8cae4c96a",
                     "name": "Gets customer event data for an organization.",
                     "request": {
                         "name": "Gets customer event data for an organization.",
                         "description": {
-                            "content": "Gets customer event data for the organization that owns the integration key.\n\nThe results for this endpoint are paginated by event timestamp. Use the `cursor` parameter to specify where the query begins in the dataset. Use the `limit` parameter to set the number of records returned.\n\n\n### Related topics\n\n- [How to get monitoring data](/docs/monitor-api/how-to/get-monitoring-data/)\n",
+                            "content": "Gets customer event data for the organization that owns the integration key.\n\nThe results for this endpoint are paginated by their event ingestion time, which can be up to five minutes after the event originally occurred. Use the `cursor` parameter to specify where the query begins in the dataset. Use the `limit` parameter to set the number of records returned.\n\nFor a detailed example of how to use `getStream` and retrieve monitoring data, see our guides [How to get monitoring data](/docs/monitor-api/how-to/get-monitoring-data/) and  [Tracking data and handling alerts](/docs/monitor-api/monitor101/tracking-data-handling-alerts/).\n\n**Note**: data is not guaranteed to be in the order of the timestamp of the events. It is returned in the order it was inserted into our database.\n\n### Related topics\n\n- [How to get monitoring data](/docs/monitor-api/how-to/get-monitoring-data/)\n- [Tracking data and handling alerts](/docs/monitor-api/monitor101/tracking-data-handling-alerts/)",
                             "type": "text/plain"
                         },
                         "url": {
                             "path": [
-                                "api",
-                                "v{{version}}",
-                                "datasets",
-                                "{{dataSetName}}",
+                                "v1",
+                                "organizations",
+                                "{{organizationId}}",
                                 "stream"
                             ],
                             "host": [
@@ -919,18 +918,18 @@
                                 {
                                     "disabled": true,
                                     "description": {
-                                        "content": "The maximum number of records to return. The default value is 1000.",
+                                        "content": "The maximum number of records to return.",
                                         "type": "text/plain"
                                     },
                                     "key": "limit",
-                                    "value": "1000"
+                                    "value": "<integer>"
                                 }
                             ],
                             "variable": [
                                 {
-                                    "key": "dataSetName",
+                                    "key": "organizationId",
                                     "description": {
-                                        "content": "(Required) Must be `monitor`.",
+                                        "content": "(Required) ",
                                         "type": "text/plain"
                                     },
                                     "disabled": false
@@ -939,7 +938,6 @@
                         },
                         "header": [
                             {
-                                "description": {},
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -949,18 +947,14 @@
                     },
                     "response": [
                         {
-                            "_": {
-                                "postman_previewlanguage": "json"
-                            },
-                            "id": "b6ef387d-5f63-4890-9484-7edd4e9edfc7",
-                            "name": "Success",
+                            "id": "4fe273f1-b573-404e-a2a7-a23a97599602",
+                            "name": "OK",
                             "originalRequest": {
                                 "url": {
                                     "path": [
-                                        "api",
-                                        "v{{version}}",
-                                        "datasets",
-                                        "{{dataSetName}}",
+                                        "v1",
+                                        "organizations",
+                                        "{{organizationId}}",
                                         "stream"
                                     ],
                                     "host": [
@@ -979,11 +973,11 @@
                                         {
                                             "disabled": true,
                                             "description": {
-                                                "content": "The maximum number of records to return. The default value is 1000.",
+                                                "content": "The maximum number of records to return.",
                                                 "type": "text/plain"
                                             },
                                             "key": "limit",
-                                            "value": "1000"
+                                            "value": "<integer>"
                                         }
                                     ],
                                     "variable": []
@@ -1013,7 +1007,7 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"endCursor\": \"<string>\"\n}",
+                            "body": "{\n  \"endCursor\": \"<string>\",\n  \"resultData\": [\n    {\n      \"accountId\": \"<string>\",\n      \"action\": \"<string>\",\n      \"affectedUserId\": \"<string>\",\n      \"affectedUserIsMemberOfDomain\": \"<boolean>\",\n      \"browser\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"data\": {\n        \"officia6\": {},\n        \"ullamco_6\": {},\n        \"velit_7\": {}\n      },\n      \"device\": \"<string>\",\n      \"eventId\": \"<string>\",\n      \"field\": \"<string>\",\n      \"integratorKey\": \"<string>\",\n      \"ipAddress\": \"<string>\",\n      \"ipAddressLocation\": {\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\",\n        \"state\": \"<string>\"\n      },\n      \"isUserMemberOfDomain\": \"<boolean>\",\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\",\n      \"object\": \"<string>\",\n      \"organizationId\": \"<string>\",\n      \"os\": \"<string>\",\n      \"property\": \"<string>\",\n      \"proxyLevel\": \"<string>\",\n      \"proxyStatus\": \"<string>\",\n      \"proxyType\": \"<string>\",\n      \"referencedUserId\": \"<string>\",\n      \"referencedUserIsMemberOfDomain\": \"<boolean>\",\n      \"result\": \"<string>\",\n      \"site\": \"<string>\",\n      \"source\": \"<string>\",\n      \"state\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"userAgent\": \"<string>\",\n      \"userAgentClientInfo\": {\n        \"browser\": {\n          \"family\": \"<string>\",\n          \"version\": {\n            \"major\": \"<string>\",\n            \"minor\": \"<string>\",\n            \"patch\": \"<string>\"\n          }\n        },\n        \"device\": {\n          \"brand\": \"<string>\",\n          \"family\": \"<string>\",\n          \"model\": \"<string>\"\n        },\n        \"os\": {\n          \"family\": \"<string>\",\n          \"version\": {\n            \"major\": \"<string>\",\n            \"minor\": \"<string>\",\n            \"patch\": \"<string>\"\n          }\n        }\n      },\n      \"userId\": \"<string>\"\n    },\n    {\n      \"accountId\": \"<string>\",\n      \"action\": \"<string>\",\n      \"affectedUserId\": \"<string>\",\n      \"affectedUserIsMemberOfDomain\": \"<boolean>\",\n      \"browser\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"data\": {\n        \"amet_88\": {},\n        \"laboris4ee\": {},\n        \"anim7\": {},\n        \"qui40c\": {}\n      },\n      \"device\": \"<string>\",\n      \"eventId\": \"<string>\",\n      \"field\": \"<string>\",\n      \"integratorKey\": \"<string>\",\n      \"ipAddress\": \"<string>\",\n      \"ipAddressLocation\": {\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\",\n        \"state\": \"<string>\"\n      },\n      \"isUserMemberOfDomain\": \"<boolean>\",\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\",\n      \"object\": \"<string>\",\n      \"organizationId\": \"<string>\",\n      \"os\": \"<string>\",\n      \"property\": \"<string>\",\n      \"proxyLevel\": \"<string>\",\n      \"proxyStatus\": \"<string>\",\n      \"proxyType\": \"<string>\",\n      \"referencedUserId\": \"<string>\",\n      \"referencedUserIsMemberOfDomain\": \"<boolean>\",\n      \"result\": \"<string>\",\n      \"site\": \"<string>\",\n      \"source\": \"<string>\",\n      \"state\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"userAgent\": \"<string>\",\n      \"userAgentClientInfo\": {\n        \"browser\": {\n          \"family\": \"<string>\",\n          \"version\": {\n            \"major\": \"<string>\",\n            \"minor\": \"<string>\",\n            \"patch\": \"<string>\"\n          }\n        },\n        \"device\": {\n          \"brand\": \"<string>\",\n          \"family\": \"<string>\",\n          \"model\": \"<string>\"\n        },\n        \"os\": {\n          \"family\": \"<string>\",\n          \"version\": {\n            \"major\": \"<string>\",\n            \"minor\": \"<string>\",\n            \"patch\": \"<string>\"\n          }\n        }\n      },\n      \"userId\": \"<string>\"\n    }\n  ]\n}",
                             "cookie": []
                         }
                     ],
@@ -1082,11 +1076,6 @@
             "type": "any",
             "value": "https://lens.docusign.net",
             "key": "baseUrl"
-        },
-        {
-            "type": "any",
-            "value": "2.0",
-            "key": "version"
         },
         {
             "type": "any",
