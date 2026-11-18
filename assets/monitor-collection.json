@@ -882,12 +882,12 @@
             "id": "249b2992-1f80-4dd3-b96e-01490bdac3c6",
             "name": "DataSet",
             "description": {
-                "content": "The DataSet resource provides methods that allow you to fetch organization event data. Set the `organizationId` collection variable to your Docusign organization ID. Use `https://api-d.docusign.com` for demo and `https://api.docusign.com` for production.",
+                "content": "The DataSet resource provides methods that allow you to fetch organization event data. The `dataSetName` path parameter must be set to `monitor`",
                 "type": "text/plain"
             },
             "item": [
                 {
-                    "id": "b1a71ab6-752d-4baf-aea5-d498d373ca89",
+                    "id": "cb547798-bb29-493b-9e8c-4fbfd588373c",
                     "name": "Gets customer event data for an organization.",
                     "request": {
                         "name": "Gets customer event data for an organization.",
@@ -909,7 +909,7 @@
                                 {
                                     "disabled": true,
                                     "description": {
-                                        "content": "Specifies a pointer into the dataset where your query will begin. You can either provide an ISO DateTime or a string cursor (from the `endCursor` value in the response to the previous request). If no value is provided, the query begins from seven days ago.\n\nFor example, to fetch event data beginning from January 1, 2022, set this value to `2022-01-01T00:00:00Z`. The response will include data about events **ingested** starting from that date in chronological order. The response also includes an `endCursor` property. To fetch the next page of event data, call this endpoint again with `cursor` set to the previous `endCursor` value.\n\n**Note:** If a request returns no data, your integration should continue iterating through the dataset. See [Tracking data and handling alerts](/docs/monitor-api/monitor101/tracking-data-handling-alerts/) for more information.\n",
+                                        "content": "Specifies a pointer into the dataset where your query will begin. You can either provide an ISO DateTime or a string cursor (from the `endCursor` value in the response). If no value is provided, the query begins from seven days ago.\n\nFor example, to fetch event data beginning from January 1, 2022, set this value to `2022-01-01T00:00:00Z`. The response will include data about events starting from that date in chronological order. The response also includes an `endCursor` property. To fetch the next page of event data, call this endpoint again with `cursor` set to the previous `endCursor` value.\n",
                                         "type": "text/plain"
                                     },
                                     "key": "cursor",
@@ -918,20 +918,26 @@
                                 {
                                     "disabled": true,
                                     "description": {
-                                        "content": "The maximum number of records to return. The default value is 1000. The maximum permitted value is 2000.\n\n**Note:** this is the maximum, but you may get fewer items based on your dataset and cursor position.",
+                                        "content": "The maximum number of records to return.",
                                         "type": "text/plain"
                                     },
                                     "key": "limit",
-                                    "value": "1000"
+                                    "value": "<integer>"
                                 }
                             ],
-                            "variable": []
+                            "variable": [
+                                {
+                                    "key": "organizationId",
+                                    "description": {
+                                        "content": "(Required) ",
+                                        "type": "text/plain"
+                                    },
+                                    "disabled": false
+                                }
+                            ]
                         },
                         "header": [
                             {
-                                "description": {
-                                    "type": "text/plain"
-                                },
                                 "key": "Accept",
                                 "value": "application/json"
                             }
@@ -941,8 +947,8 @@
                     },
                     "response": [
                         {
-                            "id": "b6ef387d-5f63-4890-9484-7edd4e9edfc7",
-                            "name": "Success",
+                            "id": "e4569917-02bc-4684-9119-07a10a15363a",
+                            "name": "OK",
                             "originalRequest": {
                                 "url": {
                                     "path": [
@@ -967,11 +973,11 @@
                                         {
                                             "disabled": true,
                                             "description": {
-                                                "content": "The maximum number of records to return. The default value is 1000.",
+                                                "content": "The maximum number of records to return.",
                                                 "type": "text/plain"
                                             },
                                             "key": "limit",
-                                            "value": "1000"
+                                            "value": "<integer>"
                                         }
                                     ],
                                     "variable": []
@@ -1001,7 +1007,7 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n  \"endCursor\": \"<string>\"\n}",
+                            "body": "{\n  \"endCursor\": \"<string>\",\n  \"resultData\": [\n    {\n      \"accountId\": \"<string>\",\n      \"action\": \"<string>\",\n      \"affectedUserId\": \"<string>\",\n      \"affectedUserIsMemberOfDomain\": \"<boolean>\",\n      \"browser\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"data\": {\n        \"minim__2e\": {},\n        \"velit0\": {}\n      },\n      \"device\": \"<string>\",\n      \"eventId\": \"<string>\",\n      \"field\": \"<string>\",\n      \"integratorKey\": \"<string>\",\n      \"ipAddress\": \"<string>\",\n      \"ipAddressLocation\": {\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\",\n        \"state\": \"<string>\"\n      },\n      \"isUserMemberOfDomain\": \"<boolean>\",\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\",\n      \"object\": \"<string>\",\n      \"organizationId\": \"<string>\",\n      \"os\": \"<string>\",\n      \"property\": \"<string>\",\n      \"proxyLevel\": \"<string>\",\n      \"proxyStatus\": \"<string>\",\n      \"proxyType\": \"<string>\",\n      \"referencedUserId\": \"<string>\",\n      \"referencedUserIsMemberOfDomain\": \"<boolean>\",\n      \"result\": \"<string>\",\n      \"site\": \"<string>\",\n      \"source\": \"<string>\",\n      \"state\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"userAgent\": \"<string>\",\n      \"userAgentClientInfo\": {\n        \"browser\": {\n          \"family\": \"<string>\",\n          \"version\": {\n            \"major\": \"<string>\",\n            \"minor\": \"<string>\",\n            \"patch\": \"<string>\"\n          }\n        },\n        \"device\": {\n          \"brand\": \"<string>\",\n          \"family\": \"<string>\",\n          \"model\": \"<string>\"\n        },\n        \"os\": {\n          \"family\": \"<string>\",\n          \"version\": {\n            \"major\": \"<string>\",\n            \"minor\": \"<string>\",\n            \"patch\": \"<string>\"\n          }\n        }\n      },\n      \"userId\": \"<string>\"\n    },\n    {\n      \"accountId\": \"<string>\",\n      \"action\": \"<string>\",\n      \"affectedUserId\": \"<string>\",\n      \"affectedUserIsMemberOfDomain\": \"<boolean>\",\n      \"browser\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"data\": {\n        \"Lorem_3\": {},\n        \"fugiat7\": {}\n      },\n      \"device\": \"<string>\",\n      \"eventId\": \"<string>\",\n      \"field\": \"<string>\",\n      \"integratorKey\": \"<string>\",\n      \"ipAddress\": \"<string>\",\n      \"ipAddressLocation\": {\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\",\n        \"state\": \"<string>\"\n      },\n      \"isUserMemberOfDomain\": \"<boolean>\",\n      \"latitude\": \"<double>\",\n      \"longitude\": \"<double>\",\n      \"object\": \"<string>\",\n      \"organizationId\": \"<string>\",\n      \"os\": \"<string>\",\n      \"property\": \"<string>\",\n      \"proxyLevel\": \"<string>\",\n      \"proxyStatus\": \"<string>\",\n      \"proxyType\": \"<string>\",\n      \"referencedUserId\": \"<string>\",\n      \"referencedUserIsMemberOfDomain\": \"<boolean>\",\n      \"result\": \"<string>\",\n      \"site\": \"<string>\",\n      \"source\": \"<string>\",\n      \"state\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"userAgent\": \"<string>\",\n      \"userAgentClientInfo\": {\n        \"browser\": {\n          \"family\": \"<string>\",\n          \"version\": {\n            \"major\": \"<string>\",\n            \"minor\": \"<string>\",\n            \"patch\": \"<string>\"\n          }\n        },\n        \"device\": {\n          \"brand\": \"<string>\",\n          \"family\": \"<string>\",\n          \"model\": \"<string>\"\n        },\n        \"os\": {\n          \"family\": \"<string>\",\n          \"version\": {\n            \"major\": \"<string>\",\n            \"minor\": \"<string>\",\n            \"patch\": \"<string>\"\n          }\n        }\n      },\n      \"userId\": \"<string>\"\n    }\n  ]\n}",
                             "cookie": []
                         }
                     ],
@@ -1068,13 +1074,8 @@
     "variable": [
         {
             "type": "any",
-            "value": "https://api.docusign.com",
+            "value": "https://lens.docusign.net",
             "key": "baseUrl"
-        },
-        {
-            "type": "any",
-            "value": "",
-            "key": "organizationId"
         },
         {
             "type": "any",
